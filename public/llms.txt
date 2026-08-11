@@ -1,0 +1,30 @@
+# Cometia
+
+> El diagnóstico de tu web para pymes en España: te decimos qué falla, cuánto importa y qué arreglar primero — en cristiano, con datos reales de Google y análisis de tu propia página. Y si hace falta, lo arreglamos.
+
+Cometia (https://cometia.es) no vende informes de métricas: hace un DIAGNÓSTICO de la web de un negocio. Calcula una "Salud de tu web" (0–100) a partir de decenas de comprobaciones (velocidad, SEO, conversión, accesibilidad y seguridad), detecta los problemas reales, los explica en lenguaje de dueño de negocio (qué pasa, por qué importa, por qué ocurre y cómo se soluciona) y los prioriza. Es un proyecto de Órbita Labs.
+
+## Radiografía — gratis
+- [Analizar mi web](https://cometia.es/#analizar): en ~60 segundos, la Salud de tu web, tu problema principal explicado y el recuento de problemas por gravedad. Sin registro. Si tu web está bien, te lo decimos y no te vendemos nada.
+
+## Informe completo — 19 €
+- Todos los problemas priorizados, y de cada uno: qué pasa, por qué te importa, por qué ocurre y cómo se soluciona; quién puede arreglarlo y con qué dificultad.
+- Tu plan de acción: hoy / esta semana / este mes.
+- Entregado al momento por email, con PDF que puedes pasarle a quien lleva tu web.
+- [Cómo funciona](https://cometia.es/#planes)
+
+## Lo arreglamos (servicio) — desde 19 €
+- Si el diagnóstico detecta que tu web va lenta, la optimizamos (WPO) con garantía de resultado: si no mejora, te devolvemos el dinero. También corregimos otros puntos técnicos y de SEO.
+- [Optimización de velocidad](https://cometia.es/optimizar-velocidad-web)
+
+## Guías gratuitas (velocidad, SEO y auditoría web para pymes)
+- [Todas las guías](https://cometia.es/guias)
+- [Por qué tu web va lenta](https://cometia.es/guias/por-que-mi-web-va-lenta)
+- [Qué son las Core Web Vitals](https://cometia.es/guias/core-web-vitals-que-son)
+- [Mi web no aparece en Google](https://cometia.es/guias/mi-web-no-aparece-en-google)
+- [Qué es una auditoría web](https://cometia.es/guias/que-es-una-auditoria-web)
+
+## Contacto
+- Email: cometia.es@gmail.com
+- WhatsApp: +34 657 88 46 13
+- Web: https://cometia.es

@@ -1,0 +1,34 @@
+# build output
+dist/
+.output/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+.env.*.local
+
+# macOS
+.DS_Store
+
+# astro
+.astro/
+
+# vercel
+.vercel/
+.vercel
+.env*
+
+# Datos de outreach con contactos reales de terceros (NO publicar en repo público)
+scripts/fisios-albacete.csv
+scripts/albacete-batch2.csv
+scripts/albacete-batch3.csv
+OUTREACH-FISIOS-ALBACETE.md

@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand, payment, isConfigured } from '../config';
+
+const title = 'Optimizar velocidad web (WPO) con garantía | Cometia';
+const description =
+  'Optimizamos la velocidad de tu web (WPO) y subimos tu nota de velocidad de Google con garantía de resultado, en 72 horas. Para WordPress, tiendas online y webs a medida.';
+
+const planes = [
+  { name: 'Web pequeña', price: '19 €', tagline: 'Landing o web sencilla', pay: payment.wpoBasico, features: ['La dejamos notablemente más rápida', 'Imágenes, caché y recursos optimizados', 'Entrega en 72 horas'] },
+  { name: 'WordPress o tienda', price: '25 €', tagline: 'WordPress o tienda pequeña', featured: true, pay: payment.wpoPro, features: ['Optimizamos a fondo lo que la frena', 'Código, imágenes, caché y servidor', 'Entrega en 3–5 días'] },
+  { name: 'Web grande', price: '29 €', tagline: 'Tienda o web con mucho contenido', pay: payment.wpoPremium, features: ['Optimización integral, móvil y escritorio', 'Informe de las mejoras aplicadas', 'Entrega en 5–7 días'] },
+];
+
+const hacemos = [
+  { name: 'Imágenes ligeras', desc: 'Conversión a WebP/AVIF, compresión y carga diferida para que pesen una fracción y no frenen la web.' },
+  { name: 'Caché y CDN', desc: 'Caché de página y de navegador + red de distribución para servir tu web al instante en cualquier lugar.' },
+  { name: 'CSS y JavaScript', desc: 'Minificado, aplazado y limpieza de código y plugins que bloquean la carga de la página.' },
+  { name: 'Core Web Vitals', desc: 'Optimizamos LCP, CLS e INP: las métricas de experiencia con las que Google decide tu posición.' },
+  { name: 'Servidor y fuentes', desc: 'Compresión, cabeceras de caché y carga optimizada de tipografías para ganar milisegundos clave.' },
+  { name: 'Antes y después', desc: 'Medimos tu velocidad con datos oficiales de Google antes y después: ves la mejora en números reales.' },
+];
+
+const faqs = [
+  { q: '¿Qué es la optimización WPO?', a: 'WPO (Web Performance Optimization) es el conjunto de mejoras técnicas que hacen que tu web cargue más rápido: imágenes, caché, código, servidor y Core Web Vitals. Una web rápida vende más y posiciona mejor en Google.' },
+  { q: '¿Cuánto tarda la optimización?', a: 'Desde 72 horas en el plan Básico. En tiendas y webs grandes, de 3 a 7 días. Te decimos el plazo exacto antes de empezar.' },
+  { q: '¿Sirve para WordPress y WooCommerce?', a: 'Sí. Optimizamos WordPress, WooCommerce, tiendas online, webs a medida y landing pages. Sea cual sea tu plataforma, la dejamos rápida.' },
+  { q: '¿Y si mi web no mejora?', a: 'Trabajamos con garantía de resultado: si no subimos tu nota de velocidad de Google al objetivo acordado, te devolvemos el dinero. Sin letra pequeña.' },
+  { q: '¿Cómo sé cuánto puede mejorar mi web?', a: 'Analiza tu web gratis en segundos con nuestra herramienta: te da tu nota de velocidad actual según Google. A partir de ahí te decimos qué margen de mejora tienes y qué plan encaja.' },
+];
+
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Optimización de velocidad web (WPO)',
+  name: 'Optimización de velocidad web (WPO)',
+  description,
+  provider: { '@type': 'Organization', name: brand.name, url: brand.url },
+  areaServed: { '@type': 'Country', name: 'España' },
+  offers: planes.map((p) => ({
+    '@type': 'Offer',
+    name: p.name,
+    price: p.price.replace(/[^\d]/g, ''),
+    priceCurrency: 'EUR',
+    url: `${brand.url}/optimizar-velocidad-web#planes`,
+  })),
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+
+---
+
+<BaseLayout title={title} description={description} path="/optimizar-velocidad-web">
+  <script type="application/ld+json" set:html={JSON.stringify(serviceJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <!-- HERO -->
+  <section class="section" style="border-top:3px solid var(--brand)">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Optimización de velocidad · WPO</span>
+        <h1>Optimización de velocidad web: tu web rápida en 72 horas</h1>
+        <p class="lead">
+          Una <strong>web lenta</strong> te cuesta clientes y posiciones en Google. Optimizamos tu velocidad a fondo
+          (<strong>WPO</strong>) y subimos tu nota de velocidad, <strong>con garantía de resultado</strong>: la mejoramos o te devolvemos el dinero.
+        </p>
+        <p style="display:flex; gap:12px; flex-wrap:wrap; margin-top:1.3rem">
+          <a class="btn btn--primary btn--lg" href="/#contacto">Hablar con nosotros</a>
+          <a class="btn btn--ghost btn--lg" href="/#audit-form">Analiza tu web gratis</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ OPTIMIZAMOS -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Qué optimizamos</span>
+        <h2>Atacamos las causas reales de la lentitud</h2>
+        <p class="lead">Nada de parches: optimizamos lo que de verdad frena tu web.</p>
+      </div>
+      <div class="measure">
+        {hacemos.map((h, i) => (
+          <div>
+            <div class="k">0{i + 1}</div>
+            <h3>{h.name}</h3>
+            <p>{h.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <section class="section" id="planes">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Planes</span>
+        <h2>Precio cerrado y con garantía</h2>
+        <p class="lead">Eliges plan según tu web. Si no llegamos al objetivo de Google acordado, te devolvemos el dinero.</p>
+      </div>
+      <div class="plans">
+        {planes.map((p) => (
+          <article class={`plan${p.featured ? ' plan--featured' : ''}`}>
+            {p.featured && <span class="plan__badge">El más elegido</span>}
+            <h3 class="plan__name">{p.name}</h3>
+            <p class="plan__tagline">{p.tagline}</p>
+            <div class="plan__price">{p.price} <small>IVA no incl.</small></div>
+            <ul class="plan__features">{p.features.map((f) => (<li>{f}</li>))}</ul>
+            <a class={`btn btn--block ${p.featured ? 'btn--primary' : 'btn--dark'}`} href={isConfigured(p.pay) ? p.pay : `mailto:${brand.email}?subject=${encodeURIComponent('WPO: ' + p.name)}`} target={isConfigured(p.pay) ? '_blank' : undefined} rel={isConfigured(p.pay) ? 'noopener' : undefined}>{isConfigured(p.pay) ? 'Contratar' : 'Solicitar optimización'}</a>
+          </article>
+        ))}
+      </div>
+      <p class="lead" style="margin-top:1.4rem; font-size:var(--step--1)">¿Quieres que siga rápida? Mantenimiento opcional desde 19&nbsp;€/mes. Y si prefieres saber primero qué falla, <a href="/#audit-form">analiza tu web gratis</a>.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--alt" id="faq">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2>Dudas sobre la optimización de velocidad</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

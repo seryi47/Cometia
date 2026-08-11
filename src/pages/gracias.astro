@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand } from '../config';
+
+const title = `¡Gracias! Tu informe va de camino — ${brand.name}`;
+const waHref = `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hola, he pagado un informe y quería confirmar la entrega.')}`;
+---
+
+<BaseLayout title={title} description="Hemos recibido tu pago. Te enviamos el informe completo de tu web a tu correo en unos minutos." noindex path="/gracias">
+  <section class="section">
+    <div class="container" style="max-width:640px">
+      <span class="eyebrow">Pago recibido</span>
+      <h1 style="font-size:var(--step-4);margin:.4rem 0 .6rem">¡Gracias! Tu informe va de camino 🎉</h1>
+      <p class="lead">
+        Estamos analizando tu web con datos reales de Google y preparando tu informe completo.
+        Te llega a tu <strong>correo en unos minutos</strong> (con el PDF adjunto).
+      </p>
+
+      <div class="guide-cta" style="margin-top:28px">
+        <h2>Un par de cosas</h2>
+        <ul style="margin:10px 0 0;padding-left:20px;display:grid;gap:8px;color:var(--ink-2)">
+          <li>Revisa también la carpeta de <strong>spam</strong> o <strong>promociones</strong> por si acaso.</li>
+          <li>El informe va al correo que indicaste al pagar.</li>
+          <li>¿No te llega en 10-15 minutos? Escríbenos y te lo mandamos al momento.</li>
+        </ul>
+        <p style="margin:16px 0 0;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <a class="btn btn--primary" href={waHref} target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+          <span style="color:var(--ink-2)">o por correo: <a href={`mailto:${brand.email}`} style="color:var(--brand);font-weight:700">{brand.email}</a></span>
+        </p>
+      </div>
+
+      <p style="margin-top:28px">
+        <a href="/" style="color:var(--brand);font-weight:700">← Volver al inicio</a>
+        <span style="color:var(--line-2);margin:0 10px">·</span>
+        <a href="/#analizar" style="color:var(--brand);font-weight:700">Analizar otra web gratis</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,43 @@
+# robots.txt — Cometia
+# Rastreo abierto para buscadores y asistentes de IA (GEO).
+User-agent: *
+Allow: /
+Disallow: /aviso-legal
+Disallow: /privacidad
+Disallow: /gracias
+
+# --- Asistentes de IA / LLMs: permitidos explícitamente ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+Sitemap: https://cometia.es/sitemap-index.xml

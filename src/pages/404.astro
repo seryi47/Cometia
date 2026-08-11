@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Página no encontrada (404) — Cometia"
+  description="La página que buscas no existe. Analiza tu web o vuelve al inicio."
+  noindex
+  path="/404"
+>
+  <section class="section">
+    <div class="container" style="text-align:center; max-width:640px">
+      <p class="eyebrow" style="justify-content:center">Error 404</p>
+      <h1>Esta página no existe</h1>
+      <p class="lead" style="margin:1rem auto 2rem">
+        Puede que el enlace esté roto o que la página se haya movido. Prueba con esto:
+      </p>
+      <p style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+        <a class="btn btn--primary" href="/">Ir al inicio</a>
+        <a class="btn btn--ghost" href="/#audit-form">Analizar mi web</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

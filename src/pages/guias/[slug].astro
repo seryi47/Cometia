@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { guias } from '../../data/guias';
+import { brand } from '../../config';
+
+export function getStaticPaths() {
+  return guias.map((guia) => ({
+    params: { slug: guia.slug },
+    props: { guia },
+  }));
+}
+
+const { guia } = Astro.props;
+const url = `${brand.url}/guias/${guia.slug}`;
+const otras = guias.filter((g) => g.slug !== guia.slug).slice(0, 3);
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guia.title,
+  description: guia.description,
+  image: [`${brand.url}/og-default.png`],
+  datePublished: guia.updated,
+  dateModified: guia.updated,
+  inLanguage: 'es-ES',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  author: { '@type': 'Organization', name: brand.name, url: brand.url },
+  publisher: {
+    '@type': 'Organization',
+    name: brand.name,
+    url: brand.url,
+    logo: { '@type': 'ImageObject', url: `${brand.url}/apple-touch-icon.png`, width: 180, height: 180 },
+  },
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${brand.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Guías', item: `${brand.url}/guias` },
+    { '@type': 'ListItem', position: 3, name: guia.title, item: url },
+  ],
+};
+
+const fechaFmt = new Date(guia.updated).toLocaleDateString('es-ES', {
+  day: 'numeric', month: 'long', year: 'numeric',
+});
+---
+
+<BaseLayout title={guia.metaTitle} description={guia.description} path={`/guias/${guia.slug}`}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+
+  <section class="section section--alt" style="padding-bottom:0">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/guias">Guías</a></li>
+          <li>{guia.title}</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Guía · Cometia</span>
+      <div class="prose" style="margin-top:8px">
+        <h1 style="font-size:var(--step-4)">{guia.title}</h1>
+        <p class="article-meta" style="margin-top:16px">
+          <span>Actualizado el {fechaFmt}</span>
+          <span aria-hidden="true">·</span>
+          <span>{guia.readingMinutes} min de lectura</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="article-body">
+        <nav class="toc" aria-label="Índice de contenidos">
+          <h2>En esta guía</h2>
+          <ol>
+            {guia.toc.map((t) => (<li><a href={`#${t.id}`}>{t.label}</a></li>))}
+          </ol>
+        </nav>
+
+        <Fragment set:html={guia.bodyHtml} />
+
+        <div class="guide-cta">
+          <h2>Mira la nota real de tu web</h2>
+          <p>En 60 segundos y con datos oficiales de Google: velocidad, SEO, accesibilidad y buenas prácticas. Sin registro.</p>
+          <a class="btn btn--primary" href="/#analizar">Analiza tu web gratis</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  {otras.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head"><span class="eyebrow">Sigue leyendo</span><h2>Más guías</h2></div>
+        <div class="grid-3">
+          {otras.map((g) => (
+            <a class="guide-card" href={`/guias/${g.slug}`}>
+              <div class="guide-card__top" aria-hidden="true">{g.emoji}</div>
+              <h3>{g.title}</h3>
+              <p>{g.excerpt}</p>
+              <span class="guide-card__more">Leer guía →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

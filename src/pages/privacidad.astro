@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand } from '../config';
+
+const title = `Política de privacidad — ${brand.name}`;
+---
+
+<BaseLayout title={title} description="Política de privacidad de Cometia." noindex path="/privacidad">
+  <section class="legal-hero">
+    <div class="container">
+      <span class="eyebrow">Legal</span>
+      <h1>Política de privacidad</h1>
+      <p>
+        En {brand.name} nos tomamos en serio la protección de tus datos. Esta política explica cómo
+        tratamos la información personal conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley
+        Orgánica 3/2018 (LOPDGDD).
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <article class="legal">
+      <h2 style="border-top:0;margin-top:0;padding-top:0">Responsable del tratamiento</h2>
+      <div class="id-card">
+        <ul>
+          <li><span class="lab">Responsable</span><span class="val">{brand.name} — un proyecto de Órbita Labs</span></li>
+          <li><span class="lab">Correo electrónico</span><span class="val"><a href={`mailto:${brand.email}`}>{brand.email}</a></span></li>
+          <li><span class="lab">Sitio web</span><span class="val">{brand.url}</span></li>
+          <li><span class="lab">Datos fiscales</span><span class="val">Disponibles a petición escribiendo a {brand.email}</span></li>
+        </ul>
+      </div>
+
+      <h2>1. Datos que tratamos y finalidad</h2>
+      <ul>
+        <li>
+          <strong>Datos de contacto</strong> (nombre, email, URL de tu web) que nos facilitas al
+          solicitar una auditoría o escribirnos: para atender tu solicitud, prestarte el servicio y
+          responder tus consultas.
+        </li>
+        <li>
+          <strong>URL analizada:</strong> al usar la herramienta de análisis, la dirección de la web
+          se envía a servicios de análisis técnico de Google para obtener las métricas. No
+          almacenamos datos sensibles más allá de lo necesario.
+        </li>
+      </ul>
+
+      <h2>2. Base jurídica</h2>
+      <p>
+        La base legal es la <strong>ejecución de un contrato</strong> o de medidas precontractuales
+        a petición del interesado, tu <strong>consentimiento</strong> cuando lo prestas (por
+        ejemplo, para recibir comunicaciones), y el <strong>interés legítimo</strong> en el contacto
+        comercial B2B, conforme al RGPD y la LSSI-CE.
+      </p>
+
+      <h2>3. Conservación</h2>
+      <p>
+        Conservamos tus datos mientras dure la relación y, después, durante los plazos legales
+        aplicables (fiscales y mercantiles). Cuando dejen de ser necesarios, los suprimimos de forma
+        segura.
+      </p>
+
+      <h2>4. Destinatarios</h2>
+      <p>
+        No cedemos tus datos a terceros salvo obligación legal. Utilizamos proveedores tecnológicos
+        (por ejemplo, alojamiento, envío de correo y servicios de análisis de Google) que actúan
+        como encargados del tratamiento con las debidas garantías.
+      </p>
+
+      <h2>5. Tus derechos</h2>
+      <p>
+        Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y
+        portabilidad escribiendo a {brand.email}. También puedes reclamar ante la Agencia Española de
+        Protección de Datos (<a href="https://www.aepd.es" rel="noopener noreferrer" target="_blank">www.aepd.es</a>)
+        si consideras que tratamos tus datos indebidamente.
+      </p>
+
+      <h2>6. Cookies</h2>
+      <p>
+        Este sitio utiliza únicamente cookies técnicas necesarias para su funcionamiento. Si en el
+        futuro se incorporan cookies analíticas o de terceros, se solicitará tu consentimiento
+        mediante el correspondiente banner conforme a la guía de la AEPD.
+      </p>
+
+      <a class="back" href="/">← Volver al inicio</a>
+    </article>
+  </div>
+</BaseLayout>

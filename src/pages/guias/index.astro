@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { guias } from '../../data/guias';
+import { brand } from '../../config';
+
+const title = 'Guías de velocidad, SEO y auditoría web para pymes | Cometia';
+const description =
+  'Guías prácticas para que la web de tu negocio cargue rápido, aparezca en Google y venda más: velocidad, Core Web Vitals, SEO para pymes, accesibilidad y auditoría web.';
+
+const itemListJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: guias.map((g, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `${brand.url}/guias/${g.slug}`,
+    name: g.title,
+  })),
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${brand.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Guías', item: `${brand.url}/guias` },
+  ],
+};
+---
+
+<BaseLayout title={title} description={description} path="/guias">
+  <script type="application/ld+json" set:html={JSON.stringify(itemListJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+
+  <section class="section section--alt">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href="/">Inicio</a></li>
+          <li>Guías</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Aprende</span>
+      <div class="prose" style="margin-top:8px">
+        <h1 style="font-size:var(--step-4)">Guías para que tu web cargue rápido y venda más</h1>
+        <p class="lead" style="margin-top:14px">
+          Velocidad, Core Web Vitals, SEO para pymes, accesibilidad y auditoría web, explicado en cristiano.
+          Sin tecnicismos: para dueños de negocio que quieren más clientes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {guias.length > 0 ? (
+        <div class="grid-3">
+          {guias.map((g) => (
+            <a class="guide-card" href={`/guias/${g.slug}`}>
+              <div class="guide-card__top" aria-hidden="true">{g.emoji}</div>
+              <h2>{g.title}</h2>
+              <p>{g.excerpt}</p>
+              <span class="guide-card__more">Leer guía →</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="lead">Muy pronto: estamos preparando las guías.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
