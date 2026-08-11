@@ -1,0 +1,203 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+---
+<AppLayout title="Web · Cometia Monitor">
+  <div class="wrap">
+    <a href="/app" class="backlink">← Todas mis webs</a>
+    <div id="root"><p class="muted">Cargando…</p></div>
+  </div>
+
+  <script>
+    import { supabase, getSession, api } from '../../lib/supabase-client';
+    await getSession();
+
+    const esc = (s: any) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' } as any)[c]);
+    const id = new URLSearchParams(location.search).get('id');
+    const root = document.getElementById('root') as HTMLElement;
+    if (!id) { root.innerHTML = '<p class="notice notice--err">Falta el identificador de la web.</p>'; }
+
+    const saludCls = (s: number | null) => s == null ? 'none' : s >= 70 ? 'ok' : s >= 45 ? 'warn' : 'bad';
+    const CONF: Record<string, string> = { medido: '🟢 Alta', inferido: '🟡 Media', hipotesis: '🔴 Baja' };
+    const STATUS: Record<string, { pill: string; label: string }> = {
+      revisar: { pill: 'bad', label: 'Revisar' }, error: { pill: 'bad', label: 'No responde' },
+      vigilar: { pill: 'warn', label: 'Vigilar' }, ok: { pill: 'ok', label: 'Estable' }, nuevo: { pill: 'none', label: 'Sin analizar' },
+    };
+    const AST: Record<string, string> = { pendiente: 'Pendiente', en_progreso: 'En progreso', completada: 'Completada', verificando: 'Verificando', verificada: 'Verificada' };
+    const fmtDate = (s: string) => new Date(s).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+
+    function sparkline(points: number[]) {
+      if (points.length < 2) return '<span class="muted" style="font-size:13px">Aún no hay historial suficiente. Con cada análisis verás la evolución.</span>';
+      const w = 260, h = 46, min = Math.min(...points), max = Math.max(...points), rng = max - min || 1;
+      const step = w / (points.length - 1);
+      const pts = points.map((p, i) => `${(i * step).toFixed(1)},${(h - 4 - ((p - min) / rng) * (h - 8)).toFixed(1)}`).join(' ');
+      const last = points[points.length - 1];
+      return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="overflow:visible">
+        <polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="${w}" cy="${(h - 4 - ((last - min) / rng) * (h - 8)).toFixed(1)}" r="3.5" fill="var(--accent)"/>
+      </svg>`;
+    }
+
+    let website: any = null;
+
+    async function loadAll() {
+      const { data: w } = await supabase.from('websites').select('*').eq('id', id).single();
+      if (!w) { root.innerHTML = '<p class="notice notice--err">Web no encontrada.</p>'; return; }
+      website = w;
+      const [{ data: snaps }, { data: changes }, { data: actions }] = await Promise.all([
+        supabase.from('snapshots').select('id,salud,created_at,findings').eq('website_id', id).eq('reachable', true).order('created_at', { ascending: true }),
+        supabase.from('changes').select('*').eq('website_id', id).order('created_at', { ascending: false }),
+        supabase.from('actions').select('*').eq('website_id', id).order('created_at', { ascending: false }),
+      ]);
+      render(w, snaps || [], changes || [], actions || []);
+    }
+
+    function render(w: any, snaps: any[], changes: any[], actions: any[]) {
+      const latest = snaps[snaps.length - 1];
+      const findings = (latest && latest.findings) || [];
+      const st = STATUS[w.status] || STATUS.nuevo;
+      const history = snaps.map((s) => s.salud).filter((x) => x != null);
+
+      // Cambios
+      const changesHtml = changes.length ? changes.map((c, i) => {
+        const items = (c.changes || []).map((it: any) => `<div class="chg-item">
+          <span class="sev-dot sev-${it.severidad || 'mejora'}"></span>
+          <div class="chg-item__b"><div style="font-weight:600">${esc(it.titulo)}</div>${it.evidencia ? `<div class="finding__e">${esc(it.evidencia)}</div>` : ''}</div>
+          <span class="conf">${CONF[it.confianza] || esc(it.confianza)}</span>
+        </div>`).join('');
+        const causa = c.causa ? `<div class="causa-box"><strong>Posible causa:</strong> ${esc(c.causa.texto)} <span class="conf" style="margin-left:6px">${CONF[c.causa.confianza] || ''}</span></div>` : '';
+        const dcls = c.salud_delta < 0 ? 'delta-bad' : c.salud_delta > 0 ? 'delta-ok' : 'delta-none';
+        const dtxt = c.salud_delta == null ? '' : c.salud_delta < 0 ? `▼ ${Math.abs(c.salud_delta)}` : c.salud_delta > 0 ? `▲ ${c.salud_delta}` : '=';
+        return `<div class="change-card">
+          <div class="change-card__head" data-toggle="chg-${i}">
+            <span class="change-card__date">${fmtDate(c.created_at)}</span>
+            <span class="change-card__hl">${esc(c.headline)}</span>
+            <span class="num ${dcls}">${dtxt}</span>
+          </div>
+          <div class="change-card__body" id="chg-${i}" hidden>${items}${causa}</div>
+        </div>`;
+      }).join('') : '<p class="muted" style="font-size:14px">Sin cambios registrados todavía. Cuando la web cambie entre análisis, lo verás aquí.</p>';
+
+      // Problemas actuales
+      const findingsHtml = findings.length ? findings.map((f: any) => `<div class="finding">
+        <span class="sev-dot sev-${f.severidad}"></span>
+        <div class="finding__body"><div class="finding__t">${esc(f.titulo)}</div>${f.evidencia ? `<div class="finding__e">${esc(f.evidencia)}</div>` : ''}</div>
+        <button class="btn btn--sm act-add" data-fid="${esc(f.id)}" data-title="${esc(f.titulo)}" data-cat="${esc(f.categoria)}">Convertir en acción</button>
+      </div>`).join('') : '<p class="muted" style="font-size:14px">No hay problemas destacados en el último análisis. 🎉</p>';
+
+      // Acciones
+      const actionsHtml = actions.length ? actions.map((a: any) => {
+        const done = a.status === 'verificada';
+        const sel = `<select class="mini act-status" data-id="${a.id}">${Object.keys(AST).map((k) => `<option value="${k}"${a.status === k ? ' selected' : ''}>${AST[k]}</option>`).join('')}</select>`;
+        let extra = '';
+        if (a.result) {
+          const r = a.result;
+          const m = r.metric ? ` · ${esc(r.metric.label)}: ${esc(r.metric.antes)} → ${esc(r.metric.despues)}${r.metric.mejoraPct != null ? ` (${r.metric.mejoraPct > 0 ? '−' : '+'}${Math.abs(r.metric.mejoraPct)}%)` : ''}` : '';
+          const sd = r.saludDelta != null ? ` · Salud ${r.antesSalud}→${r.despuesSalud}` : '';
+          extra = `<div class="result">✔ ${esc(r.texto)}${sd}${m}</div>`;
+        } else if (a.status === 'completada' || a.status === 'verificando') {
+          extra = `<button class="btn btn--sm btn--primary act-recheck" data-id="${a.id}">Comprobar resultado</button>`;
+        }
+        return `<div class="action"><span class="action__t ${done ? 'done' : ''}">${esc(a.title)}</span>${sel}${extra}</div>`;
+      }).join('') : '<p class="muted" style="font-size:14px">Convierte un problema de arriba en una acción para seguir su arreglo y medir el resultado.</p>';
+
+      root.innerHTML = `
+        <div class="web-head">
+          <div class="salud-big"><span class="dot dot--${saludCls(w.last_salud)}" style="width:12px;height:12px"></span> ${w.last_salud ?? '—'}<small>/100</small></div>
+          <div style="flex:1;min-width:200px">
+            <div class="web-title">${esc(w.host)}</div>
+            ${w.name ? `<div class="web-meta">${esc(w.name)}</div>` : ''}
+            <span class="pill pill--${st.pill}">${st.label}</span>
+          </div>
+          <button class="btn btn--primary" id="analyzeBtn" type="button">Analizar ahora</button>
+        </div>
+        <div class="web-meta">Última comprobación: ${w.last_checked_at ? fmtDate(w.last_checked_at) : '—'} · Frecuencia: ${w.frequency === 'daily' ? 'diaria' : 'semanal'}</div>
+        <div id="analyzeNotice"></div>
+
+        <div class="panel"><h2>Tendencia de salud</h2><div class="trend">${sparkline(history)}<span class="trend__vals">${history.length ? history.join(' → ') : ''}</span></div></div>
+        <div class="panel"><h2>Cambios</h2>${changesHtml}</div>
+        <div class="panel"><h2>Problemas actuales</h2>${findingsHtml}</div>
+        <div class="panel"><h2>Acciones</h2>${actionsHtml}</div>
+
+        <div class="panel"><h2>Ajustes de esta web</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:560px">
+            <div class="field"><label for="set-name">Nombre (cliente)</label><input class="input" id="set-name" value="${esc(w.name || '')}" placeholder="Ej: Cliente Fisioterapia" /></div>
+            <div class="field"><label for="set-freq">Frecuencia</label><select class="input" id="set-freq"><option value="weekly"${w.frequency === 'weekly' ? ' selected' : ''}>Semanal</option><option value="daily"${w.frequency === 'daily' ? ' selected' : ''}>Diaria</option></select></div>
+            <div class="field" style="grid-column:1/-1"><label for="set-email">Email para alertas <span class="muted">(vacío = tu email de cuenta)</span></label><input class="input" id="set-email" value="${esc(w.alert_email || '')}" placeholder="alertas@agencia.com" /></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+            <button class="btn btn--primary" id="saveSettings" type="button">Guardar ajustes</button>
+            <button class="btn" id="toggleActive" type="button">${w.active ? 'Pausar vigilancia' : 'Reanudar vigilancia'}</button>
+            <button class="btn" id="deleteWeb" type="button" style="margin-left:auto;color:var(--bad);border-color:var(--bad)">Eliminar web</button>
+          </div>
+          <div id="setNotice"></div>
+        </div>
+      `;
+      wire(w);
+    }
+
+    function wire(w: any) {
+      document.querySelectorAll('[data-toggle]').forEach((el) => el.addEventListener('click', () => {
+        const t = document.getElementById((el as HTMLElement).dataset.toggle!) as HTMLElement;
+        if (t) t.hidden = !t.hidden;
+      }));
+
+      const analyzeBtn = document.getElementById('analyzeBtn') as HTMLButtonElement;
+      if (analyzeBtn) analyzeBtn.addEventListener('click', async () => {
+        analyzeBtn.disabled = true;
+        analyzeBtn.innerHTML = '<span class="spinner"></span> Analizando…';
+        const r = await api('/api/app/analyze', { method: 'POST', body: { websiteId: id } });
+        const n = document.getElementById('analyzeNotice')!;
+        if (r.status === 200 && r.body.ok) {
+          n.innerHTML = r.body.change
+            ? `<div class="notice notice--ok">Analizado. Cambio detectado: ${esc(r.body.change.headline)}</div>`
+            : `<div class="notice notice--ok">Analizado. Salud ${r.body.salud}. Sin cambios relevantes.</div>`;
+          await loadAll();
+        } else {
+          n.innerHTML = `<div class="notice notice--err">${esc(r.body.error || 'No se pudo analizar.')}</div>`;
+          analyzeBtn.disabled = false; analyzeBtn.textContent = 'Analizar ahora';
+        }
+      });
+
+      document.querySelectorAll('.act-add').forEach((b) => b.addEventListener('click', async () => {
+        const el = b as HTMLElement;
+        (b as HTMLButtonElement).disabled = true;
+        await api('/api/app/actions', { method: 'POST', body: { websiteId: id, findingId: el.dataset.fid, title: 'Arreglar: ' + el.dataset.title, categoria: el.dataset.cat } });
+        await loadAll();
+      }));
+
+      document.querySelectorAll('.act-status').forEach((s) => s.addEventListener('change', async () => {
+        const el = s as HTMLSelectElement;
+        await api('/api/app/actions', { method: 'PATCH', body: { id: el.dataset.id, status: el.value } });
+        await loadAll();
+      }));
+
+      document.querySelectorAll('.act-recheck').forEach((b) => b.addEventListener('click', async () => {
+        const el = b as HTMLButtonElement;
+        el.disabled = true; el.innerHTML = '<span class="spinner"></span> Midiendo…';
+        await api('/api/app/actions', { method: 'PATCH', body: { id: el.dataset.id, recheck: true } });
+        await loadAll();
+      }));
+
+      const setNotice = (t: string, k: 'err' | 'ok' = 'ok') => { document.getElementById('setNotice')!.innerHTML = `<div class="notice notice--${k}">${esc(t)}</div>`; };
+      document.getElementById('saveSettings')?.addEventListener('click', async () => {
+        const r = await api('/api/app/websites', { method: 'PATCH', body: {
+          id, name: (document.getElementById('set-name') as HTMLInputElement).value.trim(),
+          frequency: (document.getElementById('set-freq') as HTMLSelectElement).value,
+          alert_email: (document.getElementById('set-email') as HTMLInputElement).value.trim(),
+        } });
+        if (r.ok) { setNotice('Ajustes guardados.'); await loadAll(); } else setNotice(r.body?.error || 'No se pudo guardar.', 'err');
+      });
+      document.getElementById('toggleActive')?.addEventListener('click', async () => {
+        const r = await api('/api/app/websites', { method: 'PATCH', body: { id, active: !w.active } });
+        if (r.ok) await loadAll(); else setNotice(r.body?.error || 'Error.', 'err');
+      });
+      document.getElementById('deleteWeb')?.addEventListener('click', async () => {
+        if (!confirm('¿Eliminar esta web y todo su historial? No se puede deshacer.')) return;
+        const r = await api('/api/app/websites', { method: 'DELETE', body: { id } });
+        if (r.ok) location.href = '/app'; else setNotice(r.body?.error || 'No se pudo eliminar.', 'err');
+      });
+    }
+
+    if (id) await loadAll();
+  </script>
+</AppLayout>

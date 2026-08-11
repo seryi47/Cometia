@@ -1,0 +1,145 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+---
+<AppLayout title="Panel · Cometia Monitor">
+  <div class="wrap">
+    <div id="greeting">
+      <h1 class="greeting">Tus webs</h1>
+      <p class="greeting-sub" id="sub">Cargando el estado…</p>
+    </div>
+
+    <div class="summary" id="summary" hidden>
+      <div class="stat stat--bad"><div class="stat__n num" id="s-att">0</div><div class="stat__l">necesitan atención</div></div>
+      <div class="stat stat--warn"><div class="stat__n num" id="s-chg">0</div><div class="stat__l">han cambiado</div></div>
+      <div class="stat stat--ok"><div class="stat__n num" id="s-ok">0</div><div class="stat__l">estables</div></div>
+    </div>
+
+    <div class="section-title">Añadir una web a vigilancia</div>
+    <div class="card addbar">
+      <div class="field">
+        <label for="url">URL de la web</label>
+        <input class="input" id="url" type="text" placeholder="cliente.com" />
+      </div>
+      <div class="field field--sm">
+        <label for="freq">Frecuencia</label>
+        <select class="input" id="freq">
+          <option value="weekly">Semanal</option>
+          <option value="daily">Diaria</option>
+        </select>
+      </div>
+      <button class="btn btn--primary" id="addBtn" type="button">Analizar y añadir</button>
+    </div>
+    <div id="addNotice"></div>
+
+    <div class="section-title">Mis webs</div>
+    <div id="list"><p class="muted">Cargando…</p></div>
+  </div>
+
+  <script>
+    import { supabase, getSession, api } from '../../lib/supabase-client';
+
+    await getSession(); // el layout ya redirige si no hay sesión
+
+    const esc = (s: any) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' } as any)[c]);
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+
+    function saludCls(s: number | null) {
+      if (s == null) return 'none';
+      if (s >= 70) return 'ok';
+      if (s >= 45) return 'warn';
+      return 'bad';
+    }
+    const STATUS: Record<string, { pill: string; label: string }> = {
+      revisar: { pill: 'bad', label: 'Revisar' },
+      error: { pill: 'bad', label: 'No responde' },
+      vigilar: { pill: 'warn', label: 'Vigilar' },
+      ok: { pill: 'ok', label: 'Estable' },
+      nuevo: { pill: 'none', label: 'Sin analizar' },
+    };
+
+    async function load() {
+      const { data: sites } = await supabase.from('websites').select('*').order('created_at', { ascending: false });
+      const { data: changes } = await supabase.from('changes').select('website_id,salud_delta,created_at').order('created_at', { ascending: false });
+      const lastDelta: Record<string, number> = {};
+      for (const c of changes || []) if (!(c.website_id in lastDelta)) lastDelta[c.website_id] = c.salud_delta;
+
+      const list = sites || [];
+      // Resumen
+      let att = 0, chg = 0, ok = 0;
+      for (const w of list) {
+        if (w.status === 'revisar' || w.status === 'error') att++;
+        else if (w.status === 'vigilar') chg++;
+        else ok++;
+      }
+      $('s-att').textContent = String(att);
+      $('s-chg').textContent = String(chg);
+      $('s-ok').textContent = String(ok);
+      $('summary').hidden = list.length === 0;
+
+      const hour = new Date().getHours();
+      const hi = hour < 6 ? 'Buenas noches' : hour < 13 ? 'Buenos días' : hour < 21 ? 'Buenas tardes' : 'Buenas noches';
+      $('greeting').querySelector('.greeting')!.textContent = hi + '.';
+      $('sub').textContent = list.length === 0
+        ? 'Añade la primera web para empezar a vigilarla.'
+        : att > 0 ? `${att} ${att === 1 ? 'web necesita' : 'webs necesitan'} atención.` : 'Todo en orden por ahora.';
+
+      if (list.length === 0) {
+        $('list').innerHTML = '<div class="card empty"><h3>Aún no vigilas ninguna web</h3><p>Añade una arriba: la analizamos y te avisamos si empeora.</p></div>';
+        return;
+      }
+
+      const rows = list.map((w: any) => {
+        const sc = saludCls(w.last_salud);
+        const st = STATUS[w.status] || STATUS.nuevo;
+        const d = lastDelta[w.id];
+        const deltaHtml = d == null ? '<span class="delta-none">—</span>'
+          : d < 0 ? `<span class="delta-bad">▼ ${Math.abs(d)}</span>`
+          : d > 0 ? `<span class="delta-ok">▲ ${d}</span>` : '<span class="delta-none">=</span>';
+        return `<tr class="row" data-id="${w.id}">
+          <td><div class="site-host">${esc(w.host)}</div>${w.name ? `<div class="site-name">${esc(w.name)}</div>` : ''}</td>
+          <td><span class="salud"><span class="dot dot--${sc}"></span>${w.last_salud ?? '—'}</span></td>
+          <td class="num">${deltaHtml}</td>
+          <td><span class="pill pill--${st.pill}">${st.label}</span></td>
+        </tr>`;
+      }).join('');
+
+      $('list').innerHTML = `<div class="table-wrap"><table class="sites">
+        <thead><tr><th>Web</th><th>Salud</th><th>Cambio</th><th>Estado</th></tr></thead>
+        <tbody>${rows}</tbody></table></div>`;
+      document.querySelectorAll('tr.row').forEach((tr) =>
+        tr.addEventListener('click', () => { location.href = '/app/web?id=' + (tr as HTMLElement).dataset.id; }));
+    }
+
+    // Añadir web
+    const addBtn = $('addBtn') as HTMLButtonElement;
+    const urlInp = $('url') as HTMLInputElement;
+    function notice(t: string, kind: 'err' | 'ok' = 'err') { $('addNotice').innerHTML = `<div class="notice notice--${kind}">${esc(t)}</div>`; }
+    async function add() {
+      const url = urlInp.value.trim();
+      if (!url) { notice('Escribe la URL de la web.'); return; }
+      addBtn.disabled = true;
+      const prev = addBtn.textContent;
+      addBtn.innerHTML = '<span class="spinner"></span> Analizando… (~30 s)';
+      $('addNotice').innerHTML = '';
+      try {
+        const r = await api('/api/app/websites', { method: 'POST', body: { url, frequency: ($('freq') as HTMLSelectElement).value } });
+        if (r.status === 200) {
+          notice('Web añadida y analizada. Salud: ' + (r.body.analysis?.salud ?? '—'), 'ok');
+          urlInp.value = '';
+          await load();
+        } else {
+          notice(r.body?.error || 'No se pudo añadir la web.');
+        }
+      } catch (e) {
+        notice('Error de red. Inténtalo de nuevo.');
+      } finally {
+        addBtn.disabled = false;
+        addBtn.textContent = prev;
+      }
+    }
+    addBtn.addEventListener('click', add);
+    urlInp.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') add(); });
+
+    await load();
+  </script>
+</AppLayout>

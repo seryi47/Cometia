@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 // Páginas noindex que NO deben aparecer en el sitemap.
-const NOINDEX = ['/aviso-legal', '/privacidad', '/gracias'];
+const NOINDEX = ['/aviso-legal', '/privacidad', '/gracias', '/app'];
 
 // https://astro.build
 export default defineConfig({

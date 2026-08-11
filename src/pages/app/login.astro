@@ -1,0 +1,96 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+---
+<AppLayout title="Entrar · Cometia Monitor" chrome={false}>
+  <div class="auth">
+    <div class="card">
+      <a href="/" class="brand" style="font-size:20px">Cometia<small>Monitor</small></a>
+      <h1 id="title" style="margin-top:18px">Entra en tu panel</h1>
+      <p class="muted" id="sub">Vigila la salud de tus webs y las de tus clientes.</p>
+
+      <div class="form">
+        <div class="field" id="orgField" hidden>
+          <label for="orgName">Nombre de tu agencia o negocio <span class="muted">(opcional)</span></label>
+          <input class="input" id="orgName" type="text" autocomplete="organization" placeholder="Mi Agencia" />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input class="input" id="email" type="email" autocomplete="email" placeholder="tu@agencia.com" />
+        </div>
+        <div class="field">
+          <label for="password">Contraseña</label>
+          <input class="input" id="password" type="password" autocomplete="current-password" placeholder="••••••••" />
+        </div>
+        <div id="notice"></div>
+        <button class="btn btn--primary" id="submit" type="button">Entrar</button>
+      </div>
+
+      <div class="switch">
+        <span id="switchText">¿Aún no tienes cuenta?</span>
+        <button class="btn--link" id="switchBtn" type="button">Crear cuenta</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { supabase, getSession, api } from '../../lib/supabase-client';
+
+    // Si ya hay sesión, al panel.
+    const existing = await getSession();
+    if (existing) location.href = new URLSearchParams(location.search).get('next') || '/app';
+
+    // ?signup=1 abre directamente en modo alta (lo usa el CTA de la landing).
+    const startSignup = new URLSearchParams(location.search).get('signup') === '1';
+    let mode: 'signin' | 'signup' = 'signin';
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const email = $('email') as HTMLInputElement;
+    const password = $('password') as HTMLInputElement;
+    const notice = $('notice');
+    const submit = $('submit') as HTMLButtonElement;
+
+    function setMode(m: 'signin' | 'signup') {
+      mode = m;
+      ($('orgField') as HTMLElement).hidden = m !== 'signup';
+      $('title').textContent = m === 'signin' ? 'Entra en tu panel' : 'Crea tu cuenta';
+      submit.textContent = m === 'signin' ? 'Entrar' : 'Crear cuenta';
+      $('switchText').textContent = m === 'signin' ? '¿Aún no tienes cuenta?' : '¿Ya tienes cuenta?';
+      $('switchBtn').textContent = m === 'signin' ? 'Crear cuenta' : 'Entrar';
+      notice.innerHTML = '';
+    }
+    $('switchBtn').addEventListener('click', () => setMode(mode === 'signin' ? 'signup' : 'signin'));
+    if (startSignup) setMode('signup');
+
+    function msg(t: string, kind: 'err' | 'ok' = 'err') {
+      notice.innerHTML = '<div class="notice notice--' + kind + '">' + t + '</div>';
+    }
+
+    async function go() {
+      const e = email.value.trim();
+      const p = password.value;
+      if (!e || !p) { msg('Escribe tu email y contraseña.'); return; }
+      submit.disabled = true;
+      const label = submit.textContent;
+      submit.innerHTML = '<span class="spinner"></span>';
+      try {
+        if (mode === 'signup') {
+          const orgName = ($('orgName') as HTMLInputElement).value.trim();
+          const r = await api('/api/app/signup', { method: 'POST', body: { email: e, password: p, orgName } });
+          if (r.status === 409) { msg('Ya hay una cuenta con ese email. Entra con tu contraseña.'); setMode('signin'); return; }
+          if (!r.ok) { msg(r.body?.error || 'No se pudo crear la cuenta.'); return; }
+          const { error } = await supabase.auth.signInWithPassword({ email: e, password: p });
+          if (error) { msg('Cuenta creada. Ahora entra con tu contraseña.', 'ok'); setMode('signin'); return; }
+          location.href = new URLSearchParams(location.search).get('next') || '/app';
+        } else {
+          const { error } = await supabase.auth.signInWithPassword({ email: e, password: p });
+          if (error) { msg('Email o contraseña incorrectos.'); return; }
+          location.href = new URLSearchParams(location.search).get('next') || '/app';
+        }
+      } finally {
+        submit.disabled = false;
+        submit.textContent = label;
+      }
+    }
+    submit.addEventListener('click', go);
+    password.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') go(); });
+  </script>
+</AppLayout>

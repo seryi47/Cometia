@@ -1,0 +1,47 @@
+---
+// Layout del dashboard (privado). chrome=false para la pantalla de login.
+import '../styles/app.css';
+interface Props { title?: string; chrome?: boolean; }
+const { title = 'Cometia · Monitor', chrome = true } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body>
+    {chrome && (
+      <header class="app-header">
+        <div class="app-header__in">
+          <a href="/app" class="brand">Cometia<small>Monitor</small></a>
+          <div class="app-header__spacer"></div>
+          <span class="app-header__user" id="userEmail"></span>
+          <a class="btn btn--sm" href="/app/cuenta">Cuenta</a>
+          <button class="btn btn--sm" id="logout" type="button">Cerrar sesión</button>
+        </div>
+      </header>
+    )}
+    <main>
+      <slot />
+    </main>
+
+    {chrome && (
+      <script>
+        import { getSession, signOut } from '../lib/supabase-client';
+        const s = await getSession();
+        if (!s) {
+          location.href = '/app/login?next=' + encodeURIComponent(location.pathname + location.search);
+        } else {
+          const el = document.getElementById('userEmail');
+          if (el) el.textContent = s.user.email ?? '';
+          const lo = document.getElementById('logout');
+          if (lo) lo.addEventListener('click', (e) => { e.preventDefault(); signOut(); });
+        }
+      </script>
+    )}
+  </body>
+</html>

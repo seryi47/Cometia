@@ -1,0 +1,58 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+---
+<AppLayout title="Cuenta · Cometia Monitor">
+  <div class="wrap" style="max-width:640px">
+    <a href="/app" class="backlink">← Volver al panel</a>
+    <h1 class="greeting">Tu cuenta</h1>
+    <p class="greeting-sub">Datos de tu organización y acceso.</p>
+
+    <div class="panel"><h2>Organización</h2>
+      <div class="field"><label for="orgName">Nombre</label><input class="input" id="orgName" placeholder="Mi Agencia" /></div>
+      <div style="margin-top:12px"><button class="btn btn--primary" id="saveOrg" type="button">Guardar</button></div>
+      <div id="orgNotice"></div>
+    </div>
+
+    <div class="panel"><h2>Acceso</h2>
+      <p class="muted">Email: <strong id="email">…</strong></p>
+    </div>
+
+    <div class="panel"><h2>Cambiar contraseña</h2>
+      <div class="field"><label for="pw1">Nueva contraseña</label><input class="input" id="pw1" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres" /></div>
+      <div class="field" style="margin-top:10px"><label for="pw2">Repite la contraseña</label><input class="input" id="pw2" type="password" autocomplete="new-password" /></div>
+      <div style="margin-top:12px"><button class="btn btn--primary" id="savePw" type="button">Actualizar contraseña</button></div>
+      <div id="pwNotice"></div>
+    </div>
+  </div>
+
+  <script>
+    import { supabase, getSession } from '../../lib/supabase-client';
+    const s = await getSession();
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    ($('email')).textContent = s?.user.email ?? '';
+
+    const { data: orgs } = await supabase.from('organizations').select('*').limit(1);
+    const org = orgs && orgs[0];
+    const orgNameInp = $('orgName') as HTMLInputElement;
+    if (org) orgNameInp.value = org.name;
+
+    const notice = (id: string, t: string, k: 'err' | 'ok' = 'ok') => { $(id).innerHTML = `<div class="notice notice--${k}">${t}</div>`; };
+
+    $('saveOrg').addEventListener('click', async () => {
+      if (!org) return;
+      const name = orgNameInp.value.trim() || org.name;
+      const { error } = await supabase.from('organizations').update({ name }).eq('id', org.id);
+      notice('orgNotice', error ? 'No se pudo guardar.' : 'Guardado.', error ? 'err' : 'ok');
+    });
+
+    $('savePw').addEventListener('click', async () => {
+      const p1 = ($('pw1') as HTMLInputElement).value, p2 = ($('pw2') as HTMLInputElement).value;
+      if (p1.length < 8) { notice('pwNotice', 'La contraseña debe tener al menos 8 caracteres.', 'err'); return; }
+      if (p1 !== p2) { notice('pwNotice', 'Las contraseñas no coinciden.', 'err'); return; }
+      const { error } = await supabase.auth.updateUser({ password: p1 });
+      if (error) { notice('pwNotice', 'Error: ' + error.message, 'err'); return; }
+      notice('pwNotice', 'Contraseña actualizada.', 'ok');
+      ($('pw1') as HTMLInputElement).value = ''; ($('pw2') as HTMLInputElement).value = '';
+    });
+  </script>
+</AppLayout>

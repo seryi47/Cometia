@@ -44,5 +44,31 @@ export default async function handler(req, res) {
     return json(res, 200, { website: fresh || website, analysis: r.ok ? { salud: r.snapshot.salud } : { error: r.error } });
   }
 
+  // Editar una web: pausar/reanudar, renombrar, frecuencia, email de alertas.
+  if (req.method === 'PATCH') {
+    const b = await readBody(req);
+    const { data: website } = await svc.from('websites').select('org_id').eq('id', b.id).single();
+    if (!website || website.org_id !== orgId) return json(res, 404, { error: 'Web no encontrada.' });
+    const patch = {};
+    if (typeof b.active === 'boolean') patch.active = b.active;
+    if (typeof b.name === 'string') patch.name = b.name.slice(0, 120) || null;
+    if (b.frequency === 'daily' || b.frequency === 'weekly') patch.frequency = b.frequency;
+    if (typeof b.alert_email === 'string') patch.alert_email = b.alert_email.trim() || null;
+    if (!Object.keys(patch).length) return json(res, 400, { error: 'Nada que actualizar.' });
+    const { data, error } = await svc.from('websites').update(patch).eq('id', b.id).select('*').single();
+    if (error) return json(res, 500, { error: error.message });
+    return json(res, 200, { website: data });
+  }
+
+  // Borrar una web (y en cascada sus snapshots/cambios/alertas/acciones).
+  if (req.method === 'DELETE') {
+    const b = await readBody(req);
+    const wid = b.id || (req.query && req.query.id);
+    const { data: website } = await svc.from('websites').select('org_id').eq('id', wid).single();
+    if (!website || website.org_id !== orgId) return json(res, 404, { error: 'Web no encontrada.' });
+    await svc.from('websites').delete().eq('id', wid);
+    return json(res, 200, { ok: true });
+  }
+
   return json(res, 405, { error: 'Método no permitido.' });
 }
