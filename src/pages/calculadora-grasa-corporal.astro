@@ -1,0 +1,75 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calcula el porcentaje de grasa corporal?', a: 'Usamos el método de la Marina de EE. UU., que estima la grasa a partir de medidas corporales: altura, cuello y cintura (y cadera en mujeres). Es una estimación rápida y sin básculas especiales.' },
+  { q: '¿Es preciso?', a: 'Es orientativo. Métodos como la báscula de bioimpedancia o la densitometría son más precisos. Úsalo para hacerte una idea y seguir tu evolución, no como diagnóstico.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de grasa corporal', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-grasa-corporal' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de grasa corporal (método de la Marina)" description="Estima tu porcentaje de grasa corporal con el método de la Marina de EE. UU. a partir de tus medidas. Gratis y sin registro." path="/calculadora-grasa-corporal" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Salud › Grasa corporal</div>
+  <h1>Calculadora de grasa corporal</h1>
+  <p class="lead">Estima tu porcentaje de grasa con unas medidas y una cinta métrica.</p>
+  <div class="calc">
+    <div class="field"><label>Sexo</label><div class="seg" id="sexo"><button type="button" data-s="h" aria-pressed="true">Hombre</button><button type="button" data-s="m" aria-pressed="false">Mujer</button></div></div>
+    <div class="row">
+      <div class="field"><label for="altura">Altura (cm)</label><input class="input" id="altura" type="number" inputmode="decimal" value="175" min="1" /></div>
+      <div class="field"><label for="cuello">Cuello (cm)</label><input class="input" id="cuello" type="number" inputmode="decimal" value="38" min="1" /></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="cintura">Cintura (cm)</label><input class="input" id="cintura" type="number" inputmode="decimal" value="85" min="1" /></div>
+      <div class="field" id="caderaWrap" hidden><label for="cadera">Cadera (cm)</label><input class="input" id="cadera" type="number" inputmode="decimal" value="95" min="1" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Grasa corporal estimada</div>
+      <div class="result__big num" id="pct">—</div>
+      <div style="margin-top:10px"><span class="badge" id="cat">—</span></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo se calcula</h2>
+    <p>El método de la Marina estima la grasa corporal con fórmulas basadas en la circunferencia del cuello, la cintura (y la cadera en mujeres) y la altura. Mide con la cinta pegada a la piel pero sin apretar, y en ayunas para más consistencia.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-imc">IMC</a><a href="/calculadora-calorias">Calorías</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    let sexo = 'h';
+    document.querySelectorAll('#sexo button').forEach((b) => b.addEventListener('click', () => {
+      sexo = (b as HTMLElement).dataset.s!;
+      document.querySelectorAll('#sexo button').forEach((x) => x.setAttribute('aria-pressed', String((x as HTMLElement).dataset.s === sexo)));
+      ($('caderaWrap')).hidden = sexo !== 'm';
+      calc();
+    }));
+    function calc() {
+      const alt = parseFloat(($('altura') as HTMLInputElement).value) || 0;
+      const cuello = parseFloat(($('cuello') as HTMLInputElement).value) || 0;
+      const cintura = parseFloat(($('cintura') as HTMLInputElement).value) || 0;
+      const cadera = parseFloat(($('cadera') as HTMLInputElement).value) || 0;
+      const log = Math.log10;
+      let pct = 0;
+      if (sexo === 'h') { if (cintura - cuello <= 0 || alt <= 0) return; pct = 495 / (1.0324 - 0.19077 * log(cintura - cuello) + 0.15456 * log(alt)) - 450; }
+      else { if (cintura + cadera - cuello <= 0 || alt <= 0) return; pct = 495 / (1.29579 - 0.35004 * log(cintura + cadera - cuello) + 0.22100 * log(alt)) - 450; }
+      if (pct < 0 || !isFinite(pct)) { ($('pct')).textContent = 'Revisa las medidas'; ($('res')).hidden = false; return; }
+      ($('pct')).textContent = pct.toFixed(1).replace('.', ',') + ' %';
+      const lim = sexo === 'h' ? [6, 14, 18, 25] : [14, 21, 25, 32];
+      let cat = '', cls = '';
+      if (pct < lim[0]) { cat = 'Muy bajo (esencial)'; cls = 'badge--warn'; }
+      else if (pct < lim[1]) { cat = 'Atlético'; cls = 'badge--ok'; }
+      else if (pct < lim[2]) { cat = 'En forma'; cls = 'badge--ok'; }
+      else if (pct < lim[3]) { cat = 'Aceptable'; cls = 'badge--warn'; }
+      else { cat = 'Elevado'; cls = 'badge--bad'; }
+      const b = $('cat'); b.textContent = cat; b.className = 'badge ' + cls;
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['altura','cuello','cintura','cadera'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    calc();
+  </script>
+</CalcLayout>

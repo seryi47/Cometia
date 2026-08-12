@@ -1,0 +1,72 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Qué unidades puedo convertir?', a: 'Longitud (metros, kilómetros, centímetros, millas, pies, pulgadas…), peso (kilos, gramos, libras, onzas, toneladas) y temperatura (grados Celsius, Fahrenheit y Kelvin).' },
+  { q: '¿Cómo se convierten los grados a Fahrenheit?', a: 'De Celsius a Fahrenheit: °F = °C × 9/5 + 32. Al revés: °C = (°F − 32) × 5/9. Aquí se hace automáticamente al elegir las unidades.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Conversor de unidades', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-conversor-unidades' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Conversor de unidades: longitud, peso y temperatura" description="Convierte entre metros, kilómetros, millas, kilos, libras, grados Celsius, Fahrenheit y más. Rápido, claro y gratis." path="/calculadora-conversor-unidades" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Conversor de unidades</div>
+  <h1>Conversor de unidades</h1>
+  <p class="lead">Convierte longitud, peso y temperatura entre las unidades más habituales.</p>
+  <div class="calc">
+    <div class="field"><label>Categoría</label><div class="seg" id="cat"><button type="button" data-c="long" aria-pressed="true">Longitud</button><button type="button" data-c="peso" aria-pressed="false">Peso</button><button type="button" data-c="temp" aria-pressed="false">Temperatura</button></div></div>
+    <div class="row">
+      <div class="field"><label for="val">Valor</label><input class="input" id="val" type="number" inputmode="decimal" value="1" /></div>
+      <div class="field"><label for="from">De</label><select class="input" id="from"></select></div>
+    </div>
+    <div class="field"><label for="to">A</label><select class="input" id="to"></select></div>
+    <button class="btn" id="go" type="button">Convertir</button>
+    <div class="result" id="res" hidden><div class="hint">Resultado</div><div class="result__big num" id="out">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Conversiones habituales</h2>
+    <p>1 kilómetro son 1.000 metros; 1 milla equivale a 1,609 km; 1 libra son 0,454 kg; y 0 °C equivalen a 32 °F. Elige la categoría, las unidades de origen y destino, y el conversor hace el resto.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const nf = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 6 });
+    // factores a la unidad base (long: metros, peso: gramos)
+    const UNITS: Record<string, Record<string, number>> = {
+      long: { 'Metros (m)': 1, 'Kilómetros (km)': 1000, 'Centímetros (cm)': 0.01, 'Milímetros (mm)': 0.001, 'Millas (mi)': 1609.344, 'Pies (ft)': 0.3048, 'Pulgadas (in)': 0.0254, 'Yardas (yd)': 0.9144 },
+      peso: { 'Kilogramos (kg)': 1000, 'Gramos (g)': 1, 'Miligramos (mg)': 0.001, 'Toneladas (t)': 1e6, 'Libras (lb)': 453.592, 'Onzas (oz)': 28.3495 },
+      temp: { 'Celsius (°C)': 0, 'Fahrenheit (°F)': 0, 'Kelvin (K)': 0 },
+    };
+    let cat = 'long';
+    function fill() {
+      const keys = Object.keys(UNITS[cat]);
+      const from = $('from') as HTMLSelectElement, to = $('to') as HTMLSelectElement;
+      from.innerHTML = keys.map((k) => `<option>${k}</option>`).join('');
+      to.innerHTML = keys.map((k) => `<option>${k}</option>`).join('');
+      to.selectedIndex = Math.min(1, keys.length - 1);
+    }
+    function toC(v: number, u: string) { return u.startsWith('Celsius') ? v : u.startsWith('Fahrenheit') ? (v - 32) * 5 / 9 : v - 273.15; }
+    function fromC(v: number, u: string) { return u.startsWith('Celsius') ? v : u.startsWith('Fahrenheit') ? v * 9 / 5 + 32 : v + 273.15; }
+    function calc() {
+      const v = parseFloat(($('val') as HTMLInputElement).value);
+      const f = ($('from') as HTMLSelectElement).value, t = ($('to') as HTMLSelectElement).value;
+      if (isNaN(v) || !f || !t) return;
+      let out = 0;
+      if (cat === 'temp') out = fromC(toC(v, f), t);
+      else out = v * UNITS[cat][f] / UNITS[cat][t];
+      ($('out')).textContent = nf.format(out);
+      ($('res')).hidden = false;
+    }
+    document.querySelectorAll('#cat button').forEach((b) => b.addEventListener('click', () => {
+      cat = (b as HTMLElement).dataset.c!;
+      document.querySelectorAll('#cat button').forEach((x) => x.setAttribute('aria-pressed', String((x as HTMLElement).dataset.c === cat)));
+      fill(); calc();
+    }));
+    $('go').addEventListener('click', calc);
+    ['val','from','to'].forEach((id) => $(id).addEventListener('change', calc));
+    ($('val')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    fill(); calc();
+  </script>
+</CalcLayout>

@@ -1,0 +1,51 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Para qué sirve sumar o restar días a una fecha?', a: 'Para saber qué día caerá dentro de un plazo (por ejemplo, 30 días para pagar una factura) o qué fecha era hace cierto tiempo. También te decimos el día de la semana.' },
+  { q: '¿Cuenta fines de semana y festivos?', a: 'Sí, suma o resta días naturales (todos los días). Para días hábiles habría que descontar fines de semana y festivos, que varían según la comunidad.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Sumar o restar días a una fecha', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-sumar-restar-dias' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Sumar o restar días a una fecha" description="Calcula qué fecha será dentro de X días o la de hace X días, con el día de la semana. Gratis y al instante." path="/calculadora-sumar-restar-dias" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Tiempo › Sumar o restar días</div>
+  <h1>Sumar o restar días a una fecha</h1>
+  <p class="lead">Elige una fecha, cuántos días y si sumar o restar. Te damos la fecha resultante.</p>
+  <div class="calc">
+    <div class="field"><label for="base">Fecha de partida</label><input class="input" id="base" type="date" /></div>
+    <div class="field"><label>Operación</label><div class="seg" id="op"><button type="button" data-o="sumar" aria-pressed="true">Sumar</button><button type="button" data-o="restar" aria-pressed="false">Restar</button></div></div>
+    <div class="field"><label for="dias">Número de días</label><input class="input" id="dias" type="number" inputmode="numeric" value="30" min="0" /></div>
+    <button class="btn" id="go" type="button">Calcular fecha</button>
+    <div class="result" id="res" hidden><div class="hint">Fecha resultante</div><div class="result__big num" id="out">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo funciona</h2>
+    <p>Tomamos tu fecha de partida y le sumamos o restamos los días naturales que indiques. Es muy útil para plazos de pago, entregas, vencimientos o cuentas atrás, y además te decimos en qué día de la semana cae.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-edad">Edad</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    let op = 'sumar';
+    document.querySelectorAll('#op button').forEach((b) => b.addEventListener('click', () => {
+      op = (b as HTMLElement).dataset.o!;
+      document.querySelectorAll('#op button').forEach((x) => x.setAttribute('aria-pressed', String((x as HTMLElement).dataset.o === op)));
+      calc();
+    }));
+    function calc() {
+      const v = ($('base') as HTMLInputElement).value;
+      const dias = parseInt(($('dias') as HTMLInputElement).value) || 0;
+      if (!v) return;
+      const base = new Date(v + 'T00:00:00');
+      const res = new Date(base.getTime() + (op === 'sumar' ? 1 : -1) * dias * 86400000);
+      ($('out')).textContent = res.toLocaleDateString('es-ES', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['base','dias'].forEach((id) => $(id).addEventListener('change', calc));
+  </script>
+</CalcLayout>

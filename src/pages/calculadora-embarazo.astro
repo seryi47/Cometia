@@ -1,0 +1,57 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calculan las semanas de embarazo?', a: 'Se cuentan desde el primer día de tu última regla (regla de Naegele). Por eso, en el momento de la concepción ya se consideran unas 2 semanas de embarazo. La duración habitual es de 40 semanas.' },
+  { q: '¿Cómo se calcula la fecha probable de parto?', a: 'Se suman 280 días (40 semanas) al primer día de la última regla. Es una estimación: solo un pequeño porcentaje de bebés nace exactamente ese día.' },
+  { q: '¿Esto sustituye al médico?', a: 'No. Es una estimación orientativa. La datación precisa la hace tu matrona o ginecólogo con una ecografía.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de embarazo', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-embarazo' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de embarazo: semanas y fecha de parto" description="Calcula las semanas de embarazo y tu fecha probable de parto a partir de tu última regla. Orientativo, gratis y sin registro." path="/calculadora-embarazo" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Salud › Embarazo</div>
+  <h1>Calculadora de embarazo</h1>
+  <p class="lead">Indica el primer día de tu <strong>última regla</strong> y calculamos las semanas de embarazo y tu <strong>fecha probable de parto</strong>.</p>
+  <div class="calc">
+    <div class="field"><label for="fur">Primer día de tu última regla</label><input class="input" id="fur" type="date" /></div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Estás de</div>
+      <div class="result__big num" id="sem">—</div>
+      <div style="margin-top:12px">
+        <div class="result__row"><span>Fecha probable de parto</span><strong class="num" id="fpp">—</strong></div>
+        <div class="result__row"><span>Trimestre</span><strong class="num" id="tri">—</strong></div>
+      </div>
+      <p class="hint" style="margin-top:10px">Estimación orientativa. La fecha exacta la confirma tu matrona o ginecólogo.</p>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo se calcula</h2>
+    <p>Usamos la <strong>regla de Naegele</strong>: se cuenta desde el primer día de la última regla y se suman 280 días (40 semanas) para estimar la fecha de parto. El embarazo se divide en tres trimestres: hasta la semana 13, de la 14 a la 27 y de la 28 hasta el nacimiento.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const fmt = (d: Date) => d.toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
+    function calc() {
+      const v = ($('fur') as HTMLInputElement).value;
+      if (!v) return;
+      const fur = new Date(v); const hoy = new Date();
+      const dias = Math.floor((hoy.getTime() - fur.getTime()) / 86400000);
+      if (dias < 0) { ($('sem')).textContent = 'Fecha futura 🤔'; ($('res')).hidden = false; return; }
+      const sem = Math.floor(dias / 7), d = dias % 7;
+      const fpp = new Date(fur.getTime() + 280 * 86400000);
+      const tri = sem <= 13 ? 'Primer trimestre' : sem <= 27 ? 'Segundo trimestre' : 'Tercer trimestre';
+      ($('sem')).textContent = `${sem} semanas y ${d} días`;
+      ($('fpp')).textContent = fmt(fpp);
+      ($('tri')).textContent = sem > 42 ? '—' : tri;
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('fur')).addEventListener('change', calc);
+  </script>
+</CalcLayout>
