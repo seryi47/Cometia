@@ -129,6 +129,7 @@ details.faq p { margin:0 0 14px; color:var(--muted); }
 
 /* Ad slot ------------------------------------------------------------------ */
 .ad { margin:28px auto; min-height:100px; display:flex; align-items:center; justify-content:center; color:var(--faint); font-size:.78rem; letter-spacing:.05em; text-transform:uppercase; border:1px dashed var(--border-2); border-radius:14px; background:var(--surface-2); }
+.adslot { margin:28px auto; min-height:100px; text-align:center; overflow:hidden; }
 
 /* Footer ------------------------------------------------------------------- */
 .ft { border-top:1px solid var(--border); background:var(--surface); margin-top:20px; }
