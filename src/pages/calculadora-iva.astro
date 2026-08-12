@@ -1,0 +1,87 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calcula el IVA de un importe?', a: 'Multiplicas la base (el precio sin IVA) por el tipo. Con el IVA general del 21 %: base × 0,21. El total es la base más ese IVA.' },
+  { q: '¿Cómo quitar el IVA de un precio final?', a: 'Divides el precio con IVA entre 1 más el tipo. Para el 21 %: precio ÷ 1,21 te da la base sin IVA, y la diferencia es el IVA.' },
+  { q: '¿Qué tipos de IVA hay en España?', a: 'El general del 21 % (la mayoría de bienes y servicios), el reducido del 10 % (hostelería, transporte, algunos alimentos) y el superreducido del 4 % (pan, leche, libros, medicamentos, entre otros).' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de IVA', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-iva' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout
+  title="Calculadora de IVA (21%, 10%, 4%): añadir o quitar el IVA"
+  description="Calcula el IVA de cualquier importe: añádelo a una base o quítalo de un precio final. Tipos 21%, 10% y 4%. Gratis, rápido y sin registro."
+  path="/calculadora-iva"
+  jsonLd={jsonLd}
+>
+  <div class="crumbs"><a href="/">Inicio</a> › Finanzas › Calculadora de IVA</div>
+  <h1>Calculadora de IVA</h1>
+  <p class="lead">Añade el IVA a una base o quítalo de un precio final. Elige el tipo y el importe.</p>
+
+  <div class="calc">
+    <div class="field"><label>Operación</label>
+      <div class="seg" id="op">
+        <button type="button" data-op="add" aria-pressed="true">Añadir IVA</button>
+        <button type="button" data-op="rem" aria-pressed="false">Quitar IVA</button>
+      </div>
+    </div>
+    <div class="field"><label>Tipo de IVA</label>
+      <div class="seg" id="tipo">
+        <button type="button" data-t="21" aria-pressed="true">21 %</button>
+        <button type="button" data-t="10" aria-pressed="false">10 %</button>
+        <button type="button" data-t="4" aria-pressed="false">4 %</button>
+      </div>
+    </div>
+    <div class="field"><label for="imp" id="implabel">Importe sin IVA (€)</label><input class="input" id="imp" type="number" inputmode="decimal" value="100" min="0" step="0.01" /></div>
+    <button class="btn" id="go" type="button">Calcular IVA</button>
+    <div class="result" id="res" hidden>
+      <div class="result__row"><span>Base (sin IVA)</span><strong class="num" id="base">—</strong></div>
+      <div class="result__row"><span id="ivalbl">IVA (21 %)</span><strong class="num" id="iva">—</strong></div>
+      <div class="result__row"><span>Total (con IVA)</span><strong class="num" id="tot">—</strong></div>
+    </div>
+  </div>
+
+  <div class="ad">Espacio publicitario</div>
+
+  <section class="prose">
+    <h2>Cómo se calcula el IVA</h2>
+    <p>Para <strong>añadir</strong> el IVA multiplicas la base por el tipo: 100 € × 21 % = 21 € de IVA, y el total es 121 €. Para <strong>quitar</strong> el IVA de un precio final divides entre 1 más el tipo: 121 € ÷ 1,21 = 100 € de base.</p>
+    <h2>Tipos de IVA en España</h2>
+    <ul><li><strong>21 %</strong> — general.</li><li><strong>10 %</strong> — reducido.</li><li><strong>4 %</strong> — superreducido.</li></ul>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const eur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 });
+    let op = 'add', t = 21;
+    function press(group: string, attr: string, val: string) {
+      document.querySelectorAll(`#${group} button`).forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset[attr] === val)));
+    }
+    document.querySelectorAll('#op button').forEach((b) => b.addEventListener('click', () => {
+      op = (b as HTMLElement).dataset.op!; press('op', 'op', op);
+      ($('implabel')).textContent = op === 'add' ? 'Importe sin IVA (€)' : 'Precio final con IVA (€)';
+      calc();
+    }));
+    document.querySelectorAll('#tipo button').forEach((b) => b.addEventListener('click', () => {
+      t = parseFloat((b as HTMLElement).dataset.t!); press('tipo', 't', String(t)); calc();
+    }));
+    function calc() {
+      const v = parseFloat(($('imp') as HTMLInputElement).value) || 0;
+      let base = 0, iva = 0, total = 0;
+      if (op === 'add') { base = v; iva = v * t / 100; total = base + iva; }
+      else { base = v / (1 + t / 100); iva = v - base; total = v; }
+      ($('base')).textContent = eur.format(base);
+      ($('iva')).textContent = eur.format(iva);
+      ($('ivalbl')).textContent = `IVA (${t} %)`;
+      ($('tot')).textContent = eur.format(total);
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    $('imp').addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    calc();
+  </script>
+</CalcLayout>

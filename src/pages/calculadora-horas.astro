@@ -1,0 +1,55 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calculan las horas entre dos horas?', a: 'Restamos la hora de inicio a la de fin. Si la hora de fin es menor (por ejemplo, un turno de noche que termina de madrugada), sumamos 24 horas para contar el paso de medianoche.' },
+  { q: '¿Puedo descontar la pausa de la comida?', a: 'Sí: indica los minutos de descanso y los restamos del total, para saber las horas realmente trabajadas.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de horas', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-horas' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de horas trabajadas (entre dos horas)" description="Calcula cuántas horas y minutos hay entre dos horas, descontando la pausa. Ideal para horas trabajadas. Gratis y sin registro." path="/calculadora-horas" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Tiempo › Horas</div>
+  <h1>Calculadora de horas</h1>
+  <p class="lead">Indica la hora de entrada y de salida y calculamos las horas (por ejemplo, tus horas trabajadas).</p>
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="h1">Hora de inicio</label><input class="input" id="h1" type="time" value="09:00" /></div>
+      <div class="field"><label for="h2">Hora de fin</label><input class="input" id="h2" type="time" value="17:30" /></div>
+    </div>
+    <div class="field"><label for="pausa">Pausa / descanso (minutos)</label><input class="input" id="pausa" type="number" inputmode="numeric" value="30" min="0" /></div>
+    <button class="btn" id="go" type="button">Calcular horas</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Tiempo total</div>
+      <div class="result__big num" id="tot">—</div>
+      <div style="margin-top:12px"><div class="result__row"><span>En decimal</span><strong class="num" id="dec">—</strong></div></div>
+    </div>
+  </div>
+  <div class="ad">Publicidad</div>
+  <section class="prose">
+    <h2>Cómo se calcula</h2>
+    <p>Restamos la hora de inicio a la de fin. Si el turno cruza la medianoche, sumamos 24 horas. Después descontamos los minutos de pausa para darte las horas efectivas, en formato horas:minutos y en decimal (útil para nóminas).</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    function toMin(v: string) { const [h, m] = v.split(':').map(Number); return h * 60 + m; }
+    function calc() {
+      const v1 = ($('h1') as HTMLInputElement).value, v2 = ($('h2') as HTMLInputElement).value;
+      if (!v1 || !v2) return;
+      let diff = toMin(v2) - toMin(v1);
+      if (diff < 0) diff += 24 * 60;
+      const pausa = parseInt(($('pausa') as HTMLInputElement).value) || 0;
+      diff = Math.max(0, diff - pausa);
+      const h = Math.floor(diff / 60), m = diff % 60;
+      ($('tot')).textContent = `${h} h ${m} min`;
+      ($('dec')).textContent = (diff / 60).toFixed(2).replace('.', ',') + ' h';
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['h1','h2','pausa'].forEach((id) => $(id).addEventListener('change', calc));
+  </script>
+</CalcLayout>

@@ -1,0 +1,70 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+---
+<AppLayout title="Plan · Cometia Monitor">
+  <div class="wrap" style="max-width:860px">
+    <a href="/app" class="backlink">← Volver al panel</a>
+    <h1 class="greeting">Tu plan</h1>
+    <p class="greeting-sub" id="sub">Elige cuántas webs quieres vigilar.</p>
+    <div id="okBanner"></div>
+    <div id="plans" class="summary" style="grid-template-columns:repeat(3,1fr)"></div>
+    <div id="notice"></div>
+    <p class="muted" style="font-size:13px;margin-top:18px">Los pagos se gestionan de forma segura en Stripe. Puedes cambiar o cancelar cuando quieras.</p>
+  </div>
+
+  <script>
+    import { supabase, getSession, api } from '../../lib/supabase-client';
+    await getSession();
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+
+    const PLANS = [
+      { id: 'free', name: 'Free', price: '0 €', webs: '1 web', extra: 'Chequeo semanal' },
+      { id: 'starter', name: 'Starter', price: '9 €/mes', webs: 'Hasta 10 webs', extra: 'Chequeo diario + alertas' },
+      { id: 'agency', name: 'Agency', price: '19 €/mes', webs: 'Hasta 50 webs', extra: 'Chequeo diario + alertas' },
+    ];
+
+    if (new URLSearchParams(location.search).get('ok') === '1')
+      $('okBanner').innerHTML = '<div class="notice notice--ok">¡Suscripción activa! Ya puedes añadir más webs. (Si tarda unos segundos en reflejarse, recarga.)</div>';
+
+    const { data: orgs } = await supabase.from('organizations').select('*').limit(1);
+    const org = orgs && orgs[0];
+    const current = (org && org.plan) || 'free';
+    const { count } = await supabase.from('websites').select('id', { count: 'exact', head: true });
+    $('sub').textContent = `Estás en el plan ${current[0].toUpperCase() + current.slice(1)} · ${count ?? 0} de ${org ? org.website_limit : 1} webs en uso.`;
+
+    const notice = (t: string, k: 'err' | 'ok' = 'err') => { $('notice').innerHTML = `<div class="notice notice--${k}">${t}</div>`; };
+
+    $('plans').innerHTML = PLANS.map((p) => {
+      const isCurrent = p.id === current;
+      let btn = '';
+      if (isCurrent) btn = current === 'free'
+        ? '<div class="pill pill--ok" style="margin-top:12px">Tu plan actual</div>'
+        : '<button class="btn btn--primary act-portal" style="margin-top:12px;width:100%">Gestionar suscripción</button>';
+      else if (p.id === 'free') btn = '<button class="btn act-portal" style="margin-top:12px;width:100%">Bajar a Free</button>';
+      else btn = current === 'free'
+        ? `<button class="btn btn--primary act-buy" data-plan="${p.id}" style="margin-top:12px;width:100%">Suscribirme</button>`
+        : '<button class="btn act-portal" style="margin-top:12px;width:100%">Cambiar a este</button>';
+      return `<div class="stat" style="${isCurrent ? 'border-color:var(--accent);border-width:2px' : ''}">
+        <div style="font-weight:800;font-size:18px">${p.name}</div>
+        <div class="stat__n" style="font-size:26px;margin:6px 0">${p.price}</div>
+        <div class="muted" style="font-size:14px">${p.webs}<br>${p.extra}</div>
+        ${btn}
+      </div>`;
+    }).join('');
+
+    document.querySelectorAll('.act-buy').forEach((b) => b.addEventListener('click', async () => {
+      const el = b as HTMLButtonElement;
+      el.disabled = true; el.innerHTML = '<span class="spinner"></span>';
+      const r = await api('/api/app/checkout', { method: 'POST', body: { plan: el.dataset.plan } });
+      if (r.ok && r.body.url) location.href = r.body.url;
+      else { notice(r.body?.error || 'No se pudo iniciar el pago.'); el.disabled = false; el.textContent = 'Suscribirme'; }
+    }));
+    document.querySelectorAll('.act-portal').forEach((b) => b.addEventListener('click', async () => {
+      const el = b as HTMLButtonElement;
+      el.disabled = true; el.innerHTML = '<span class="spinner"></span>';
+      const r = await api('/api/app/portal', { method: 'POST' });
+      if (r.ok && r.body.url) location.href = r.body.url;
+      else { notice(r.body?.error || 'No se pudo abrir la gestión.'); el.disabled = false; }
+    }));
+  </script>
+</AppLayout>

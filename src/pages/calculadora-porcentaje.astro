@@ -1,0 +1,83 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calcula el porcentaje de una cantidad?', a: 'Multiplicas la cantidad por el porcentaje y divides entre 100. Por ejemplo, el 20 % de 150 es 150 × 20 / 100 = 30.' },
+  { q: '¿Cómo saber qué porcentaje representa un número sobre otro?', a: 'Divides el número entre el total y multiplicas por 100. Por ejemplo, 30 sobre 150 es 30 / 150 × 100 = 20 %.' },
+  { q: '¿Cómo se aplica un descuento o un aumento?', a: 'Para un descuento del 20 % sobre 150: 150 × (1 − 0,20) = 120. Para un aumento del 20 %: 150 × (1 + 0,20) = 180.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de porcentajes', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-porcentaje' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout
+  title="Calculadora de porcentajes online: %, aumentos y descuentos"
+  description="Calcula porcentajes fácil: cuánto es un % de una cantidad, qué porcentaje representa un número, y aumentos o descuentos. Gratis y sin registro."
+  path="/calculadora-porcentaje"
+  jsonLd={jsonLd}
+>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Calculadora de porcentajes</div>
+  <h1>Calculadora de porcentajes</h1>
+  <p class="lead">Elige qué quieres calcular y obtén el resultado al instante.</p>
+
+  <div class="calc">
+    <div class="field">
+      <label for="modo">¿Qué quieres calcular?</label>
+      <select class="input" id="modo">
+        <option value="deque">¿Cuánto es un % de una cantidad?</option>
+        <option value="quepct">¿Qué porcentaje es un número de otro?</option>
+        <option value="cambio">Aplicar un aumento o descuento</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="field"><label id="l1" for="x">Porcentaje (%)</label><input class="input" id="x" type="number" inputmode="decimal" value="20" /></div>
+      <div class="field"><label id="l2" for="y">Cantidad</label><input class="input" id="y" type="number" inputmode="decimal" value="150" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="hint" id="rlabel">Resultado</div>
+      <div class="result__big num" id="out">—</div>
+    </div>
+  </div>
+
+  <div class="ad">Espacio publicitario</div>
+
+  <section class="prose">
+    <h2>Cómo calcular porcentajes</h2>
+    <p>Un porcentaje es una parte de 100. Estas son las tres operaciones más habituales:</p>
+    <ul>
+      <li><strong>El X % de una cantidad:</strong> cantidad × X ÷ 100.</li>
+      <li><strong>Qué porcentaje es un número de otro:</strong> número ÷ total × 100.</li>
+      <li><strong>Aumento o descuento:</strong> cantidad × (1 ± X ÷ 100).</li>
+    </ul>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const nf = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 2 });
+    const modo = $('modo') as HTMLSelectElement;
+    function labels() {
+      const m = modo.value;
+      if (m === 'deque') { $('l1').textContent = 'Porcentaje (%)'; $('l2').textContent = 'Cantidad'; }
+      else if (m === 'quepct') { $('l1').textContent = 'Número'; $('l2').textContent = 'Total'; }
+      else { $('l1').textContent = 'Aumento (+) o descuento (−) %'; $('l2').textContent = 'Cantidad'; }
+    }
+    function calc() {
+      const x = parseFloat(($('x') as HTMLInputElement).value) || 0;
+      const y = parseFloat(($('y') as HTMLInputElement).value) || 0;
+      const m = modo.value; let out = '', lbl = 'Resultado';
+      if (m === 'deque') { out = nf.format(x / 100 * y); lbl = `El ${nf.format(x)} % de ${nf.format(y)} es`; }
+      else if (m === 'quepct') { out = (y === 0 ? '—' : nf.format(x / y * 100) + ' %'); lbl = `${nf.format(x)} es este porcentaje de ${nf.format(y)}`; }
+      else { out = nf.format(y * (1 + x / 100)); lbl = `${nf.format(y)} con un ${x >= 0 ? 'aumento' : 'descuento'} del ${nf.format(Math.abs(x))} %`; }
+      ($('rlabel')).textContent = lbl;
+      ($('out')).textContent = out;
+      ($('res')).hidden = false;
+    }
+    modo.addEventListener('change', () => { labels(); calc(); });
+    $('go').addEventListener('click', calc);
+    ['x', 'y'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    labels(); calc();
+  </script>
+</CalcLayout>

@@ -1,489 +1,85 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { brand, informe, isConfigured, payment } from '../config';
+import CalcLayout from '../layouts/CalcLayout.astro';
+import { CALCULADORAS, CATEGORIAS } from '../data/calculadoras';
 
-const title = 'Cometia — Auditoría web y SEO para pymes';
-const description = brand.description;
-
-const faqs = [
-  {
-    q: '¿La Radiografía gratis es de verdad o es un gancho?',
-    a: 'Es de verdad y funciona ya. Metes tu web y en ~60 segundos te damos la Salud de tu web (0–100), tu problema principal explicado en cristiano y el recuento de problemas por gravedad. Usamos datos oficiales de Google más un análisis de tu propia página. Sin email, sin registro, sin tarjeta.',
-  },
-  {
-    q: '¿Qué diferencia hay entre la Radiografía gratis y el Informe completo?',
-    a: 'La Radiografía te dice qué salud tiene tu web y cuál es tu problema principal. El Informe completo (19 €) te da TODOS los problemas priorizados, y de cada uno: qué pasa, por qué te importa, por qué ocurre y cómo se soluciona, con quién puede arreglarlo y qué dificultad tiene. Además, tu plan de acción (hoy / esta semana / este mes) y un PDF que puedes pasarle a quien lleva tu web.',
-  },
-  {
-    q: '¿Y si mi web está bien?',
-    a: 'Te lo decimos claramente y no te vendemos nada. Si la Radiografía no encuentra problemas que justifiquen pagar, así te lo indica. Preferimos decirte la verdad a colocarte un informe que no necesitas.',
-  },
-  {
-    q: '¿En cuánto tiempo tengo el informe?',
-    a: 'En minutos. Metes tu web y tu email, pagas los 19 € y te llega el diagnóstico completo al correo, con su PDF. Precio fijo y cerrado: sabes lo que pagas antes de empezar.',
-  },
-  {
-    q: '¿Y si el problema es la velocidad? ¿Lo arregláis vosotros?',
-    a: 'Sí. Si el diagnóstico detecta que tu web va lenta, podemos dejártela rápida nosotros con garantía de resultado: si no mejora, te devolvemos el dinero. También corregimos otros puntos técnicos y de SEO. El diagnóstico es el primer paso; la solución, si la quieres, la ponemos nosotros.',
-  },
-  {
-    q: '¿Sirve para cualquier tipo de web?',
-    a: 'Sí: WordPress, tiendas online, webs a medida, landing pages… Analizamos cualquier web pública accesible desde internet. Si tu web está detrás de contraseña, cuéntanoslo y buscamos la mejor forma.',
-  },
-];
-
-const faqJsonLd = {
+const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  '@type': 'WebSite',
+  name: 'Cometia',
+  url: 'https://cometia.es',
+  description: 'Calculadoras online gratis: hipoteca, IVA, IMC, sueldo neto, porcentajes y más. Rápidas, claras y sin registro.',
 };
-
-const serviceJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  serviceType: 'Auditoría web y SEO',
-  provider: { '@type': 'Organization', name: brand.name, url: brand.url },
-  areaServed: { '@type': 'Country', name: 'España' },
-  offers: [{ '@type': 'Offer', name: informe.name, price: informe.price, priceCurrency: 'EUR', url: `${brand.url}/#planes` }],
-};
-
-const areas = [
-  { name: 'Velocidad', desc: 'Cuánto tarda tu web en mostrarse y responder. Si va lenta, pierdes visitas antes de que cargue, sobre todo en el móvil.' },
-  { name: 'SEO', desc: 'Si Google entiende tu web: título, descripción, encabezados y datos estructurados. Lo que decide si te encuentran o no.' },
-  { name: 'Conversión', desc: 'Si tu web deja claro qué ofreces y facilita el contacto: propuesta de valor, llamada a la acción, teléfono/WhatsApp y prueba social. Lo que casi ninguna herramienta mira.' },
-  { name: 'Accesibilidad', desc: 'Si cualquiera puede usar tu web: contraste, textos alternativos, botones con nombre. Amplías público y evitas problemas legales.' },
-  { name: 'Seguridad', desc: 'HTTPS, errores y buenas prácticas técnicas que transmiten (o restan) confianza a quien te visita.' },
-];
-
-const wpo = [
-  { name: 'Web pequeña', price: '19 €', desc: 'Landing o web sencilla. La dejamos notablemente más rápida.', pay: payment.wpoBasico },
-  { name: 'WordPress o tienda', price: '25 €', desc: 'Optimizamos a fondo lo que frena tu web: imágenes, código, caché y servidor.', pay: payment.wpoPro, feat: true },
-  { name: 'Web grande', price: '29 €', desc: 'Tienda o web con mucho contenido. Optimización integral, móvil y escritorio.', pay: payment.wpoPremium },
-];
-
-const informeHref = isConfigured(informe.paymentLink)
-  ? informe.paymentLink
-  : `mailto:${brand.email}?subject=${encodeURIComponent('Quiero el informe completo de mi web')}`;
-const waHref = `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hola, tengo una duda sobre Cometia.')}`;
+const meta = {
+  Finanzas: { slug: 'finanzas', varName: 'fin' },
+  Salud: { slug: 'salud', varName: 'sal' },
+  Matemáticas: { slug: 'matematicas', varName: 'mat' },
+  Tiempo: { slug: 'tiempo', varName: 'tie' },
+} as const;
 ---
+<CalcLayout
+  title="Cometia — Calculadoras online gratis, rápidas y claras"
+  description="Calculadoras online gratis: hipoteca, sueldo neto, IVA, IMC, interés compuesto, porcentajes y más. Respuesta al instante, sin registro y explicada paso a paso."
+  path="/"
+  jsonLd={jsonLd}
+  wide={true}
+>
+  <section class="hero">
+    <h1>La respuesta, <span class="grad">al instante</span></h1>
+    <p>Calculadoras online gratis, claras y sin registro. Desde tu hipoteca hasta tu sueldo neto — escribe lo que buscas:</p>
+    <div class="search"><input id="q" type="search" placeholder="Buscar calculadora… (hipoteca, IVA, edad)" autocomplete="off" aria-label="Buscar calculadora" /></div>
+    <div class="pills">
+      {CATEGORIAS.map((c) => (<a class="pill-cat" href={`#${meta[c].slug}`} style={`--c:var(--${meta[c].varName})`}>{c}</a>))}
+    </div>
+  </section>
 
-<BaseLayout title={title} description={description} path="/">
-  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceJsonLd)} />
-
-  <!-- HERO -->
-  <section class="hero" id="analizar">
-    <div class="container hero__inner">
-      <div>
-        <span class="badge">Diagnóstico web · para pymes</span>
-        <h1>Descubre qué está <em>fallando</em> en tu web.</h1>
-        <p class="hero__sub">
-          No solo notas: te decimos <strong>qué falla, cuánto importa y qué arreglar primero</strong>. En cristiano,
-          con datos reales de Google. Gratis y sin registro.
-        </p>
-
-        <form class="audit-form" id="audit-form" aria-label="Analiza tu web" data-pay-expres={informe.paymentLink}>
-          <label for="audit-url" class="sr-only">URL de tu web</label>
-          <div class="audit-form__row">
-            <input type="text" id="audit-url" name="url" inputmode="url" autocomplete="url" placeholder="tuweb.es" required />
-            <button type="submit" class="btn btn--primary" id="audit-submit">Analizar gratis</button>
+  <div id="results">
+    {CATEGORIAS.map((cat) => {
+      const items = CALCULADORAS.filter((c) => c.cat === cat);
+      if (!items.length) return null;
+      const m = meta[cat];
+      return (
+        <section id={m.slug} class="catsection" style={`--c:var(--${m.varName})`}>
+          <div class="catlabel"><span class="dot"></span>{cat}</div>
+          <div class="grid">
+            {items.map((c) => (
+              <a class={`card card--${m.slug} calc-item`} href={`/${c.slug}`} data-name={`${c.titulo} ${c.meta}`.toLowerCase()}>
+                <div class="card__icon">{c.icon}</div>
+                <div class="card__t">{c.titulo}</div>
+                <div class="card__d">{c.meta}</div>
+              </a>
+            ))}
           </div>
-          <p class="audit-form__note" id="audit-note">Diagnóstico en ~60 s. Sin email, sin registro, sin tarjeta.</p>
-        </form>
+        </section>
+      );
+    })}
+  </div>
+  <p id="noresults" class="lead" style="text-align:center; display:none">No encontramos esa calculadora… todavía. Prueba con otra palabra.</p>
 
-        <div class="result" id="audit-result" hidden aria-live="polite"></div>
+  <div class="ad">Publicidad</div>
 
-        <div class="hero__proof"><span>Datos oficiales de Google</span><span>Sin registro</span><span>Diagnóstico, no solo notas</span></div>
-      </div>
-
-      <!-- Radiografía (ejemplo) -->
-      <div class="card" role="img" aria-label="Ejemplo de radiografía: salud 68, necesita atención">
-        <div class="card__top"><span>Radiografía · tuweb.es</span><span class="ex">ejemplo</span></div>
-        <div class="verdict">
-          <div><div class="lab">Salud de tu web</div><div class="big warn">68</div></div>
-          <div class="stamp">Atención</div>
-        </div>
-        <div style="padding:15px 20px;border-bottom:1px dashed var(--line-2)">
-          <div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:5px">Tu problema principal</div>
-          <div style="font-weight:700">🟠 Cuesta encontrar cómo contactar contigo</div>
-          <div style="color:var(--ink-2);font-size:var(--step--1);margin-top:4px">Cada visita que no sabe cómo contactarte es un cliente que se pierde.</div>
-        </div>
-        <div class="rows">
-          <div class="r"><span class="sig bad"></span><span class="nm">Críticos</span><span class="sc bad">0</span></div>
-          <div class="r"><span class="sig warn"></span><span class="nm">Importantes</span><span class="sc warn">3</span></div>
-          <div class="r"><span class="sig warn"></span><span class="nm">Mejoras</span><span class="sc warn">7</span></div>
-          <div class="r"><span class="sig ok"></span><span class="nm">Correctos</span><span class="sc ok">26</span></div>
-        </div>
-      </div>
-    </div>
+  <section class="prose">
+    <h2>Calculadoras online gratis y fáciles de usar</h2>
+    <p>
+      En Cometia reunimos las <strong>calculadoras</strong> que más se buscan en el día a día: la
+      <a href="/calculadora-hipoteca">cuota de tu hipoteca</a>, tu <a href="/calculadora-sueldo-neto">sueldo neto</a>,
+      el <a href="/calculadora-iva">IVA</a> de una factura, tu <a href="/calculadora-imc">IMC</a>, el
+      <a href="/calculadora-interes-compuesto">interés compuesto</a> de tus ahorros o cualquier
+      <a href="/calculadora-porcentaje">porcentaje</a>. Todas funcionan al instante en el móvil o el ordenador,
+      <strong>sin registro</strong> y con una explicación clara de cómo se hace el cálculo.
+    </p>
   </section>
 
-  <!-- QUÉ REVISAMOS -->
-  <section class="section" id="medimos">
-    <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">Qué revisamos</span>
-        <h2>Las 5 áreas que deciden si tu web vende</h2>
-        <p class="lead">No solo lo técnico: también miramos si tu web convierte y da confianza. Te decimos dónde pierdes clientes, en cristiano, no una lista de tecnicismos.</p>
-      </div>
-      <div class="measure">
-        {areas.map((a, i) => (
-          <div>
-            <div class="k">0{i + 1}</div>
-            <h3>{a.name}</h3>
-            <p>{a.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CÓMO FUNCIONA -->
-  <section class="section section--alt" id="planes">
-    <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">Cómo funciona</span>
-        <h2>De "no sé qué le pasa a mi web" a saber exactamente qué hacer.</h2>
-        <p class="lead">Con datos reales de Google y un análisis de tu propia página. Sin jerga, sin registro.</p>
-      </div>
-
-      <div class="plans">
-        <article class="plan">
-          <span class="plan__badge">Paso 1</span>
-          <h3 class="plan__name">Radiografía</h3>
-          <div class="plan__price">Gratis</div>
-          <p class="plan__tagline">¿Hay algo mal en mi web?</p>
-          <ul class="plan__features">
-            <li>Salud de tu web, de 0 a 100</li>
-            <li>Tu problema principal, explicado en cristiano</li>
-            <li>Recuento: críticos, importantes y mejoras</li>
-            <li>Al instante, sin registro</li>
-          </ul>
-          <a class="btn btn--block btn--dark" href="#analizar">Analizar mi web</a>
-        </article>
-
-        <article class="plan plan--featured">
-          <span class="plan__badge">Paso 2 · el más pedido</span>
-          <h3 class="plan__name">Informe completo</h3>
-          <div class="plan__price">{informe.priceLabel} <small>IVA no incl.</small></div>
-          <p class="plan__tagline">¿Qué está mal y qué arreglo primero?</p>
-          <ul class="plan__features">
-            <li>Todos los problemas, priorizados</li>
-            <li>De cada uno: qué pasa, por qué importa y solución</li>
-            <li>Quién puede arreglarlo y con qué dificultad</li>
-            <li>Tu plan de acción: hoy / esta semana / este mes</li>
-            <li>Al momento por email + PDF</li>
-          </ul>
-          <a class="btn btn--block btn--primary" href={informeHref} target={isConfigured(informe.paymentLink) ? '_blank' : undefined} rel={isConfigured(informe.paymentLink) ? 'noopener' : undefined}>Pedir el informe</a>
-        </article>
-
-        <article class="plan">
-          <span class="plan__badge">Paso 3</span>
-          <h3 class="plan__name">Lo arreglamos</h3>
-          <div class="plan__price">desde 19 €</div>
-          <p class="plan__tagline">Quiero que lo solucionéis vosotros.</p>
-          <ul class="plan__features">
-            <li>Optimización de velocidad (WPO)</li>
-            <li>Con garantía: mejora o te devolvemos el dinero</li>
-            <li>Correcciones técnicas y de SEO</li>
-          </ul>
-          <a class="btn btn--block btn--dark" href="#velocidad">Ver el servicio</a>
-        </article>
-      </div>
-
-      <p class="pay-note" role="note" style="border-color:var(--ok);background:#eaf7ef;color:#1c5f3d">
-        🟢 <strong>Y si tu web está bien, te lo decimos.</strong> No vendemos humo: si no vemos problemas que justifiquen pagar, la Radiografía te lo dice claro.
-      </p>
-    </div>
-  </section>
-
-  <!-- SERVICIO: VELOCIDAD (WPO) -->
-  <section class="section section--dark" id="velocidad">
-    <div class="container">
-      <div class="section__head">
-        <div>
-          <span class="eyebrow">Servicio</span>
-          <h2 style="margin-top:12px">¿Tu web va lenta? Te la dejamos rápida.</h2>
-        </div>
-        <p class="lead">El diagnóstico te dice qué falla. Si el problema es la velocidad, te la optimizamos a fondo con <strong style="color:#fff">garantía</strong>: la mejoramos o te devolvemos el dinero.</p>
-      </div>
-      <div class="speed">
-        {wpo.map((w) => {
-          const paga = isConfigured(w.pay);
-          const link = paga ? w.pay : `mailto:${brand.email}?subject=${encodeURIComponent('Optimización de velocidad — plan ' + w.name)}`;
-          return (
-            <a class={`sp${w.feat ? ' sp--featured' : ''}`} href={link} target={paga ? '_blank' : undefined} rel={paga ? 'noopener' : undefined}>
-              {w.feat && <div class="sp__tag">Recomendado</div>}
-              <div class="p">{w.price}</div>
-              <div class="t">{w.name}</div>
-              <div class="d">{w.desc}</div>
-              <div class="go">{paga ? 'Contratar →' : 'Solicitar →'}</div>
-            </a>
-          );
-        })}
-      </div>
-      <p style="margin-top:24px">
-        <a class="btn btn--primary btn--lg" href="#contacto">Hablar con nosotros</a>
-        <span style="color:#b7b0a2; margin-left:14px; font-size:var(--step--1)">Mantenimiento desde 19&nbsp;€/mes · <a href="/optimizar-velocidad-web" style="color:#8b95ff">más info</a></span>
-      </p>
-    </div>
-  </section>
-
-  <!-- POR QUÉ FIARTE -->
-  <section class="section section--alt" id="confianza">
-    <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">Por qué fiarte</span>
-        <h2>No opiniones. Datos, criterio y honradez.</h2>
-      </div>
-      <div class="measure">
-        <div><div class="k">01</div><h3>Datos oficiales de Google</h3><p>El diagnóstico se apoya en PageSpeed (Google) y en el análisis de tu propia página. Nada de opiniones ni de humo: cada problema viene con el dato que lo demuestra.</p></div>
-        <div><div class="k">02</div><h3>Te decimos si está bien</h3><p>Si tu web no tiene problemas que justifiquen pagar, te lo decimos claro. Preferimos la verdad a colocarte algo que no necesitas.</p></div>
-        <div><div class="k">03</div><h3>En cristiano</h3><p>Sin jerga técnica. Cada problema explicado como lo entendería un dueño de negocio: qué pasa, por qué importa y qué hacer.</p></div>
-        <div><div class="k">04</div><h3>Y si hace falta, lo arreglamos</h3><p>No te dejamos con una lista de deberes: si quieres, lo solucionamos nosotros con garantía de resultado.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section" id="faq">
-    <div class="container" style="max-width:840px">
-      <div class="section__head">
-        <span class="eyebrow">Preguntas frecuentes</span>
-        <h2>Lo que suelen preguntarnos</h2>
-      </div>
-      <div class="faq">
-        {faqs.map((f, i) => (
-          <details open={i === 0}>
-            <summary>{f.q}</summary>
-            <p>{f.a}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section class="section section--alt" id="contacto">
-    <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">Contacto</span>
-        <h2>¿Hablamos de tu web?</h2>
-        <p class="lead">Cuéntanos qué necesitas y te respondemos, normalmente el mismo día. Sin compromiso.</p>
-      </div>
-
-      <div class="contact">
-        <div class="contact__aside">
-          <p>Escríbenos por el formulario o, si lo prefieres, directamente por correo o WhatsApp. Personas reales, respuestas claras.</p>
-          <ul class="contact__ways">
-            <li>
-              <span class="ic" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-              </span>
-              <span><small>Email</small><a href={`mailto:${brand.email}`}>{brand.email}</a></span>
-            </li>
-            <li>
-              <span class="ic" aria-hidden="true">
-                <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.46 1.73 6.4L3.2 28.8l6.57-1.72a12.74 12.74 0 0 0 6.23 1.6h.005c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.8-12.8Zm5.83 15.4c-.32-.16-1.89-.93-2.18-1.04-.29-.11-.5-.16-.72.16-.21.32-.82 1.04-1 1.25-.18.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.58-.95-.85-1.59-1.89-1.78-2.21-.18-.32-.02-.49.14-.65.15-.14.32-.37.48-.56.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.52-.54-.72-.55l-.61-.01c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.66 0 1.57 1.14 3.08 1.3 3.29.16.21 2.25 3.43 5.44 4.81.76.33 1.35.52 1.81.67.76.24 1.46.21 2 .13.61-.09 1.89-.77 2.16-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37Z"/></svg>
-              </span>
-              <span><small>WhatsApp</small><a href={waHref} target="_blank" rel="noopener">{brand.whatsappDisplay}</a></span>
-            </li>
-          </ul>
-        </div>
-
-        <form class="form" id="contact-form" aria-label="Formulario de contacto">
-          <div class="field">
-            <label for="c-name">Nombre</label>
-            <input type="text" id="c-name" name="name" autocomplete="name" placeholder="Tu nombre" required />
-          </div>
-          <div class="field">
-            <label for="c-email">Email</label>
-            <input type="email" id="c-email" name="email" autocomplete="email" placeholder="tu@email.com" required />
-          </div>
-          <div class="field">
-            <label for="c-message">Mensaje</label>
-            <textarea id="c-message" name="message" placeholder="Cuéntanos qué web tienes y en qué te podemos ayudar…" required></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary btn--block" id="c-submit">Enviar mensaje</button>
-          <p class="form__status" id="c-status" role="status" aria-live="polite"></p>
-        </form>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
-
-<script>
-  // Herramienta de auditoría del hero. Hace fetch a /api/audit (datos de Google).
-  // Ante un fallo cae con elegancia en "Solicita tu auditoría" (mailto). Nunca se queda roto.
-  const form = document.getElementById('audit-form');
-  const input = document.getElementById('audit-url');
-  const submit = document.getElementById('audit-submit');
-  const result = document.getElementById('audit-result');
-  const note = document.getElementById('audit-note');
-  const contactEmail = 'cometia.es@gmail.com';
-
-  function scoreClass(v) {
-    if (v === null || v === undefined) return 'score--warn';
-    if (v >= 90) return 'score--good';
-    if (v >= 50) return 'score--warn';
-    return 'score--bad';
-  }
-  function fmt(v) { return v === null || v === undefined ? '—' : String(v); }
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-  }
-
-  function showContactFallback(message) {
-    const wa = 'https://wa.me/34657884613?text=' + encodeURIComponent('Hola, ¿me analizáis mi web? ' + (input.value || ''));
-    result.innerHTML =
-      '<p class="result__title">Ahora mismo no podemos analizarla</p>' +
-      '<p class="result__url">' + esc(message || 'Google está recibiendo muchas peticiones. Inténtalo en unos minutos, o pídenoslo y lo hacemos nosotros.') + '</p>' +
-      '<p style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">' +
-      '<a class="btn btn--primary" href="' + wa + '" target="_blank" rel="noopener">Pídenoslo por WhatsApp</a>' +
-      '<a class="btn btn--ghost" href="#contacto">o usa el formulario</a></p>';
-    result.hidden = false;
-  }
-
-  function saludColor(s) { if (s >= 90) return '#1c7a4d'; if (s >= 70) return '#915e00'; if (s >= 45) return '#c0561a'; return '#bd342b'; }
-  function sevChip(sev) { return ({ critico: ['#bd342b', '🔴'], importante: ['#c0561a', '🟠'], mejora: ['#915e00', '🟡'] })[sev] || ['#915e00', '🟡']; }
-
-  function renderRadiografia(data) {
-    const sl = data.saludLabel || {};
-    const c = data.counts || {};
-    const col = saludColor(data.salud);
-    let html = '<div class="rx">';
-    html += '<div class="rx__head">' +
-      '<div class="rx__salud" style="color:' + col + '">' + fmt(data.salud) + '<small>/100</small></div>' +
-      '<div><div class="rx__lab">Salud de tu web</div><div class="rx__verd" style="color:' + col + '">' + esc(sl.emoji || '') + ' ' + esc(sl.t || '') + '</div>' +
-      '<div class="rx__url">' + esc(data.host || data.url || '') + '</div></div></div>';
-    html += '<div class="rx__counts">' +
-      '<span style="color:#bd342b">' + (c.critico || 0) + ' críticos</span>' +
-      '<span style="color:#c0561a">' + (c.importante || 0) + ' importantes</span>' +
-      '<span style="color:#915e00">' + (c.mejora || 0) + ' mejoras</span>' +
-      '<span style="color:#1c7a4d">' + (c.bien || 0) + ' correctos</span></div>';
-
-    if (data.top) {
-      const t = data.top;
-      html += '<div class="rx__top">' +
-        '<div class="rx__toplab">🚨 Tu problema principal</div>' +
-        '<div class="rx__toptitle">' + esc(t.titulo) + '</div>' +
-        (t.evidencia ? '<div class="rx__topev">🔎 ' + esc(t.evidencia) + '</div>' : '') +
-        '<div class="rx__topsig">' + esc(t.queSignifica) + '</div>' +
-        '<div class="rx__topimp"><strong>Por qué importa:</strong> ' + esc(t.impacto) + '</div></div>';
-    } else {
-      html += '<div class="rx__ok">✅ <strong>No hemos encontrado problemas relevantes.</strong> Tu web está muy bien — no necesitas pagarnos nada ahora mismo. Vuelve a revisarla cada pocos meses.</div>';
-    }
-
-    if (data.restantes && data.restantes.length) {
-      html += '<div class="rx__more"><div class="rx__morelab">También hemos detectado:</div><ul>';
-      for (const r of data.restantes) { const ch = sevChip(r.severidad); html += '<li><span style="color:' + ch[0] + '">' + ch[1] + '</span> ' + esc(r.titulo) + '</li>'; }
-      html += '</ul>';
-      const masN = (data.total || 0) - 1 - data.restantes.length;
-      if (masN > 0) html += '<div class="rx__mas">…y ' + masN + ' punto' + (masN > 1 ? 's' : '') + ' más</div>';
-      html += '</div>';
-    }
-
-    if (data.top) {
-      const payExpres = (form && form.dataset.payExpres) || '';
-      let reportCta, ctaAttrs = '';
-      if (payExpres && !/TODO|XXXX/i.test(payExpres)) {
-        const rawUrl = data.url || input.value;
-        const ref = btoa(unescape(encodeURIComponent(rawUrl))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '').slice(0, 190);
-        reportCta = payExpres + (payExpres.indexOf('?') === -1 ? '?' : '&') + 'client_reference_id=' + encodeURIComponent(ref);
-        ctaAttrs = ' target="_blank" rel="noopener"';
-      } else {
-        reportCta = 'mailto:' + contactEmail + '?subject=' + encodeURIComponent('Quiero el informe completo de mi web');
-      }
-      html += '<div class="rx__cta"><p class="rx__ctatext">Esto es solo la radiografía. El <strong>informe completo</strong> te dice <strong>por qué pasa cada problema, cómo se soluciona y en qué orden atacarlo</strong>, con tu plan de acción.</p>' +
-        '<a class="btn btn--primary result__cta" href="' + reportCta + '"' + ctaAttrs + '>Ver el informe completo →</a></div>';
-    }
-    html += '</div>';
-    result.innerHTML = html;
-    result.hidden = false;
-  }
-
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!input.value.trim()) return;
-      submit.disabled = true;
-      const original = submit.textContent;
-      submit.innerHTML = '<span class="spinner" aria-hidden="true"></span>';
-      result.hidden = true;
-      if (note) note.textContent = 'Analizando tu web…';
-      try {
-        const res = await fetch('/api/audit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url: input.value.trim() }),
-        });
-        let data = {};
-        try { data = await res.json(); } catch (_) { data = {}; }
-        if (res.status === 503 || data.configured === false) {
-          showContactFallback(data.message);
-        } else if (!res.ok) {
-          result.innerHTML = '<p class="result__error">' + esc(data.error || 'No hemos podido analizar esa web. Inténtalo de nuevo.') + '</p>';
-          result.hidden = false;
-        } else {
-          renderRadiografia(data);
-        }
-      } catch (err) {
-        showContactFallback('Te hacemos la auditoría a mano con datos reales de Google.');
-      } finally {
-        submit.disabled = false;
-        submit.textContent = original;
-        if (note) note.textContent = 'Análisis exprés en ~60 s.';
-      }
+  <script>
+    const q = document.getElementById('q') as HTMLInputElement;
+    const items = Array.from(document.querySelectorAll('.calc-item')) as HTMLElement[];
+    const sections = Array.from(document.querySelectorAll('.catsection')) as HTMLElement[];
+    const nore = document.getElementById('noresults') as HTMLElement;
+    q.addEventListener('input', () => {
+      const t = q.value.trim().toLowerCase();
+      let visible = 0;
+      items.forEach((el) => { const show = !t || (el.dataset.name || '').includes(t); el.style.display = show ? '' : 'none'; if (show) visible++; });
+      sections.forEach((s) => { const any = Array.from(s.querySelectorAll('.calc-item')).some((el) => (el as HTMLElement).style.display !== 'none'); s.style.display = any ? '' : 'none'; });
+      nore.style.display = visible ? 'none' : 'block';
     });
-  }
-</script>
-
-<script>
-  // Formulario de contacto → /api/contact (Resend). Cae con elegancia si algo falla.
-  const cForm = document.getElementById('contact-form');
-  const cSubmit = document.getElementById('c-submit');
-  const cStatus = document.getElementById('c-status');
-  const CONTACT_EMAIL = 'cometia.es@gmail.com';
-
-  if (cForm) {
-    cForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = (document.getElementById('c-name')).value.trim();
-      const email = (document.getElementById('c-email')).value.trim();
-      const message = (document.getElementById('c-message')).value.trim();
-      if (!name || !email || message.length < 5) {
-        cStatus.className = 'form__status err';
-        cStatus.textContent = 'Rellena tu nombre, un email válido y un mensaje.';
-        return;
-      }
-      cSubmit.disabled = true;
-      const original = cSubmit.textContent;
-      cSubmit.innerHTML = '<span class="spinner" aria-hidden="true"></span>';
-      cStatus.className = 'form__status';
-      cStatus.textContent = 'Enviando…';
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, message }),
-        });
-        let data = {};
-        try { data = await res.json(); } catch (_) { data = {}; }
-        if (res.ok && data.ok) {
-          cForm.reset();
-          cStatus.className = 'form__status ok';
-          cStatus.textContent = '✅ ¡Mensaje enviado! Te responderemos muy pronto (revisa también tu email).';
-        } else {
-          cStatus.className = 'form__status err';
-          cStatus.innerHTML = (data.error || 'No se ha podido enviar ahora.') + ' Escríbenos a <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a>.';
-        }
-      } catch (err) {
-        cStatus.className = 'form__status err';
-        cStatus.innerHTML = 'Error de conexión. Escríbenos a <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a>.';
-      } finally {
-        cSubmit.disabled = false;
-        cSubmit.textContent = original;
-      }
-    });
-  }
-</script>
+  </script>
+</CalcLayout>

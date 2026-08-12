@@ -1,81 +1,16 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { brand } from '../config';
-
-const title = `Aviso legal — ${brand.name}`;
+import CalcLayout from '../layouts/CalcLayout.astro';
 ---
-
-<BaseLayout title={title} description="Aviso legal de Cometia." noindex path="/aviso-legal">
-  <section class="legal-hero">
-    <div class="container">
-      <span class="eyebrow">Legal</span>
-      <h1>Aviso legal</h1>
-      <p>
-        En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la
-        Información y de Comercio Electrónico (LSSI-CE), se informa a los usuarios de los datos
-        identificativos del titular de este sitio web.
-      </p>
-    </div>
+<CalcLayout title="Aviso legal — Cometia" description="Aviso legal y condiciones de uso de Cometia." path="/aviso-legal">
+  <h1>Aviso legal</h1>
+  <section class="prose">
+    <h2>Titular</h2>
+    <p>Este sitio web (cometia.es) ofrece calculadoras online gratuitas con fines informativos. Para cualquier consulta: <a href="mailto:cometia.es@gmail.com">cometia.es@gmail.com</a>.</p>
+    <h2>Uso del sitio</h2>
+    <p>El acceso y uso de Cometia es gratuito. Las calculadoras se ofrecen «tal cual» y sus resultados son <strong>orientativos</strong>. No sustituyen el asesoramiento de un profesional (financiero, sanitario, legal o fiscal). No nos hacemos responsables de decisiones tomadas a partir de los resultados.</p>
+    <h2>Propiedad intelectual</h2>
+    <p>El diseño, los textos y las calculadoras propias de Cometia están protegidos. Puedes usar la web libremente, pero no copiar su contenido de forma sistemática.</p>
+    <h2>Enlaces y terceros</h2>
+    <p>La web puede incluir publicidad y enlaces a terceros. No nos responsabilizamos del contenido de sitios externos.</p>
   </section>
-
-  <div class="container">
-    <article class="legal">
-      <h2 style="border-top:0;margin-top:0;padding-top:0">Datos identificativos</h2>
-      <div class="id-card">
-        <ul>
-          <li><span class="lab">Titular</span><span class="val">{brand.name} — un proyecto de Órbita Labs</span></li>
-          <li><span class="lab">Correo electrónico</span><span class="val"><a href={`mailto:${brand.email}`}>{brand.email}</a></span></li>
-          <li><span class="lab">WhatsApp</span><span class="val"><a href={`https://wa.me/${brand.whatsapp}`} target="_blank" rel="noopener">{brand.whatsappDisplay}</a></span></li>
-          <li><span class="lab">Sitio web</span><span class="val">{brand.url}</span></li>
-          <li><span class="lab">Datos fiscales</span><span class="val">Disponibles a petición escribiendo a {brand.email}</span></li>
-        </ul>
-      </div>
-
-      <h2>1. Objeto</h2>
-      <p>
-        El presente sitio web tiene por objeto ofrecer información sobre los servicios de auditoría
-        web y SEO de {brand.name}, así como permitir la contratación de dichos servicios. El acceso
-        y uso del sitio atribuye la condición de usuario e implica la aceptación de este aviso legal.
-      </p>
-
-      <h2>2. Condiciones de uso</h2>
-      <p>
-        El usuario se compromete a hacer un uso adecuado y lícito del sitio web y de sus contenidos,
-        absteniéndose de utilizarlos con fines ilícitos, lesivos de derechos o intereses de terceros,
-        o que de cualquier forma puedan dañar, inutilizar o sobrecargar el sitio.
-      </p>
-
-      <h2>3. Servicio de auditoría</h2>
-      <p>
-        Las auditorías de {brand.name} describen hallazgos y recomendaciones basadas en datos
-        técnicos (incluyendo servicios de análisis de Google) y en criterios profesionales. Los
-        informes tienen carácter orientativo. {brand.name} no garantiza posiciones concretas en
-        buscadores ni resultados específicos, dado que dependen de múltiples factores externos.
-      </p>
-
-      <h2>4. Propiedad intelectual e industrial</h2>
-      <p>
-        Todos los contenidos del sitio (textos, imágenes, diseño, logotipos, código y demás
-        elementos) son titularidad del titular o de terceros que han autorizado su uso, y están
-        protegidos por los derechos de propiedad intelectual e industrial. Queda prohibida su
-        reproducción, distribución o transformación sin autorización expresa.
-      </p>
-
-      <h2>5. Exclusión de responsabilidad</h2>
-      <p>
-        El titular no se hace responsable de los daños derivados del mal uso de los contenidos, ni
-        de las interrupciones o errores técnicos ajenos a su control. Los enlaces a sitios de
-        terceros se ofrecen únicamente a título informativo.
-      </p>
-
-      <h2>6. Legislación aplicable</h2>
-      <p>
-        Este aviso legal se rige por la legislación española. Para la resolución de cualquier
-        controversia, las partes se someten a los juzgados y tribunales del domicilio del titular,
-        salvo que la normativa de consumo aplicable disponga otro fuero.
-      </p>
-
-      <a class="back" href="/">← Volver al inicio</a>
-    </article>
-  </div>
-</BaseLayout>
+</CalcLayout>
