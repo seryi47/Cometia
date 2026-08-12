@@ -1,0 +1,85 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+import { CALCULADORAS, CATEGORIAS } from '../data/calculadoras';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Cometia',
+  url: 'https://cometia.es',
+  description: 'Calculadoras online gratis: hipoteca, IVA, IMC, sueldo neto, porcentajes y más. Rápidas, claras y sin registro.',
+};
+const meta = {
+  Finanzas: { slug: 'finanzas', varName: 'fin' },
+  Salud: { slug: 'salud', varName: 'sal' },
+  Matemáticas: { slug: 'matematicas', varName: 'mat' },
+  Tiempo: { slug: 'tiempo', varName: 'tie' },
+} as const;
+---
+<CalcLayout
+  title="Cometia — Calculadoras online gratis, rápidas y claras"
+  description="Calculadoras online gratis: hipoteca, sueldo neto, IVA, IMC, interés compuesto, porcentajes y más. Respuesta al instante, sin registro y explicada paso a paso."
+  path="/"
+  jsonLd={jsonLd}
+  wide={true}
+>
+  <section class="hero">
+    <h1>La respuesta, <span class="grad">al instante</span></h1>
+    <p>Calculadoras online gratis, claras y sin registro. Desde tu hipoteca hasta tu sueldo neto — escribe lo que buscas:</p>
+    <div class="search"><input id="q" type="search" placeholder="Buscar calculadora… (hipoteca, IVA, edad)" autocomplete="off" aria-label="Buscar calculadora" /></div>
+    <div class="pills">
+      {CATEGORIAS.map((c) => (<a class="pill-cat" href={`#${meta[c].slug}`} style={`--c:var(--${meta[c].varName})`}>{c}</a>))}
+    </div>
+  </section>
+
+  <div id="results">
+    {CATEGORIAS.map((cat) => {
+      const items = CALCULADORAS.filter((c) => c.cat === cat);
+      if (!items.length) return null;
+      const m = meta[cat];
+      return (
+        <section id={m.slug} class="catsection" style={`--c:var(--${m.varName})`}>
+          <div class="catlabel"><span class="dot"></span>{cat}</div>
+          <div class="grid">
+            {items.map((c) => (
+              <a class={`card card--${m.slug} calc-item`} href={`/${c.slug}`} data-name={`${c.titulo} ${c.meta}`.toLowerCase()}>
+                <div class="card__icon">{c.icon}</div>
+                <div class="card__t">{c.titulo}</div>
+                <div class="card__d">{c.meta}</div>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+  <p id="noresults" class="lead" style="text-align:center; display:none">No encontramos esa calculadora… todavía. Prueba con otra palabra.</p>
+
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+
+  <section class="prose">
+    <h2>Calculadoras online gratis y fáciles de usar</h2>
+    <p>
+      En Cometia reunimos las <strong>calculadoras</strong> que más se buscan en el día a día: la
+      <a href="/calculadora-hipoteca">cuota de tu hipoteca</a>, tu <a href="/calculadora-sueldo-neto">sueldo neto</a>,
+      el <a href="/calculadora-iva">IVA</a> de una factura, tu <a href="/calculadora-imc">IMC</a>, el
+      <a href="/calculadora-interes-compuesto">interés compuesto</a> de tus ahorros o cualquier
+      <a href="/calculadora-porcentaje">porcentaje</a>. Todas funcionan al instante en el móvil o el ordenador,
+      <strong>sin registro</strong> y con una explicación clara de cómo se hace el cálculo.
+    </p>
+  </section>
+
+  <script>
+    const q = document.getElementById('q') as HTMLInputElement;
+    const items = Array.from(document.querySelectorAll('.calc-item')) as HTMLElement[];
+    const sections = Array.from(document.querySelectorAll('.catsection')) as HTMLElement[];
+    const nore = document.getElementById('noresults') as HTMLElement;
+    q.addEventListener('input', () => {
+      const t = q.value.trim().toLowerCase();
+      let visible = 0;
+      items.forEach((el) => { const show = !t || (el.dataset.name || '').includes(t); el.style.display = show ? '' : 'none'; if (show) visible++; });
+      sections.forEach((s) => { const any = Array.from(s.querySelectorAll('.calc-item')).some((el) => (el as HTMLElement).style.display !== 'none'); s.style.display = any ? '' : 'none'; });
+      nore.style.display = visible ? 'none' : 'block';
+    });
+  </script>
+</CalcLayout>

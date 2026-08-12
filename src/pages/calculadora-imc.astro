@@ -1,0 +1,77 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Qué es el IMC?', a: 'El Índice de Masa Corporal (IMC) relaciona tu peso con tu altura para dar una idea orientativa de si tu peso está en un rango saludable. Se calcula dividiendo el peso (en kg) entre la altura (en metros) al cuadrado.' },
+  { q: '¿Qué IMC es saludable?', a: 'Según la OMS: por debajo de 18,5 es bajo peso; entre 18,5 y 24,9 es peso normal; entre 25 y 29,9 es sobrepeso; y 30 o más es obesidad. Son rangos orientativos para población adulta general.' },
+  { q: '¿El IMC sirve para todo el mundo?', a: 'No del todo. El IMC no distingue entre grasa y músculo, así que puede no ser preciso en personas muy musculadas, deportistas, embarazadas, niños o personas mayores. Es una orientación, no un diagnóstico: consulta a un profesional sanitario.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de IMC', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-imc' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout
+  title="Calculadora de IMC (Índice de Masa Corporal) online gratis"
+  description="Calcula tu IMC con tu peso y altura y descubre tu rango de peso según la OMS: bajo peso, normal, sobrepeso u obesidad. Gratis y sin registro."
+  path="/calculadora-imc"
+  jsonLd={jsonLd}
+>
+  <div class="crumbs"><a href="/">Inicio</a> › Salud › Calculadora de IMC</div>
+  <h1>Calculadora de IMC</h1>
+  <p class="lead">Introduce tu <strong>peso</strong> y tu <strong>altura</strong> y calcula tu Índice de Masa Corporal y tu rango de peso según la OMS.</p>
+
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="p">Peso (kg)</label><input class="input" id="p" type="number" inputmode="decimal" value="70" min="1" step="0.1" /></div>
+      <div class="field"><label for="a">Altura (cm)</label><input class="input" id="a" type="number" inputmode="decimal" value="170" min="1" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular IMC</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Tu IMC</div>
+      <div class="result__big num" id="imc">—</div>
+      <div style="margin-top:10px"><span class="badge" id="cat">—</span></div>
+      <p class="hint" style="margin-top:12px" id="detalle"></p>
+    </div>
+  </div>
+
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+
+  <section class="prose">
+    <h2>Cómo se calcula el IMC</h2>
+    <p>La fórmula del Índice de Masa Corporal es sencilla:</p>
+    <p style="text-align:center"><strong>IMC = peso (kg) / altura (m)²</strong></p>
+    <p>Por ejemplo, una persona de <strong>70 kg</strong> y <strong>1,70 m</strong> tiene un IMC de 70 / (1,70 × 1,70) = <strong>24,2</strong>, que está dentro del rango de peso normal.</p>
+    <h2>Tabla de rangos de IMC (OMS)</h2>
+    <ul>
+      <li><strong>Menos de 18,5</strong> — Bajo peso</li>
+      <li><strong>18,5 – 24,9</strong> — Peso normal</li>
+      <li><strong>25 – 29,9</strong> — Sobrepeso</li>
+      <li><strong>30 o más</strong> — Obesidad</li>
+    </ul>
+    <p class="hint">El IMC es orientativo y no sustituye la valoración de un profesional sanitario.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    function calc() {
+      const p = parseFloat(($('p') as HTMLInputElement).value) || 0;
+      const a = parseFloat(($('a') as HTMLInputElement).value) || 0;
+      if (p <= 0 || a <= 0) return;
+      const m = a / 100; const imc = p / (m * m);
+      ($('imc')).textContent = imc.toFixed(1).replace('.', ',');
+      let cat = '', cls = '', det = '';
+      if (imc < 18.5) { cat = 'Bajo peso'; cls = 'badge--warn'; det = 'Tu IMC está por debajo del rango saludable.'; }
+      else if (imc < 25) { cat = 'Peso normal'; cls = 'badge--ok'; det = 'Tu IMC está dentro del rango saludable según la OMS.'; }
+      else if (imc < 30) { cat = 'Sobrepeso'; cls = 'badge--warn'; det = 'Tu IMC está por encima del rango saludable.'; }
+      else { cat = 'Obesidad'; cls = 'badge--bad'; det = 'Tu IMC indica obesidad. Conviene consultarlo con un profesional sanitario.'; }
+      const b = $('cat'); b.textContent = cat; b.className = 'badge ' + cls;
+      ($('detalle')).textContent = det;
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['p', 'a'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    calc();
+  </script>
+</CalcLayout>

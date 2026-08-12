@@ -1,0 +1,54 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calcula la nota media?', a: 'Si todas las asignaturas valen lo mismo, sumas las notas y divides entre el número de asignaturas. Si tienen distintos créditos o pesos, multiplicas cada nota por su peso, sumas todo y divides entre la suma de los pesos.' },
+  { q: '¿Cómo pongo los créditos?', a: 'En el segundo campo escribe los créditos o pesos separados por comas, en el mismo orden que las notas. Si lo dejas vacío, calculamos la media simple.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de nota media', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-nota-media' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de nota media (con y sin créditos)" description="Calcula tu nota media, simple o ponderada por créditos. Escribe tus notas separadas por comas y obtén el resultado al instante." path="/calculadora-nota-media" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Nota media</div>
+  <h1>Calculadora de nota media</h1>
+  <p class="lead">Escribe tus notas separadas por comas. Si tienen créditos, ponlos también y hacemos la media ponderada.</p>
+  <div class="calc">
+    <div class="field"><label for="notas">Notas (separadas por comas)</label><input class="input" id="notas" type="text" inputmode="decimal" value="7, 8.5, 6, 9" /></div>
+    <div class="field"><label for="pesos">Créditos o pesos (opcional)</label><input class="input" id="pesos" type="text" inputmode="decimal" placeholder="Ej: 6, 6, 4, 9" /></div>
+    <button class="btn" id="go" type="button">Calcular media</button>
+    <div class="result" id="res" hidden><div class="hint">Tu nota media</div><div class="result__big num" id="media">—</div><p class="hint" id="det" style="margin-top:8px"></p></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Media simple y media ponderada</h2>
+    <p>La <strong>media simple</strong> es la suma de las notas dividida entre cuántas hay. La <strong>media ponderada</strong> tiene en cuenta el peso de cada asignatura (sus créditos): las que valen más influyen más en la nota final.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-regla-de-tres">Regla de tres</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const parse = (s: string) => s.split(',').map((x) => parseFloat(x.trim().replace(',', '.'))).filter((x) => !isNaN(x));
+    function calc() {
+      const notas = parse(($('notas') as HTMLInputElement).value);
+      const pesos = parse(($('pesos') as HTMLInputElement).value);
+      if (!notas.length) return;
+      let media = 0, det = '';
+      if (pesos.length === notas.length && pesos.length > 0) {
+        const sp = pesos.reduce((a, b) => a + b, 0);
+        media = notas.reduce((a, n, i) => a + n * pesos[i], 0) / sp;
+        det = 'Media ponderada de ' + notas.length + ' asignaturas.';
+      } else {
+        media = notas.reduce((a, b) => a + b, 0) / notas.length;
+        det = 'Media simple de ' + notas.length + ' notas.';
+      }
+      ($('media')).textContent = media.toFixed(2).replace('.', ',');
+      ($('det')).textContent = det;
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['notas','pesos'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    calc();
+  </script>
+</CalcLayout>

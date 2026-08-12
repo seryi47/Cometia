@@ -1,0 +1,75 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calcula el sueldo neto?', a: 'Al salario bruto se le restan las cotizaciones a la Seguridad Social (en torno al 6,35 % para el trabajador) y la retención de IRPF, que es progresiva según lo que ganes. Lo que queda es el neto que cobras.' },
+  { q: '¿Por qué es una estimación?', a: 'La retención real de IRPF depende de tu comunidad autónoma, tu situación familiar, hijos, discapacidad, tipo de contrato y otras circunstancias. Esta calculadora da una estimación orientativa con la escala general estatal.' },
+  { q: '¿Qué diferencia hay entre 12 y 14 pagas?', a: 'El salario bruto anual es el mismo; con 14 pagas cada mensualidad es menor porque dos pagas son las extras (verano y Navidad). El neto anual no cambia por esto.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de sueldo neto', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-sueldo-neto' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de sueldo neto 2026: del bruto al neto (IRPF y SS)" description="Estima tu sueldo neto a partir del bruto anual: descontamos Seguridad Social e IRPF y te decimos cuánto cobras al mes. Orientativo, gratis y sin registro." path="/calculadora-sueldo-neto" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Finanzas › Sueldo neto</div>
+  <h1>Calculadora de sueldo neto</h1>
+  <p class="lead">Del <strong>bruto</strong> al <strong>neto</strong>: estimamos tu Seguridad Social e IRPF y te decimos cuánto cobras.</p>
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="b">Salario bruto anual (€)</label><input class="input" id="b" type="number" inputmode="decimal" value="24000" min="0" /></div>
+      <div class="field"><label for="p">Número de pagas</label><select class="input" id="p"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular sueldo neto</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Neto por paga</div>
+      <div class="result__big num" id="paga">—</div>
+      <div style="margin-top:12px">
+        <div class="result__row"><span>Neto anual</span><strong class="num" id="anual">—</strong></div>
+        <div class="result__row"><span>Seguridad Social</span><strong class="num" id="ss">—</strong></div>
+        <div class="result__row"><span>Retención IRPF</span><strong class="num" id="irpf">—</strong></div>
+        <div class="result__row"><span>Tipo de retención</span><strong class="num" id="tipo">—</strong></div>
+      </div>
+      <p class="hint" style="margin-top:10px">Estimación orientativa con la escala general estatal. No incluye tu comunidad autónoma ni tu situación personal (hijos, etc.).</p>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo pasamos del bruto al neto</h2>
+    <p>Primero restamos al bruto las <strong>cotizaciones a la Seguridad Social</strong> del trabajador (aprox. 6,35 %) y los gastos deducibles. Sobre esa base aplicamos la <strong>escala del IRPF</strong>, que es progresiva: cuanto más ganas, mayor es el tipo de los tramos altos. El resultado es una estimación de lo que te ingresan.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-iva">IVA</a><a href="/calculadora-porcentaje">Porcentajes</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const eur0 = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    const eur2 = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 });
+    // Escala IRPF general (estatal + autonómica tipo), progresiva.
+    const tramos = [[12450,0.19],[20200,0.24],[35200,0.30],[60000,0.37],[300000,0.45],[Infinity,0.47]];
+    function escala(base: number) {
+      let cuota = 0, prev = 0;
+      for (const [lim, t] of tramos) { if (base > lim) { cuota += (lim - prev) * t; prev = lim; } else { cuota += (base - prev) * t; break; } }
+      return Math.max(0, cuota);
+    }
+    function calc() {
+      const bruto = parseFloat(($('b') as HTMLInputElement).value) || 0;
+      const pagas = parseInt(($('p') as HTMLSelectElement).value) || 14;
+      if (bruto <= 0) return;
+      const ss = bruto * 0.0635;
+      const baseIrpf = Math.max(0, bruto - ss - 2000); // 2000 € gastos deducibles generales
+      const minimo = 5550;
+      const irpf = Math.max(0, escala(baseIrpf) - escala(minimo));
+      const netoAnual = bruto - ss - irpf;
+      ($('paga')).textContent = eur2.format(netoAnual / pagas);
+      ($('anual')).textContent = eur0.format(netoAnual);
+      ($('ss')).textContent = eur0.format(ss);
+      ($('irpf')).textContent = eur0.format(irpf);
+      ($('tipo')).textContent = (irpf / bruto * 100).toFixed(1).replace('.', ',') + ' %';
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('b')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    ($('p')).addEventListener('change', calc);
+    calc();
+  </script>
+</CalcLayout>
