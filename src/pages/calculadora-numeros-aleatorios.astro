@@ -1,0 +1,58 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Para qué sirve un generador de números aleatorios?', a: 'Para sorteos, juegos, elegir un ganador, repartir turnos o cualquier situación en la que necesites números al azar dentro de un rango.' },
+  { q: '¿Puedo evitar que se repitan?', a: 'Sí. Activa la opción "sin repetición" y cada número saldrá una sola vez (siempre que el rango tenga suficientes valores).' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Generador de números aleatorios', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-numeros-aleatorios' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Generador de números aleatorios online" description="Genera números aleatorios entre dos valores, con o sin repetición. Ideal para sorteos y juegos. Gratis y sin registro." path="/calculadora-numeros-aleatorios" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Números aleatorios</div>
+  <h1>Generador de números aleatorios</h1>
+  <p class="lead">Elige el rango y cuántos números quieres generar.</p>
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="min">Desde</label><input class="input" id="min" type="number" inputmode="numeric" value="1" /></div>
+      <div class="field"><label for="max">Hasta</label><input class="input" id="max" type="number" inputmode="numeric" value="100" /></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="cant">¿Cuántos?</label><input class="input" id="cant" type="number" inputmode="numeric" value="1" min="1" /></div>
+      <div class="field"><label for="rep">Sin repetición</label><select class="input" id="rep"><option value="no">No</option><option value="si">Sí</option></select></div>
+    </div>
+    <button class="btn" id="go" type="button">Generar</button>
+    <div class="result" id="res" hidden><div class="hint">Números generados</div><div class="result__big num" id="out" style="font-size:1.7rem">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo funciona</h2>
+    <p>Generamos números al azar entre el valor mínimo y el máximo que indiques. Puedes pedir varios a la vez y elegir si pueden repetirse o no. Perfecto para sorteos, juegos de mesa o elegir al azar.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    function calc() {
+      let min = Math.round(parseFloat(($('min') as HTMLInputElement).value));
+      let max = Math.round(parseFloat(($('max') as HTMLInputElement).value));
+      let cant = Math.max(1, Math.round(parseFloat(($('cant') as HTMLInputElement).value) || 1));
+      const sinRep = ($('rep') as HTMLSelectElement).value === 'si';
+      if (isNaN(min) || isNaN(max)) return;
+      if (min > max) { const t = min; min = max; max = t; }
+      const total = max - min + 1;
+      if (sinRep && cant > total) cant = total;
+      let nums: number[] = [];
+      if (sinRep) {
+        const pool = Array.from({ length: total }, (_, i) => min + i);
+        for (let i = 0; i < cant; i++) { const j = Math.floor(Math.random() * pool.length); nums.push(pool[j]); pool.splice(j, 1); }
+      } else {
+        for (let i = 0; i < cant; i++) nums.push(min + Math.floor(Math.random() * total));
+      }
+      ($('out')).textContent = nums.join(', ');
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+  </script>
+</CalcLayout>

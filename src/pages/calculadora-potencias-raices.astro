@@ -1,0 +1,57 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Qué es una potencia?', a: 'Es multiplicar un número (la base) por sí mismo tantas veces como indica el exponente. Por ejemplo, 2⁵ = 2 × 2 × 2 × 2 × 2 = 32.' },
+  { q: '¿Cómo se calcula una raíz enésima?', a: 'La raíz de índice n de un número x es el número que, elevado a n, da x. Equivale a elevar x a 1/n. Por ejemplo, la raíz cúbica de 27 es 3.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de potencias y raíces', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-potencias-raices' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de potencias y raíces" description="Calcula potencias (base elevada a un exponente) y raíces de cualquier índice al instante. Gratis y con explicación." path="/calculadora-potencias-raices" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Potencias y raíces</div>
+  <h1>Calculadora de potencias y raíces</h1>
+  <p class="lead">Calcula una potencia o una raíz de cualquier índice.</p>
+  <div class="calc">
+    <div class="field"><label>Operación</label><div class="seg" id="modo"><button type="button" data-m="pot" aria-pressed="true">Potencia (aᵇ)</button><button type="button" data-m="raiz" aria-pressed="false">Raíz (ⁿ√x)</button></div></div>
+    <div class="row">
+      <div class="field"><label id="l1" for="a">Base</label><input class="input" id="a" type="number" inputmode="decimal" value="2" /></div>
+      <div class="field"><label id="l2" for="b">Exponente</label><input class="input" id="b" type="number" inputmode="decimal" value="10" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden><div class="hint">Resultado</div><div class="result__big num" id="out">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo funciona</h2>
+    <p>En modo <strong>potencia</strong> elevamos la base al exponente. En modo <strong>raíz</strong> calculamos la raíz del índice que indiques (2 para la raíz cuadrada, 3 para la cúbica, etc.), que equivale a elevar el número a uno partido del índice.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const nf = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 6 });
+    let modo = 'pot';
+    document.querySelectorAll('#modo button').forEach((b) => b.addEventListener('click', () => {
+      modo = (b as HTMLElement).dataset.m!;
+      document.querySelectorAll('#modo button').forEach((x) => x.setAttribute('aria-pressed', String((x as HTMLElement).dataset.m === modo)));
+      if (modo === 'pot') { $('l1').textContent = 'Base'; $('l2').textContent = 'Exponente'; (($('a') as HTMLInputElement).value = '2'); (($('b') as HTMLInputElement).value = '10'); }
+      else { $('l1').textContent = 'Número (x)'; $('l2').textContent = 'Índice (n)'; (($('a') as HTMLInputElement).value = '27'); (($('b') as HTMLInputElement).value = '3'); }
+      calc();
+    }));
+    function calc() {
+      const a = parseFloat(($('a') as HTMLInputElement).value);
+      const b = parseFloat(($('b') as HTMLInputElement).value);
+      if (isNaN(a) || isNaN(b)) return;
+      let out: number;
+      if (modo === 'pot') out = Math.pow(a, b);
+      else { if (b === 0) { ($('out')).textContent = 'Índice no válido'; ($('res')).hidden = false; return; } out = a < 0 && b % 2 !== 0 ? -Math.pow(-a, 1 / b) : Math.pow(a, 1 / b); }
+      ($('out')).textContent = isFinite(out) ? nf.format(out) : 'Demasiado grande';
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['a','b'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    calc();
+  </script>
+</CalcLayout>

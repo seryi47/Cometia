@@ -1,0 +1,45 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo sé qué día de la semana fue una fecha?', a: 'Introduce la fecha y te decimos en qué día de la semana cae, tanto para fechas pasadas como futuras. Útil para saber qué día naciste o en qué día caerá un evento.' },
+  { q: '¿Funciona con fechas antiguas?', a: 'Sí, con cualquier fecha del calendario que introduzcas. Usamos el calendario gregoriano, el que usamos hoy en día.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Qué día de la semana fue una fecha', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-dia-semana' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="¿Qué día de la semana fue una fecha?" description="Descubre en qué día de la semana cae o cayó cualquier fecha: tu cumpleaños, un evento o una fecha histórica. Gratis." path="/calculadora-dia-semana" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Tiempo › Día de la semana</div>
+  <h1>¿Qué día de la semana fue una fecha?</h1>
+  <p class="lead">Elige una fecha y te decimos en qué día de la semana cae.</p>
+  <div class="calc">
+    <div class="field"><label for="fecha">Fecha</label><input class="input" id="fecha" type="date" /></div>
+    <button class="btn" id="go" type="button">Ver el día</button>
+    <div class="result" id="res" hidden><div class="result__big num" id="out" style="text-transform:capitalize">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Para qué sirve</h2>
+    <p>Saber el día de la semana de una fecha es útil para descubrir en qué día naciste, planificar un evento o resolver una curiosidad histórica. Introduce la fecha y lo calculamos al momento.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-edad">Edad</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    function calc() {
+      const v = ($('fecha') as HTMLInputElement).value;
+      if (!v) return;
+      const d = new Date(v + 'T00:00:00');
+      const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+      const dia = d.toLocaleDateString('es-ES', { weekday: 'long' });
+      const larga = d.toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
+      const verbo = d.getTime() < hoy.getTime() ? 'fue' : d.getTime() > hoy.getTime() ? 'será' : 'es';
+      ($('out')).textContent = `El ${larga} ${verbo} ${dia}`;
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('fecha')).addEventListener('change', calc);
+  </script>
+</CalcLayout>

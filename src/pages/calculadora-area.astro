@@ -1,0 +1,74 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calcula el área de un círculo?', a: 'El área de un círculo es π × radio². Su perímetro (la circunferencia) es 2 × π × radio.' },
+  { q: '¿Y el área de un triángulo?', a: 'El área de un triángulo es base × altura ÷ 2. El perímetro depende de la longitud de sus tres lados, por lo que aquí mostramos solo el área.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de área y perímetro', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-area' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de área y perímetro (cuadrado, círculo, triángulo…)" description="Calcula el área y el perímetro de un cuadrado, rectángulo, círculo o triángulo al instante. Gratis y con las fórmulas." path="/calculadora-area" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Área y perímetro</div>
+  <h1>Calculadora de área y perímetro</h1>
+  <p class="lead">Elige la figura e introduce sus medidas.</p>
+  <div class="calc">
+    <div class="field"><label for="fig">Figura</label><select class="input" id="fig">
+      <option value="cuadrado">Cuadrado</option>
+      <option value="rectangulo">Rectángulo</option>
+      <option value="circulo">Círculo</option>
+      <option value="triangulo">Triángulo</option>
+    </select></div>
+    <div class="row">
+      <div class="field"><label id="l1" for="i1">Lado</label><input class="input" id="i1" type="number" inputmode="decimal" value="5" min="0" step="0.01" /></div>
+      <div class="field" id="w2" hidden><label id="l2" for="i2">Altura</label><input class="input" id="i2" type="number" inputmode="decimal" value="3" min="0" step="0.01" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="result__row"><span>Área</span><strong class="num" id="area">—</strong></div>
+      <div class="result__row"><span>Perímetro</span><strong class="num" id="peri">—</strong></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Fórmulas</h2>
+    <ul>
+      <li><strong>Cuadrado:</strong> área = lado²; perímetro = 4 × lado.</li>
+      <li><strong>Rectángulo:</strong> área = base × altura; perímetro = 2 × (base + altura).</li>
+      <li><strong>Círculo:</strong> área = π × radio²; perímetro = 2 × π × radio.</li>
+      <li><strong>Triángulo:</strong> área = base × altura ÷ 2.</li>
+    </ul>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const nf = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 3 });
+    const fig = $('fig') as HTMLSelectElement;
+    function labels() {
+      const f = fig.value; const w2 = $('w2') as HTMLElement;
+      if (f === 'cuadrado') { $('l1').textContent = 'Lado'; w2.hidden = true; }
+      else if (f === 'rectangulo') { $('l1').textContent = 'Base'; $('l2').textContent = 'Altura'; w2.hidden = false; }
+      else if (f === 'circulo') { $('l1').textContent = 'Radio'; w2.hidden = true; }
+      else { $('l1').textContent = 'Base'; $('l2').textContent = 'Altura'; w2.hidden = false; }
+    }
+    function calc() {
+      const f = fig.value;
+      const a = parseFloat(($('i1') as HTMLInputElement).value) || 0;
+      const b = parseFloat(($('i2') as HTMLInputElement).value) || 0;
+      let area = 0, peri: number | null = 0;
+      if (f === 'cuadrado') { area = a * a; peri = 4 * a; }
+      else if (f === 'rectangulo') { area = a * b; peri = 2 * (a + b); }
+      else if (f === 'circulo') { area = Math.PI * a * a; peri = 2 * Math.PI * a; }
+      else { area = a * b / 2; peri = null; }
+      ($('area')).textContent = nf.format(area);
+      ($('peri')).textContent = peri === null ? '— (según sus lados)' : nf.format(peri);
+      ($('res')).hidden = false;
+    }
+    fig.addEventListener('change', () => { labels(); calc(); });
+    $('go').addEventListener('click', calc);
+    ['i1','i2'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    labels(); calc();
+  </script>
+</CalcLayout>

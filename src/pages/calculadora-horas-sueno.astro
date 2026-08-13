@@ -1,0 +1,50 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Por qué en ciclos de 90 minutos?', a: 'El sueño se organiza en ciclos de unos 90 minutos. Despertarte al final de un ciclo (y no en mitad) hace que te levantes más descansado. Por eso sugerimos horas separadas por 90 minutos.' },
+  { q: '¿Cuántas horas debo dormir?', a: 'La mayoría de adultos necesita entre 7 y 9 horas, es decir, unos 5 o 6 ciclos completos. Añadimos 15 minutos de margen para quedarte dormido.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de horas de sueño', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-horas-sueno' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de horas de sueño: ¿a qué hora acostarme?" description="Descubre a qué hora acostarte o despertarte según los ciclos de sueño de 90 minutos para levantarte descansado. Gratis." path="/calculadora-horas-sueno" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Salud › Horas de sueño</div>
+  <h1>Calculadora de horas de sueño</h1>
+  <p class="lead">Dinos a qué hora quieres despertarte y te decimos a qué horas acostarte.</p>
+  <div class="calc">
+    <div class="field"><label for="hora">Hora a la que quieres despertarte</label><input class="input" id="hora" type="time" value="07:00" /></div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Acuéstate a alguna de estas horas</div>
+      <div class="result__big num" id="horas" style="font-size:1.5rem">—</div>
+      <p class="hint">De más a menos descanso (6, 5 y 4 ciclos). Incluye 15 min para dormirte.</p>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo funciona</h2>
+    <p>Partimos de tu hora de despertar y restamos ciclos de 90 minutos más 15 de margen para dormirte. Así, en lugar de contar horas sueltas, te levantas al final de un ciclo y notas la diferencia.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    function calc() {
+      const v = ($('hora') as HTMLInputElement).value;
+      if (!v) return;
+      const [h, m] = v.split(':').map(Number);
+      const wake = new Date(); wake.setHours(h, m, 0, 0);
+      const opciones = [6, 5, 4].map((ciclos) => {
+        const t = new Date(wake.getTime() - (ciclos * 90 + 15) * 60000);
+        return t.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) + ` (${(ciclos * 1.5).toString().replace('.', ',')} h)`;
+      });
+      ($('horas')).innerHTML = opciones.join(' &nbsp;·&nbsp; ');
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('hora')).addEventListener('change', calc);
+    calc();
+  </script>
+</CalcLayout>

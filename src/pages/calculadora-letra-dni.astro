@@ -1,0 +1,46 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calcula la letra del DNI?', a: 'Se divide el número del DNI entre 23 y, con el resto, se busca la letra correspondiente en una tabla oficial (TRWAGMYFPDXBNJZSQVHLCKE). Por eso cada número tiene una única letra válida.' },
+  { q: '¿Funciona con el NIE?', a: 'Sí. En el NIE, la letra inicial (X, Y o Z) se sustituye por 0, 1 o 2 respectivamente y luego se calcula igual que el DNI.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de la letra del DNI', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-letra-dni' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de la letra del DNI y NIE" description="Averigua la letra de tu DNI o NIE a partir del número, al instante y con la tabla oficial. Gratis y sin registro." path="/calculadora-letra-dni" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Finanzas › Letra del DNI</div>
+  <h1>Calculadora de la letra del DNI</h1>
+  <p class="lead">Escribe el número de tu DNI o NIE y te decimos su letra.</p>
+  <div class="calc">
+    <div class="field"><label for="v">Número de DNI o NIE</label><input class="input" id="v" type="text" value="12345678" autocomplete="off" placeholder="12345678 o X1234567" style="text-transform:uppercase" /></div>
+    <button class="btn" id="go" type="button">Calcular letra</button>
+    <div class="result" id="res" hidden><div class="hint">Documento completo</div><div class="result__big num" id="out">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo se calcula</h2>
+    <p>La letra del DNI es un dígito de control: se obtiene del resto de dividir el número entre 23. Cada resto (de 0 a 22) corresponde a una letra de la tabla oficial, lo que permite detectar errores al teclear el documento.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const LETRAS = 'TRWAGMYFPDXBNJZSQVHLCKE';
+    function calc() {
+      let raw = ($('v') as HTMLInputElement).value.trim().toUpperCase().replace(/[\s-]/g, '');
+      let prefijo = '';
+      if (/^[XYZ]/.test(raw)) { prefijo = raw[0]; raw = ({ X: '0', Y: '1', Z: '2' } as any)[prefijo] + raw.slice(1); }
+      const soloNum = raw.replace(/[^0-9]/g, '');
+      if (!soloNum || soloNum.length > 8) { ($('out')).textContent = 'Introduce un número válido'; ($('res')).hidden = false; return; }
+      const letra = LETRAS[parseInt(soloNum, 10) % 23];
+      const numeroMostrar = prefijo ? prefijo + soloNum.slice(1) : soloNum;
+      ($('out')).textContent = numeroMostrar + '-' + letra;
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('v')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    calc();
+  </script>
+</CalcLayout>

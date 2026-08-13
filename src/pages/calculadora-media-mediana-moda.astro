@@ -1,0 +1,55 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Qué diferencia hay entre media, mediana y moda?', a: 'La media es el promedio (suma dividida entre la cantidad). La mediana es el valor central al ordenar los datos. La moda es el valor que más se repite.' },
+  { q: '¿Puede haber más de una moda?', a: 'Sí. Si dos o más valores se repiten el mismo número máximo de veces, el conjunto es bimodal o multimodal y mostramos todas las modas.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de media, mediana y moda', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-media-mediana-moda' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de media, mediana y moda" description="Calcula la media, la mediana y la moda de una lista de números al instante. Estadística fácil, gratis y con explicación." path="/calculadora-media-mediana-moda" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Media, mediana y moda</div>
+  <h1>Media, mediana y moda</h1>
+  <p class="lead">Escribe tus números separados por comas y calculamos las tres medidas.</p>
+  <div class="calc">
+    <div class="field"><label for="nums">Números (separados por comas)</label><input class="input" id="nums" type="text" inputmode="decimal" value="4, 8, 6, 8, 5, 3, 8" /></div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="result__row"><span>Media</span><strong class="num" id="media">—</strong></div>
+      <div class="result__row"><span>Mediana</span><strong class="num" id="mediana">—</strong></div>
+      <div class="result__row"><span>Moda</span><strong class="num" id="moda">—</strong></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo se calculan</h2>
+    <p>La <strong>media</strong> suma todos los valores y los divide entre cuántos hay. La <strong>mediana</strong> ordena los datos y toma el del centro (o el promedio de los dos centrales). La <strong>moda</strong> es el valor que aparece más veces.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-nota-media">Nota media</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const nf = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 3 });
+    function calc() {
+      const nums = ($('nums') as HTMLInputElement).value.split(',').map((x) => parseFloat(x.trim().replace(',', '.'))).filter((x) => !isNaN(x));
+      if (!nums.length) return;
+      const media = nums.reduce((a, b) => a + b, 0) / nums.length;
+      const s = [...nums].sort((a, b) => a - b);
+      const mid = Math.floor(s.length / 2);
+      const mediana = s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+      const freq: Record<number, number> = {}; let max = 0;
+      for (const n of nums) { freq[n] = (freq[n] || 0) + 1; if (freq[n] > max) max = freq[n]; }
+      const modas = Object.keys(freq).filter((k) => freq[+k] === max).map(Number);
+      ($('media')).textContent = nf.format(media);
+      ($('mediana')).textContent = nf.format(mediana);
+      ($('moda')).textContent = max <= 1 ? 'Sin moda (nada se repite)' : modas.map((m) => nf.format(m)).join(', ');
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('nums')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    calc();
+  </script>
+</CalcLayout>

@@ -1,0 +1,65 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Para qué sirve pasar un número a letras?', a: 'Es útil para rellenar cheques, contratos, facturas o documentos oficiales, donde el importe suele escribirse también con palabras para evitar errores.' },
+  { q: '¿Hasta qué número funciona?', a: 'Convierte números enteros hasta cientos de millones. Para importes con céntimos, escribe la parte entera; los decimales puedes añadirlos aparte.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Número a letras', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-numero-a-letras' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Número a letras: escribe cualquier cifra en palabras" description="Convierte cualquier número en palabras (en letras), ideal para cheques, contratos y facturas. Gratis y al instante." path="/calculadora-numero-a-letras" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Número a letras</div>
+  <h1>Número a letras</h1>
+  <p class="lead">Escribe un número y te lo damos en palabras.</p>
+  <div class="calc">
+    <div class="field"><label for="n">Número</label><input class="input" id="n" type="number" inputmode="numeric" value="1234" min="0" /></div>
+    <button class="btn" id="go" type="button">Convertir</button>
+    <div class="result" id="res" hidden><div class="hint">En letras</div><div class="result__big num" id="out" style="font-size:1.6rem; text-transform:capitalize">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo funciona</h2>
+    <p>Descomponemos el número en millones, miles, centenas, decenas y unidades, y lo escribimos siguiendo las reglas del español (por ejemplo, "mil doscientos treinta y cuatro"). Muy práctico para cheques y documentos.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const UNI = ['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte','veintiuno','veintidós','veintitrés','veinticuatro','veinticinco','veintiséis','veintisiete','veintiocho','veintinueve'];
+    const DEC = ['','','','treinta','cuarenta','cincuenta','sesenta','setenta','ochenta','noventa'];
+    const CEN = ['','ciento','doscientos','trescientos','cuatrocientos','quinientos','seiscientos','setecientos','ochocientos','novecientos'];
+    function m1000(n: number, ap: boolean): string {
+      if (n === 0) return '';
+      if (n === 100) return 'cien';
+      let s = ''; const c = Math.floor(n / 100), r = n % 100;
+      if (c > 0) s += CEN[c];
+      if (r > 0) {
+        if (s) s += ' ';
+        if (r <= 29) { let w = UNI[r]; if (ap && r === 1) w = 'un'; else if (ap && r === 21) w = 'veintiún'; s += w; }
+        else { const d = Math.floor(r / 10), u = r % 10; s += DEC[d]; if (u > 0) { let w = UNI[u]; if (ap && u === 1) w = 'un'; s += ' y ' + w; } }
+      }
+      return s;
+    }
+    function convertir(n: number): string {
+      if (n === 0) return 'cero';
+      let out = '';
+      const mill = Math.floor(n / 1000000), miles = Math.floor((n % 1000000) / 1000), r = n % 1000;
+      if (mill > 0) out += mill === 1 ? 'un millón' : m1000(mill, true) + ' millones';
+      if (miles > 0) { if (out) out += ' '; out += miles === 1 ? 'mil' : m1000(miles, true) + ' mil'; }
+      if (r > 0) { if (out) out += ' '; out += m1000(r, false); }
+      return out.trim();
+    }
+    function calc() {
+      const n = parseInt(($('n') as HTMLInputElement).value);
+      if (isNaN(n) || n < 0) return;
+      if (n > 999999999) { ($('out')).textContent = 'Prueba con un número menor'; ($('res')).hidden = false; return; }
+      ($('out')).textContent = convertir(n);
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('n')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    calc();
+  </script>
+</CalcLayout>
