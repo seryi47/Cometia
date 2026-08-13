@@ -1,23 +1,21 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import CalcLayout from '../layouts/CalcLayout.astro';
+import { CALCULADORAS } from '../data/calculadoras';
+const populares = CALCULADORAS.filter((c) => ['calculadora-hipoteca', 'calculadora-sueldo-neto', 'calculadora-iva', 'calculadora-imc', 'calculadora-porcentaje', 'calculadora-edad'].includes(c.slug));
 ---
-<BaseLayout
-  title="Página no encontrada (404) — Cometia"
-  description="La página que buscas no existe. Analiza tu web o vuelve al inicio."
-  noindex
-  path="/404"
->
-  <section class="section">
-    <div class="container" style="text-align:center; max-width:640px">
-      <p class="eyebrow" style="justify-content:center">Error 404</p>
-      <h1>Esta página no existe</h1>
-      <p class="lead" style="margin:1rem auto 2rem">
-        Puede que el enlace esté roto o que la página se haya movido. Prueba con esto:
-      </p>
-      <p style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
-        <a class="btn btn--primary" href="/">Ir al inicio</a>
-        <a class="btn btn--ghost" href="/#audit-form">Analizar mi web</a>
-      </p>
-    </div>
-  </section>
-</BaseLayout>
+<CalcLayout title="Página no encontrada — Cometia" description="La página que buscas no existe. Descubre las calculadoras de Cometia." path="/404">
+  <div class="hero" style="margin-bottom:24px">
+    <h1>Vaya… esta página no existe</h1>
+    <p>Pero seguro que encuentras la calculadora que buscabas. Prueba con una de estas:</p>
+  </div>
+  <div class="grid">
+    {populares.map((c) => (
+      <a class="card" href={`/${c.slug}`}>
+        <div class="card__icon">{c.icon}</div>
+        <div class="card__t">{c.titulo}</div>
+        <div class="card__d">{c.meta}</div>
+      </a>
+    ))}
+  </div>
+  <p style="text-align:center; margin-top:26px"><a href="/">← Volver al inicio</a></p>
+</CalcLayout>

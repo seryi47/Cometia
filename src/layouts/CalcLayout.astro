@@ -1,9 +1,42 @@
 ---
 import '../styles/calc.css';
+import { CALCULADORAS } from '../data/calculadoras';
 interface Props { title: string; description: string; path: string; jsonLd?: any; wide?: boolean; }
 const { title, description, path, jsonLd, wide } = Astro.props;
 const site = 'https://cometia.es';
 const canonical = site + path;
+const anchor: Record<string, string> = { Finanzas: 'finanzas', Salud: 'salud', Matemáticas: 'matematicas', Tiempo: 'tiempo' };
+
+// Calculadora actual (si la ruta coincide con una), para breadcrumb y relacionadas.
+const slug = path.replace(/^\//, '').replace(/\/$/, '');
+const current = CALCULADORAS.find((c) => c.slug === slug) || null;
+
+// Schema de migas de pan (mejora cómo se ve en Google y ayuda a las IAs).
+const breadcrumb = current
+  ? {
+      '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: site + '/' },
+        { '@type': 'ListItem', position: 2, name: current.cat, item: site + '/#' + anchor[current.cat] },
+        { '@type': 'ListItem', position: 3, name: current.titulo, item: canonical },
+      ],
+    }
+  : null;
+
+// Schema de organización (identidad de marca para buscadores e IAs).
+const orgSchema = {
+  '@context': 'https://schema.org', '@type': 'Organization',
+  name: 'Cometia', url: site, logo: site + '/favicon.svg',
+  description: 'Calculadoras online gratis en español: finanzas, salud, matemáticas y tiempo.',
+};
+
+// Enlazado interno: otras calculadoras (primero de su categoría, luego el resto).
+let related: typeof CALCULADORAS = [];
+if (current) {
+  const same = CALCULADORAS.filter((c) => c.cat === current.cat && c.slug !== current.slug);
+  const others = CALCULADORAS.filter((c) => c.cat !== current.cat);
+  related = [...same, ...others].slice(0, 8);
+}
 ---
 <!doctype html>
 <html lang="es">
@@ -12,17 +45,27 @@ const canonical = site + path;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Cometia" />
+    <meta property="og:locale" content="es_ES" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="theme-color" content="#5b5bf6" />
     <link rel="icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {breadcrumb && <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />}
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6286326170489521" crossorigin="anonymous"></script>
   </head>
@@ -42,6 +85,15 @@ const canonical = site + path;
     <main class={wide ? 'wrap wrap--wide' : 'wrap'}>
       <slot />
     </main>
+
+    {related.length > 0 && (
+      <section class="related" aria-label="Otras calculadoras">
+        <h2 class="related__t">Otras calculadoras</h2>
+        <div class="related__grid">
+          {related.map((c) => (<a class="related__item" href={`/${c.slug}`}>{c.icon} {c.titulo}</a>))}
+        </div>
+      </section>
+    )}
 
     <footer class="ft">
       <div class="ft__in">

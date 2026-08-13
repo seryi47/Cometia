@@ -136,4 +136,11 @@ details.faq p { margin:0 0 14px; color:var(--muted); }
 .ft__in { max-width:1040px; margin:0 auto; padding:30px 20px; color:var(--muted); font-size:.9rem; display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center; }
 .ft a { color:var(--muted); } .ft a:hover { color:var(--text); }
 
+/* Otras calculadoras (enlazado interno en todas las páginas) ---------------- */
+.related { max-width:1040px; margin:0 auto; padding:8px 20px 48px; }
+.related__t { font-family:var(--display); font-size:1.2rem; font-weight:700; margin-bottom:14px; }
+.related__grid { display:flex; flex-wrap:wrap; gap:10px; }
+.related__item { display:inline-flex; align-items:center; gap:8px; padding:10px 15px; border:1px solid var(--border); border-radius:999px; background:var(--surface); color:var(--text); font-size:.92rem; font-weight:600; box-shadow:var(--shadow); transition:transform .14s, border-color .14s, color .14s; }
+.related__item:hover { text-decoration:none; border-color:var(--brand); color:var(--brand-ink); transform:translateY(-1px); }
+
 @media (max-width:520px){ .row{grid-template-columns:1fr;} .hero{padding:32px 16px 26px;} }

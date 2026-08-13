@@ -1,0 +1,13 @@
+{
+  "name": "Cometia — Calculadoras online",
+  "short_name": "Cometia",
+  "description": "Calculadoras online gratis en español: finanzas, salud, matemáticas y tiempo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#5b5bf6",
+  "lang": "es",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
