@@ -1,0 +1,53 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Qué es el ritmo de carrera?', a: 'Es el tiempo que tardas en recorrer cada kilómetro, en minutos por kilómetro (min/km). Es la forma habitual de medir la intensidad al correr.' },
+  { q: '¿Cómo paso de ritmo a velocidad?', a: 'La velocidad en km/h es 60 dividido entre el ritmo en min/km. Por ejemplo, un ritmo de 6 min/km equivale a 10 km/h.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de ritmo de carrera', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-ritmo-carrera' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de ritmo de carrera (min/km) y velocidad" description="Calcula tu ritmo en minutos por kilómetro y tu velocidad a partir de la distancia y el tiempo. Para running. Gratis." path="/calculadora-ritmo-carrera" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Salud › Ritmo de carrera</div>
+  <h1>Calculadora de ritmo de carrera</h1>
+  <p class="lead">Introduce la distancia y el tiempo, y calculamos tu ritmo (min/km) y velocidad.</p>
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="dist">Distancia (km)</label><input class="input" id="dist" type="number" inputmode="decimal" value="10" min="0.1" step="0.1" /></div>
+      <div class="field"><label for="min">Tiempo (minutos)</label><input class="input" id="min" type="number" inputmode="decimal" value="55" min="0.1" step="0.1" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular ritmo</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Ritmo</div>
+      <div class="result__big num" id="ritmo">—</div>
+      <div style="margin-top:12px"><div class="result__row"><span>Velocidad</span><strong class="num" id="vel">—</strong></div></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo se calcula</h2>
+    <p>El ritmo es el tiempo total dividido entre los kilómetros, y lo mostramos en minutos y segundos por kilómetro. La velocidad es la distancia dividida entre el tiempo en horas. Ideal para preparar una carrera de 5K, 10K, media maratón o maratón.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-calorias-quemadas">Calorías quemadas</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    function calc() {
+      const dist = parseFloat(($('dist') as HTMLInputElement).value) || 0;
+      const min = parseFloat(($('min') as HTMLInputElement).value) || 0;
+      if (dist <= 0 || min <= 0) return;
+      const ritmo = min / dist; // min por km
+      const m = Math.floor(ritmo), s = Math.round((ritmo - m) * 60);
+      const ss = s === 60 ? '00' : String(s).padStart(2, '0');
+      ($('ritmo')).textContent = `${s === 60 ? m + 1 : m}:${ss} min/km`;
+      ($('vel')).textContent = (dist / (min / 60)).toFixed(2).replace('.', ',') + ' km/h';
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['dist','min'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    calc();
+  </script>
+</CalcLayout>

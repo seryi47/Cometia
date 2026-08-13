@@ -1,0 +1,50 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Para qué sirve una cuenta atrás?', a: 'Para saber cuántos días faltan hasta una fecha señalada: unas vacaciones, un cumpleaños, Navidad, un examen o cualquier evento importante.' },
+  { q: '¿Cuenta el día de hoy?', a: 'Mostramos los días completos que faltan desde hoy hasta la fecha elegida. Si eliges hoy, faltan 0 días.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de cuenta atrás', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-cuenta-atras' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de cuenta atrás: cuántos días faltan" description="Calcula cuántos días faltan para una fecha: vacaciones, Navidad, un cumpleaños o cualquier evento. Gratis y al instante." path="/calculadora-cuenta-atras" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Tiempo › Cuenta atrás</div>
+  <h1>Calculadora de cuenta atrás</h1>
+  <p class="lead">Elige una fecha y te decimos cuántos días faltan.</p>
+  <div class="calc">
+    <div class="field"><label for="fecha">Fecha del evento</label><input class="input" id="fecha" type="date" /></div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Faltan</div>
+      <div class="result__big num" id="dias">—</div>
+      <div style="margin-top:12px"><div class="result__row"><span>En semanas</span><strong class="num" id="sem">—</strong></div></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo funciona</h2>
+    <p>Comparamos la fecha que elijas con el día de hoy y calculamos los días completos que faltan. Perfecto para preparar una cuenta atrás hacia unas vacaciones, un evento o una fecha especial.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-sumar-restar-dias">Sumar o restar días</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const nf = new Intl.NumberFormat('es-ES');
+    function calc() {
+      const v = ($('fecha') as HTMLInputElement).value;
+      if (!v) return;
+      const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+      const objetivo = new Date(v + 'T00:00:00');
+      const dias = Math.round((objetivo.getTime() - hoy.getTime()) / 86400000);
+      if (dias < 0) { ($('dias')).textContent = 'Esa fecha ya pasó'; ($('sem')).textContent = '—'; ($('res')).hidden = false; return; }
+      ($('dias')).textContent = dias === 0 ? '¡Es hoy!' : nf.format(dias) + (dias === 1 ? ' día' : ' días');
+      ($('sem')).textContent = Math.floor(dias / 7) + ' sem. ' + (dias % 7) + ' d';
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('fecha')).addEventListener('change', calc);
+  </script>
+</CalcLayout>

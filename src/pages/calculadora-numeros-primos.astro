@@ -1,0 +1,54 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Qué es un número primo?', a: 'Es un número mayor que 1 que solo se puede dividir exactamente entre 1 y él mismo. Por ejemplo, 2, 3, 5, 7 y 11 son primos; 12 no lo es (se divide entre 2, 3, 4 y 6).' },
+  { q: '¿Qué es la descomposición en factores primos?', a: 'Es escribir un número como producto de números primos. Por ejemplo, 60 = 2 × 2 × 3 × 5. Es muy útil para calcular el MCM y el MCD.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de números primos', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-numeros-primos' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de números primos y factores primos" description="Comprueba si un número es primo y descomponlo en factores primos al instante. Gratis y con explicación." path="/calculadora-numeros-primos" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Números primos</div>
+  <h1>Calculadora de números primos</h1>
+  <p class="lead">Escribe un número y te decimos si es primo y su descomposición en factores primos.</p>
+  <div class="calc">
+    <div class="field"><label for="n">Número</label><input class="input" id="n" type="number" inputmode="numeric" value="60" min="1" /></div>
+    <button class="btn" id="go" type="button">Comprobar</button>
+    <div class="result" id="res" hidden>
+      <div style="margin-bottom:6px"><span class="badge" id="esprimo">—</span></div>
+      <div class="result__row"><span>Descomposición en factores</span><strong class="num" id="fact">—</strong></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo funciona</h2>
+    <p>Comprobamos si el número tiene algún divisor distinto de 1 y de sí mismo. Si no lo tiene, es primo. Si lo tiene, lo dividimos sucesivamente entre sus factores primos hasta descomponerlo por completo.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-mcm-mcd">MCM y MCD</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    function calc() {
+      const n = parseInt(($('n') as HTMLInputElement).value) || 0;
+      if (n < 1) return;
+      const badge = $('esprimo');
+      if (n === 1) { badge.textContent = '1 no es primo ni compuesto'; badge.className = 'badge badge--warn'; ($('fact')).textContent = '—'; ($('res')).hidden = false; return; }
+      // ¿es primo?
+      let primo = n >= 2; for (let i = 2; i * i <= n; i++) if (n % i === 0) { primo = false; break; }
+      badge.textContent = primo ? `${n} es un número PRIMO` : `${n} NO es primo`;
+      badge.className = 'badge ' + (primo ? 'badge--ok' : 'badge--warn');
+      // factores primos
+      let m = n; const f: number[] = [];
+      for (let i = 2; i * i <= m; i++) while (m % i === 0) { f.push(i); m /= i; }
+      if (m > 1) f.push(m);
+      ($('fact')).textContent = primo ? String(n) : f.join(' × ');
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('n')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    calc();
+  </script>
+</CalcLayout>

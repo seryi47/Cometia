@@ -1,0 +1,53 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se pasa de binario a decimal?', a: 'Cada cifra binaria vale una potencia de 2 según su posición. Por ejemplo, 1011 = 1×8 + 0×4 + 1×2 + 1×1 = 11.' },
+  { q: '¿Y de decimal a binario?', a: 'Se divide el número entre 2 repetidamente y se leen los restos de abajo a arriba. Aquí lo hacemos automáticamente.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Conversor binario a decimal', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-binario-decimal' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Conversor de binario a decimal y de decimal a binario" description="Convierte números de binario a decimal y de decimal a binario al instante, con explicación. Gratis y sin registro." path="/calculadora-binario-decimal" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Binario y decimal</div>
+  <h1>Conversor binario ⇄ decimal</h1>
+  <p class="lead">Convierte en los dos sentidos: binario a decimal o decimal a binario.</p>
+  <div class="calc">
+    <div class="field"><label>Conversión</label><div class="seg" id="modo"><button type="button" data-m="bd" aria-pressed="true">Binario → Decimal</button><button type="button" data-m="db" aria-pressed="false">Decimal → Binario</button></div></div>
+    <div class="field"><label for="v" id="lbl">Número binario</label><input class="input" id="v" type="text" value="1011" autocomplete="off" /></div>
+    <button class="btn" id="go" type="button">Convertir</button>
+    <div class="result" id="res" hidden><div class="hint" id="rlbl">Resultado</div><div class="result__big num" id="out">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo funciona</h2>
+    <p>El sistema binario usa solo dos cifras (0 y 1) y es la base de la informática. Para pasar a decimal se suman las potencias de 2; para pasar a binario se divide entre 2 y se leen los restos. Aquí lo haces en un clic en los dos sentidos.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    let modo = 'bd';
+    document.querySelectorAll('#modo button').forEach((b) => b.addEventListener('click', () => {
+      modo = (b as HTMLElement).dataset.m!;
+      document.querySelectorAll('#modo button').forEach((x) => x.setAttribute('aria-pressed', String((x as HTMLElement).dataset.m === modo)));
+      const inp = $('v') as HTMLInputElement;
+      $('lbl').textContent = modo === 'bd' ? 'Número binario' : 'Número decimal';
+      inp.value = modo === 'bd' ? '1011' : '11';
+      calc();
+    }));
+    function calc() {
+      const raw = ($('v') as HTMLInputElement).value.trim();
+      let out = '', lbl = 'Resultado';
+      if (modo === 'bd') { if (!/^[01]+$/.test(raw)) out = 'Solo se admiten 0 y 1'; else { out = String(parseInt(raw, 2)); lbl = raw + ' en decimal'; } }
+      else { if (!/^\d+$/.test(raw)) out = 'Introduce un número decimal'; else { out = parseInt(raw, 10).toString(2); lbl = raw + ' en binario'; } }
+      ($('rlbl')).textContent = lbl;
+      ($('out')).textContent = out;
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('v')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    calc();
+  </script>
+</CalcLayout>

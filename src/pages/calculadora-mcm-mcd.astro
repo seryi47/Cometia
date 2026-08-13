@@ -1,0 +1,51 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Qué es el MCD?', a: 'El máximo común divisor (MCD) es el número más grande que divide a la vez a dos o más números. Por ejemplo, el MCD de 12 y 18 es 6.' },
+  { q: '¿Qué es el MCM?', a: 'El mínimo común múltiplo (MCM) es el número más pequeño que es múltiplo de todos ellos. Por ejemplo, el MCM de 4 y 6 es 12. Se calcula como el producto dividido entre el MCD.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de MCM y MCD', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-mcm-mcd' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de MCM y MCD (mínimo común múltiplo y máximo común divisor)" description="Calcula el mínimo común múltiplo (MCM) y el máximo común divisor (MCD) de dos números al instante. Gratis y con explicación." path="/calculadora-mcm-mcd" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › MCM y MCD</div>
+  <h1>Calculadora de MCM y MCD</h1>
+  <p class="lead">Introduce dos números y calculamos su mínimo común múltiplo y su máximo común divisor.</p>
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="a">Primer número</label><input class="input" id="a" type="number" inputmode="numeric" value="12" min="1" /></div>
+      <div class="field"><label for="b">Segundo número</label><input class="input" id="b" type="number" inputmode="numeric" value="18" min="1" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="result__row"><span>MCD (máximo común divisor)</span><strong class="num" id="mcd">—</strong></div>
+      <div class="result__row"><span>MCM (mínimo común múltiplo)</span><strong class="num" id="mcm">—</strong></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo se calcula</h2>
+    <p>El <strong>MCD</strong> se obtiene con el algoritmo de Euclides (restos sucesivos). El <strong>MCM</strong> es el producto de los dos números dividido entre su MCD. Son básicos para sumar fracciones o resolver problemas de múltiplos y divisores.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-fracciones">Fracciones</a><a href="/calculadora-numeros-primos">Números primos</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const gcd = (x: number, y: number): number => (y === 0 ? x : gcd(y, x % y));
+    function calc() {
+      const a = Math.abs(parseInt(($('a') as HTMLInputElement).value)) || 0;
+      const b = Math.abs(parseInt(($('b') as HTMLInputElement).value)) || 0;
+      if (a <= 0 || b <= 0) return;
+      const g = gcd(a, b);
+      ($('mcd')).textContent = String(g);
+      ($('mcm')).textContent = String(a * b / g);
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['a','b'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    calc();
+  </script>
+</CalcLayout>

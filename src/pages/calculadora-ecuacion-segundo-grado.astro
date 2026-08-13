@@ -1,0 +1,56 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se resuelve una ecuación de segundo grado?', a: 'Con la fórmula general: x = (−b ± √(b² − 4ac)) / (2a). El valor b² − 4ac se llama discriminante y dice cuántas soluciones hay.' },
+  { q: '¿Qué indica el discriminante?', a: 'Si es positivo, hay dos soluciones reales; si es cero, una solución (doble); y si es negativo, no hay soluciones reales (son complejas).' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de ecuación de segundo grado', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-ecuacion-segundo-grado' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de ecuación de segundo grado (ax²+bx+c)" description="Resuelve ecuaciones de segundo grado ax² + bx + c = 0 con la fórmula general. Te damos las soluciones y el discriminante. Gratis." path="/calculadora-ecuacion-segundo-grado" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Ecuación de 2º grado</div>
+  <h1>Ecuación de segundo grado</h1>
+  <p class="lead">Introduce los coeficientes de <strong>ax² + bx + c = 0</strong> y resolvemos.</p>
+  <div class="calc">
+    <div class="row" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="field"><label for="a">a</label><input class="input" id="a" type="number" inputmode="decimal" value="1" /></div>
+      <div class="field"><label for="b">b</label><input class="input" id="b" type="number" inputmode="decimal" value="-3" /></div>
+      <div class="field"><label for="c">c</label><input class="input" id="c" type="number" inputmode="decimal" value="2" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Resolver</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Soluciones</div>
+      <div class="result__big num" id="sol">—</div>
+      <div style="margin-top:12px"><div class="result__row"><span>Discriminante (b²−4ac)</span><strong class="num" id="disc">—</strong></div></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo se resuelve</h2>
+    <p>Calculamos el discriminante <strong>b² − 4ac</strong> y aplicamos la fórmula general <strong>x = (−b ± √(b² − 4ac)) / 2a</strong>. Según el discriminante, obtendrás dos soluciones, una o ninguna real.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const r = (x: number) => Math.round(x * 10000) / 10000;
+    function calc() {
+      const a = parseFloat(($('a') as HTMLInputElement).value);
+      const b = parseFloat(($('b') as HTMLInputElement).value);
+      const c = parseFloat(($('c') as HTMLInputElement).value);
+      if ([a, b, c].some(isNaN)) return;
+      if (a === 0) { ($('sol')).textContent = 'No es de 2º grado (a = 0)'; ($('disc')).textContent = '—'; ($('res')).hidden = false; return; }
+      const d = b * b - 4 * a * c;
+      ($('disc')).textContent = String(r(d));
+      if (d > 0) { const s = Math.sqrt(d); ($('sol')).textContent = `x₁ = ${r((-b + s) / (2 * a))} · x₂ = ${r((-b - s) / (2 * a))}`; }
+      else if (d === 0) { ($('sol')).textContent = `x = ${r(-b / (2 * a))} (solución doble)`; }
+      else { const re = r(-b / (2 * a)), im = r(Math.sqrt(-d) / (2 * a)); ($('sol')).textContent = `Sin soluciones reales · complejas: ${re} ± ${im}i`; }
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['a','b','c'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    calc();
+  </script>
+</CalcLayout>

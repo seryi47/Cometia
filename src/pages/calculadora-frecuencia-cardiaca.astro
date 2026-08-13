@@ -1,0 +1,49 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se calcula la frecuencia cardíaca máxima?', a: 'La fórmula más conocida es 220 menos tu edad. Es una estimación: la máxima real varía de una persona a otra.' },
+  { q: '¿Para qué sirven las zonas de entrenamiento?', a: 'Cada zona (un porcentaje de tu máxima) trabaja cosas distintas: las bajas queman grasa y mejoran el fondo; las altas mejoran la potencia y la velocidad. Ayudan a entrenar con criterio.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de frecuencia cardíaca', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-frecuencia-cardiaca' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de frecuencia cardíaca máxima y zonas" description="Calcula tu frecuencia cardíaca máxima y tus zonas de entrenamiento según tu edad. Para correr o hacer deporte con criterio. Gratis." path="/calculadora-frecuencia-cardiaca" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Salud › Frecuencia cardíaca</div>
+  <h1>Calculadora de frecuencia cardíaca</h1>
+  <p class="lead">Introduce tu edad y calculamos tu frecuencia máxima y tus zonas de entrenamiento.</p>
+  <div class="calc">
+    <div class="field"><label for="edad">Edad</label><input class="input" id="edad" type="number" inputmode="numeric" value="30" min="1" max="120" /></div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="hint">Frecuencia cardíaca máxima</div>
+      <div class="result__big num" id="fcmax">—</div>
+      <div class="tablewrap"><table class="amort"><thead><tr><th>Zona</th><th>% máx.</th><th>Pulsaciones</th></tr></thead><tbody id="tbody"></tbody></table></div>
+      <p class="hint">Orientativo. Si tienes alguna condición cardíaca, consúltalo con tu médico.</p>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo se calcula</h2>
+    <p>Estimamos tu frecuencia máxima con la fórmula <strong>220 − edad</strong> y calculamos cinco zonas de entrenamiento como porcentajes de esa máxima. Un pulsómetro te ayuda a mantenerte en la zona que buscas en cada sesión.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-ritmo-carrera">Ritmo de carrera</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const zonas = [['Z1 · Recuperación', 50, 60], ['Z2 · Aeróbica suave', 60, 70], ['Z3 · Aeróbica', 70, 80], ['Z4 · Umbral', 80, 90], ['Z5 · Máxima', 90, 100]];
+    function calc() {
+      const edad = parseInt(($('edad') as HTMLInputElement).value) || 0;
+      if (edad <= 0) return;
+      const fcmax = 220 - edad;
+      ($('fcmax')).textContent = fcmax + ' ppm';
+      ($('tbody')).innerHTML = zonas.map(([n, a, b]) => `<tr><td>${n}</td><td>${a}–${b}%</td><td>${Math.round(fcmax * (a as number) / 100)}–${Math.round(fcmax * (b as number) / 100)} ppm</td></tr>`).join('');
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('edad')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    calc();
+  </script>
+</CalcLayout>
