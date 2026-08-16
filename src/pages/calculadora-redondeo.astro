@@ -1,0 +1,47 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cómo se redondea un número?', a: 'Si la cifra siguiente a la posición de redondeo es 5 o más, se redondea hacia arriba; si es menor que 5, hacia abajo. Por ejemplo, 3,146 redondeado a dos decimales es 3,15.' },
+  { q: '¿Qué son los decimales?', a: 'Son las cifras después de la coma. Redondear a 0 decimales da un número entero; a 2 decimales, dos cifras tras la coma, y así sucesivamente.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de redondeo', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-redondeo' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de redondeo de números" description="Redondea cualquier número a los decimales que quieras al instante, con explicación de cómo se hace. Gratis." path="/calculadora-redondeo" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Redondeo</div>
+  <h1>Calculadora de redondeo</h1>
+  <p class="lead">Escribe un número y a cuántos decimales quieres redondearlo.</p>
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="n">Número</label><input class="input" id="n" type="text" inputmode="decimal" value="3.14159" /></div>
+      <div class="field"><label for="d">Decimales</label><input class="input" id="d" type="number" inputmode="numeric" value="2" min="0" max="10" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Redondear</button>
+    <div class="result" id="res" hidden><div class="hint">Resultado</div><div class="result__big num" id="out">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo funciona</h2>
+    <p>Miramos la primera cifra que se elimina: si es 5 o mayor, la última que se queda sube una unidad; si es menor, se queda igual. Redondear a 0 decimales te da el entero más cercano.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    function calc() {
+      const n = parseFloat(($('n') as HTMLInputElement).value.replace(',', '.'));
+      const d = Math.max(0, Math.min(10, parseInt(($('d') as HTMLInputElement).value) || 0));
+      if (isNaN(n)) { ($('out')).textContent = 'Número no válido'; ($('res')).hidden = false; return; }
+      const factor = Math.pow(10, d);
+      const r = Math.round(n * factor) / factor;
+      ($('out')).textContent = r.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['n','d'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    calc();
+  </script>
+</CalcLayout>

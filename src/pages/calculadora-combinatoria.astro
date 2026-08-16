@@ -1,0 +1,52 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Qué diferencia hay entre combinaciones y permutaciones?', a: 'En las permutaciones el orden importa (no es lo mismo el podio 1º-2º-3º que 3º-2º-1º). En las combinaciones el orden no importa (elegir 3 personas de un grupo es lo mismo en cualquier orden).' },
+  { q: '¿Qué significan n y r?', a: 'n es el total de elementos disponibles y r cuántos eliges. Por ejemplo, de n = 10 personas eliges r = 3.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de combinaciones y permutaciones', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-combinatoria' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de combinaciones y permutaciones" description="Calcula combinaciones y permutaciones (combinatoria) de n elementos tomados de r en r. Gratis y con explicación." path="/calculadora-combinatoria" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Matemáticas › Combinatoria</div>
+  <h1>Combinaciones y permutaciones</h1>
+  <p class="lead">Introduce el total (n) y cuántos eliges (r).</p>
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="n">Total (n)</label><input class="input" id="n" type="number" inputmode="numeric" value="10" min="0" /></div>
+      <div class="field"><label for="r">Eliges (r)</label><input class="input" id="r" type="number" inputmode="numeric" value="3" min="0" /></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular</button>
+    <div class="result" id="res" hidden>
+      <div class="result__row"><span>Combinaciones C(n,r)</span><strong class="num" id="comb">—</strong></div>
+      <div class="result__row"><span>Permutaciones P(n,r)</span><strong class="num" id="perm">—</strong></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Las fórmulas</h2>
+    <p><strong>Permutaciones:</strong> P(n,r) = n! / (n−r)!. <strong>Combinaciones:</strong> C(n,r) = n! / (r! · (n−r)!). Las permutaciones siempre son mayores o iguales que las combinaciones, porque cuentan además el orden.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-factorial">Factorial</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const fact = (n: number) => { let r = 1n; for (let i = 2n; i <= BigInt(n); i++) r *= i; return r; };
+    function calc() {
+      const n = parseInt(($('n') as HTMLInputElement).value);
+      const r = parseInt(($('r') as HTMLInputElement).value);
+      if (isNaN(n) || isNaN(r) || n < 0 || r < 0 || r > n || n > 500) { ($('comb')).textContent = r > n ? 'r no puede ser mayor que n' : '—'; ($('perm')).textContent = '—'; ($('res')).hidden = false; return; }
+      const perm = fact(n) / fact(n - r);
+      const comb = perm / fact(r);
+      ($('perm')).textContent = perm.toString();
+      ($('comb')).textContent = comb.toString();
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['n','r'].forEach((id) => $(id).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); }));
+    calc();
+  </script>
+</CalcLayout>

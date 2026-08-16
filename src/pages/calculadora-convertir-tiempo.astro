@@ -1,0 +1,49 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Cuántos segundos tiene una hora?', a: 'Una hora tiene 3.600 segundos (60 minutos × 60 segundos). Un día tiene 86.400 segundos.' },
+  { q: '¿Cómo se convierten las unidades de tiempo?', a: 'Se pasa todo a una unidad común (por ejemplo, segundos) y luego a la unidad de destino. Esta calculadora lo hace por ti entre días, horas, minutos y segundos.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Conversor de tiempo', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-convertir-tiempo' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Conversor de tiempo: días, horas, minutos y segundos" description="Convierte entre días, horas, minutos y segundos al instante. Gratis y sin registro." path="/calculadora-convertir-tiempo" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Tiempo › Conversor de tiempo</div>
+  <h1>Conversor de tiempo</h1>
+  <p class="lead">Convierte entre días, horas, minutos y segundos.</p>
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="val">Valor</label><input class="input" id="val" type="number" inputmode="decimal" value="2" /></div>
+      <div class="field"><label for="from">De</label><select class="input" id="from"><option value="86400">Días</option><option value="3600" selected>Horas</option><option value="60">Minutos</option><option value="1">Segundos</option></select></div>
+    </div>
+    <div class="field"><label for="to">A</label><select class="input" id="to"><option value="86400">Días</option><option value="3600">Horas</option><option value="60" selected>Minutos</option><option value="1">Segundos</option></select></div>
+    <button class="btn" id="go" type="button">Convertir</button>
+    <div class="result" id="res" hidden><div class="hint">Resultado</div><div class="result__big num" id="out">—</div></div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Equivalencias</h2>
+    <p>1 día = 24 horas = 1.440 minutos = 86.400 segundos. Elige la unidad de origen y la de destino y el conversor hace el resto al instante.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-horas">Horas entre dos horas</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const nf = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 4 });
+    function calc() {
+      const v = parseFloat(($('val') as HTMLInputElement).value);
+      const f = parseFloat(($('from') as HTMLSelectElement).value);
+      const t = parseFloat(($('to') as HTMLSelectElement).value);
+      if (isNaN(v)) return;
+      ($('out')).textContent = nf.format(v * f / t);
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ['val','from','to'].forEach((id) => $(id).addEventListener('change', calc));
+    ($('val')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    calc();
+  </script>
+</CalcLayout>

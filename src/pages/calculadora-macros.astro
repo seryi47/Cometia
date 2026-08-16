@@ -1,0 +1,55 @@
+---
+import CalcLayout from '../layouts/CalcLayout.astro';
+const faqs = [
+  { q: '¿Qué son los macros?', a: 'Los macronutrientes son las proteínas, las grasas y los hidratos de carbono. Aportan las calorías de la dieta: proteínas e hidratos 4 kcal por gramo y grasas 9 kcal por gramo.' },
+  { q: '¿Qué reparto elijo?', a: 'Depende de tu objetivo. Un reparto equilibrado sirve para la mayoría; el alto en proteína ayuda a mantener músculo en definición; el bajo en carbohidratos lo usan algunas personas para adelgazar. Consulta con un profesional para un plan personalizado.' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de macros', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-macros' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<CalcLayout title="Calculadora de macros (proteínas, grasas e hidratos)" description="Reparte tus calorías diarias en gramos de proteínas, grasas e hidratos según tu objetivo. Gratis y sin registro." path="/calculadora-macros" jsonLd={jsonLd}>
+  <div class="crumbs"><a href="/">Inicio</a> › Salud › Macros</div>
+  <h1>Calculadora de macros</h1>
+  <p class="lead">Introduce tus calorías objetivo y elige el reparto: te damos los gramos.</p>
+  <div class="calc">
+    <div class="row">
+      <div class="field"><label for="cal">Calorías al día (kcal)</label><input class="input" id="cal" type="number" inputmode="numeric" value="2000" min="1" /></div>
+      <div class="field"><label for="rep">Reparto</label><select class="input" id="rep">
+        <option value="40,30,30">Equilibrado (40C/30P/30G)</option>
+        <option value="30,40,30">Alto en proteína (30C/40P/30G)</option>
+        <option value="20,35,45">Bajo en carbos (20C/35P/45G)</option>
+      </select></div>
+    </div>
+    <button class="btn" id="go" type="button">Calcular macros</button>
+    <div class="result" id="res" hidden>
+      <div class="result__row"><span>Proteínas</span><strong class="num" id="prot">—</strong></div>
+      <div class="result__row"><span>Grasas</span><strong class="num" id="gras">—</strong></div>
+      <div class="result__row"><span>Hidratos de carbono</span><strong class="num" id="carb">—</strong></div>
+    </div>
+  </div>
+  <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+  <section class="prose">
+    <h2>Cómo se calcula</h2>
+    <p>Repartimos tus calorías según los porcentajes elegidos y las pasamos a gramos: proteínas e hidratos a 4 kcal/g y grasas a 9 kcal/g. Por ejemplo, 30% de 2.000 kcal en proteína son 600 kcal ÷ 4 = 150 g.</p>
+    <h2>Preguntas frecuentes</h2>
+    {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-calorias">Calorías diarias</a><a href="/calculadora-imc">IMC</a></div>
+  </section>
+  <script>
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    function calc() {
+      const cal = parseFloat(($('cal') as HTMLInputElement).value) || 0;
+      const [c, p, g] = ($('rep') as HTMLSelectElement).value.split(',').map(Number);
+      ($('prot')).textContent = Math.round(cal * p / 100 / 4) + ' g';
+      ($('gras')).textContent = Math.round(cal * g / 100 / 9) + ' g';
+      ($('carb')).textContent = Math.round(cal * c / 100 / 4) + ' g';
+      ($('res')).hidden = false;
+    }
+    $('go').addEventListener('click', calc);
+    ($('cal')).addEventListener('keydown', (e: any) => { if (e.key === 'Enter') calc(); });
+    ($('rep')).addEventListener('change', calc);
+    calc();
+  </script>
+</CalcLayout>

@@ -2,13 +2,31 @@
 import CalcLayout from '../layouts/CalcLayout.astro';
 import { CALCULADORAS, CATEGORIAS } from '../data/calculadoras';
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Cometia',
-  url: 'https://cometia.es',
-  description: 'Calculadoras online gratis: hipoteca, IVA, IMC, sueldo neto, porcentajes y más. Rápidas, claras y sin registro.',
-};
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Cometia',
+    url: 'https://cometia.es',
+    description: 'Calculadoras online gratis: hipoteca, IVA, IMC, sueldo neto, porcentajes y más. Rápidas, claras y sin registro.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Calculadoras online gratis — Cometia',
+    url: 'https://cometia.es',
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: CALCULADORAS.length,
+      itemListElement: CALCULADORAS.map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `https://cometia.es/${c.slug}`,
+        name: c.titulo,
+      })),
+    },
+  },
+];
 const meta = {
   Finanzas: { slug: 'finanzas', varName: 'fin' },
   Salud: { slug: 'salud', varName: 'sal' },
