@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Por qué en ciclos de 90 minutos?', a: 'El sueño se organiza en ciclos de unos 90 minutos. Despertarte al final de un ciclo (y no en mitad) hace que te levantes más descansado. Por eso sugerimos horas separadas por 90 minutos.' },
-  { q: '¿Cuántas horas debo dormir?', a: 'La mayoría de adultos necesita entre 7 y 9 horas, es decir, unos 5 o 6 ciclos completos. Añadimos 15 minutos de margen para quedarte dormido.' },
+  { q: '¿Por qué en ciclos de 90 minutos?', a: 'El sueño se organiza en ciclos de unos 90 minutos en los que pasamos por sueño ligero, profundo y REM. Al terminar cada ciclo el sueño es más superficial y despertarse resulta más fácil. Por eso proponemos horas separadas por bloques de 90 minutos, en lugar de contar horas sueltas.' },
+  { q: '¿Cuántas horas debo dormir?', a: 'La mayoría de adultos (18-64 años) necesita entre 7 y 9 horas, es decir, unos 5 o 6 ciclos completos. Los adolescentes necesitan de 8 a 10 horas y los niños aún más. Añadimos 15 minutos de margen para quedarte dormido.' },
+  { q: '¿A qué hora debo acostarme si me levanto a las 7:00?', a: 'Para dormir 5 ciclos (7,5 horas) deberías acostarte hacia las 23:15, y para 6 ciclos (9 horas), hacia las 21:45. En ambos casos se incluyen 15 minutos para conciliar el sueño.' },
+  { q: '¿Por qué sumáis 15 minutos?', a: 'Porque casi nadie se duerme en el instante en que apaga la luz. De media se tarda unos 15 minutos en conciliar el sueño (la llamada latencia del sueño), así que los añadimos para que el cálculo se ajuste mejor a la realidad. Si te cuesta más dormirte, adapta ese margen a tu caso.' },
+  { q: '¿Qué pasa si me despierto en mitad de un ciclo?', a: 'Si la alarma suena durante una fase de sueño profundo es más probable que te levantes aturdido y con sensación de cansancio, aunque hayas dormido muchas horas. Ajustar la hora de acostarte a ciclos completos ayuda a evitarlo.' },
+  { q: '¿La duración del ciclo es igual para todo el mundo?', a: 'No exactamente. Los 90 minutos son una media: en la práctica cada persona tiene ciclos que pueden durar entre 80 y 110 minutos, y esa duración varía a lo largo de la noche. Tómalo como una guía y ajústalo según cómo te sientas al despertar.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de horas de sueño', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-horas-sueno' },
@@ -24,10 +28,49 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Partimos de tu hora de despertar y restamos ciclos de 90 minutos más 15 de margen para dormirte. Así, en lugar de contar horas sueltas, te levantas al final de un ciclo y notas la diferencia.</p>
+    <h2>Cómo funcionan los ciclos de sueño</h2>
+    <p>Cuando dormimos no permanecemos en un estado uniforme: el sueño avanza por <strong>ciclos de unos 90 minutos</strong> que se repiten varias veces cada noche. Dentro de cada ciclo pasamos por fases de sueño ligero, sueño profundo (el más reparador para el cuerpo) y sueño REM (asociado a los sueños y a la memoria). Al terminar un ciclo, el sueño se hace más superficial y es el momento en el que resulta más fácil despertarse sin sensación de aturdimiento.</p>
+    <p>La idea de esta calculadora es sencilla: si te despiertas <strong>al final de un ciclo</strong>, y no en mitad de una fase profunda, te levantarás más descansado aunque hayas dormido las mismas horas. Por eso conviene planificar la hora de acostarse en bloques de 90 minutos.</p>
+
+    <h2>Cómo se calcula a qué hora acostarte</h2>
+    <p>El método es una resta. Partimos de la <strong>hora a la que quieres despertarte</strong> y vamos restando ciclos completos de 90 minutos. A ese total le sumamos <strong>15 minutos</strong>, que es lo que tarda de media una persona en quedarse dormida (lo que se conoce como latencia del sueño). El resultado es la hora a la que deberías meterte en la cama.</p>
+    <p>La calculadora te ofrece tres opciones —6, 5 y 4 ciclos, es decir, 9, 7,5 y 6 horas de sueño— para que elijas la que mejor encaje con tu descanso y tu horario. También funciona a la inversa: si ya sabes a qué hora te vas a acostar, suma los 15 minutos y los ciclos para estimar la mejor hora de despertar.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Quieres despertarte a las 07:00.</strong> Para dormir 5 ciclos (7,5 h) deberías acostarte a las <strong>23:15</strong>; si prefieres 6 ciclos (9 h), a las <strong>21:45</strong>. En ambos casos se cuentan los 15 minutos para dormirte.</li>
+      <li><strong>Quieres despertarte a las 06:30.</strong> Con 5 ciclos (7,5 h) tu hora de acostarte sería las <strong>22:45</strong>, y con 6 ciclos (9 h), las <strong>21:15</strong>.</li>
+      <li><strong>Te acuestas a las 23:00.</strong> Si tardas 15 minutos en dormirte y completas 5 ciclos (7,5 h), te despertarás alrededor de las <strong>06:45</strong>, justo al final de un ciclo.</li>
+    </ul>
+
+    <h2>Cuántas horas se recomiendan según la edad</h2>
+    <p>Las necesidades de sueño cambian a lo largo de la vida. Estas son las horas diarias recomendadas por la National Sleep Foundation:</p>
+    <ul>
+      <li><strong>Recién nacidos (0-3 meses):</strong> 14-17 horas.</li>
+      <li><strong>Bebés (4-11 meses):</strong> 12-15 horas.</li>
+      <li><strong>Niños pequeños (1-2 años):</strong> 11-14 horas.</li>
+      <li><strong>Preescolar (3-5 años):</strong> 10-13 horas.</li>
+      <li><strong>Escolares (6-13 años):</strong> 9-11 horas.</li>
+      <li><strong>Adolescentes (14-17 años):</strong> 8-10 horas.</li>
+      <li><strong>Adultos (18-64 años):</strong> 7-9 horas, unos 5 o 6 ciclos completos.</li>
+      <li><strong>Mayores (65 años o más):</strong> 7-8 horas.</li>
+    </ul>
+
+    <h2>Consejos de higiene del sueño</h2>
+    <p>Acertar con la hora de acostarse ayuda, pero la calidad del descanso depende sobre todo de tus hábitos. Algunas pautas sencillas que marcan la diferencia:</p>
+    <ul>
+      <li><strong>Horarios regulares:</strong> acuéstate y levántate a la misma hora, también los fines de semana, para estabilizar tu reloj interno.</li>
+      <li><strong>Menos pantallas antes de dormir:</strong> la luz azul del móvil y el ordenador retrasa la producción de melatonina. Apágalos entre 30 y 60 minutos antes.</li>
+      <li><strong>Cuida el ambiente:</strong> un dormitorio oscuro, silencioso y algo fresco (18-20 ºC) favorece el sueño profundo.</li>
+      <li><strong>Evita estimulantes:</strong> el café, el té, las bebidas energéticas y el alcohol por la tarde alteran el descanso.</li>
+      <li><strong>Cena ligero:</strong> las digestiones pesadas dificultan quedarse dormido.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora es orientativa y no sustituye la valoración de un profesional. Si el insomnio o el cansancio persisten, consúltalo con tu médico.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-horas">Sumar y restar horas</a><a href="/calculadora-edad">Calcular tu edad</a><a href="/calculadora-cuenta-atras">Cuenta atrás</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

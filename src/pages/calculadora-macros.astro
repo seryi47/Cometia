@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué son los macros?', a: 'Los macronutrientes son las proteínas, las grasas y los hidratos de carbono. Aportan las calorías de la dieta: proteínas e hidratos 4 kcal por gramo y grasas 9 kcal por gramo.' },
-  { q: '¿Qué reparto elijo?', a: 'Depende de tu objetivo. Un reparto equilibrado sirve para la mayoría; el alto en proteína ayuda a mantener músculo en definición; el bajo en carbohidratos lo usan algunas personas para adelgazar. Consulta con un profesional para un plan personalizado.' },
+  { q: '¿Qué son los macros?', a: 'Los macronutrientes son las proteínas, los hidratos de carbono y las grasas: los tres nutrientes que el cuerpo necesita en grandes cantidades y que aportan las calorías de la dieta. Las proteínas e hidratos dan 4 kcal por gramo y las grasas 9 kcal por gramo. Las vitaminas y los minerales, en cambio, son micronutrientes y no aportan calorías.' },
+  { q: '¿Cuántas calorías aporta cada macronutriente?', a: 'Cada gramo de proteína aporta 4 kcal, cada gramo de hidratos de carbono 4 kcal y cada gramo de grasa 9 kcal. Por eso la grasa es el macronutriente más calórico: un mismo peso de grasa concentra más del doble de energía que la misma cantidad de proteína o de hidratos.' },
+  { q: '¿Qué reparto de macros elijo?', a: 'Depende de tu objetivo. El reparto equilibrado (40C/30P/30G) sirve para la mayoría; el alto en proteína (30C/40P/30G) ayuda a conservar músculo en fases de definición; y el bajo en carbohidratos (20C/35P/45G) lo usan quienes se sienten más saciados reduciendo hidratos. Para un plan personalizado, consulta con un profesional.' },
+  { q: '¿Cuánta proteína debería tomar al día?', a: 'Como referencia general para población adulta sana suelen citarse entre 0,8 y 2 g de proteína por kilo de peso al día, según el nivel de actividad y los objetivos: la parte alta se asocia a quienes entrenan fuerza o están en déficit calórico. Es una orientación; un dietista-nutricionista puede ajustarla a tu caso.' },
+  { q: '¿Tengo que pesar los alimentos para contar macros?', a: 'No es imprescindible, pero al principio ayuda mucho. Usar una báscula de cocina unos días te da una idea realista de las cantidades, porque calcular a ojo suele desviarse bastante. Con la práctica se aprende a estimar las raciones sin pesar cada comida.' },
+  { q: '¿Contar macros sirve para adelgazar?', a: 'Para perder peso lo que más importa es mantener un déficit calórico, es decir, comer menos calorías de las que gastas. Repartir bien los macros no adelgaza por sí solo, pero ayuda: una proteína suficiente conserva músculo y sacia, lo que hace más llevadero el déficit. Primero ajusta las calorías y luego los macros.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de macros', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-macros' },
@@ -31,11 +35,49 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>Repartimos tus calorías según los porcentajes elegidos y las pasamos a gramos: proteínas e hidratos a 4 kcal/g y grasas a 9 kcal/g. Por ejemplo, 30% de 2.000 kcal en proteína son 600 kcal ÷ 4 = 150 g.</p>
+    <h2>Qué son los macros</h2>
+    <p>Los <strong>macronutrientes</strong> —o "macros"— son los tres tipos de nutrientes que tu cuerpo necesita en grandes cantidades cada día: las <strong>proteínas</strong>, los <strong>hidratos de carbono</strong> y las <strong>grasas</strong>. A diferencia de las vitaminas y los minerales (los micronutrientes), los macros son los que aportan energía, es decir, calorías. Cada uno cumple una función distinta: las proteínas construyen y reparan tejidos como el músculo, los hidratos son el combustible preferido para el cerebro y el ejercicio intenso, y las grasas participan en la producción de hormonas y en la absorción de algunas vitaminas.</p>
+    <p>Contar macros va un paso más allá de contar solo calorías. Dos dietas de 2.000 kcal pueden tener efectos muy distintos según cómo repartan esas calorías entre proteína, hidratos y grasa. Por eso esta calculadora no se queda en las calorías totales: las traduce a gramos concretos de cada macronutriente, que es lo que de verdad acabas poniendo en el plato.</p>
+
+    <h2>Cómo se reparten las calorías en gramos</h2>
+    <p>La clave está en cuánta energía aporta cada gramo de cada macronutriente. Los valores de referencia son:</p>
+    <ul>
+      <li><strong>Proteínas:</strong> 4 kcal por gramo</li>
+      <li><strong>Hidratos de carbono:</strong> 4 kcal por gramo</li>
+      <li><strong>Grasas:</strong> 9 kcal por gramo</li>
+    </ul>
+    <p>El proceso tiene dos pasos. Primero repartimos tus calorías objetivo según los porcentajes del reparto elegido; después dividimos las calorías de cada macro entre sus kcal por gramo para obtener los gramos. Fíjate en que la grasa "cunde" menos en gramos: al aportar 9 kcal por gramo, un mismo porcentaje de calorías se traduce en muchos menos gramos que en el caso de la proteína o los hidratos.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Equilibrado (40C/30P/30G), 2.000 kcal:</strong> hidratos = 40% → 800 kcal ÷ 4 = <strong>200 g</strong>; proteína = 30% → 600 kcal ÷ 4 = <strong>150 g</strong>; grasa = 30% → 600 kcal ÷ 9 ≈ <strong>67 g</strong>.</li>
+      <li><strong>Alto en proteína (30C/40P/30G), 2.500 kcal:</strong> proteína = 40% → 1.000 kcal ÷ 4 = <strong>250 g</strong>; hidratos = 30% → 750 kcal ÷ 4 ≈ <strong>188 g</strong>; grasa = 30% → 750 kcal ÷ 9 ≈ <strong>83 g</strong>.</li>
+      <li><strong>Bajo en carbos (20C/35P/45G), 1.800 kcal:</strong> hidratos = 20% → 360 kcal ÷ 4 = <strong>90 g</strong>; proteína = 35% → 630 kcal ÷ 4 ≈ <strong>158 g</strong>; grasa = 45% → 810 kcal ÷ 9 = <strong>90 g</strong>.</li>
+    </ul>
+
+    <h2>Cómo elegir el reparto según tu objetivo</h2>
+    <p>No existe un reparto perfecto para todo el mundo; depende de tu meta, tu nivel de actividad y tus preferencias:</p>
+    <ul>
+      <li><strong>Equilibrado (40C/30P/30G):</strong> un punto de partida sensato para la mayoría. Distribuye la energía de forma proporcionada y encaja bien con quien quiere mantener su peso o mejorar hábitos sin complicarse.</li>
+      <li><strong>Alto en proteína (30C/40P/30G):</strong> útil en fases de definición o cuando se combina la dieta con entrenamiento de fuerza, porque una mayor ingesta de proteína ayuda a conservar la masa muscular mientras se reducen calorías.</li>
+      <li><strong>Bajo en carbos (20C/35P/45G):</strong> algunas personas se sienten más saciadas reduciendo los hidratos y subiendo grasa y proteína. Puede facilitar el control del apetito, aunque no es imprescindible para adelgazar.</li>
+    </ul>
+    <p>Antes de elegir un reparto conviene saber cuántas calorías necesitas al día; puedes estimarlo con la <a href="/calculadora-calorias">calculadora de calorías</a>.</p>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li>Olvidar que la grasa aporta más del doble de calorías por gramo: unos pocos gramos de más suman rápido.</li>
+      <li>Fijarse solo en la proteína y descuidar los hidratos y las grasas, ambos necesarios.</li>
+      <li>Confundir gramos de alimento con gramos de macronutriente: 100 g de pechuga de pollo no son 100 g de proteína, sino unos 23 g.</li>
+      <li>Buscar un reparto "mágico" en lugar de ajustar primero las calorías totales, que son las que más pesan en el resultado.</li>
+      <li>Calcular a ojo: las cantidades reales suelen alejarse bastante de lo estimado sin báscula.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora es orientativa y no sustituye el consejo de un dietista-nutricionista o profesional sanitario, sobre todo si tienes alguna condición de salud.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-calorias">Calorías diarias</a><a href="/calculadora-imc">IMC</a></div>
+    <div class="more"><a href="/calculadora-calorias">Calorías diarias</a><a href="/calculadora-imc">IMC</a><a href="/calculadora-grasa-corporal">Grasa corporal</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

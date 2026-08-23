@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calculan las calorías quemadas?', a: 'Con los MET (equivalente metabólico) de cada actividad: calorías = MET × peso en kg × horas. Una actividad más intensa tiene más MET y quema más.' },
-  { q: '¿Es exacto?', a: 'Es una buena estimación. El gasto real depende también de tu forma física, tu metabolismo y la intensidad exacta, así que tómalo como orientación.' },
+  { q: '¿Cómo se calculan las calorías quemadas?', a: 'Con los MET (equivalente metabólico) de cada actividad y la fórmula calorías = MET × peso en kg × horas. Cada actividad tiene un valor MET que refleja su intensidad: cuanto más alto, más energía gastas por minuto. Por eso una hora de yoga (2,5 MET) quema mucho menos que una hora de carrera (10 MET) con el mismo peso.' },
+  { q: '¿Qué es un MET exactamente?', a: 'El MET, o equivalente metabólico, es una unidad que compara la intensidad de una actividad con estar en reposo. Un MET equivale a la energía que consumes sentado y sin hacer nada; una actividad de 8 MET gasta ocho veces esa energía. Permite poner en la misma escala esfuerzos tan distintos como pasear o nadar.' },
+  { q: '¿Es exacto el cálculo?', a: 'Es una buena estimación, no una medición exacta. El gasto real depende también de tu forma física, tu metabolismo y la intensidad concreta a la que entrenes, así que tómalo como una orientación fiable para comparar actividades y planificar tu semana.' },
+  { q: '¿Por qué influye tanto el peso?', a: 'Porque mover un cuerpo más pesado exige más energía. A igualdad de actividad y tiempo, una persona de 90 kg quema más calorías que una de 60 kg. Por eso la fórmula multiplica directamente por tu peso en kilogramos.' },
+  { q: '¿Cuántas calorías debo quemar para adelgazar?', a: 'No hay una cifra única: perder peso depende del balance entre lo que comes y lo que gastas a lo largo del día, no solo del ejercicio. Como referencia, para bajar peso de forma progresiva conviene crear un déficit moderado combinando actividad física y alimentación. Puedes estimar tus necesidades diarias con la calculadora de calorías.' },
+  { q: '¿El ejercicio es lo que más calorías gasta al día?', a: 'No para la mayoría de la gente. La mayor parte del gasto diario corresponde al metabolismo basal (lo que consumes solo por estar vivo) y a la actividad cotidiana. El ejercicio suma, pero es una parte del total; por eso moverte a diario, como andar o subir escaleras, también cuenta.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de calorías quemadas', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-calorias-quemadas' },
@@ -36,11 +40,49 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>Usamos la fórmula <strong>calorías = MET × peso (kg) × horas</strong>. Cada actividad tiene un valor MET que indica su intensidad: caminar ronda los 3,5 MET y correr rápido supera los 10. A más intensidad y más tiempo, más calorías.</p>
+    <h2>Qué determina las calorías que quemas</h2>
+    <p>Cuando te mueves, tu cuerpo consume energía para contraer los músculos, mantener la respiración y regular la temperatura. Ese gasto se mide en <strong>calorías</strong> (en realidad kilocalorías, kcal) y depende sobre todo de tres factores: la <strong>intensidad</strong> de la actividad, tu <strong>peso corporal</strong> y el <strong>tiempo</strong> que la mantienes. Cuanto más exigente es el ejercicio, más grupos musculares implica y más rápido late tu corazón, mayor es el consumo por minuto. Y a igualdad de actividad, una persona que pesa más gasta más energía porque tiene que mover una masa mayor.</p>
+    <p>Existen otros elementos que también influyen —tu forma física, la edad, la eficiencia de cada persona o incluso la temperatura ambiente—, pero para una estimación práctica basta con combinar la intensidad, el peso y la duración. Por eso la calculadora solo te pide la actividad, tus kilos y los minutos.</p>
+
+    <h2>El MET y la fórmula que usamos</h2>
+    <p>Para poner número a la intensidad se usa el <strong>MET</strong> (del inglés <em>Metabolic Equivalent of Task</em>, equivalente metabólico). Un MET es la energía que gastas en reposo, sentado y sin hacer nada. Así, una actividad de 4 MET consume cuatro veces más energía que estar en reposo, y una de 10 MET, diez veces más. Es una forma sencilla de comparar con una sola escala esfuerzos muy distintos.</p>
+    <p>A partir de ahí, esta calculadora aplica la fórmula estándar:</p>
+    <p style="text-align:center"><strong>calorías = MET × peso (kg) × horas</strong></p>
+    <p>El tiempo entra en <strong>horas</strong>, no en minutos: 30 minutos son 0,5 horas y 45 minutos son 0,75 horas. Ten en cuenta que la herramienta redondea el resultado al número entero de kcal más cercano.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Correr a 10 km/h (10 MET), 30 min, 70 kg:</strong> 10 × 70 × 0,5 = <strong>350 kcal</strong>.</li>
+      <li><strong>Caminar a 5 km/h (3,5 MET), 60 min, 80 kg:</strong> 3,5 × 80 × 1 = <strong>280 kcal</strong>.</li>
+      <li><strong>Natación (8 MET), 45 min, 70 kg:</strong> 8 × 70 × 0,75 = <strong>420 kcal</strong>.</li>
+    </ul>
+
+    <h2>Tabla orientativa de MET por actividad</h2>
+    <p>Estos son los valores MET que utiliza la calculadora, ordenados de menor a mayor intensidad:</p>
+    <ul>
+      <li><strong>Yoga:</strong> 2,5 MET</li>
+      <li><strong>Caminar (5 km/h):</strong> 3,5 MET</li>
+      <li><strong>Gimnasio / pesas:</strong> 5 MET</li>
+      <li><strong>Baile:</strong> 5 MET</li>
+      <li><strong>Senderismo:</strong> 6 MET</li>
+      <li><strong>Ciclismo (moderado):</strong> 7 MET</li>
+      <li><strong>Fútbol:</strong> 7 MET</li>
+      <li><strong>Natación:</strong> 8 MET</li>
+      <li><strong>HIIT:</strong> 8 MET</li>
+      <li><strong>Correr (10 km/h):</strong> 10 MET</li>
+      <li><strong>Saltar a la comba:</strong> 11 MET</li>
+    </ul>
+    <p>Como ves, media hora saltando a la comba equivale en gasto a bastante más tiempo caminando: por eso las actividades intensas permiten quemar lo mismo en menos tiempo.</p>
+
+    <h2>Por qué es solo una estimación</h2>
+    <p>El resultado es una aproximación fiable, pero no una medición exacta. Los valores MET son promedios obtenidos en estudios con muchas personas, y tu gasto real puede variar según tu nivel de entrenamiento, tu metabolismo y la intensidad concreta a la que practiques. Dos personas del mismo peso corriendo «a 10 km/h» pueden gastar cantidades algo distintas según su técnica y su forma física.</p>
+    <p>Además, el cálculo no descuenta las calorías que habrías quemado igualmente en reposo durante ese rato, así que el gasto «extra» del ejercicio es en realidad un poco menor que la cifra mostrada. Para el día a día, sin embargo, la estimación sirve perfectamente para comparar actividades y planificar tu entrenamiento.</p>
+
+    <p class="hint">Las calorías quemadas son una estimación orientativa; no sustituyen la valoración de un profesional del deporte o la salud.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-calorias">Calorías diarias</a><a href="/calculadora-imc">IMC</a></div>
+    <div class="more"><a href="/calculadora-calorias">Calorías diarias</a><a href="/calculadora-ritmo-carrera">Ritmo de carrera</a><a href="/calculadora-frecuencia-cardiaca">Frecuencia cardíaca</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

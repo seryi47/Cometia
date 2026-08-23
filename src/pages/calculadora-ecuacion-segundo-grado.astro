@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se resuelve una ecuación de segundo grado?', a: 'Con la fórmula general: x = (−b ± √(b² − 4ac)) / (2a). El valor b² − 4ac se llama discriminante y dice cuántas soluciones hay.' },
-  { q: '¿Qué indica el discriminante?', a: 'Si es positivo, hay dos soluciones reales; si es cero, una solución (doble); y si es negativo, no hay soluciones reales (son complejas).' },
+  { q: '¿Cómo se resuelve una ecuación de segundo grado?', a: 'Se aplica la fórmula general x = (−b ± √(b² − 4ac)) / (2a), donde a, b y c son los coeficientes de ax² + bx + c = 0. El valor b² − 4ac se llama discriminante e indica cuántas soluciones existen. El símbolo ± significa que se calculan dos valores: uno sumando la raíz y otro restándola.' },
+  { q: '¿Qué indica el discriminante?', a: 'El discriminante Δ = b² − 4ac indica el número de soluciones. Si es positivo, hay dos soluciones reales y distintas; si es cero, hay una única solución (doble); y si es negativo, no hay soluciones reales, sino dos soluciones complejas.' },
+  { q: '¿Qué diferencia hay entre una ecuación completa e incompleta?', a: 'Una ecuación de segundo grado es completa cuando los tres coeficientes son distintos de cero (ax² + bx + c = 0). Es incompleta cuando falta el término b (ax² + c = 0) o el término c (ax² + bx = 0). Las incompletas pueden resolverse de forma más rápida, aunque la fórmula general siempre funciona.' },
+  { q: '¿Se puede resolver factorizando en lugar de usar la fórmula?', a: 'Sí. Si encuentras dos números que sumen −b/a y multipliquen c/a, puedes factorizar y despejar. Por ejemplo, x² − 5x + 6 = 0 se factoriza como (x − 2)(x − 3) = 0, de donde x = 2 y x = 3. La fórmula general resulta más cómoda cuando la factorización no es evidente.' },
+  { q: '¿Qué ocurre si el coeficiente a vale 0?', a: 'Si a = 0 desaparece el término x² y la ecuación deja de ser de segundo grado: se convierte en una ecuación de primer grado (bx + c = 0), que se resuelve despejando x = −c/b. Por eso la fórmula general exige que a sea distinto de cero.' },
+  { q: '¿Qué son las soluciones complejas?', a: 'Cuando el discriminante es negativo, la ecuación no tiene soluciones entre los números reales, porque habría que calcular la raíz cuadrada de un número negativo. En ese caso las soluciones son números complejos, que incorporan la unidad imaginaria i (definida como √−1) y se estudian en niveles más avanzados.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de ecuación de segundo grado', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-ecuacion-segundo-grado' },
@@ -28,10 +32,34 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se resuelve</h2>
-    <p>Calculamos el discriminante <strong>b² − 4ac</strong> y aplicamos la fórmula general <strong>x = (−b ± √(b² − 4ac)) / 2a</strong>. Según el discriminante, obtendrás dos soluciones, una o ninguna real.</p>
+    <h2>Qué es una ecuación de segundo grado</h2>
+    <p>Una <strong>ecuación de segundo grado</strong> (o ecuación cuadrática) es aquella en la que la incógnita aparece elevada al cuadrado y no a una potencia mayor. Su forma general es <strong>ax² + bx + c = 0</strong>, donde <em>a</em>, <em>b</em> y <em>c</em> son números conocidos, llamados coeficientes, y <em>x</em> es la incógnita que queremos hallar. La única condición imprescindible es que <strong>a ≠ 0</strong>: si <em>a</em> valiera cero, el término x² desaparecería y quedaría una simple ecuación de primer grado.</p>
+    <p>El coeficiente <em>a</em> acompaña a x², <em>b</em> acompaña a x y <em>c</em> es el término independiente. Cuando <em>b</em> o <em>c</em> valen cero, la ecuación se llama <strong>incompleta</strong> y suele resolverse de forma más directa; cuando los tres coeficientes están presentes, es una ecuación <strong>completa</strong> y recurrimos a la fórmula general. Estas ecuaciones aparecen constantemente en física, geometría y economía siempre que una magnitud depende del cuadrado de otra.</p>
+
+    <h2>La fórmula general y el discriminante</h2>
+    <p>Cualquier ecuación de segundo grado se resuelve con la <strong>fórmula general</strong>:</p>
+    <p style="text-align:center"><strong>x = (−b ± √(b² − 4ac)) / 2a</strong></p>
+    <p>La expresión que aparece dentro de la raíz, <strong>Δ = b² − 4ac</strong>, se llama <strong>discriminante</strong>. Conviene calcularla en primer lugar, porque su signo nos dice de antemano cuántas soluciones tendrá la ecuación. El símbolo <strong>±</strong> indica que hay que hacer dos operaciones —una sumando la raíz y otra restándola—, y de ahí salen las dos posibles soluciones.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <p><strong>Dos soluciones (Δ &gt; 0).</strong> Resolvemos <strong>x² − 5x + 6 = 0</strong>, con a = 1, b = −5 y c = 6. El discriminante es Δ = (−5)² − 4·1·6 = 25 − 24 = 1, positivo. Aplicando la fórmula: x = (5 ± √1) / 2 = (5 ± 1) / 2, de donde <strong>x₁ = 3</strong> y <strong>x₂ = 2</strong>.</p>
+    <p><strong>Una solución doble (Δ = 0).</strong> Resolvemos <strong>x² − 4x + 4 = 0</strong>, con a = 1, b = −4 y c = 4. El discriminante es Δ = (−4)² − 4·1·4 = 16 − 16 = 0. Como vale cero, la raíz se anula y solo hay una solución: x = 4 / 2 = <strong>2</strong> (se dice que es una solución doble).</p>
+    <p><strong>Sin soluciones reales (Δ &lt; 0).</strong> Resolvemos <strong>x² + 1 = 0</strong>, con a = 1, b = 0 y c = 1. El discriminante es Δ = 0² − 4·1·1 = −4, negativo. No existe la raíz cuadrada de un número negativo entre los números reales, así que la ecuación <strong>no tiene soluciones reales</strong>; sus dos soluciones son complejas.</p>
+
+    <h2>Qué significa el discriminante</h2>
+    <p>El discriminante resume en un solo número el comportamiento de la ecuación y de su representación gráfica, que siempre es una parábola:</p>
+    <ul>
+      <li><strong>Δ &gt; 0:</strong> dos soluciones reales y distintas. La parábola corta el eje X en dos puntos.</li>
+      <li><strong>Δ = 0:</strong> una única solución real (doble). La parábola toca el eje X en un solo punto.</li>
+      <li><strong>Δ &lt; 0:</strong> ninguna solución real; las soluciones son complejas. La parábola no llega a cortar el eje X.</li>
+    </ul>
+    <p>Por eso calcular primero Δ es un buen atajo: sabrás qué esperar antes de terminar las cuentas. Si necesitas repasar el manejo de cuadrados y raíces que intervienen en la fórmula, puede ayudarte nuestra <a href="/calculadora-potencias-raices">calculadora de potencias y raíces</a>.</p>
+
+    <p class="hint">Truco de comprobación: sustituye cada solución en la ecuación original; si al reemplazar x el resultado da 0, la solución es correcta.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-potencias-raices">Potencias y raíces</a><a href="/calculadora-factorial">Factorial</a><a href="/calculadora-combinatoria">Combinatoria</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

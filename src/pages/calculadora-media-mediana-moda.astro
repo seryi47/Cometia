@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué diferencia hay entre media, mediana y moda?', a: 'La media es el promedio (suma dividida entre la cantidad). La mediana es el valor central al ordenar los datos. La moda es el valor que más se repite.' },
-  { q: '¿Puede haber más de una moda?', a: 'Sí. Si dos o más valores se repiten el mismo número máximo de veces, el conjunto es bimodal o multimodal y mostramos todas las modas.' },
+  { q: '¿Qué diferencia hay entre media, mediana y moda?', a: 'La media es el promedio: se suman todos los valores y se dividen entre cuántos hay. La mediana es el valor central cuando ordenas los datos de menor a mayor. La moda es el valor que más se repite. Las tres son medidas de tendencia central, pero cada una resume el centro de los datos de una forma distinta.' },
+  { q: '¿Cuándo es mejor usar la mediana en lugar de la media?', a: 'Cuando hay valores extremos o muy alejados del resto. La media se ve arrastrada por esos valores atípicos, mientras que la mediana apenas se altera. Por eso datos como los sueldos o los precios de la vivienda se suelen resumir con la mediana: refleja mejor lo que ocurre en el centro del conjunto.' },
+  { q: '¿Puede haber más de una moda?', a: 'Sí. Si dos o más valores se repiten el mismo número máximo de veces, el conjunto es bimodal (dos modas) o multimodal (varias) y se muestran todas. También puede no haber moda si ningún valor se repite.' },
+  { q: '¿Qué pasa si ningún número se repite?', a: 'En ese caso se considera que el conjunto no tiene moda, porque no hay ningún valor más frecuente que los demás. La media y la mediana, en cambio, se pueden calcular siempre, haya o no repeticiones.' },
+  { q: '¿Cómo se calcula la mediana con un número par de datos?', a: 'Cuando hay un número par de valores no existe un único dato central, sino dos. La mediana es la media de esos dos valores centrales. Por ejemplo, en la lista 4, 7, 9, 12 los centrales son el 7 y el 9, así que la mediana es (7 + 9) / 2 = 8.' },
+  { q: '¿La media siempre es uno de los números de la lista?', a: 'No. La media es un valor calculado y muchas veces no coincide con ningún dato real de la lista. Por ejemplo, la media de 2, 3, 3, 6, 8, 10, 10, 10 y 15 es 7,4, un número que no aparece en el conjunto. La moda, en cambio, siempre es un valor que sí está en los datos.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de media, mediana y moda', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-media-mediana-moda' },
@@ -24,11 +28,34 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calculan</h2>
-    <p>La <strong>media</strong> suma todos los valores y los divide entre cuántos hay. La <strong>mediana</strong> ordena los datos y toma el del centro (o el promedio de los dos centrales). La <strong>moda</strong> es el valor que aparece más veces.</p>
+    <h2>Qué son la media, la mediana y la moda</h2>
+    <p>La <strong>media</strong>, la <strong>mediana</strong> y la <strong>moda</strong> son las tres <strong>medidas de tendencia central</strong> más usadas en estadística. Sirven para resumir un conjunto de números en un único valor «representativo»; es decir, para responder a la pregunta «¿por dónde se sitúa el centro de estos datos?». Aunque a veces coinciden, cada una mide ese centro de una forma distinta, y por eso conviene conocer las tres.</p>
+    <p>La <strong>media</strong> es el promedio de toda la vida: reparte por igual el total entre todos los datos. La <strong>mediana</strong> es el valor que queda justo en el centro cuando ordenas los números de menor a mayor, de modo que deja la mitad de los datos por debajo y la otra mitad por encima. La <strong>moda</strong> es, simplemente, el valor que más se repite.</p>
+
+    <h2>Cómo se calcula cada una</h2>
+    <p><strong>Media aritmética.</strong> Suma todos los valores y divide el resultado entre la cantidad de datos (lo que llamamos <em>n</em>). En fórmula: media = suma de los valores / n.</p>
+    <p><strong>Mediana.</strong> Ordena la lista de menor a mayor. Si hay un número <strong>impar</strong> de datos, la mediana es el valor que queda en el centro. Si hay un número <strong>par</strong>, la mediana es la media de los dos valores centrales.</p>
+    <p><strong>Moda.</strong> Cuenta cuántas veces aparece cada valor y quédate con el que más se repite. Puede no haber moda (si ningún valor se repite) o haber varias (conjuntos bimodales o multimodales).</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <p>Tomemos la lista <strong>2, 3, 3, 6, 8, 10, 10, 10, 15</strong> (nueve números):</p>
+    <ul>
+      <li><strong>Media:</strong> sumamos 2 + 3 + 3 + 6 + 8 + 10 + 10 + 10 + 15 = 67 y dividimos entre 9: 67 / 9 = <strong>7,4</strong> (redondeando a un decimal).</li>
+      <li><strong>Mediana:</strong> la lista ya está ordenada y tiene 9 valores (impar), así que la mediana es el quinto, el del centro: <strong>8</strong>. Quedan cuatro números por debajo y cuatro por encima.</li>
+      <li><strong>Moda:</strong> el valor que más se repite es el 10 (aparece tres veces), así que la moda es <strong>10</strong>.</li>
+    </ul>
+    <p>Veamos ahora un caso con un número <strong>par</strong> de datos: la lista <strong>4, 7, 9, 12</strong>. Al haber cuatro valores no hay uno solo en el centro, sino dos (el 7 y el 9). La mediana es la media de ambos: (7 + 9) / 2 = <strong>8</strong>. Aquí ningún valor se repite, así que <strong>no hay moda</strong>.</p>
+
+    <h2>Cuándo usar cada medida</h2>
+    <p>La gran diferencia práctica está en cómo reacciona cada medida ante los <strong>valores extremos</strong> (los llamados <em>valores atípicos</em> u <em>outliers</em>). La <strong>media se ve arrastrada</strong> por ellos, mientras que la <strong>mediana apenas se inmuta</strong>.</p>
+    <p>Imagina los sueldos de un grupo pequeño: 1.000, 1.100, 1.200, 1.300 y 20.000 euros. La media sale 4.920 €, una cifra que no representa a casi nadie, porque un único sueldo enorme la dispara. La mediana, en cambio, es 1.200 €, mucho más fiel a lo que cobra la mayoría. Por eso los datos de renta o de precios de vivienda se suelen dar con la mediana.</p>
+    <p>Como orientación: usa la <strong>media</strong> cuando los datos son bastante homogéneos y quieres tener en cuenta todos los valores; usa la <strong>mediana</strong> cuando hay valores extremos o la distribución está muy sesgada; y usa la <strong>moda</strong> cuando trabajas con categorías o quieres saber cuál es el valor más frecuente (por ejemplo, la talla de camiseta más vendida).</p>
+
+    <p class="hint">La media, la mediana y la moda se complementan: mirar las tres a la vez ofrece una idea mucho más completa de tus datos que fijarte solo en una.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-nota-media">Nota media</a></div>
+    <div class="more"><a href="/calculadora-nota-media">Nota media</a><a href="/calculadora-numeros-aleatorios">Números aleatorios</a><a href="/calculadora-redondeo">Redondeo</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

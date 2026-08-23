@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo sé qué día de la semana fue una fecha?', a: 'Introduce la fecha y te decimos en qué día de la semana cae, tanto para fechas pasadas como futuras. Útil para saber qué día naciste o en qué día caerá un evento.' },
-  { q: '¿Funciona con fechas antiguas?', a: 'Sí, con cualquier fecha del calendario que introduzcas. Usamos el calendario gregoriano, el que usamos hoy en día.' },
+  { q: '¿Cómo sé qué día de la semana fue una fecha?', a: 'Introduce la fecha y te decimos en qué día de la semana cae, tanto para fechas pasadas como futuras. Es útil para saber qué día naciste, en qué día caerá un evento del año que viene o cuándo ocurrió un hecho histórico. El resultado es inmediato y no necesitas registrarte.' },
+  { q: '¿Funciona con fechas antiguas y futuras?', a: 'Sí, con cualquier fecha que introduzcas, ya sea de hace décadas o de dentro de muchos años. Usamos el calendario gregoriano, el que rige hoy en casi todo el mundo, y tenemos en cuenta automáticamente los años bisiestos, así que el cálculo es fiable en ambos sentidos.' },
+  { q: '¿Qué es la congruencia de Zeller?', a: 'Es la fórmula matemática más conocida para calcular a mano el día de la semana de cualquier fecha. La publicó el matemático alemán Christian Zeller en el siglo XIX y funciona con aritmética modular: a partir del día, el mes y el año devuelve un número del 0 al 6 que corresponde a cada día. Nuestra calculadora te ahorra hacer esa operación.' },
+  { q: '¿Por qué se usa el calendario gregoriano?', a: 'Porque es el calendario oficial en España y en la mayor parte del mundo desde su implantación en 1582. Antes se usaba el calendario juliano, así que en fechas muy anteriores a esa reforma el día de la semana depende del calendario vigente en cada país. Para fechas modernas no hay ambigüedad.' },
+  { q: '¿Cómo influyen los años bisiestos?', a: 'Un año bisiesto tiene 366 días en lugar de 365, con un 29 de febrero añadido. Ese día extra desplaza el día de la semana de todas las fechas posteriores, por eso hay que tenerlo en cuenta. Son bisiestos los años divisibles entre 4, salvo los de fin de siglo que no son divisibles entre 400 (por eso 2000 fue bisiesto y 1900 no lo fue).' },
+  { q: '¿En qué día de la semana nací?', a: 'Solo tienes que introducir tu fecha de nacimiento y verás en qué día de la semana viniste al mundo. Si además quieres saber cuántos años, meses y días tienes exactamente, puedes usar nuestra calculadora de edad.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Qué día de la semana fue una fecha', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-dia-semana' },
@@ -20,11 +24,35 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Para qué sirve</h2>
-    <p>Saber el día de la semana de una fecha es útil para descubrir en qué día naciste, planificar un evento o resolver una curiosidad histórica. Introduce la fecha y lo calculamos al momento.</p>
+    <h2>Para qué sirve saber el día de la semana de una fecha</h2>
+    <p>Conocer <strong>en qué día de la semana cae o cayó una fecha</strong> resuelve un montón de preguntas cotidianas y también alguna que otra curiosidad. Sirve para averiguar en qué día de la semana naciste, para saber si un cumpleaños o una fecha señalada del año que viene caerá en fin de semana o entre semana, para elegir la fecha de una boda, un viaje o una reunión, y hasta para situar acontecimientos históricos. Basta con introducir la fecha —pasada o futura— y obtienes la respuesta al instante, sin cálculos manuales ni tener que buscar un calendario perpetuo.</p>
+
+    <h2>Cómo se calcula el día de la semana</h2>
+    <p>Detrás de algo aparentemente tan sencillo hay siglos de aritmética del calendario. El método más conocido para hacerlo a mano es la <strong>congruencia de Zeller</strong>, una fórmula que publicó el matemático alemán Christian Zeller en el siglo XIX y que, a partir del día, el mes y el año, devuelve un número del 0 al 6 correspondiente a cada día de la semana. Funciona con aritmética modular (los restos de las divisiones) y trata enero y febrero como los meses 13 y 14 del año anterior, un truco que simplifica el cálculo de los años bisiestos. No hace falta que entres en esos detalles: es útil saber que la fórmula existe, pero la calculadora la resuelve por ti.</p>
+    <p>Nuestra herramienta aplica el <strong>calendario gregoriano</strong>, el que rige hoy en casi todo el mundo, y tiene en cuenta de forma automática los años bisiestos —los divisibles entre 4, salvo los de fin de siglo que no son divisibles entre 400—. Gracias a eso el resultado es fiable tanto para fechas recientes como para las de hace muchas décadas.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li>El <strong>1 de enero de 2000</strong>, el primer día del nuevo milenio, cayó en <strong>sábado</strong>.</li>
+      <li>El <strong>20 de julio de 1969</strong>, cuando el ser humano pisó la Luna por primera vez, fue <strong>domingo</strong>.</li>
+      <li>El <strong>9 de noviembre de 1989</strong>, día de la caída del Muro de Berlín, fue <strong>jueves</strong>.</li>
+    </ul>
+    <p>Con fechas muy anteriores a la reforma del calendario conviene recordar cuál estaba vigente entonces. Por ejemplo, el <strong>12 de octubre de 1492</strong>, fecha de la llegada de Colón a América, fue <strong>viernes</strong>.</p>
+
+    <h2>Usos habituales</h2>
+    <p>Estos son algunos de los motivos por los que la gente consulta el día de la semana de una fecha:</p>
+    <ul>
+      <li><strong>Saber en qué día naciste:</strong> mucha gente desconoce si vino al mundo un lunes o un domingo, y descubrirlo tiene su gracia. Solo hay que introducir la fecha de nacimiento.</li>
+      <li><strong>Planificar eventos:</strong> antes de fijar una boda, una cena o una escapada conviene comprobar si la fecha cae en fin de semana o en día laborable.</li>
+      <li><strong>Organizar el trabajo o los estudios:</strong> saber en qué día caerá una entrega, un examen o un festivo del próximo año ayuda a cuadrar la agenda con antelación.</li>
+      <li><strong>Resolver curiosidades históricas:</strong> situar en su día de la semana un acontecimiento del pasado añade contexto a cualquier efeméride.</li>
+    </ul>
+
+    <p class="hint">Todos los cálculos usan el calendario gregoriano; en fechas anteriores a 1582 el día puede variar según el calendario que estuviera en vigor.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-edad">Edad</a></div>
+    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-edad">Edad</a><a href="/calculadora-cuenta-atras">Cuenta atrás</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es el MCD?', a: 'El máximo común divisor (MCD) es el número más grande que divide a la vez a dos o más números. Por ejemplo, el MCD de 12 y 18 es 6.' },
-  { q: '¿Qué es el MCM?', a: 'El mínimo común múltiplo (MCM) es el número más pequeño que es múltiplo de todos ellos. Por ejemplo, el MCM de 4 y 6 es 12. Se calcula como el producto dividido entre el MCD.' },
+  { q: '¿Qué es el MCD?', a: 'El máximo común divisor (MCD) de dos o más números es el número más grande que los divide a todos de forma exacta, sin dejar resto. Por ejemplo, los divisores comunes de 12 y 18 son 1, 2, 3 y 6, así que el MCD de 12 y 18 es 6.' },
+  { q: '¿Qué es el MCM?', a: 'El mínimo común múltiplo (MCM) es el número más pequeño, distinto de cero, que es múltiplo de todos los números a la vez. Por ejemplo, el múltiplo común más pequeño de 12 y 18 es 36, de modo que el MCM de 12 y 18 es 36.' },
+  { q: '¿Cómo se calculan con la descomposición en factores primos?', a: 'Se escribe cada número como producto de factores primos. Para el MCD se multiplican solo los factores comunes elevados al menor exponente; para el MCM, todos los factores (comunes y no comunes) elevados al mayor exponente. Con 12 = 2² × 3 y 18 = 2 × 3², el MCD es 2 × 3 = 6 y el MCM es 2² × 3² = 36.' },
+  { q: '¿Qué relación hay entre el MCM y el MCD?', a: 'Para dos números, el producto del MCM por el MCD es igual al producto de los dos números: MCM × MCD = a × b. Por eso, si conoces uno de ellos puedes hallar el otro. Con 12 y 18: 36 × 6 = 216 = 12 × 18.' },
+  { q: '¿Para qué sirven el MCM y el MCD?', a: 'El MCM se usa sobre todo para sumar o restar fracciones con distinto denominador (buscando un denominador común) y para problemas de periodicidad, como saber cada cuánto coinciden dos sucesos que se repiten. El MCD sirve para simplificar fracciones y para repartos exactos en grupos iguales.' },
+  { q: '¿Qué son dos números primos entre sí?', a: 'Dos números son primos entre sí (o coprimos) cuando su único divisor común es 1, es decir, cuando su MCD es 1. En ese caso el MCM coincide con el producto de ambos. Por ejemplo, 8 y 9 son primos entre sí: su MCD es 1 y su MCM es 8 × 9 = 72.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de MCM y MCD', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-mcm-mcd' },
@@ -26,11 +30,36 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>El <strong>MCD</strong> se obtiene con el algoritmo de Euclides (restos sucesivos). El <strong>MCM</strong> es el producto de los dos números dividido entre su MCD. Son básicos para sumar fracciones o resolver problemas de múltiplos y divisores.</p>
+    <h2>Qué son el MCM y el MCD</h2>
+    <p>El <strong>máximo común divisor (MCD)</strong> de dos números es el número más grande que los divide a ambos de forma exacta, es decir, sin dejar resto. Si un número divide a la vez a los dos, es un divisor común; de todos ellos, el mayor es el MCD. Por ejemplo, los divisores comunes de 12 y 18 son 1, 2, 3 y 6, así que el MCD de 12 y 18 es 6.</p>
+    <p>El <strong>mínimo común múltiplo (MCM)</strong> es justo la idea contraria: el número más pequeño (distinto de cero) que es múltiplo de los dos a la vez. Entre los múltiplos que comparten 12 y 18 (36, 72, 108...), el más pequeño es 36, de modo que el MCM de 12 y 18 es 36. Los dos conceptos aparecen constantemente en primaria y secundaria porque son la base para operar con fracciones y para resolver problemas de repeticiones y ciclos.</p>
+
+    <h2>Cómo se calculan</h2>
+    <p>El método más visual es la <strong>descomposición en factores primos</strong>: se escribe cada número como producto de números primos y después se comparan los factores obtenidos.</p>
+    <ul>
+      <li><strong>MCD:</strong> se toman solo los factores primos <em>comunes</em>, cada uno elevado al menor exponente con el que aparece.</li>
+      <li><strong>MCM:</strong> se toman todos los factores, comunes y no comunes, cada uno elevado al mayor exponente con el que aparece.</li>
+    </ul>
+    <p>Con 12 y 18: como 12 = 2² × 3 y 18 = 2 × 3², el MCD es 2 × 3 = 6 (los comunes con el menor exponente) y el MCM es 2² × 3² = 36 (todos con el mayor exponente). Si quieres repasar cómo se obtienen esos factores, tienes la <a href="/calculadora-numeros-primos">calculadora de números primos</a>.</p>
+    <p>Existe además un atajo muy útil: para dos números, el producto del MCM por el MCD siempre coincide con el producto de los dos números. Es decir, <strong>MCM × MCD = a × b</strong>. Así, si ya conoces uno de los dos, obtienes el otro con una simple división. En el ejemplo anterior, 36 × 6 = 216 y 12 × 18 = 216: coincide. Esta relación es la que emplea la propia calculadora, que primero halla el MCD y luego calcula el MCM como a × b / MCD.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>MCM y MCD de 12 y 18:</strong> 12 = 2² × 3 y 18 = 2 × 3². El MCD es 2 × 3 = <strong>6</strong> y el MCM es 2² × 3² = <strong>36</strong>. Comprobación: 6 × 36 = 216 = 12 × 18.</li>
+      <li><strong>MCM y MCD de 8 y 12:</strong> 8 = 2³ y 12 = 2² × 3. El MCD es 2² = <strong>4</strong> y el MCM es 2³ × 3 = <strong>24</strong>. Comprobación: 4 × 24 = 96 = 8 × 12.</li>
+      <li><strong>Números primos entre sí (8 y 9):</strong> 8 = 2³ y 9 = 3² no comparten ningún factor primo, así que el MCD es <strong>1</strong> y el MCM es su producto, 8 × 9 = <strong>72</strong>.</li>
+    </ul>
+
+    <h2>Para qué sirven</h2>
+    <p>El uso más frecuente del <strong>MCM</strong> está en las <a href="/calculadora-fracciones">fracciones</a>: para sumar o restar fracciones con distinto denominador se necesita un denominador común, y el más cómodo es el mínimo común múltiplo de los denominadores. Por ejemplo, para calcular 1/8 + 1/12 tomamos el MCM(8, 12) = 24, de forma que 1/8 = 3/24 y 1/12 = 2/24, y la suma es 5/24.</p>
+    <p>El MCM también resuelve los clásicos <strong>problemas de periodicidad</strong>: si un autobús pasa cada 12 minutos y otro cada 18, ambos vuelven a coincidir en la parada cada MCM(12, 18) = 36 minutos. La misma lógica se aplica a engranajes, semáforos o luces que parpadean a distinto ritmo.</p>
+    <p>El <strong>MCD</strong>, por su parte, sirve para <strong>simplificar fracciones</strong> (se divide numerador y denominador entre su MCD hasta dejar la fracción irreducible) y para repartos exactos, como dividir dos cantidades en grupos iguales lo más grandes posible sin que sobre nada.</p>
+
+    <p class="hint">Truco rápido: cuando uno de los números es múltiplo del otro, el MCD es el menor y el MCM es el mayor. Por ejemplo, MCD(6, 12) = 6 y MCM(6, 12) = 12.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-fracciones">Fracciones</a><a href="/calculadora-numeros-primos">Números primos</a></div>
+    <div class="more"><a href="/calculadora-fracciones">Fracciones</a><a href="/calculadora-numeros-primos">Números primos</a><a href="/calculadora-factorial">Factorial</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

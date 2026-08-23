@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cuánta propina se deja en España?', a: 'En España la propina es voluntaria. Es habitual redondear o dejar entre un 5 % y un 10 % si el servicio ha gustado, pero no es obligatoria como en otros países.' },
-  { q: '¿Cómo se reparte entre varias personas?', a: 'Sumamos la propina al total y lo dividimos entre el número de comensales, para que cada uno sepa cuánto poner.' },
+  { q: '¿Cuánta propina se deja en España?', a: 'En España la propina es voluntaria. Lo habitual es redondear la cuenta o dejar entre un 5 % y un 10 % cuando el servicio ha gustado, y algo más en restaurantes de nivel alto. No es obligatoria como en otros países.' },
+  { q: '¿Cómo se reparte la propina entre varias personas?', a: 'Se suma la propina a la cuenta para obtener el total y ese total se divide entre el número de comensales, de modo que cada persona cubra su parte de la cuenta y de la propina. Por ejemplo, un total de 66 € entre 4 personas son 16,50 € por cabeza.' },
+  { q: '¿La propina se calcula sobre la cuenta con IVA o sin IVA?', a: 'En España lo normal es calcularla sobre el importe final que aparece en la cuenta, que ya incluye el IVA. Como la propina es orientativa y no obligatoria, no hay una regla estricta: puedes aplicar el porcentaje sobre el total que pagas.' },
+  { q: '¿Es obligatorio dejar propina?', a: 'No. En España la propina es totalmente voluntaria y no forma parte de la factura. Se deja como agradecimiento por un buen servicio, pero nadie está obligado a darla y no pasa nada por no dejarla.' },
+  { q: '¿Qué porcentaje de propina es adecuado?', a: 'Depende del país y del tipo de local. En España suele bastar con un 5 % o un 10 %, o simplemente redondear la cuenta. En Estados Unidos, en cambio, se espera entre un 15 % y un 20 %, porque allí la propina forma parte del sueldo del personal.' },
+  { q: '¿Cómo repartimos la cuenta si alguien ha consumido más?', a: 'Dividir a partes iguales es lo más cómodo, pero no siempre lo más justo. Si una persona ha tomado bastante más que el resto, lo razonable es que cada uno aporte según lo que ha consumido y que la propina se sume de forma proporcional.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de propina', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-propina' },
@@ -31,10 +35,48 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>La propina es la cuenta por el porcentaje elegido. Sumada a la cuenta da el total, que dividimos entre el número de personas para saber cuánto pone cada una.</p>
+    <h2>Para qué sirve esta calculadora</h2>
+    <p>Cuando terminas de comer o de cenar fuera y quieres dejar algo de propina, aparecen siempre las mismas dudas: cuánto poner, cómo sumarlo a la cuenta y, sobre todo, cómo repartir el importe entre todos los que estáis en la mesa. Esta <strong>calculadora de propina</strong> resuelve las tres cosas de golpe. Introduces el importe de la cuenta, el porcentaje de propina que quieres dejar y el número de comensales, y obtienes al instante la <strong>propina</strong>, el <strong>total con propina</strong> y lo que <strong>paga cada persona</strong>. Es ideal para comidas de grupo, cenas de empresa o cualquier ocasión en la que dividir la cuenta a ojo se complica.</p>
+
+    <h2>Cómo se calcula la propina</h2>
+    <p>El cálculo tiene tres pasos muy sencillos y siempre son los mismos:</p>
+    <ul>
+      <li><strong>Propina:</strong> se multiplica la cuenta por el porcentaje elegido. Con una cuenta de 60 € y un 10 %, la propina es 60 × 10 % = 6 €.</li>
+      <li><strong>Total con propina:</strong> se suma la propina a la cuenta. Siguiendo el ejemplo, 60 € + 6 € = 66 €.</li>
+      <li><strong>Por persona:</strong> se divide el total entre el número de comensales. Si sois 4, cada uno paga 66 € / 4 = 16,50 €.</li>
+    </ul>
+    <p>Ten en cuenta que el reparto se hace sobre el total con la propina ya incluida, no solo sobre la cuenta, para que la aportación de todos cubra también la parte de la propina.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Cuenta de 60 €, 10 % y 4 personas:</strong> propina 60 × 10 % = 6 €; total 60 + 6 = 66 €; por persona 66 / 4 = <strong>16,50 €</strong>.</li>
+      <li><strong>Cuenta de 45 €, 5 % y 3 personas:</strong> propina 45 × 5 % = 2,25 €; total 45 + 2,25 = 47,25 €; por persona 47,25 / 3 = <strong>15,75 €</strong>.</li>
+      <li><strong>Cuenta de 80 €, 8 % y 2 personas:</strong> propina 80 × 8 % = 6,40 €; total 80 + 6,40 = 86,40 €; por persona 86,40 / 2 = <strong>43,20 €</strong>.</li>
+    </ul>
+
+    <h2>La costumbre de la propina en España</h2>
+    <p>En España la propina es <strong>totalmente voluntaria</strong> y de carácter orientativo. No forma parte de la factura ni es obligatoria, y el salario del personal no depende de ella como sucede en otros países. Lo habitual es <strong>redondear la cuenta</strong> o dejar entre un 5 % y un 10 % cuando el servicio ha gustado, y algo más en restaurantes de nivel alto o en comidas de grupo grandes. En un café o un menú del día, muchas personas se limitan a dejar las monedas del cambio. En resumen: se agradece, pero nadie está obligado a darla y no pasa nada por no dejarla.</p>
+
+    <h2>Cómo se hace en otros países</h2>
+    <p>La costumbre cambia mucho según el destino, algo útil de tener en cuenta si viajas:</p>
+    <ul>
+      <li><strong>Estados Unidos:</strong> la propina es casi obligatoria y muy alta, entre el 15 % y el 20 %, porque forma parte del sueldo del personal de sala.</li>
+      <li><strong>Resto de Europa:</strong> se parece a España; lo normal es redondear o dejar en torno a un 5-10 % si el servicio ha gustado.</li>
+      <li><strong>Japón:</strong> no existe la costumbre e incluso puede resultar incómodo o extraño dejarla.</li>
+    </ul>
+
+    <h2>Consejos para repartir la cuenta</h2>
+    <ul>
+      <li><strong>Decide la propina antes de repartir:</strong> acordad el porcentaje entre todos y calculadlo sobre el total, así nadie paga de menos.</li>
+      <li><strong>Redondea al alza:</strong> si el importe por persona sale con céntimos incómodos, redondear unos céntimos hacia arriba facilita el pago en efectivo.</li>
+      <li><strong>Ajusta si el consumo fue desigual:</strong> cuando alguien ha tomado bastante más, lo justo es que cada uno aporte según lo suyo en lugar de dividir a partes iguales.</li>
+    </ul>
+
+    <p class="hint">Recuerda: en España la propina es voluntaria; esta calculadora es solo una ayuda orientativa para repartir la cuenta.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-iva">IVA</a><a href="/calculadora-descuento">Descuentos</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

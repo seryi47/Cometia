@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué unidades puedo convertir?', a: 'Longitud (metros, kilómetros, centímetros, millas, pies, pulgadas…), peso (kilos, gramos, libras, onzas, toneladas) y temperatura (grados Celsius, Fahrenheit y Kelvin).' },
-  { q: '¿Cómo se convierten los grados a Fahrenheit?', a: 'De Celsius a Fahrenheit: °F = °C × 9/5 + 32. Al revés: °C = (°F − 32) × 5/9. Aquí se hace automáticamente al elegir las unidades.' },
+  { q: '¿Qué unidades puedo convertir?', a: 'Tres categorías. Longitud: metros, kilómetros, centímetros, milímetros, millas, pies, pulgadas y yardas. Peso o masa: kilogramos, gramos, miligramos, toneladas, libras y onzas. Temperatura: grados Celsius, grados Fahrenheit y kelvin.' },
+  { q: '¿Cómo se convierten los grados a Fahrenheit?', a: 'De Celsius a Fahrenheit se aplica °F = °C × 9/5 + 32; al revés, °C = (°F − 32) × 5/9. Por ejemplo, 20 °C son 68 °F. Aquí el cálculo se hace automáticamente al elegir las unidades.' },
+  { q: '¿Cuántos metros tiene un kilómetro?', a: 'Un kilómetro son 1.000 metros. A su vez, 1 metro son 100 centímetros y 1 centímetro son 10 milímetros. El sistema métrico funciona por potencias de diez, así que convertir dentro de él suele reducirse a desplazar la coma.' },
+  { q: '¿A cuántos kilómetros equivale una milla?', a: 'Una milla terrestre equivale aproximadamente a 1,609 km. En sentido contrario, 1 km son unas 0,621 millas. Por eso una carrera de 10 millas ronda los 16,1 km.' },
+  { q: '¿Cuánto es una libra en kilos?', a: 'Una libra equivale a unos 0,454 kg, es decir, algo menos de medio kilo. A la inversa, 1 kg son aproximadamente 2,205 libras. Además, 1 libra son 16 onzas.' },
+  { q: '¿Qué es el kelvin y cómo se relaciona con los grados Celsius?', a: 'El kelvin es la unidad de temperatura del Sistema Internacional y parte del cero absoluto (−273,15 °C), la temperatura más baja posible. Para pasar de Celsius a kelvin se suman 273,15; por ejemplo, 25 °C son 298,15 K.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Conversor de unidades', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-conversor-unidades' },
@@ -25,10 +29,63 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Conversiones habituales</h2>
-    <p>1 kilómetro son 1.000 metros; 1 milla equivale a 1,609 km; 1 libra son 0,454 kg; y 0 °C equivalen a 32 °F. Elige la categoría, las unidades de origen y destino, y el conversor hace el resto.</p>
+    <h2>Para qué sirve un conversor de unidades</h2>
+    <p>Un <strong>conversor de unidades</strong> traduce una misma cantidad de una unidad a otra sin que tengas que memorizar los factores ni hacer las cuentas a mano. Es algo que aparece a diario: interpretar la medida de un mueble que viene en pulgadas, saber cuántos kilómetros son las millas de una carrera, pasar a kilos el peso de un paquete indicado en libras o entender la temperatura de una receta o un pronóstico expresados en grados Fahrenheit. Escribes el valor, eliges la unidad de origen y la de destino, y el resultado aparece al instante con la precisión adecuada.</p>
+
+    <h2>Qué unidades convierte esta calculadora</h2>
+    <p>La herramienta trabaja con tres categorías, cada una con sus unidades más habituales:</p>
+    <ul>
+      <li><strong>Longitud:</strong> metros (m), kilómetros (km), centímetros (cm), milímetros (mm), millas (mi), pies (ft), pulgadas (in) y yardas (yd).</li>
+      <li><strong>Peso o masa:</strong> kilogramos (kg), gramos (g), miligramos (mg), toneladas (t), libras (lb) y onzas (oz).</li>
+      <li><strong>Temperatura:</strong> grados Celsius (°C), grados Fahrenheit (°F) y kelvin (K).</li>
+    </ul>
+    <p>La mayoría de estas unidades pertenecen al <strong>sistema métrico decimal</strong>, que usamos en España y en casi todo el mundo: el metro, el gramo y el grado Celsius se relacionan entre sí por potencias de diez. Otras, como la milla, el pie, la pulgada, la libra, la onza o el grado Fahrenheit, provienen del <strong>sistema anglosajón</strong>, todavía habitual en países como Estados Unidos o el Reino Unido. Convertir entre ambos sistemas es precisamente lo que más suele hacer falta al leer manuales, recetas, etiquetas o resultados deportivos de origen extranjero.</p>
+
+    <h2>Factores y fórmulas de conversión</h2>
+    <p>En longitud y peso, la conversión se apoya en <strong>factores de proporción</strong>: cada unidad equivale a un número fijo de una unidad base (el metro para la longitud y el gramo para el peso). Convertir consiste entonces en multiplicar por el factor de la unidad de origen y dividir por el de la de destino. Por ejemplo, como 1 km = 1.000 m y 1 cm = 0,01 m, para pasar de kilómetros a centímetros basta con multiplicar por 100.000.</p>
+    <p>La <strong>temperatura</strong> es un caso aparte, porque sus escalas no comparten el mismo cero. Por eso no se multiplica por un factor, sino que se aplica una fórmula concreta:</p>
+    <ul>
+      <li><strong>Celsius a Fahrenheit:</strong> °F = °C × 9/5 + 32</li>
+      <li><strong>Fahrenheit a Celsius:</strong> °C = (°F − 32) × 5/9</li>
+      <li><strong>Celsius a kelvin:</strong> K = °C + 273,15</li>
+    </ul>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>3 millas a kilómetros:</strong> 3 × 1,609 ≈ <strong>4,83 km</strong>.</li>
+      <li><strong>150 libras a kilogramos:</strong> 150 × 0,454 ≈ <strong>68,1 kg</strong>.</li>
+      <li><strong>20 °C a Fahrenheit:</strong> 20 × 9/5 + 32 = 36 + 32 = <strong>68 °F</strong>.</li>
+    </ul>
+
+    <h2>Tablas de equivalencias comunes</h2>
+    <p><strong>Longitud</strong></p>
+    <ul>
+      <li>1 kilómetro = 1.000 metros</li>
+      <li>1 metro = 100 centímetros = 1.000 milímetros</li>
+      <li>1 milla ≈ 1,609 km (y 1 km ≈ 0,621 millas)</li>
+      <li>1 pie = 30,48 cm = 12 pulgadas</li>
+      <li>1 pulgada = 2,54 cm</li>
+    </ul>
+    <p><strong>Peso o masa</strong></p>
+    <ul>
+      <li>1 kilogramo = 1.000 gramos</li>
+      <li>1 tonelada = 1.000 kilogramos</li>
+      <li>1 libra ≈ 0,454 kg (y 1 kg ≈ 2,205 libras)</li>
+      <li>1 libra = 16 onzas</li>
+      <li>1 onza ≈ 28,35 gramos</li>
+    </ul>
+    <p><strong>Temperatura</strong></p>
+    <ul>
+      <li>0 °C = 32 °F = 273,15 K (congelación del agua)</li>
+      <li>37 °C = 98,6 °F (temperatura corporal)</li>
+      <li>100 °C = 212 °F (agua hirviendo a nivel del mar)</li>
+    </ul>
+
+    <p class="hint">Los resultados se redondean para facilitar la lectura; para cálculos técnicos conviene usar siempre los factores completos.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-convertir-tiempo">Convertir tiempo</a><a href="/calculadora-area">Área</a><a href="/calculadora-potencias-raices">Potencias y raíces</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cuándo son los días fértiles?', a: 'Los días más fértiles son los que rodean la ovulación: aproximadamente los 5 días previos y el día de la ovulación, porque los espermatozoides pueden sobrevivir varios días.' },
-  { q: '¿Es fiable?', a: 'Es una estimación basada en un ciclo regular. La ovulación real puede variar, sobre todo si tus ciclos son irregulares. Para mayor precisión, existen test de ovulación y el seguimiento médico.' },
+  { q: '¿Cuándo son los días fértiles?', a: 'Los días más fértiles son los que rodean la ovulación: aproximadamente los cinco días previos, el propio día de la ovulación y el día siguiente. Esa "ventana fértil" existe porque los espermatozoides pueden sobrevivir varios días dentro del cuerpo, de modo que una relación en los días anteriores a la ovulación también puede dar lugar a un embarazo.' },
+  { q: '¿Cómo se calcula el día de ovulación?', a: 'Se parte del primer día de tu última regla y de la duración de tu ciclo. Como la ovulación suele producirse unos 14 días antes de la siguiente regla, la calculadora estima primero cuándo llegaría tu próxima regla y sitúa la ovulación unos 14 días antes. Es un cálculo aproximado, no una medición.' },
+  { q: '¿Es fiable la calculadora de ovulación?', a: 'Da una orientación razonable cuando los ciclos son regulares, pero no es exacta. La ovulación real puede adelantarse o retrasarse por estrés, cambios de peso, sueño, ejercicio o la variabilidad natural del cuerpo. Si tus ciclos son irregulares, la estimación pierde fiabilidad y conviene apoyarse en test de ovulación o en el seguimiento de un profesional sanitario.' },
+  { q: '¿Sirve como método anticonceptivo?', a: 'No. Calcular los días fértiles no es un método anticonceptivo fiable. Como los espermatozoides sobreviven varios días y la ovulación puede desplazarse, existe posibilidad de embarazo también fuera de los días marcados. Para evitar un embarazo, consulta las opciones anticonceptivas con tu médico o matrona.' },
+  { q: '¿Puedo quedarme embarazada fuera de los días fértiles?', a: 'Sí, es posible. La ventana fértil es una estimación y la ovulación puede ocurrir antes o después de lo previsto, sobre todo en ciclos irregulares. Por eso no conviene dar por seguro que fuera de esos días no existe posibilidad de embarazo.' },
+  { q: '¿Qué hago si mis ciclos son irregulares?', a: 'Si la duración de tus ciclos cambia mucho de un mes a otro, la fecha estimada será poco precisa, porque el cálculo asume que ovularás siempre unos 14 días antes de la próxima regla. En ese caso pueden ayudar los test de ovulación, el registro de la temperatura basal a lo largo de varios ciclos o una consulta con tu ginecólogo o matrona.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de ovulación', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-ovulacion' },
@@ -31,11 +35,40 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>La ovulación suele ocurrir unos <strong>14 días antes</strong> de la siguiente regla. A partir de tu última regla y la duración de tu ciclo estimamos ese día y la ventana fértil que lo rodea (los cinco días anteriores y el propio día).</p>
+    <h2>Cómo funciona el ciclo menstrual y la ovulación</h2>
+    <p>El ciclo menstrual es el proceso que, cada mes, prepara al cuerpo para un posible embarazo. Se cuenta desde el <strong>primer día de la regla</strong> (día 1 del ciclo) hasta el día anterior a la siguiente regla. Aunque se habla mucho del "ciclo de 28 días", su duración varía de una persona a otra y puede oscilar de forma normal entre unos 21 y 35 días.</p>
+    <p>Dentro de ese ciclo, la <strong>ovulación</strong> es el momento en el que el ovario libera un óvulo. Ese óvulo solo puede fecundarse durante un plazo corto, de unas 12 a 24 horas. Sin embargo, los días fértiles son más de uno, porque los espermatozoides pueden sobrevivir varios días dentro del cuerpo a la espera de que se produzca la ovulación.</p>
+
+    <h2>Cómo se estima el día de ovulación y la ventana fértil</h2>
+    <p>La ovulación suele producirse alrededor de <strong>14 días antes</strong> de la siguiente regla. Por eso, esta calculadora parte de dos datos que tú indicas —el primer día de tu última regla y la duración habitual de tu ciclo— y procede así:</p>
+    <ul>
+      <li>Estima la <strong>próxima regla</strong> sumando la duración del ciclo al primer día de la última regla.</li>
+      <li>Sitúa el <strong>día probable de ovulación</strong> unos 14 días antes de esa próxima regla.</li>
+      <li>Marca la <strong>ventana fértil</strong> alrededor de ese día: desde unos cinco días antes de la ovulación hasta el día siguiente, que es cuando una relación sexual tiene más probabilidad de coincidir con un óvulo disponible.</li>
+    </ul>
+    <p>El resultado no es una fecha exacta, sino una franja orientativa que ayuda a hacerse una idea de en qué días del mes es más probable ser fértil.</p>
+
+    <h3>Ejemplo resuelto</h3>
+    <p>Imagina que tu última regla empezó el <strong>1 de enero</strong> y que tus ciclos duran <strong>28 días</strong>:</p>
+    <ul>
+      <li><strong>Próxima regla:</strong> 1 de enero + 28 días = <strong>29 de enero</strong>.</li>
+      <li><strong>Día probable de ovulación:</strong> 14 días antes del 29 de enero = <strong>15 de enero</strong>.</li>
+      <li><strong>Ventana fértil:</strong> del <strong>10 al 16 de enero</strong>, los días que rodean la ovulación.</li>
+    </ul>
+    <p>Si tus ciclos fueran más largos, por ejemplo de 30 días, ese mismo cálculo desplazaría la ovulación a alrededor del 17 de enero. En general, cuanto más largo es el ciclo, más tarde se estima la ovulación.</p>
+
+    <h2>Por qué es solo una estimación</h2>
+    <p>Este cálculo funciona mejor cuando los ciclos son <strong>regulares</strong> y parecidos mes a mes. En la práctica, la ovulación real puede adelantarse o retrasarse por muchos motivos: estrés, cambios de peso, viajes, falta de sueño, ejercicio intenso, algunas enfermedades o la propia variabilidad natural del cuerpo.</p>
+    <p>Si tus <strong>ciclos son irregulares</strong>, la fecha estimada pierde fiabilidad, porque el método asume que ovularás siempre unos 14 días antes de la siguiente regla, algo que no siempre ocurre. En esos casos, herramientas como los <strong>test de ovulación</strong>, el registro de la temperatura basal o el seguimiento con un profesional ofrecen una información más ajustada a cada caso.</p>
+
+    <h2>No es un método anticonceptivo</h2>
+    <p>Conviene dejarlo muy claro: <strong>esta calculadora no sirve como método anticonceptivo</strong>. Como los espermatozoides pueden sobrevivir varios días y la ovulación puede desplazarse, existe posibilidad de embarazo también fuera de la ventana fértil estimada. Confiar únicamente en el cálculo de días fértiles para evitar un embarazo conlleva un riesgo elevado. Si quieres evitar o buscar un embarazo, lo más seguro es valorar las opciones con tu médico o matrona.</p>
+
+    <p class="hint">Esta calculadora es orientativa y no sustituye la valoración de un profesional sanitario (médico, ginecólogo o matrona). Ante cualquier duda sobre tu fertilidad o tu ciclo, consúltalo en tu centro de salud.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-embarazo">Embarazo</a></div>
+    <div class="more"><a href="/calculadora-embarazo">Embarazo</a><a href="/calculadora-semanas-entre-fechas">Semanas entre fechas</a><a href="/calculadora-dias-entre-fechas">Días entre fechas</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

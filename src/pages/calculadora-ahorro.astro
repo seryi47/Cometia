@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cuánto debería ahorrar al mes?', a: 'Depende de tu meta y del plazo. Indica cuánto quieres reunir y en cuántos años, y te decimos la aportación mensual necesaria, teniendo en cuenta el interés que consigas.' },
-  { q: '¿Por qué importa el interés?', a: 'Si inviertes lo que ahorras y obtienes rentabilidad, necesitarás aportar menos cada mes, porque los intereses también trabajan para ti.' },
+  { q: '¿Cuánto debería ahorrar al mes?', a: 'Depende de tu meta y del plazo. Indica cuánto quieres reunir y en cuántos años, y la calculadora te dice la aportación mensual necesaria teniendo en cuenta el interés que consigas. Como referencia general, muchos expertos sugieren ahorrar en torno al 20 % de los ingresos, pero lo importante es fijar una cifra que puedas mantener mes a mes.' },
+  { q: '¿Por qué importa el interés?', a: 'Si inviertes lo que ahorras y obtienes rentabilidad, necesitarás aportar menos cada mes, porque los intereses también trabajan para ti y se van acumulando (interés compuesto). Cuanto mayor sea el plazo, más peso tiene este efecto: en metas a diez años o más, la rentabilidad puede cubrir una parte importante del total.' },
+  { q: '¿Qué pasa si no consigo ninguna rentabilidad?', a: 'Si pones un interés del 0 %, el cálculo es simplemente la meta dividida entre los meses del plazo. Por ejemplo, 6.000 € en 12 meses son 500 € al mes. Es lo que ocurre con el dinero guardado en una cuenta corriente, que no genera intereses.' },
+  { q: '¿La calculadora tiene en cuenta la inflación?', a: 'No. Los resultados están en euros de hoy y no ajustan la meta por la subida de precios. En plazos largos conviene revisar de vez en cuando si la cantidad objetivo sigue siendo suficiente para lo que quieres comprar.' },
+  { q: '¿Es mejor ahorrar durante más años o aportar más cada mes?', a: 'Ampliar el plazo reduce la cuota mensual y da más tiempo para que actúe el interés compuesto, pero retrasa el momento de disponer del dinero. Aportar más cada mes acorta el camino pero exige más esfuerzo. La mejor combinación es la que puedas sostener sin abandonar.' },
+  { q: '¿Dónde puedo conseguir la rentabilidad que pongo?', a: 'La rentabilidad no está garantizada: para obtenerla hay que invertir (por ejemplo en fondos, renta fija o depósitos), y toda inversión conlleva riesgo. Sé prudente con el porcentaje que introduces y, ante la duda, calcula también con un 0 % para ver el peor escenario. Esta herramienta es orientativa y no es asesoramiento financiero.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de ahorro', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-ahorro' },
@@ -31,10 +35,44 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
+    <h2>Qué es la calculadora de ahorro y para qué sirve</h2>
+    <p>La <strong>calculadora de ahorro</strong> responde a una pregunta muy concreta: <em>¿cuánto tengo que guardar cada mes para reunir una cantidad determinada en un plazo determinado?</em> En lugar de ahorrar «lo que sobre» a final de mes, le das la vuelta al problema: partes de una <strong>meta</strong> clara —el dinero que quieres tener— y del <strong>plazo</strong> en el que lo necesitas, y la herramienta calcula la <strong>aportación mensual</strong> exacta. Es la forma más realista de saber si tu objetivo es alcanzable o si conviene ajustar la cifra o el tiempo.</p>
+    <p>Sirve para casi cualquier proyecto: la entrada de una vivienda, un coche, un viaje, la universidad de los hijos o un fondo de emergencia. Al ver el número mensual concreto sobre la mesa, es mucho más fácil comprometerse y encajarlo en tu presupuesto.</p>
+
     <h2>Cómo se calcula</h2>
-    <p>Repartimos tu meta entre los meses del plazo, teniendo en cuenta que cada aportación genera intereses hasta el final. Con un interés del 0 % sería simplemente la meta dividida entre los meses; con interés, la aportación baja.</p>
+    <p>El cálculo parte de tres datos: la <strong>meta</strong> (€), el <strong>plazo</strong> en años y el <strong>interés anual</strong> (%) que esperas obtener si inviertes lo que ahorras. Con ellos se despeja la aportación mensual constante que hace que, al terminar el plazo, tengas justo la meta.</p>
+    <p>El caso más sencillo es sin rentabilidad. Si tu interés es del <strong>0 %</strong>, basta con dividir la meta entre el número de meses: guardar 6.000 € en 12 meses son <strong>500 € al mes</strong>. Nada más.</p>
+    <p>El <strong>interés cambia las cosas a tu favor</strong>. Cuando inviertes lo que apartas y obtienes rentabilidad, cada aportación no se queda quieta: genera intereses hasta el final del plazo, y esos intereses también generan más intereses (interés compuesto). El resultado es que <strong>necesitas aportar menos cada mes</strong> para llegar a la misma meta, porque una parte del trabajo la hace la rentabilidad. Y cuanto mayor es el plazo, más se nota este efecto.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Sin interés — 6.000 € en 1 año:</strong> 6.000 € ÷ 12 meses = <strong>500 € al mes</strong>. Aportas 6.000 € y no ganas intereses.</li>
+      <li><strong>Con interés — 20.000 € en 5 años al 2 %:</strong> la aportación baja a <strong>317,22 € al mes</strong>. En total pones de tu bolsillo 19.033,31 € y los <strong>966,69 €</strong> restantes son intereses ganados. Sin rentabilidad tendrías que aportar 333,33 € al mes.</li>
+      <li><strong>Con interés — 30.000 € en 10 años al 4 %:</strong> te bastan <strong>203,74 € al mes</strong>. Aportas 24.448,25 € y la rentabilidad añade <strong>5.551,75 €</strong>. Aquí, con más plazo, el interés hace una parte enorme del esfuerzo (sin él serían 250 € al mes).</li>
+    </ul>
+
+    <h2>Consejos para ahorrar cada mes</h2>
+    <ul>
+      <li><strong>Págate a ti primero:</strong> programa una transferencia automática el mismo día que cobras, antes de gastar. Lo que no ves, no lo gastas.</li>
+      <li><strong>Separa el dinero:</strong> usa una cuenta distinta para la meta y no lo mezcles con el gasto diario.</li>
+      <li><strong>Empieza por lo alcanzable:</strong> si el número mensual te aprieta, alarga el plazo o baja la meta. Es mejor una cifra que puedas mantener durante meses que una ambiciosa que abandonas.</li>
+      <li><strong>Ordena tu presupuesto:</strong> repartir tus ingresos con la regla 50/30/20 te ayuda a ver cuánto puedes destinar al ahorro sin ahogarte.</li>
+      <li><strong>Sube la aportación cuando suban tus ingresos:</strong> destina al ahorro una parte de cada subida en lugar de aumentar el gasto.</li>
+    </ul>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Poner un interés demasiado optimista:</strong> una rentabilidad alta reduce mucho la cuota en pantalla, pero si luego no la consigues, no llegarás a la meta. Sé prudente con el porcentaje.</li>
+      <li><strong>Confundir ahorro con inversión:</strong> el dinero en una cuenta corriente no renta (interés 0 %). Para obtener rentabilidad hay que invertir, y toda inversión conlleva riesgo.</li>
+      <li><strong>Olvidar la inflación:</strong> la calculadora trabaja con euros de hoy. En plazos largos, el coste de tu meta puede subir, así que revisa la cifra de vez en cuando.</li>
+      <li><strong>Fijar plazos irreales:</strong> una meta grande en muy poco tiempo dispara la cuota mensual. Ajusta el plazo hasta que el número sea sostenible.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora es orientativa y no constituye asesoramiento financiero. Los resultados suponen una aportación constante y una rentabilidad fija; los rendimientos reales de una inversión pueden variar.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-interes-compuesto">Interés compuesto</a><a href="/calculadora-presupuesto-50-30-20">Presupuesto 50/30/20</a><a href="/calculadora-hipoteca">Hipoteca</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se cuentan las semanas entre dos fechas?', a: 'Calculamos los días de diferencia y los dividimos entre 7. El resultado son las semanas completas, y mostramos también los días sueltos que sobran.' },
-  { q: '¿Para qué sirve?', a: 'Para embarazos, proyectos, plazos, ahorro por semanas o cualquier cuenta en la que pienses en semanas en lugar de días.' },
+  { q: '¿Cómo se cuentan las semanas entre dos fechas?', a: 'Se calculan los días que hay entre la fecha de inicio y la de fin y se dividen entre 7. La parte entera son las semanas completas y el resto son los días sueltos que sobran. Por ejemplo, 30 días son 4 semanas y 2 días.' },
+  { q: '¿Se cuentan los dos días de los extremos?', a: 'No. La calculadora mide la diferencia entre las dos fechas, no las suma. Entre el 1 y el 8 de enero hay 7 días, es decir 1 semana exacta; no se añaden el primer y el último día como jornadas extra.' },
+  { q: '¿Por qué aparecen semanas y días sueltos?', a: 'Porque los días entre dos fechas casi nunca son un múltiplo exacto de 7. Cuando la división entre 7 deja resto, ese resto son los días que sobran y no llegan a completar una semana más.' },
+  { q: '¿Importa el orden en el que ponga las fechas?', a: 'No. La calculadora usa la diferencia en valor absoluto, así que da igual cuál pongas como inicio y cuál como fin: el número de semanas y de días es el mismo.' },
+  { q: '¿Los meses que muestra son exactos?', a: 'Es una estimación. Se calculan dividiendo los días entre 30,44, la media de días que tiene un mes a lo largo del año. Sirve para hacerte una idea rápida; las semanas y los días, en cambio, sí son exactos.' },
+  { q: '¿Sirve para saber las semanas de embarazo?', a: 'Te dice las semanas que han pasado entre dos fechas, que es la base del seguimiento del embarazo. Aun así, para calcular las semanas de gestación y la fecha probable de parto resulta más cómoda nuestra calculadora de embarazo.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Semanas entre dos fechas', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-semanas-entre-fechas' },
@@ -30,11 +34,34 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
+    <h2>Para qué sirve calcular las semanas entre dos fechas</h2>
+    <p>Pensar en <strong>semanas</strong> resulta muy cómodo cuando una cuenta se alarga más de unos pocos días pero no llega a durar meses. Un embarazo se sigue por semanas, un proyecto se planifica en sprints semanales, un plan de ahorro avanza cada semana y muchos plazos de entrega o administrativos se expresan en semanas. Esta <strong>calculadora de semanas entre dos fechas</strong> te ahorra contar casillas en el calendario: eliges la fecha de inicio y la de fin y, al instante, te dice cuántas semanas completas hay entre ambas, cuántos días sueltos sobran y una estimación en meses.</p>
+
     <h2>Cómo se calcula</h2>
-    <p>Restamos las dos fechas para obtener los días y los dividimos entre 7 para las semanas. Mostramos las semanas completas más los días que sobran, y una estimación en meses.</p>
+    <p>El método es el mismo que harías a mano. Primero se cuentan los <strong>días que hay entre las dos fechas</strong> (la diferencia entre la fecha de fin y la de inicio). Después esos días se dividen entre 7, porque una semana siempre tiene 7 días. La parte entera de esa división son las <strong>semanas completas</strong>, y el resto son los <strong>días sueltos</strong> que no llegan a formar otra semana.</p>
+    <p style="text-align:center"><strong>semanas = días entre las dos fechas / 7</strong></p>
+    <p>Por ejemplo, si entre dos fechas hay 30 días, la división 30 / 7 da 4 con un resto de 2: es decir, <strong>4 semanas y 2 días</strong>. La calculadora muestra además los días totales y una aproximación en meses, dividiendo los días entre 30,44 (la media de días que tiene un mes a lo largo del año).</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Del 1 de enero al 29 de enero de 2026:</strong> hay 28 días. Como 28 / 7 = 4 exacto, son <strong>4 semanas justas</strong>, sin días sueltos.</li>
+      <li><strong>Del 1 de enero al 31 de enero de 2026:</strong> hay 30 días. 30 / 7 = 4 con resto 2, así que son <strong>4 semanas y 2 días</strong>.</li>
+      <li><strong>Del 10 de marzo al 30 de abril de 2026:</strong> hay 51 días. 51 / 7 = 7 con resto 2, es decir <strong>7 semanas y 2 días</strong> (algo más de mes y medio).</li>
+    </ul>
+
+    <h2>Usos habituales</h2>
+    <ul>
+      <li><strong>Embarazo:</strong> la gestación se mide en semanas desde la fecha de la última regla, así que saber cuántas semanas han pasado entre dos fechas ayuda a situarte. Para las semanas exactas y la fecha probable de parto tienes la <a href="/calculadora-embarazo">calculadora de embarazo</a>.</li>
+      <li><strong>Proyectos y trabajo:</strong> planificar entregas, sprints o fases se ve más claro en semanas que en días sueltos.</li>
+      <li><strong>Plazos:</strong> comprobar si un plazo de "seis semanas" cae en la fecha que esperas, o cuántas semanas quedan hasta un vencimiento.</li>
+      <li><strong>Ahorro por semanas:</strong> si apartas una cantidad fija cada semana, saber cuántas semanas hay hasta tu objetivo te dice cuánto habrás reunido.</li>
+    </ul>
+
+    <p class="hint">El cálculo de meses es una aproximación, porque no todos los meses tienen los mismos días; las semanas y los días sueltos, en cambio, sí son exactos.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-embarazo">Embarazo</a></div>
+    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-embarazo">Embarazo</a><a href="/calculadora-edad">Calcular la edad</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

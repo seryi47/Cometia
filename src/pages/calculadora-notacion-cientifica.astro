@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es la notación científica?', a: 'Es una forma de escribir números muy grandes o muy pequeños como un número entre 1 y 10 multiplicado por una potencia de 10. Por ejemplo, 300000 se escribe 3 × 10⁵.' },
-  { q: '¿Para qué se usa?', a: 'Para manejar cómodamente cifras enormes o diminutas en ciencia, ingeniería o informática, sin escribir un montón de ceros.' },
+  { q: '¿Qué es la notación científica?', a: 'Es una forma de escribir números muy grandes o muy pequeños como un número entre 1 y 10 multiplicado por una potencia de 10, con la forma a × 10ⁿ. Por ejemplo, 300.000 se escribe 3 × 10⁵ y 0,00042 se escribe 4,2 × 10⁻⁴. Así se evita arrastrar largas hileras de ceros.' },
+  { q: '¿Cómo se pasa un número a notación científica?', a: 'Mueve la coma hasta dejar un solo dígito distinto de cero a su izquierda y cuenta las posiciones que la has desplazado: ese número es el exponente. Si mueves la coma hacia la izquierda (número grande) el exponente es positivo, y si la mueves hacia la derecha (número pequeño) es negativo.' },
+  { q: '¿Qué es la mantisa?', a: 'La mantisa es el número que va delante de la potencia de 10. Su valor absoluto siempre está entre 1 y 10 (1 ≤ |a| < 10), es decir, tiene un único dígito distinto de cero antes de la coma. En 4,2 × 10⁻⁴, la mantisa es 4,2.' },
+  { q: '¿Cuándo el exponente es negativo?', a: 'Cuando el número es menor que 1, es decir, está entre 0 y 1. Los números pequeños, como 0,0005, llevan exponente negativo: 0,0005 = 5 × 10⁻⁴. Los números grandes, mayores que 10, llevan exponente positivo.' },
+  { q: '¿Qué significa la «e» que muestran las calculadoras?', a: 'Muchas calculadoras y hojas de cálculo escriben la notación científica con una «e» en lugar de «× 10». Así, 4.2e-4 significa 4,2 × 10⁻⁴ y 3e8 significa 3 × 10⁸. Es solo otra manera de escribir lo mismo.' },
+  { q: '¿Para qué sirve en la vida real?', a: 'Para manejar cómodamente cifras enormes o diminutas en ciencia, ingeniería o informática sin escribir un montón de ceros: distancias astronómicas, el tamaño de un átomo o la velocidad de la luz. Además simplifica multiplicar y dividir, porque basta con operar las mantisas y sumar o restar los exponentes.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de notación científica', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-notacion-cientifica' },
@@ -20,11 +24,42 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Movemos la coma hasta dejar un solo dígito distinto de cero a su izquierda, y contamos cuántas posiciones la hemos movido: eso es el exponente. Hacia la izquierda, exponente positivo; hacia la derecha (números pequeños), exponente negativo. Por ejemplo, 0,00042 = 4,2 × 10⁻⁴.</p>
+    <h2>Qué es la notación científica y para qué sirve</h2>
+    <p>La <strong>notación científica</strong> es una manera compacta de escribir números muy grandes o muy pequeños sin arrastrar largas hileras de ceros. En lugar de anotar 93.000.000 de kilómetros o 0,00042 gramos, se expresan como un número sencillo multiplicado por una <strong>potencia de 10</strong>. Así el dato ocupa menos, se lee de un vistazo y es mucho más difícil equivocarse contando ceros.</p>
+    <p>Se usa a diario en <strong>física, química, astronomía, biología e informática</strong>, porque estas disciplinas trabajan con magnitudes que van desde el tamaño de un átomo hasta la distancia entre galaxias. También aparece en cualquier calculadora científica: cuando ves algo como <em>4.2e-4</em>, esa «e» es precisamente la notación científica escrita en pantalla.</p>
+
+    <h2>Cómo se escribe un número en notación científica</h2>
+    <p>Todo número en notación científica tiene la forma <strong>a × 10ⁿ</strong>, con dos piezas:</p>
+    <ul>
+      <li>La <strong>mantisa</strong> (<em>a</em>): un número cuyo valor absoluto está <strong>entre 1 y 10</strong> (es decir, 1 ≤ |a| &lt; 10). Siempre queda un único dígito distinto de cero antes de la coma.</li>
+      <li>La <strong>potencia de 10</strong> (10ⁿ): indica cuántas posiciones hay que mover la coma para recuperar el número original.</li>
+    </ul>
+    <p>El signo del exponente <em>n</em> distingue el tamaño del número: es <strong>positivo</strong> para números grandes (mayores que 10) y <strong>negativo</strong> para números pequeños (entre 0 y 1). Un número que ya está entre 1 y 10, como el 7, se queda igual: sería 7 × 10⁰.</p>
+
+    <h2>Cómo pasar de una forma a otra</h2>
+    <p>Para convertir un número normal a notación científica, mueve la coma hasta dejar un solo dígito distinto de cero a su izquierda y cuenta los saltos:</p>
+    <ul>
+      <li>Si mueves la coma <strong>hacia la izquierda</strong> (número grande), el exponente es <strong>positivo</strong> e igual al número de saltos.</li>
+      <li>Si la mueves <strong>hacia la derecha</strong> (número pequeño), el exponente es <strong>negativo</strong>.</li>
+    </ul>
+    <p>El camino inverso es igual de directo: si el exponente es positivo, desplaza la coma hacia la derecha añadiendo ceros; si es negativo, hacia la izquierda. Por ejemplo, 6,5 × 10⁶ vuelve a ser 6.500.000.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Número grande — 384.400:</strong> movemos la coma 5 posiciones a la izquierda hasta dejar 3,844 → <strong>3,844 × 10⁵</strong> (la distancia media entre la Tierra y la Luna, en km).</li>
+      <li><strong>Número grande — 93.000.000:</strong> la coma salta 7 posiciones hasta 9,3 → <strong>9,3 × 10⁷</strong> (los km que nos separan del Sol, aproximadamente).</li>
+      <li><strong>Número pequeño — 0,000012:</strong> movemos la coma 5 posiciones a la derecha hasta 1,2 → <strong>1,2 × 10⁻⁵</strong>.</li>
+    </ul>
+
+    <h2>Usos en la ciencia</h2>
+    <p>La notación científica es el lenguaje natural de las magnitudes extremas. La velocidad de la luz es de unos 3 × 10⁸ m/s (300 millones de metros por segundo); la masa de un electrón ronda los 9,1 × 10⁻³¹ kg; y una célula humana mide en torno a 1 × 10⁻⁵ m. Escribir esas cifras con todos sus ceros sería incómodo y propenso a errores, por eso científicos e ingenieros trabajan casi siempre en esta notación.</p>
+    <p>Además facilita las operaciones: para multiplicar o dividir dos números en esta forma basta con operar las mantisas y sumar o restar los exponentes, lo que simplifica enormemente los cálculos con potencias.</p>
+
+    <p class="hint">Recuerda: la mantisa siempre debe quedar entre 1 y 10. Si te sale 42 × 10³, aún no está bien escrito en notación científica; lo correcto es 4,2 × 10⁴.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-potencias-raices">Potencias y raíces</a></div>
+    <div class="more"><a href="/calculadora-potencias-raices">Potencias y raíces</a><a href="/calculadora-binario-decimal">Binario a decimal</a><a href="/calculadora-redondeo">Redondeo</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

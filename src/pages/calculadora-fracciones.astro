@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
+  { q: '¿Qué es una fracción?', a: 'Una fracción representa una parte de un todo. El número de arriba, el numerador, indica cuántas partes tomamos, y el de abajo, el denominador, en cuántas partes iguales se ha dividido el total. Por ejemplo, 3/4 significa tres de cuatro partes iguales.' },
   { q: '¿Cómo se suman dos fracciones?', a: 'Se ponen con el mismo denominador (multiplicando en cruz) y se suman los numeradores. Por ejemplo, 1/2 + 1/3 = 3/6 + 2/6 = 5/6.' },
-  { q: '¿Cómo se simplifica una fracción?', a: 'Se divide el numerador y el denominador entre su máximo común divisor. Aquí lo hacemos automáticamente y te damos el resultado ya simplificado.' },
+  { q: '¿Cómo se multiplican y dividen fracciones?', a: 'Para multiplicar se multiplican los numeradores entre sí y los denominadores entre sí: 2/3 × 3/4 = 6/12 = 1/2. Para dividir se invierte la segunda fracción y se multiplica: 3/4 ÷ 1/2 = 3/4 × 2/1 = 6/4 = 3/2.' },
+  { q: '¿Cómo se simplifica una fracción?', a: 'Se divide el numerador y el denominador entre su máximo común divisor. Por ejemplo, 8/12 se divide entre 4 y queda 2/3. Aquí lo hacemos automáticamente y te damos el resultado ya simplificado.' },
+  { q: '¿Qué es el común denominador?', a: 'Es un mismo denominador para dos o más fracciones, imprescindible para poder sumarlas o restarlas. Se obtiene multiplicando los denominadores o buscando su mínimo común múltiplo, y permite comparar las fracciones parte a parte.' },
+  { q: '¿Una fracción y un número decimal son lo mismo?', a: 'Representan la misma cantidad de dos formas distintas. Al dividir el numerador entre el denominador obtienes su valor decimal: 1/2 = 0,5 y 3/2 = 1,5. Algunas fracciones dan decimales exactos y otras periódicos, como 1/3 = 0,333…' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de fracciones', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-fracciones' },
@@ -24,11 +28,49 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo operar con fracciones</h2>
-    <p>Para <strong>sumar o restar</strong> se igualan los denominadores; para <strong>multiplicar</strong> se multiplican numeradores y denominadores; para <strong>dividir</strong> se multiplica por la fracción invertida. Al final simplificamos dividiendo entre el máximo común divisor.</p>
+    <h2>Qué es una fracción</h2>
+    <p>Una <strong>fracción</strong> representa una parte de un todo o el resultado de una división que no da un número entero. Se escribe con dos números separados por una línea horizontal: el de arriba es el <strong>numerador</strong>, que indica cuántas partes tomamos, y el de abajo es el <strong>denominador</strong>, que indica en cuántas partes iguales se ha dividido el total. Por ejemplo, en 3/4 el todo se ha partido en cuatro trozos iguales y tomamos tres de ellos. Cuando el numerador es menor que el denominador la fracción vale menos que uno (fracción propia); cuando es mayor, vale más que la unidad (fracción impropia). Dos fracciones son equivalentes si representan la misma cantidad aunque se escriban con números distintos, como 1/2 y 2/4.</p>
+
+    <h2>Cómo sumar y restar fracciones</h2>
+    <p>Para <strong>sumar o restar</strong> dos fracciones ambas necesitan tener el mismo denominador, llamado <strong>común denominador</strong>. Si ya coinciden, basta con sumar o restar los numeradores y dejar el denominador igual. Si son distintos, la forma más rápida es multiplicar en cruz: se multiplica cada numerador por el denominador de la otra fracción, los denominadores se multiplican entre sí y luego se operan los numeradores resultantes. Por ejemplo, 1/2 + 1/3 = 3/6 + 2/6 = 5/6. La resta funciona igual: solo cambia el signo entre los numeradores.</p>
+
+    <h2>Cómo multiplicar y dividir fracciones</h2>
+    <p><strong>Multiplicar</strong> fracciones es la operación más sencilla: se multiplican los numeradores entre sí y los denominadores entre sí, sin necesidad de buscar denominador común. Así, 2/3 × 3/4 = 6/12, que simplificado es 1/2. Para <strong>dividir</strong> se usa la regla de invertir y multiplicar: se deja la primera fracción tal cual y se multiplica por la segunda con el numerador y el denominador intercambiados. Por ejemplo, 3/4 ÷ 1/2 = 3/4 × 2/1 = 6/4 = 3/2.</p>
+
+    <h2>Cómo simplificar una fracción</h2>
+    <p>Simplificar una fracción es escribirla con los números más pequeños posibles sin cambiar su valor. Para conseguirlo se divide el numerador y el denominador entre su <strong>máximo común divisor (MCD)</strong>, que es el número más grande que divide a ambos de forma exacta. Por ejemplo, en 8/12 el MCD de 8 y 12 es 4, de modo que 8/12 = 2/3. Una fracción está completamente simplificada, o es <strong>irreducible</strong>, cuando numerador y denominador ya no comparten ningún divisor mayor que uno. Nuestra calculadora entrega siempre el resultado ya simplificado.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <p><strong>Sumas y restas:</strong></p>
+    <ul>
+      <li>1/2 + 1/3 = 3/6 + 2/6 = <strong>5/6</strong></li>
+      <li>3/4 − 1/2 = 3/4 − 2/4 = <strong>1/4</strong></li>
+      <li>2/3 + 1/6 = 4/6 + 1/6 = <strong>5/6</strong></li>
+    </ul>
+    <p><strong>Multiplicaciones:</strong></p>
+    <ul>
+      <li>2/3 × 3/4 = 6/12 = <strong>1/2</strong></li>
+      <li>2/5 × 3/7 = <strong>6/35</strong> (ya es irreducible)</li>
+    </ul>
+    <p><strong>Divisiones:</strong></p>
+    <ul>
+      <li>3/4 ÷ 1/2 = 3/4 × 2/1 = 6/4 = <strong>3/2</strong></li>
+      <li>1/2 ÷ 1/4 = 1/2 × 4/1 = 4/2 = <strong>2</strong></li>
+    </ul>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Sumar numeradores y denominadores por separado.</strong> 1/2 + 1/3 no es 2/5: primero hay que igualar los denominadores.</li>
+      <li><strong>Olvidar invertir al dividir.</strong> En una división se le da la vuelta a la segunda fracción, no a la primera.</li>
+      <li><strong>No simplificar el resultado.</strong> 6/12 es correcto, pero lo habitual es dejarlo como 1/2.</li>
+      <li><strong>Cambiar el orden en la resta.</strong> 3/4 − 1/2 no da lo mismo que 1/2 − 3/4; el orden importa.</li>
+    </ul>
+
+    <p class="hint">Consejo: simplifica siempre al final y comprueba el resultado pasándolo a decimal; por ejemplo, 5/6 ≈ 0,833 y 3/2 = 1,5.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-regla-de-tres">Regla de tres</a></div>
+    <div class="more"><a href="/calculadora-mcm-mcd">MCM y MCD</a><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-regla-de-tres">Regla de tres</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

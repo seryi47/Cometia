@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula la letra del DNI?', a: 'Se divide el número del DNI entre 23 y, con el resto, se busca la letra correspondiente en una tabla oficial (TRWAGMYFPDXBNJZSQVHLCKE). Por eso cada número tiene una única letra válida.' },
-  { q: '¿Funciona con el NIE?', a: 'Sí. En el NIE, la letra inicial (X, Y o Z) se sustituye por 0, 1 o 2 respectivamente y luego se calcula igual que el DNI.' },
+  { q: '¿Cómo se calcula la letra del DNI?', a: 'Se toma el número completo del DNI, se divide entre 23 y se mira el resto de esa división (un valor entre 0 y 22). Ese resto indica la posición dentro de la tabla oficial de letras TRWAGMYFPDXBNJZSQVHLCKE, empezando a contar desde 0. Por eso cada número tiene una única letra válida.' },
+  { q: '¿Funciona con el NIE?', a: 'Sí. En el NIE, la letra inicial (X, Y o Z) se sustituye por 0, 1 o 2 respectivamente; después se junta con el resto de cifras y se aplica el mismo cálculo que en el DNI: dividir entre 23 y buscar el resto en la tabla oficial.' },
+  { q: '¿Por qué se divide entre 23 y no entre otro número?', a: 'Porque la tabla oficial tiene exactamente 23 letras, así que dividir entre 23 garantiza que el resto siempre caiga dentro de ella (de 0 a 22). Además, al ser 23 un número primo, cualquier pequeño error al teclear el número suele cambiar la letra resultante, que es justo la función de un dígito de control.' },
+  { q: '¿Por qué la tabla no incluye todas las letras del abecedario?', a: 'Se excluyeron a propósito la I, la O, la U y la Ñ para evitar confusiones: la I y la O se parecen a los números 1 y 0, la U puede confundirse con la V y la Ñ no existe en muchos teclados ni en documentos internacionales. Así quedan 23 letras válidas.' },
+  { q: '¿Puede un mismo número tener dos letras válidas?', a: 'No. Para cada número existe una y solo una letra correcta, la que corresponde al resto de dividir entre 23. Si la letra que aparece en un documento no coincide con ese resto, significa que está mal escrito o que el número es incorrecto.' },
+  { q: '¿Esta calculadora comprueba si un DNI es real?', a: 'No. Solo calcula la letra que matemáticamente corresponde a un número. Que la letra sea correcta no implica que ese DNI esté asignado a una persona ni que exista en los registros oficiales; únicamente confirma que la combinación de número y letra es coherente.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de la letra del DNI', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-letra-dni' },
@@ -20,10 +24,47 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>La letra del DNI es un dígito de control: se obtiene del resto de dividir el número entre 23. Cada resto (de 0 a 22) corresponde a una letra de la tabla oficial, lo que permite detectar errores al teclear el documento.</p>
+    <h2>Qué es la letra del DNI y para qué sirve</h2>
+    <p>El DNI español está formado por un número de hasta ocho cifras seguido de una letra. Esa letra no se elige al azar ni se asigna por orden: es un <strong>dígito de control</strong>, un carácter que se calcula a partir del propio número para comprobar que este se ha escrito bien. Gracias a ella, si alguien teclea mal una cifra al rellenar un formulario, la letra deja de coincidir y el error se detecta al instante. Es el mismo principio que usan las cuentas bancarias (IBAN) o los códigos de barras: añadir un carácter redundante que valida el resto.</p>
+    <p>El mismo sistema se aplica al <strong>NIE</strong> (Número de Identidad de Extranjero), que también termina en una letra de control calculada de idéntica forma. Por eso, conociendo únicamente el número, siempre es posible averiguar cuál es su letra correcta.</p>
+
+    <h2>Cómo se calcula la letra del DNI</h2>
+    <p>El cálculo es sencillo y se puede hacer incluso a mano en tres pasos:</p>
+    <ol>
+      <li>Toma el número completo del DNI, sin la letra.</li>
+      <li>Divídelo entre <strong>23</strong> y quédate con el <strong>resto</strong> de la división (un valor entre 0 y 22).</li>
+      <li>Busca ese resto en la tabla oficial de letras, empezando a contar desde 0.</li>
+    </ol>
+    <p>La tabla oficial que publica la Dirección General de la Policía es esta:</p>
+    <p style="text-align:center"><strong>T R W A G M Y F P D X B N J Z S Q V H L C K E</strong></p>
+    <p>Las posiciones van de 0 a 22: el resto 0 corresponde a la <strong>T</strong>, el resto 1 a la <strong>R</strong>, el 2 a la <strong>W</strong>, y así sucesivamente hasta el 22, que es la <strong>E</strong>. Fíjate en que letras como la I, la Ñ, la O o la U no aparecen: se descartaron a propósito para no confundirlas con números o con otras letras.</p>
+
+    <h3>Ejemplo resuelto</h3>
+    <p>Vamos a calcular la letra del número <strong>12345678</strong>:</p>
+    <ul>
+      <li>Dividimos 12345678 entre 23. El cociente entero no nos interesa; lo que buscamos es el resto.</li>
+      <li>El resto de esa división es <strong>14</strong> (porque 23 × 536 768 = 12 345 664, y 12 345 678 − 12 345 664 = 14).</li>
+      <li>Contamos hasta la posición 14 en la tabla, empezando por 0: T(0), R(1), W(2), A(3), G(4), M(5), Y(6), F(7), P(8), D(9), X(10), B(11), N(12), J(13), <strong>Z(14)</strong>.</li>
+    </ul>
+    <p>La letra es la <strong>Z</strong>, así que el documento completo es <strong>12345678-Z</strong>.</p>
+
+    <h2>Cómo funciona con el NIE (X, Y, Z)</h2>
+    <p>El NIE empieza siempre por una letra (X, Y o Z) que indica el bloque de numeración. Para calcular su dígito de control se añade un paso previo: <strong>se sustituye esa letra inicial por un número</strong>, según esta equivalencia:</p>
+    <ul>
+      <li><strong>X → 0</strong></li>
+      <li><strong>Y → 1</strong></li>
+      <li><strong>Z → 2</strong></li>
+    </ul>
+    <p>Una vez cambiada la letra por su número, se juntan las cifras y se aplica exactamente el mismo cálculo que en el DNI: dividir entre 23 y buscar el resto en la tabla. Por ejemplo, para <strong>X1234567</strong> sustituimos la X por 0, con lo que el número a calcular es 1234567. El resto de dividir 1234567 entre 23 es <strong>19</strong>, y la posición 19 de la tabla es la <strong>L</strong>. El NIE completo queda como <strong>X1234567-L</strong>.</p>
+
+    <h2>Tus datos no salen de tu dispositivo</h2>
+    <p>Este cálculo se realiza <strong>íntegramente en tu navegador</strong>: el número que escribes no se envía a ningún servidor ni se almacena en ninguna parte. En cuanto cierras o recargas la página, el dato desaparece. Puedes usar la calculadora con tranquilidad, aunque, como siempre, conviene ser prudente al introducir datos personales en cualquier web.</p>
+
+    <p class="hint">La letra se deduce del número, pero esta herramienta no verifica que un DNI exista realmente ni que pertenezca a una persona concreta: solo comprueba que la letra sea la que matemáticamente corresponde.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-numero-a-letras">Números a letras</a><a href="/calculadora-numeros-romanos">Números romanos</a><a href="/calculadora-porcentaje">Porcentaje</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

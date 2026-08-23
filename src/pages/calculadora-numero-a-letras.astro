@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Para qué sirve pasar un número a letras?', a: 'Es útil para rellenar cheques, contratos, facturas o documentos oficiales, donde el importe suele escribirse también con palabras para evitar errores.' },
-  { q: '¿Hasta qué número funciona?', a: 'Convierte números enteros hasta cientos de millones. Para importes con céntimos, escribe la parte entera; los decimales puedes añadirlos aparte.' },
+  { q: '¿Para qué sirve pasar un número a letras?', a: 'Es útil para rellenar cheques, contratos, facturas o documentos oficiales, donde el importe suele escribirse también con palabras para evitar errores o manipulaciones. La cifra en letra deja constancia clara de la cantidad y sirve de comprobación frente a la versión numérica.' },
+  { q: '¿Se escribe "veintiuno" junto o "veinte y uno"?', a: 'Junto: del 16 al 29, los números se escriben en una sola palabra (dieciséis, veintiuno, veintinueve). La forma "veinte y uno" es incorrecta. La separación con la conjunción "y" solo aparece a partir del 31: treinta y uno, cuarenta y dos, etc.' },
+  { q: '¿Cuándo se pone la "y" entre las palabras?', a: 'La conjunción "y" solo va entre la decena y la unidad. Por eso se escribe "treinta y dos" o "noventa y ocho", pero "ciento veinte" (no "ciento y veinte") y "dos mil veintiséis" (no "dos mil y veintiséis"). Nunca se pone "y" después de las centenas ni de los miles.' },
+  { q: '¿Es "cien" o "ciento"?', a: 'Se escribe "cien" cuando el número va solo o delante de un sustantivo ("cien euros", "cien personas"). Se usa "ciento" cuando le sigue otra cifra: ciento uno, ciento cincuenta o ciento noventa y nueve.' },
+  { q: '¿Por qué a veces se escribe "un" o "veintiún" y no "uno" o "veintiuno"?', a: 'Es el apócope: delante de un sustantivo masculino, "uno" y "veintiuno" pierden la vocal final y se convierten en "un" y "veintiún" ("un euro", "veintiún años"). En femenino se usa "una" y "veintiuna" ("una hora", "veintiuna semanas").' },
+  { q: '¿Hasta qué número funciona?', a: 'La herramienta convierte números enteros hasta cientos de millones. Para importes con céntimos, escribe la parte entera; los decimales puedes añadirlos aparte (por ejemplo, "con cincuenta céntimos").' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Número a letras', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-numero-a-letras' },
@@ -20,10 +24,43 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Descomponemos el número en millones, miles, centenas, decenas y unidades, y lo escribimos siguiendo las reglas del español (por ejemplo, "mil doscientos treinta y cuatro"). Muy práctico para cheques y documentos.</p>
+    <h2>Para qué sirve escribir un número en letras</h2>
+    <p>Escribir una cantidad con palabras, y no solo con cifras, es una costumbre con mucho peso en el mundo administrativo y legal. En un <strong>cheque</strong>, por ejemplo, el importe aparece dos veces: en números dentro de la casilla y en letra sobre la línea. Esa duplicidad no es un capricho, sino una medida de seguridad: si alguien intentara añadir un dígito a "150 €", la versión escrita "ciento cincuenta euros" delataría el cambio al instante.</p>
+    <p>La misma lógica se aplica a <strong>contratos, facturas, escrituras notariales, pagarés y documentos oficiales</strong>. Poner la cantidad en letra deja constancia clara de la voluntad de las partes y evita malentendidos por una coma mal colocada o un cero de más. Por eso conviene saber redactar bien estas cifras, y por eso esta herramienta te ahorra el trabajo de hacerlo a mano cuando la cantidad es larga.</p>
+
+    <h2>Reglas para escribir números en letras</h2>
+    <p>El español tiene unas normas bastante estables para poner números en palabras. Estas son las que más se consultan:</p>
+    <ul>
+      <li><strong>Del 16 al 29 se escriben en una sola palabra:</strong> dieciséis, diecisiete, veinte, <strong>veintiuno</strong>, veintidós, veintinueve... Aquí no hay "y" ni separación.</li>
+      <li><strong>A partir del 31 se separan en tres palabras con "y":</strong> <strong>treinta y uno</strong>, cuarenta y cinco, noventa y ocho. La conjunción "y" une la decena con la unidad.</li>
+      <li><strong>La "y" solo va entre decenas y unidades.</strong> Se dice "ciento veinte" y no "ciento y veinte", pero sí "treinta y dos". Nunca se pone "y" después de las centenas ni de los miles.</li>
+      <li><strong>Apócope ante sustantivo masculino:</strong> "uno" y "veintiuno" pierden la vocal final y se convierten en <strong>un</strong> y <strong>veintiún</strong> cuando acompañan a un nombre: "un euro", "veintiún años". En femenino se usa "una" y "veintiuna".</li>
+      <li><strong>Cien y ciento:</strong> se escribe <strong>cien</strong> cuando va solo o antes de un sustantivo ("cien euros"), pero <strong>ciento</strong> cuando le sigue otra cifra: ciento uno, ciento cincuenta.</li>
+    </ul>
+    <p>Para leer una cifra larga se agrupa de derecha a izquierda en unidades, miles y millones. Así, 1.234 se descompone en "mil" y "doscientos treinta y cuatro", lo que da "mil doscientos treinta y cuatro". El millón y sus múltiplos sí llevan plural ("dos millones"), mientras que "mil" es invariable: se dice "tres mil", nunca "tres miles".</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>21</strong> → veintiuno (una sola palabra; con sustantivo masculino, "veintiún": veintiún libros).</li>
+      <li><strong>31</strong> → treinta y uno (a partir de aquí, decena + "y" + unidad).</li>
+      <li><strong>101</strong> → ciento uno (nunca "cien uno" ni "ciento y uno").</li>
+      <li><strong>1.234</strong> → mil doscientos treinta y cuatro.</li>
+      <li><strong>2.026</strong> → dos mil veintiséis.</li>
+    </ul>
+
+    <h2>Errores frecuentes</h2>
+    <ul>
+      <li><strong>"veinte y uno" en lugar de veintiuno.</strong> Del 16 al 29 la forma correcta es siempre en una sola palabra.</li>
+      <li><strong>"ciento y cincuenta".</strong> Sobra la "y": es "ciento cincuenta". La conjunción solo une decena y unidad.</li>
+      <li><strong>"un euros" o "veintiún euro".</strong> El apócope se aplica al número, pero el sustantivo mantiene su número: "un euro" (singular) y "veintiún euros" (plural).</li>
+      <li><strong>"dos mil y veintiséis".</strong> Después de "mil" nunca va "y": lo correcto es "dos mil veintiséis".</li>
+    </ul>
+
+    <p class="hint">Consejo: en cheques y facturas, escribe el importe en letra empezando con mayúscula y añade "euros" al final para dejar la cantidad cerrada y evitar añadidos.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-numeros-romanos">Números romanos</a><a href="/calculadora-letra-dni">Letra del DNI</a><a href="/calculadora-redondeo">Redondeo</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

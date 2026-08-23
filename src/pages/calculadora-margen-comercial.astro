@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué diferencia hay entre margen y markup?', a: 'El margen se calcula sobre el precio de venta (beneficio ÷ precio), y el markup sobre el coste (beneficio ÷ coste). Un mismo producto puede tener, por ejemplo, un margen del 40 % y un markup del 66 %.' },
-  { q: '¿Cómo pongo el precio para un margen concreto?', a: 'Si quieres un margen del X % sobre el precio, el precio de venta es coste ÷ (1 − X/100). Esta calculadora te da los dos porcentajes a partir de coste y precio.' },
+  { q: '¿Qué es el margen comercial?', a: 'El margen comercial es el porcentaje del precio de venta que se queda como beneficio una vez descontado el coste del producto. Se calcula dividiendo el beneficio (precio menos coste) entre el precio de venta y multiplicando por 100. Por ejemplo, si compras a 10 € y vendes a 18 €, tu beneficio es de 8 € y el margen es del 44,4 %.' },
+  { q: '¿Qué diferencia hay entre margen y markup?', a: 'El margen se calcula sobre el precio de venta (beneficio ÷ precio) y el markup sobre el coste (beneficio ÷ coste). Miden cosas distintas, así que un mismo producto puede tener, por ejemplo, un margen del 40 % y un markup del 66,7 %. El margen siempre es menor que el markup para el mismo producto.' },
+  { q: '¿Cómo pongo el precio para un margen concreto?', a: 'Si quieres un margen del X % sobre el precio, el precio de venta es coste ÷ (1 − X/100). Por ejemplo, para un margen del 40 % con un coste de 60 €: 60 ÷ (1 − 0,40) = 100 €. Esta calculadora te da los dos porcentajes a partir del coste y el precio.' },
+  { q: '¿El margen se calcula con IVA o sin IVA?', a: 'Siempre con precios sin IVA (la base imponible). El IVA no es beneficio tuyo: lo cobras al cliente y lo ingresas en Hacienda, así que no forma parte ni del coste ni del margen. Trabaja siempre con importes sin IVA para no falsear el resultado.' },
+  { q: '¿Puede el margen ser mayor del 100 %?', a: 'No. Como el margen se calcula sobre el precio de venta, su máximo teórico es el 100 %, y solo se alcanzaría si el coste fuese cero. El markup, en cambio, sí puede superar el 100 % sin problema, porque se calcula sobre el coste.' },
+  { q: '¿Qué margen es bueno para un negocio?', a: 'Depende del sector: hostelería y textil suelen manejar márgenes altos, mientras que la alimentación o la electrónica trabajan con márgenes más ajustados. Lo importante es que el margen cubra todos los gastos del negocio (alquiler, personal, suministros), no solo el coste del producto.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de margen comercial', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-margen-comercial' },
@@ -30,10 +34,41 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>El <strong>beneficio</strong> es el precio menos el coste. El <strong>margen</strong> es ese beneficio dividido entre el precio (en %), y el <strong>markup</strong> es el beneficio dividido entre el coste. Sirve para fijar precios que cubran costes y te dejen ganancia.</p>
+    <h2>Qué es el margen comercial</h2>
+    <p>El <strong>margen comercial</strong> es la parte del precio de venta que se convierte en beneficio una vez que has descontado lo que te costó el producto. Es uno de los números más importantes para cualquier autónomo o comercio, porque de él depende que un negocio gane dinero de verdad y no solo mueva mercancía. El punto de partida siempre es el <strong>beneficio por unidad</strong>, que es sencillamente el precio de venta menos el coste.</p>
+    <p>A partir de ese beneficio se pueden expresar dos porcentajes distintos, y aquí es donde mucha gente se confunde: el <strong>margen</strong> y el <strong>markup</strong>. No miden lo mismo, aunque los dos partan del mismo beneficio. Entender la diferencia es lo que separa un precio bien puesto de uno que parece rentable pero no lo es.</p>
+
+    <h2>Margen sobre el precio de venta y markup sobre el coste</h2>
+    <p>La clave está en el número por el que divides el beneficio:</p>
+    <ul>
+      <li><strong>Margen sobre el precio de venta:</strong> beneficio ÷ precio de venta × 100. Responde a la pregunta «¿qué porcentaje de lo que cobro es beneficio?».</li>
+      <li><strong>Markup sobre el coste:</strong> beneficio ÷ coste × 100. Responde a «¿cuánto he recargado sobre lo que me costó?».</li>
+    </ul>
+    <p>Para un mismo producto el margen siempre será menor que el markup, porque el precio de venta es mayor que el coste. Esta calculadora te da los dos a la vez a partir del coste y el precio, para que no tengas que hacer las cuentas a mano.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Coste 10 €, precio de venta 18 €:</strong> el beneficio es 18 − 10 = 8 €. Margen = 8 ÷ 18 × 100 = <strong>44,4 %</strong>. Markup = 8 ÷ 10 × 100 = <strong>80 %</strong>.</li>
+      <li><strong>Coste 60 €, precio de venta 100 €:</strong> beneficio de 40 €. Margen = 40 ÷ 100 × 100 = <strong>40 %</strong>. Markup = 40 ÷ 60 × 100 = <strong>66,7 %</strong>.</li>
+      <li><strong>Coste 25 €, precio de venta 40 €:</strong> beneficio de 15 €. Margen = 15 ÷ 40 × 100 = <strong>37,5 %</strong>. Markup = 15 ÷ 25 × 100 = <strong>60 %</strong>.</li>
+    </ul>
+
+    <h2>Por qué margen y markup no son lo mismo</h2>
+    <p>Este es el error que más caro sale. Imagina que quieres «ganar un 40 %» y aplicas un recargo del 40 % sobre el coste: a un producto de 60 € le pondrías 84 € (60 × 1,40). Pero ese 40 % es <em>markup</em>, no margen. El margen real sería 24 ÷ 84 × 100 = 28,6 %, muy por debajo de lo que creías estar ganando. Para conseguir un <strong>margen</strong> del 40 % sobre un coste de 60 € el precio correcto es 60 ÷ (1 − 0,40) = 100 €. La regla para fijar el precio a partir del margen deseado es: <strong>precio = coste ÷ (1 − margen/100)</strong>.</p>
+
+    <h2>Errores comunes al calcular el margen</h2>
+    <ul>
+      <li><strong>Confundir margen con markup:</strong> creer que un recargo del 50 % sobre el coste es un margen del 50 %. No lo es: un markup del 50 % equivale a un margen del 33,3 %.</li>
+      <li><strong>Meter el IVA en la cuenta:</strong> el margen se calcula siempre con precios sin IVA. El IVA lo cobras para Hacienda, no es beneficio tuyo.</li>
+      <li><strong>Olvidar los gastos generales:</strong> el margen bruto solo resta el coste del producto. Alquiler, luz, comisiones o transporte también se comen tu beneficio.</li>
+      <li><strong>Fijar el mismo margen para todo:</strong> los productos con más rotación pueden soportar márgenes menores; los de venta lenta suelen necesitar márgenes mayores para compensar.</li>
+    </ul>
+
+    <p class="hint">El margen que calcula esta herramienta es el margen bruto: no incluye impuestos ni los gastos generales del negocio.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-iva">Calculadora de IVA</a><a href="/calculadora-descuento">Descuentos</a><a href="/calculadora-rentabilidad">Rentabilidad</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

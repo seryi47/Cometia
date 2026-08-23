@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cuántos segundos tiene una hora?', a: 'Una hora tiene 3.600 segundos (60 minutos × 60 segundos). Un día tiene 86.400 segundos.' },
-  { q: '¿Cómo se convierten las unidades de tiempo?', a: 'Se pasa todo a una unidad común (por ejemplo, segundos) y luego a la unidad de destino. Esta calculadora lo hace por ti entre días, horas, minutos y segundos.' },
+  { q: '¿Cuántos segundos tiene una hora?', a: 'Una hora tiene 3.600 segundos, que salen de multiplicar 60 minutos por 60 segundos. Un día completo tiene 86.400 segundos.' },
+  { q: '¿Cuántos minutos tiene un día?', a: 'Un día tiene 1.440 minutos, resultado de multiplicar sus 24 horas por 60 minutos. En segundos son 86.400.' },
+  { q: '¿Cuántas horas son 90 minutos?', a: '90 minutos equivalen a 1,5 horas, porque se dividen los 90 minutos entre los 60 que tiene una hora (90 / 60 = 1,5).' },
+  { q: '¿Cuántos segundos son 2 horas?', a: '2 horas son 7.200 segundos, ya que cada hora tiene 3.600 segundos y 2 × 3.600 = 7.200.' },
+  { q: '¿Cómo se convierten las unidades de tiempo?', a: 'Se pasa todo a una unidad común (normalmente segundos): se multiplica por los segundos de la unidad de origen y luego se divide entre los segundos de la unidad de destino. Esta calculadora lo hace por ti entre días, horas, minutos y segundos.' },
+  { q: '¿Por qué el tiempo no se cuenta de diez en diez?', a: 'Porque las horas, los minutos y los segundos usan un sistema sexagesimal (base 60) heredado de la antigua Babilonia: 60 segundos forman un minuto y 60 minutos una hora. Solo el paso de horas a días usa otro múltiplo, el 24.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Conversor de tiempo', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-convertir-tiempo' },
@@ -24,11 +28,53 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Equivalencias</h2>
-    <p>1 día = 24 horas = 1.440 minutos = 86.400 segundos. Elige la unidad de origen y la de destino y el conversor hace el resto al instante.</p>
+    <h2>Para qué sirve este conversor de tiempo</h2>
+    <p>Este <strong>conversor de tiempo</strong> te permite pasar una cantidad de <strong>días, horas, minutos o segundos</strong> a cualquiera de esas otras unidades al instante. Es útil más veces de lo que parece: para saber cuántos minutos dura una película indicada en horas, cuántos segundos ocupa una sesión de entrenamiento, cuántas horas suman los minutos de varias tareas o cuántos días representan un montón de horas acumuladas. También ayuda con los deberes de matemáticas y con la programación, donde los tiempos suelen medirse en segundos.</p>
+    <p>Solo tienes que escribir el valor, elegir la unidad de origen en «De» y la de destino en «A». El resultado aparece al momento, sin registro y sin que tengas que saberte las fórmulas de memoria.</p>
+
+    <h2>Equivalencias entre días, horas, minutos y segundos</h2>
+    <p>Por encima de las horas, el tiempo se mide en un sistema sexagesimal (basado en el 60), por eso las cifras no son múltiplos de 10 como en el sistema métrico. Estas son las equivalencias básicas que usa la calculadora:</p>
+    <ul>
+      <li><strong>1 día</strong> = 24 horas = 1.440 minutos = 86.400 segundos</li>
+      <li><strong>1 hora</strong> = 60 minutos = 3.600 segundos</li>
+      <li><strong>1 minuto</strong> = 60 segundos</li>
+    </ul>
+    <p>De ahí sale todo lo demás: como una hora tiene 60 minutos y cada minuto 60 segundos, equivale a 60 × 60 = 3.600 segundos. Y como un día tiene 24 horas, son 24 × 3.600 = 86.400 segundos.</p>
+
+    <h2>Cómo se convierte el tiempo</h2>
+    <p>El método para convertir cualquier tiempo es siempre el mismo: <strong>pasar todo a una unidad común</strong> —normalmente los segundos, que es la más pequeña— y desde ahí llegar a la unidad que quieres. El proceso tiene dos pasos:</p>
+    <ul>
+      <li><strong>Del valor a segundos:</strong> multiplica por los segundos que tiene esa unidad (por 86.400 si son días, por 3.600 si son horas y por 60 si son minutos).</li>
+      <li><strong>De segundos a la unidad destino:</strong> divide entre los segundos que tiene la unidad a la que quieres llegar.</li>
+    </ul>
+    <p>Cuando pasas de una unidad grande a una pequeña (de horas a segundos, por ejemplo) el número crece y multiplicas; cuando vas de una pequeña a una grande (de segundos a horas) el número se reduce y divides. El conversor hace las dos operaciones por ti en un solo paso.</p>
+    <p>Un ejemplo completo del método en dos pasos: para convertir <strong>2 días a minutos</strong>, primero pasas a segundos (2 × 86.400 = 172.800 segundos) y luego divides entre 60 para obtener minutos (172.800 / 60 = <strong>2.880 minutos</strong>). Es el mismo resultado que multiplicar directamente 2 × 1.440, porque un día son 1.440 minutos; la unidad común solo sirve para no equivocarse con los factores.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>2 horas a segundos:</strong> 2 × 3.600 = <strong>7.200 segundos</strong>.</li>
+      <li><strong>90 minutos a horas:</strong> 90 / 60 = <strong>1,5 horas</strong>.</li>
+      <li><strong>3 días a minutos:</strong> 3 × 1.440 = <strong>4.320 minutos</strong>.</li>
+      <li><strong>5.400 segundos a horas:</strong> 5.400 / 3.600 = <strong>1,5 horas</strong>.</li>
+    </ul>
+
+    <h2>Tabla de equivalencias</h2>
+    <table>
+      <thead><tr><th>Días</th><th>Horas</th><th>Minutos</th><th>Segundos</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>24</td><td>1.440</td><td>86.400</td></tr>
+        <tr><td>0,5</td><td>12</td><td>720</td><td>43.200</td></tr>
+        <tr><td>—</td><td>1</td><td>60</td><td>3.600</td></tr>
+        <tr><td>—</td><td>0,5</td><td>30</td><td>1.800</td></tr>
+        <tr><td>—</td><td>—</td><td>1</td><td>60</td></tr>
+      </tbody>
+    </table>
+
+    <p class="hint">Para valores con decimales, este conversor muestra el resultado con un máximo de cuatro cifras decimales.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-horas">Horas entre dos horas</a></div>
+    <div class="more"><a href="/calculadora-horas">Horas entre dos horas</a><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-cuenta-atras">Cuenta atrás</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calculan las horas entre dos horas?', a: 'Restamos la hora de inicio a la de fin. Si la hora de fin es menor (por ejemplo, un turno de noche que termina de madrugada), sumamos 24 horas para contar el paso de medianoche.' },
-  { q: '¿Puedo descontar la pausa de la comida?', a: 'Sí: indica los minutos de descanso y los restamos del total, para saber las horas realmente trabajadas.' },
+  { q: '¿Cómo se calculan las horas entre dos horas?', a: 'Restamos la hora de inicio a la de fin. Si la hora de fin es menor (por ejemplo, un turno de noche que termina de madrugada), sumamos 24 horas para contar el paso de medianoche. Después descontamos los minutos de pausa para obtener las horas efectivas.' },
+  { q: '¿Cómo cuento un turno que cruza la medianoche?', a: 'La calculadora lo hace automáticamente. Cuando la hora de salida es menor que la de entrada (por ejemplo, de 22:00 a 06:00), suma 24 horas para que el intervalo se cuente pasando por la medianoche. En ese caso el resultado son 8 horas exactas.' },
+  { q: '¿Puedo descontar la pausa de la comida?', a: 'Sí: indica los minutos de descanso y los restamos del total, para saber las horas realmente trabajadas. Por ejemplo, de 09:00 a 17:30 hay 8 h 30 min, pero con 30 minutos de pausa quedan 8 h efectivas.' },
+  { q: '¿Qué significa el resultado en decimal?', a: 'Es el mismo tiempo expresado en horas con decimales en lugar de horas y minutos. Se obtiene dividiendo los minutos entre 60. Así, 8 h 30 min equivalen a 8,5 h. Este formato es el que se usa en las nóminas, porque permite multiplicar las horas por el precio por hora.' },
+  { q: '¿Cómo paso las horas trabajadas a euros?', a: 'Toma el resultado en decimal y multiplícalo por tu precio por hora. Por ejemplo, 8,5 h a 12 €/h son 102 €. Puedes hacerlo directamente con nuestra calculadora de precio por hora.' },
+  { q: '¿Sirve para calcular horas extra?', a: 'Sí. Calcula las horas efectivas de la jornada y compáralas con las horas que marca tu contrato o convenio; la diferencia son las horas extra que has realizado.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de horas', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-horas' },
@@ -28,11 +32,45 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>Restamos la hora de inicio a la de fin. Si el turno cruza la medianoche, sumamos 24 horas. Después descontamos los minutos de pausa para darte las horas efectivas, en formato horas:minutos y en decimal (útil para nóminas).</p>
+    <h2>Para qué sirve esta calculadora</h2>
+    <p>Esta herramienta calcula <strong>cuánto tiempo pasa entre dos horas</strong>: indicas la hora de entrada y la de salida y te devuelve la duración en horas y minutos. Es la forma más rápida de saber tus <strong>horas trabajadas</strong> en una jornada, pero sirve para cualquier situación en la que necesites medir un intervalo: la duración de una reunión, de un viaje, de una guardia, de una clase o de una sesión de estudio. Como además puedes descontar la <strong>pausa de la comida o el descanso</strong>, el resultado refleja las horas efectivas, que son las que de verdad cuentan para una nómina o una factura.</p>
+
+    <h2>Cómo se calcula el tiempo entre dos horas</h2>
+    <p>El cálculo parte de una resta sencilla: se convierten las dos horas a minutos, se resta la hora de inicio a la de fin y el resultado se vuelve a expresar en horas y minutos. Por ejemplo, de las 09:00 a las 17:30 hay 8 horas y 30 minutos.</p>
+    <p>El punto delicado es el <strong>cruce de medianoche</strong>. En un turno de noche que empieza a las 22:00 y termina a las 06:00, una resta directa daría un número negativo, porque las 06:00 parecen "anteriores" a las 22:00. Para resolverlo, cuando la hora de fin es menor que la de inicio <strong>se suman 24 horas</strong>, de modo que el intervalo se cuente correctamente pasando por la medianoche. Así, ese turno de noche son 8 horas exactas. Por último, si has indicado minutos de pausa, se restan del total para dejar solo las horas efectivas.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Jornada de oficina (09:00 a 17:30, 30 min de pausa):</strong> de 09:00 a 17:30 hay 8 h 30 min; al descontar los 30 minutos de comida quedan <strong>8 h 0 min</strong> de trabajo efectivo.</li>
+      <li><strong>Turno de noche (22:00 a 06:00):</strong> como cruza la medianoche, se suman 24 h y el intervalo son <strong>8 h 0 min</strong>.</li>
+      <li><strong>Media jornada (08:15 a 14:00, sin pausa):</strong> de 08:15 a 14:00 hay <strong>5 h 45 min</strong>.</li>
+    </ul>
+
+    <h2>Cómo pasar los minutos a formato decimal (para nóminas)</h2>
+    <p>Para saber cuánto se cobra no basta con las horas y los minutos: hay que convertir los minutos a <strong>formato decimal</strong>, porque los sueldos se multiplican por horas decimales, no por minutos. La regla es dividir los minutos entre 60. Cuidado, porque no es lo mismo escribir 8,30 que 8,50: media hora no es "0,30" de hora, sino <strong>0,50</strong>.</p>
+    <p>Estas son las equivalencias más habituales:</p>
+    <ul>
+      <li><strong>15 minutos</strong> = 0,25 h</li>
+      <li><strong>20 minutos</strong> = 0,33 h</li>
+      <li><strong>30 minutos</strong> = 0,50 h</li>
+      <li><strong>45 minutos</strong> = 0,75 h</li>
+    </ul>
+    <p>Así, <strong>8 h 30 min equivalen a 8,5 h</strong>. Si tu precio por hora es de 12 €, cobrarías 8,5 × 12 = 102 €. La calculadora te ofrece directamente el valor decimal para que no tengas que hacer esta conversión a mano.</p>
+
+    <h2>Usos habituales</h2>
+    <ul>
+      <li><strong>Control horario laboral:</strong> sumar las horas de cada jornada para el registro de la jornada o para revisar la nómina.</li>
+      <li><strong>Autónomos y freelance:</strong> medir el tiempo dedicado a un proyecto y convertirlo en horas facturables.</li>
+      <li><strong>Horas extra:</strong> comparar las horas efectivas con las de tu contrato para saber cuántas has hecho de más.</li>
+      <li><strong>Turnos y guardias:</strong> calcular turnos de tarde o de noche que terminan de madrugada.</li>
+      <li><strong>Estudio y productividad:</strong> medir cuánto tiempo dedicas realmente a una tarea.</li>
+    </ul>
+
+    <p class="hint">El resultado es orientativo; para el cómputo oficial de tu jornada consulta tu convenio o al departamento de recursos humanos.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a></div>
+    <div class="more"><a href="/calculadora-convertir-tiempo">Convertir tiempo</a><a href="/calculadora-precio-hora">Precio por hora</a><a href="/calculadora-dias-entre-fechas">Días entre fechas</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

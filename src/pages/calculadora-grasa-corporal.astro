@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula el porcentaje de grasa corporal?', a: 'Usamos el método de la Marina de EE. UU., que estima la grasa a partir de medidas corporales: altura, cuello y cintura (y cadera en mujeres). Es una estimación rápida y sin básculas especiales.' },
-  { q: '¿Es preciso?', a: 'Es orientativo. Métodos como la báscula de bioimpedancia o la densitometría son más precisos. Úsalo para hacerte una idea y seguir tu evolución, no como diagnóstico.' },
+  { q: '¿Cómo se calcula el porcentaje de grasa corporal?', a: 'Esta calculadora usa el método de la Marina de EE. UU., que estima la grasa a partir de tu altura y de unos perímetros corporales: el cuello y la cintura en los hombres, y también la cadera en las mujeres. Con esas medidas aplica una fórmula que devuelve un porcentaje aproximado, sin básculas ni aparatos especiales.' },
+  { q: '¿Es preciso el resultado?', a: 'Es orientativo. Métodos como la báscula de bioimpedancia o la densitometría DEXA son más precisos, aunque también más caros. La estimación por perímetros funciona muy bien para hacerte una idea y, sobre todo, para seguir tu evolución si mides siempre de la misma forma.' },
+  { q: '¿Dónde tengo que medir la cintura y el cuello?', a: 'El cuello se mide justo por debajo de la nuez, con la cinta un poco inclinada hacia abajo. La cintura, en los hombres, a la altura del ombligo; en las mujeres, por la parte más estrecha del abdomen. Mantén la cinta pegada a la piel pero sin apretar y paralela al suelo.' },
+  { q: '¿Qué porcentaje de grasa corporal es saludable?', a: 'Depende del sexo y la edad. Como referencia general, suele considerarse saludable un rango en torno al 10-20 % en hombres y al 18-28 % en mujeres. Las mujeres necesitan de forma natural algo más de grasa, y con la edad es normal tener un poco más.' },
+  { q: '¿En qué se diferencia de una báscula de bioimpedancia?', a: 'La báscula de bioimpedancia estima la composición corporal pasando una corriente imperceptible por el cuerpo, y sus resultados varían con la hidratación y la hora del día. Este método se basa solo en medidas con cinta métrica. Ninguno de los dos es tan fiable como una densitometría DEXA.' },
+  { q: '¿Cada cuánto conviene medirse?', a: 'Para seguir tu evolución, una vez cada dos o cuatro semanas es suficiente. Mide siempre en condiciones parecidas (por la mañana, en ayunas y con la misma técnica) para que los cambios que veas reflejen la realidad y no diferencias en la forma de medir.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de grasa corporal', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-grasa-corporal' },
@@ -32,11 +36,46 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>El método de la Marina estima la grasa corporal con fórmulas basadas en la circunferencia del cuello, la cintura (y la cadera en mujeres) y la altura. Mide con la cinta pegada a la piel pero sin apretar, y en ayunas para más consistencia.</p>
+    <h2>Qué es el porcentaje de grasa corporal</h2>
+    <p>El <strong>porcentaje de grasa corporal</strong> indica qué parte de tu peso total corresponde a grasa y qué parte a masa magra: músculo, huesos, agua y órganos. Es un dato más informativo que el peso o el IMC a la hora de valorar la composición del cuerpo, porque dos personas con el mismo peso y la misma altura pueden tener cantidades de grasa muy distintas. El organismo necesita una cantidad mínima de grasa —la llamada grasa esencial— para funcionar; el problema aparece cuando el exceso se acumula, sobre todo en la zona abdominal.</p>
+
+    <h2>El método que usa esta calculadora</h2>
+    <p>Esta herramienta aplica el <strong>método de la Marina de EE. UU.</strong> (U.S. Navy), una fórmula que estima la grasa corporal a partir de unos pocos perímetros medidos con una cinta métrica y de tu altura. En los <strong>hombres</strong> utiliza el perímetro del cuello y de la cintura; en las <strong>mujeres</strong> añade el perímetro de la cadera. Con esas medidas y la altura, la fórmula calcula un porcentaje aproximado sin necesidad de básculas ni aparatos especiales, lo que la hace muy cómoda para hacer un seguimiento en casa.</p>
+    <p>La idea de fondo es sencilla: la diferencia entre la cintura y el cuello (y, en las mujeres, también la cadera) se relaciona estadísticamente con la cantidad de grasa acumulada. El método no mide la grasa directamente, sino que la estima a partir de esa relación.</p>
+
+    <h2>Cómo tomar bien las medidas</h2>
+    <p>La fiabilidad del resultado depende casi por completo de cómo midas. Usa una cinta métrica flexible, colócala pegada a la piel pero sin apretar ni marcar la carne, y mantenla paralela al suelo. Conviene medir por la mañana, en ayunas y relajado, respirando con normalidad.</p>
+    <ul>
+      <li><strong>Cuello:</strong> justo por debajo de la laringe (la nuez), con la cinta ligeramente inclinada hacia abajo por delante.</li>
+      <li><strong>Cintura:</strong> en los hombres, a la altura del ombligo; en las mujeres, por la parte más estrecha del abdomen.</li>
+      <li><strong>Cadera (solo mujeres):</strong> por la zona más ancha de los glúteos.</li>
+    </ul>
+    <p>Repite cada medida dos o tres veces y anota el promedio. Un centímetro de más o de menos puede cambiar bastante el porcentaje, así que merece la pena medir con calma.</p>
+
+    <h2>Rangos orientativos por sexo</h2>
+    <p>Los valores saludables de grasa corporal no son iguales en hombres y mujeres: ellas necesitan de forma natural una proporción mayor. Esta tabla recoge rangos orientativos de uso frecuente; varían según la edad y la fuente consultada.</p>
+    <div class="tablewrap">
+      <table class="amort">
+        <thead><tr><th>Categoría</th><th>Hombres</th><th>Mujeres</th></tr></thead>
+        <tbody>
+          <tr><td>Grasa esencial</td><td>2-5 %</td><td>10-13 %</td></tr>
+          <tr><td>Atlético</td><td>6-13 %</td><td>14-20 %</td></tr>
+          <tr><td>En forma</td><td>14-17 %</td><td>21-24 %</td></tr>
+          <tr><td>Aceptable</td><td>18-24 %</td><td>25-31 %</td></tr>
+          <tr><td>Elevado</td><td>25 % o más</td><td>32 % o más</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Como referencia general, un rango saludable suele situarse en torno al 10-20 % en los hombres y al 18-28 % en las mujeres, aunque tener algo más de grasa con la edad es normal y no tiene por qué ser un problema.</p>
+
+    <h2>Por qué es solo una estimación</h2>
+    <p>Conviene entender qué no es esta calculadora. <strong>No es una báscula de bioimpedancia</strong> (que envía una corriente imperceptible para estimar la composición corporal) ni una <strong>densitometría DEXA</strong>, considerada la referencia más fiable. El método de la Marina es una aproximación basada en perímetros, así que puede desviarse en personas muy musculadas, muy delgadas o con una distribución de grasa poco habitual. Su verdadero valor está en el seguimiento: si mides siempre igual, la <strong>evolución</strong> del número a lo largo de las semanas resulta más útil que el valor exacto de un día concreto.</p>
+
+    <p class="hint">Esta estimación es orientativa y no sustituye la valoración de un profesional sanitario. Si tienes dudas sobre tu peso o tu composición corporal, consúltalo con tu médico o con un dietista-nutricionista.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-imc">IMC</a><a href="/calculadora-calorias">Calorías</a></div>
+    <div class="more"><a href="/calculadora-imc">IMC</a><a href="/calculadora-calorias">Calorías diarias</a><a href="/calculadora-peso-ideal">Peso ideal</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

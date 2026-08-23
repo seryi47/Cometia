@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es una potencia?', a: 'Es multiplicar un número (la base) por sí mismo tantas veces como indica el exponente. Por ejemplo, 2⁵ = 2 × 2 × 2 × 2 × 2 = 32.' },
-  { q: '¿Cómo se calcula una raíz enésima?', a: 'La raíz de índice n de un número x es el número que, elevado a n, da x. Equivale a elevar x a 1/n. Por ejemplo, la raíz cúbica de 27 es 3.' },
+  { q: '¿Qué es una potencia?', a: 'Una potencia es una forma abreviada de escribir una multiplicación de factores iguales. La base es el número que se repite y el exponente indica cuántas veces. Por ejemplo, 2⁵ = 2 × 2 × 2 × 2 × 2 = 32.' },
+  { q: '¿Cómo se calcula una raíz enésima?', a: 'La raíz de índice n de un número x es el número que, elevado a n, da x. Equivale a elevar x a 1/n. Por ejemplo, la raíz cúbica de 27 es 3, porque 3 × 3 × 3 = 27; y la raíz cuadrada de 144 es 12, porque 12 × 12 = 144.' },
+  { q: '¿Cuánto vale un número elevado a 0?', a: 'Todo número distinto de cero elevado a 0 es igual a 1. Por ejemplo, 5⁰ = 1. Es una convención que mantiene coherentes las propiedades de las potencias, en especial la del cociente de dos potencias iguales.' },
+  { q: '¿Qué significa un exponente negativo?', a: 'Un exponente negativo indica el inverso de la potencia: a⁻ⁿ = 1 / aⁿ. Por ejemplo, 2⁻² = 1 / 2² = 1/4 = 0,25. Por eso, cuanto más negativo es el exponente, más pequeño resulta el número.' },
+  { q: '¿Es lo mismo la raíz cuadrada que elevar a 1/2?', a: 'Sí. Una raíz es un exponente fraccionario: la raíz cuadrada de x es x elevado a 1/2 y la raíz cúbica es x elevado a 1/3. Gracias a esta equivalencia, las raíces cumplen las mismas propiedades que las potencias.' },
+  { q: '¿Se puede calcular la raíz de un número negativo?', a: 'Depende del índice. La raíz de índice impar de un número negativo sí existe: la raíz cúbica de -8 es -2, porque (-2) × (-2) × (-2) = -8. En cambio, la raíz cuadrada de un número negativo no tiene solución dentro de los números reales.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de potencias y raíces', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-potencias-raices' },
@@ -24,10 +28,40 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>En modo <strong>potencia</strong> elevamos la base al exponente. En modo <strong>raíz</strong> calculamos la raíz del índice que indiques (2 para la raíz cuadrada, 3 para la cúbica, etc.), que equivale a elevar el número a uno partido del índice.</p>
+    <h2>Qué es una potencia y qué es una raíz</h2>
+    <p>Una <strong>potencia</strong> es una forma abreviada de escribir una multiplicación de factores iguales. Se compone de dos elementos: la <strong>base</strong>, que es el número que se multiplica, y el <strong>exponente</strong>, que indica cuántas veces se repite. Así, en lugar de escribir 2 × 2 × 2 × 2 × 2, escribimos 2⁵, que se lee «dos elevado a cinco» y vale 32. Las potencias aparecen por todas partes: en el cálculo de áreas y volúmenes, en la notación científica, en el interés compuesto o en la informática, donde la memoria se mide en potencias de dos.</p>
+    <p>Una <strong>raíz</strong> es la operación inversa de la potencia. Mientras que una potencia parte de la base y el exponente para hallar el resultado, una raíz parte del resultado para averiguar cuál era la base. La raíz cuadrada de 144 es 12 porque 12 × 12 = 144; y la raíz cúbica de 27 es 3 porque 3 × 3 × 3 = 27. El pequeño número que acompaña al símbolo se llama <strong>índice</strong> e indica el tipo de raíz: 2 para la cuadrada (no suele escribirse), 3 para la cúbica, y así sucesivamente.</p>
+
+    <h2>Propiedades básicas de las potencias</h2>
+    <p>Trabajar con potencias es mucho más rápido si conoces sus propiedades. Estas son las más útiles cuando comparten la misma base:</p>
+    <ul>
+      <li><strong>Producto de misma base:</strong> se suman los exponentes → aᵐ · aⁿ = aᵐ⁺ⁿ. Por ejemplo, 2³ · 2² = 2⁵ = 32.</li>
+      <li><strong>Cociente de misma base:</strong> se restan los exponentes → aᵐ / aⁿ = aᵐ⁻ⁿ.</li>
+      <li><strong>Potencia de una potencia:</strong> se multiplican los exponentes → (aᵐ)ⁿ = aᵐⁿ.</li>
+      <li><strong>Potencia de un producto:</strong> se reparte el exponente → (a · b)ⁿ = aⁿ · bⁿ.</li>
+    </ul>
+
+    <h2>Relación entre potencias y raíces</h2>
+    <p>Potencias y raíces son dos caras de la misma moneda. De hecho, <strong>una raíz no es más que una potencia con exponente fraccionario</strong>. La raíz de índice n de un número equivale a elevar ese número a 1/n:</p>
+    <p style="text-align:center"><strong>ⁿ√x = x<sup>1/n</sup></strong></p>
+    <p>Por eso la raíz cuadrada de un número es lo mismo que elevarlo a 1/2, y la raíz cúbica equivale a elevarlo a 1/3. Esta equivalencia es muy práctica: gracias a ella, las raíces heredan todas las propiedades de las potencias y se pueden calcular con la misma herramienta.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>2⁵:</strong> 2 × 2 × 2 × 2 × 2 = <strong>32</strong>.</li>
+      <li><strong>10³:</strong> 10 × 10 × 10 = <strong>1000</strong>.</li>
+      <li><strong>√144:</strong> buscamos el número que multiplicado por sí mismo da 144; como 12 × 12 = 144, la raíz cuadrada es <strong>12</strong>.</li>
+    </ul>
+
+    <h2>El exponente 0 y los exponentes negativos</h2>
+    <p>Dos casos especiales suelen generar dudas. El primero: <strong>cualquier número distinto de cero elevado a 0 vale 1</strong>. Así, 5⁰ = 1 y 100⁰ = 1. No es una regla arbitraria, sino la única que mantiene coherente la propiedad del cociente de potencias.</p>
+    <p>El segundo: un <strong>exponente negativo</strong> significa dividir en lugar de multiplicar. Elevar a un exponente negativo equivale a calcular el inverso de la potencia: a⁻ⁿ = 1 / aⁿ. Por ejemplo, 2⁻² = 1 / 2² = 1 / 4 = 0,25. Cuanto más negativo es el exponente, más pequeño es el resultado.</p>
+
+    <p class="hint">Consejo: si dudas de una raíz, comprueba el resultado elevándolo al índice; debería devolverte el número original.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-notacion-cientifica">Notación científica</a><a href="/calculadora-ecuacion-segundo-grado">Ecuación de segundo grado</a><a href="/calculadora-area">Área</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

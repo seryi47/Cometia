@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo funcionan los números romanos?', a: 'Usan siete letras: I (1), V (5), X (10), L (50), C (100), D (500) y M (1000). Se combinan sumando, salvo cuando una letra menor va antes de una mayor, que entonces resta (IV = 4, IX = 9).' },
-  { q: '¿Hasta qué número llega?', a: 'La notación romana clásica llega hasta 3999 (MMMCMXCIX). Para números mayores se usan barras encima, que aquí no representamos.' },
+  { q: '¿Cómo funcionan los números romanos?', a: 'Usan siete letras: I (1), V (5), X (10), L (50), C (100), D (500) y M (1000). Se combinan sumando de izquierda a derecha, salvo cuando una letra menor va justo delante de otra mayor: en ese caso se resta (IV = 4, IX = 9, XL = 40, CM = 900).' },
+  { q: '¿Por qué el 4 se escribe IV y no IIII?', a: 'Porque ninguna letra puede repetirse más de tres veces seguidas. Para evitar IIII, se coloca la I delante de la V (5) y se resta: 5 − 1 = 4. Lo mismo ocurre con el 9 (IX), el 40 (XL) o el 90 (XC).' },
+  { q: '¿Hasta qué número llegan los números romanos?', a: 'La notación clásica llega hasta 3999 (MMMCMXCIX), porque la M no puede repetirse más de tres veces. Para cantidades mayores, los romanos dibujaban una barra encima de una letra para multiplicar su valor por 1000, algo que hoy apenas se usa y que aquí no representamos.' },
+  { q: '¿Existe el cero en los números romanos?', a: 'No. El sistema romano no tiene ningún símbolo para el cero: se construye sumando y restando cantidades positivas, así que no puede representar ni la nada ni los números negativos. El cero llegó a Europa mucho después, con la numeración arábiga que usamos a diario.' },
+  { q: '¿Cómo se escribe 2026 en números romanos?', a: '2026 se escribe MMXXVI: MM (2000) + XX (20) + VI (6). Siguiendo la misma lógica, 2024 es MMXXIV y 2025 es MMXXV.' },
+  { q: '¿Por qué en muchos relojes el 4 aparece como IIII?', a: 'Es una excepción tradicional. Aunque la forma correcta es IV, muchas esferas clásicas usan IIII por motivos estéticos y de simetría con el VIII del lado opuesto. Es una costumbre antigua de la relojería, no un error del sistema.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Conversor de números romanos', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-numeros-romanos' },
@@ -20,10 +24,62 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se convierten</h2>
-    <p>Las letras romanas se suman de izquierda a derecha (VI = 6). Cuando una letra de menor valor va delante de otra mayor, se resta (IV = 4, IX = 9, XL = 40, CM = 900). Con esas reglas se representa cualquier número del 1 al 3999.</p>
+    <h2>Qué son los números romanos</h2>
+    <p>Los <strong>números romanos</strong> son el sistema de numeración que usaba la antigua Roma y que ha sobrevivido hasta hoy en relojes, monumentos, nombres de reyes y numeración de siglos. En lugar de las cifras del 0 al 9 que empleamos a diario, se sirven de <strong>siete letras del alfabeto latino</strong> que representan valores fijos y que se combinan siguiendo unas reglas sencillas. Su origen se remonta a la Roma antigua, donde nacieron para el comercio y la administración mucho antes de que existiera un sistema con cero.</p>
+    <p>No tienen cifra para el cero ni para los decimales, por lo que sirven para contar y ordenar, pero no para hacer cálculos con comodidad. Aun así, su valor decorativo y simbólico ha hecho que sigan muy presentes en la vida cotidiana.</p>
+
+    <h2>Los símbolos y sus valores</h2>
+    <p>Todo el sistema se apoya en estas siete letras:</p>
+    <ul>
+      <li><strong>I</strong> = 1</li>
+      <li><strong>V</strong> = 5</li>
+      <li><strong>X</strong> = 10</li>
+      <li><strong>L</strong> = 50</li>
+      <li><strong>C</strong> = 100</li>
+      <li><strong>D</strong> = 500</li>
+      <li><strong>M</strong> = 1000</li>
+    </ul>
+    <p>Un truco para recordar el orden de mayor a menor es la frase «<strong>M</strong>i <strong>D</strong>octor <strong>C</strong>obra <strong>L</strong>os <strong>X</strong> a <strong>V</strong>eces <strong>I</strong>gual».</p>
+
+    <h2>Las reglas de combinación</h2>
+    <p>Con solo esas siete letras se escribe cualquier número del 1 al 3999 siguiendo tres reglas:</p>
+    <ul>
+      <li><strong>Suma:</strong> las letras se leen de izquierda a derecha y, cuando van de mayor a menor, se suman. Así, VI = 5 + 1 = 6, y XV = 10 + 5 = 15.</li>
+      <li><strong>Resta:</strong> cuando una letra de menor valor va justo delante de otra mayor, se resta. Solo se admiten seis combinaciones: <strong>IV (4), IX (9), XL (40), XC (90), CD (400) y CM (900)</strong>.</li>
+      <li><strong>Repetición limitada:</strong> una misma letra no puede repetirse más de tres veces seguidas. Por eso el 4 es IV y no IIII, y el 40 es XL y no XXXX. Además, las letras V, L y D nunca se repiten.</li>
+    </ul>
+
+    <h3>Ejemplos resueltos</h3>
+    <p>Veamos cómo se aplican las reglas paso a paso:</p>
+    <ul>
+      <li><strong>2024 → MMXXIV:</strong> 2000 (MM) + 20 (XX) + 4 (IV) = MMXXIV.</li>
+      <li><strong>49 → XLIX:</strong> 40 (XL) + 9 (IX) = XLIX. Un error habitual es escribirlo IL, pero ante la L solo puede restarse la X, nunca la I.</li>
+      <li><strong>XIX → 19:</strong> leemos X (10) + IX (9) = 19, porque la I delante de la X resta y hace que IX valga 9.</li>
+    </ul>
+
+    <h2>Tabla de referencia rápida</h2>
+    <p>Esta tabla reúne los valores clave y algunos años recientes para comprobar de un vistazo cualquier conversión:</p>
+    <ul>
+      <li><strong>1</strong> = I · <strong>4</strong> = IV · <strong>5</strong> = V · <strong>9</strong> = IX · <strong>10</strong> = X</li>
+      <li><strong>14</strong> = XIV · <strong>19</strong> = XIX · <strong>40</strong> = XL · <strong>50</strong> = L · <strong>90</strong> = XC</li>
+      <li><strong>100</strong> = C · <strong>400</strong> = CD · <strong>500</strong> = D · <strong>900</strong> = CM · <strong>1000</strong> = M</li>
+      <li><strong>2025</strong> = MMXXV · <strong>2026</strong> = MMXXVI · <strong>3999</strong> = MMMCMXCIX</li>
+    </ul>
+
+    <h2>Para qué se usan hoy</h2>
+    <p>Aunque ya no calculamos con ellos, los números romanos siguen muy vivos a nuestro alrededor:</p>
+    <ul>
+      <li><strong>Siglos:</strong> vivimos en el <strong>siglo XXI</strong> (21), y hablamos del arte del <strong>siglo XIX</strong> (19) o de la Ilustración del <strong>siglo XVIII</strong> (18).</li>
+      <li><strong>Reyes y papas:</strong> en España reina <strong>Felipe VI</strong> (6), sucesor de <strong>Juan Carlos I</strong> (1); y recordamos a papas como <strong>Benedicto XVI</strong> (16).</li>
+      <li><strong>Relojes:</strong> muchas esferas clásicas marcan las horas con I, II, III… hasta el <strong>XII</strong> (12).</li>
+      <li><strong>Otros usos:</strong> tomos de una colección, capítulos, ediciones de eventos (la <strong>XXXIII</strong> edición) o el año en los créditos de las películas.</li>
+    </ul>
+
+    <p class="hint">Este conversor trabaja con la notación clásica del 1 al 3999; para cantidades mayores harían falta las barras superiores, que aquí no representamos.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-numero-a-letras">Número a letras</a><a href="/calculadora-binario-decimal">Binario a decimal</a><a href="/calculadora-tabla-multiplicar">Tabla de multiplicar</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

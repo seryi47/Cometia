@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Para qué sirve una cuenta atrás?', a: 'Para saber cuántos días faltan hasta una fecha señalada: unas vacaciones, un cumpleaños, Navidad, un examen o cualquier evento importante.' },
-  { q: '¿Cuenta el día de hoy?', a: 'Mostramos los días completos que faltan desde hoy hasta la fecha elegida. Si eliges hoy, faltan 0 días.' },
+  { q: '¿Para qué sirve una cuenta atrás?', a: 'Para saber cuántos días faltan hasta una fecha señalada: unas vacaciones, un cumpleaños, Navidad, un examen o cualquier evento importante. Ver el número exacto de días ayuda a planificar con margen y a mantener la motivación.' },
+  { q: '¿Cómo se calcula cuántos días faltan?', a: 'Es una resta de fechas: comparamos el día de hoy con la fecha que eliges y contamos los días completos que hay entre las dos. Ese número es el que verás como «Faltan», acompañado de su equivalencia en semanas y días.' },
+  { q: '¿Cuenta el día de hoy?', a: 'Mostramos los días completos que faltan desde hoy hasta la fecha elegida, sin sumar el día actual. Si eliges hoy, la cuenta atrás indica que es hoy, es decir, faltan 0 días.' },
+  { q: '¿Qué pasa si elijo una fecha que ya pasó?', a: 'Una cuenta atrás solo tiene sentido hacia el futuro, así que si eliges una fecha anterior a hoy te avisamos de que esa fecha ya pasó. Para contar los días entre dos fechas del pasado, usa la calculadora de días entre fechas.' },
+  { q: '¿Por qué se muestran también las semanas?', a: 'Porque a veces es más fácil hacerse una idea del tiempo en semanas que en días sueltos. Por eso, además del total de días, repartimos el resultado en semanas y días: por ejemplo, 40 días son 5 semanas y 5 días.' },
+  { q: '¿Puedo calcular los días entre dos fechas cualquiera?', a: 'Sí. Esta calculadora cuenta desde hoy, pero si necesitas los días exactos entre dos fechas concretas puedes usar la calculadora de días entre fechas, y si quieres sumar o restar días a una fecha, la calculadora de sumar o restar días.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de cuenta atrás', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-cuenta-atras' },
@@ -24,11 +28,38 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Comparamos la fecha que elijas con el día de hoy y calculamos los días completos que faltan. Perfecto para preparar una cuenta atrás hacia unas vacaciones, un evento o una fecha especial.</p>
+    <h2>Para qué sirve una cuenta atrás</h2>
+    <p>Una <strong>cuenta atrás</strong> te dice cuántos días faltan desde hoy hasta una fecha que te importa. Es la forma más sencilla de poner cifras a la espera: en lugar de pensar «queda bastante» o «ya casi está», ves un número exacto que baja cada día. Sirve para organizarte, para mantener viva la ilusión y, sobre todo, para no perder de vista una fecha señalada entre las mil cosas del día a día.</p>
+    <p>La usamos para casi todo: contar los días que quedan para las vacaciones, para un viaje, para un cumpleaños, para Navidad, para un examen o para la entrega de un proyecto. Ver la cifra en pantalla ayuda a planificar con margen y a repartir mejor las tareas que dependen de esa fecha.</p>
+
+    <h2>Cómo se calcula</h2>
+    <p>El cálculo es una simple resta de fechas. Tomamos el <strong>día de hoy</strong>, tomamos la <strong>fecha del evento</strong> y contamos los <strong>días completos</strong> que hay entre ambas. Ese número es el que aparece como «Faltan». Para que sea más fácil de leer, también lo mostramos repartido en <strong>semanas y días</strong>: por ejemplo, 40 días equivalen a 5 semanas y 5 días.</p>
+    <p>Un par de detalles útiles. El día de hoy no se suma: si eliges hoy mismo, la cuenta atrás marca que <strong>es hoy</strong> (faltan 0 días). Y si eliges una fecha que <strong>ya ha pasado</strong>, te avisamos de que esa fecha quedó atrás, porque una cuenta atrás solo tiene sentido hacia el futuro.</p>
+
+    <h3>Ejemplos</h3>
+    <ul>
+      <li><strong>Navidad:</strong> si hoy fuera 1 de diciembre, hasta el 25 de diciembre faltarían 24 días, es decir, 3 semanas y 3 días.</li>
+      <li><strong>Vacaciones:</strong> si las tuyas empiezan dentro de dos meses, verás alrededor de 60 días, unas 8 semanas largas: un buen margen para reservar y preparar la maleta.</li>
+      <li><strong>Un examen:</strong> si el examen es dentro de 15 días, la cuenta atrás te muestra 15 días (2 semanas y 1 día), justo para organizar el temario por semanas.</li>
+      <li><strong>Un cumpleaños:</strong> si faltan 7 días, la pantalla marca 7 días (1 semana exacta), tiempo de sobra para preparar la sorpresa.</li>
+    </ul>
+
+    <h2>Ideas de uso</h2>
+    <p>Una cuenta atrás va mucho más allá de las fechas festivas. Estas son algunas de las situaciones en las que resulta más práctica:</p>
+    <ul>
+      <li><strong>Viajes:</strong> saber cuántos días quedan para el vuelo ayuda a cerrar reservas, sacar entradas y preparar el equipaje sin agobios.</li>
+      <li><strong>Estudios:</strong> ver los días hasta un examen o la fecha de entrega de un trabajo permite dividir el esfuerzo y evitar los atracones de última hora.</li>
+      <li><strong>Eventos:</strong> bodas, conciertos, mudanzas o el estreno que estás esperando; la cifra en pantalla mantiene viva la cuenta atrás.</li>
+      <li><strong>Objetivos personales:</strong> los días que faltan para terminar un reto, cerrar una etapa o llegar a una meta dan un empujón extra de motivación.</li>
+      <li><strong>Trabajo:</strong> plazos de proyectos, entregas a clientes o el cierre de un trimestre se ven de un vistazo y se planifican mejor.</li>
+    </ul>
+    <p>Y si en lugar de contar hacia una fecha futura necesitas los días exactos entre dos fechas cualquiera, o sumar un número de días a partir de hoy, tienes calculadoras específicas para ello enlazadas más abajo.</p>
+
+    <p class="hint">La cuenta atrás cuenta días completos desde hoy hasta la fecha que elijas; si eliges hoy, faltan 0 días.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-sumar-restar-dias">Sumar o restar días</a></div>
+    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-sumar-restar-dias">Sumar o restar días</a><a href="/calculadora-edad">Calcular la edad</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

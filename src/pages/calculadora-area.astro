@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula el área de un círculo?', a: 'El área de un círculo es π × radio². Su perímetro (la circunferencia) es 2 × π × radio.' },
-  { q: '¿Y el área de un triángulo?', a: 'El área de un triángulo es base × altura ÷ 2. El perímetro depende de la longitud de sus tres lados, por lo que aquí mostramos solo el área.' },
+  { q: '¿Qué diferencia hay entre área y perímetro?', a: 'El área mide la superficie interior de una figura y se expresa en unidades cuadradas (cm², m²…). El perímetro mide el contorno, es decir, la longitud de la línea que rodea la figura, y se expresa en unidades de longitud (cm, m…). El área te dice cuánto espacio ocupa la figura; el perímetro, cuánto mide su borde.' },
+  { q: '¿Cómo se calcula el área de un círculo?', a: 'El área de un círculo es π × radio². Por ejemplo, con un radio de 5 cm el área es π × 25 ≈ 78,54 cm². Su perímetro, llamado circunferencia o longitud, es 2 × π × radio, que en ese caso sería ≈ 31,42 cm.' },
+  { q: '¿Cómo se calcula el área de un rectángulo?', a: 'El área de un rectángulo es base × altura. Un rectángulo de 6 cm de base y 4 cm de altura tiene un área de 24 cm². Su perímetro es 2 × (base + altura), es decir, 2 × (6 + 4) = 20 cm.' },
+  { q: '¿Por qué no se muestra el perímetro del triángulo?', a: 'Porque el perímetro de un triángulo es la suma de sus tres lados, y con solo la base y la altura no se puede saber cuánto miden los otros dos lados. Por eso aquí calculamos únicamente su área (base × altura ÷ 2).' },
+  { q: '¿En qué unidades se expresa el área?', a: 'Siempre en unidades cuadradas: si mides en centímetros, el área sale en centímetros cuadrados (cm²); si mides en metros, en metros cuadrados (m²). Lo importante es usar la misma unidad en todas las medidas antes de calcular.' },
+  { q: '¿Cuánto vale el número π (pi)?', a: 'π es un número irracional que vale aproximadamente 3,1416. Aparece en todos los cálculos relacionados con círculos y circunferencias. Esta calculadora usa el valor de π con todos sus decimales para que el resultado sea lo más preciso posible.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de área y perímetro', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-area' },
@@ -32,15 +36,52 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Fórmulas</h2>
+    <h2>Qué son el área y el perímetro</h2>
+    <p>El <strong>área</strong> mide la superficie que ocupa una figura plana, es decir, cuánto espacio hay «dentro» de ella. Se expresa siempre en unidades cuadradas: centímetros cuadrados (cm²), metros cuadrados (m²), kilómetros cuadrados (km²)… El <strong>perímetro</strong>, en cambio, mide el contorno: la longitud total de la línea que rodea la figura, y se expresa en unidades de longitud normales (cm, m, km). Una forma sencilla de distinguirlos: el área es la pintura que necesitas para cubrir una pared, mientras que el perímetro es la cinta que hace falta para bordearla.</p>
+    <p>Aunque son conceptos distintos, casi siempre se calculan juntos, porque muchos problemas de geometría, construcción o bricolaje piden los dos valores a la vez.</p>
+
+    <h2>Fórmulas por figura</h2>
+    <p>Esta calculadora resuelve las cuatro figuras más habituales. Estas son las fórmulas que aplica:</p>
     <ul>
-      <li><strong>Cuadrado:</strong> área = lado²; perímetro = 4 × lado.</li>
-      <li><strong>Rectángulo:</strong> área = base × altura; perímetro = 2 × (base + altura).</li>
-      <li><strong>Círculo:</strong> área = π × radio²; perímetro = 2 × π × radio.</li>
-      <li><strong>Triángulo:</strong> área = base × altura ÷ 2.</li>
+      <li><strong>Cuadrado:</strong> tiene los cuatro lados iguales. Su área es <strong>lado × lado = lado²</strong> y su perímetro <strong>4 × lado</strong>.</li>
+      <li><strong>Rectángulo:</strong> área = <strong>base × altura</strong>; perímetro = <strong>2 × (base + altura)</strong>, porque sus lados son iguales dos a dos.</li>
+      <li><strong>Círculo:</strong> área = <strong>π × radio²</strong>; el perímetro (llamado circunferencia o longitud) = <strong>2 × π × radio</strong>. El número π (pi) vale aproximadamente 3,1416.</li>
+      <li><strong>Triángulo:</strong> área = <strong>base × altura ÷ 2</strong>. Aquí mostramos solo el área, porque el perímetro depende de la longitud concreta de sus tres lados y no puede deducirse únicamente de la base y la altura.</li>
     </ul>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Cuadrado de 5 cm de lado:</strong> área = 5² = 5 × 5 = <strong>25 cm²</strong>; perímetro = 4 × 5 = <strong>20 cm</strong>.</li>
+      <li><strong>Rectángulo de 6 cm de base y 4 cm de altura:</strong> área = 6 × 4 = <strong>24 cm²</strong>; perímetro = 2 × (6 + 4) = 2 × 10 = <strong>20 cm</strong>.</li>
+      <li><strong>Círculo de 5 cm de radio:</strong> área = π × 5² = π × 25 ≈ <strong>78,54 cm²</strong>; longitud = 2 × π × 5 ≈ <strong>31,42 cm</strong>.</li>
+    </ul>
+
+    <h2>Tabla resumen de fórmulas</h2>
+    <table>
+      <thead><tr><th>Figura</th><th>Área</th><th>Perímetro</th></tr></thead>
+      <tbody>
+        <tr><td>Cuadrado</td><td>lado²</td><td>4 × lado</td></tr>
+        <tr><td>Rectángulo</td><td>base × altura</td><td>2 × (base + altura)</td></tr>
+        <tr><td>Círculo</td><td>π × radio²</td><td>2 × π × radio</td></tr>
+        <tr><td>Triángulo</td><td>base × altura ÷ 2</td><td>suma de sus tres lados</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Para qué sirve calcular áreas y perímetros</h2>
+    <p>Estos cálculos aparecen constantemente en la vida diaria, y no solo en los exámenes de matemáticas:</p>
+    <ul>
+      <li><strong>Reformas y bricolaje:</strong> conocer los metros cuadrados de una habitación para comprar el suelo, la pintura o el césped justos.</li>
+      <li><strong>Jardinería y vallado:</strong> el perímetro de una parcela indica cuánta valla o seto hace falta para rodearla por completo.</li>
+      <li><strong>Costura y manualidades:</strong> calcular la tela o el material necesario para cubrir una superficie determinada.</li>
+      <li><strong>Estudios:</strong> resolver problemas de geometría de primaria, ESO y bachillerato paso a paso.</li>
+    </ul>
+    <p>Si trabajas con superficies grandes, quizá te interese pasar de una unidad a otra o estimar precios; para eso tienes herramientas relacionadas al final de la página.</p>
+
+    <p class="hint">Recuerda usar la misma unidad en todas las medidas: si la base está en metros, la altura también, y el resultado saldrá en metros cuadrados.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-potencias-raices">Potencias y raíces</a><a href="/calculadora-precio-metro-cuadrado">Precio por metro cuadrado</a><a href="/calculadora-conversor-unidades">Conversor de unidades</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es el ritmo de carrera?', a: 'Es el tiempo que tardas en recorrer cada kilómetro, en minutos por kilómetro (min/km). Es la forma habitual de medir la intensidad al correr.' },
-  { q: '¿Cómo paso de ritmo a velocidad?', a: 'La velocidad en km/h es 60 dividido entre el ritmo en min/km. Por ejemplo, un ritmo de 6 min/km equivale a 10 km/h.' },
+  { q: '¿Qué es el ritmo de carrera?', a: 'Es el tiempo que tardas en recorrer cada kilómetro, expresado en minutos y segundos por kilómetro (min/km). Es la forma habitual de medir la intensidad al correr: cuanto menor es el número, más rápido vas. Un ritmo de 5:00 min/km significa que completas cada kilómetro en cinco minutos exactos.' },
+  { q: '¿Cómo paso de ritmo a velocidad?', a: 'La velocidad en km/h es 60 dividido entre el ritmo en min/km. Por ejemplo, un ritmo de 6 min/km equivale a 10 km/h, y uno de 5 min/km a 12 km/h. A la inversa, para pasar de velocidad a ritmo divides 60 entre los km/h.' },
+  { q: '¿Cómo se lee un ritmo como 5:30 min/km?', a: 'Se lee como cinco minutos y treinta segundos por kilómetro. Cuidado con el decimal: 5,5 min/km no son «cinco minutos y medio» a mano, sino 5 minutos y 30 segundos, porque 0,5 × 60 = 30 segundos. Por eso el ritmo se muestra en minutos y segundos, y no en decimales.' },
+  { q: '¿Qué ritmo debería llevar en un 10K?', a: 'Depende mucho de tu nivel. Muchos corredores que empiezan completan un 10K entre 6:00 y 7:00 min/km, mientras que corredores populares con algo de rodaje suelen moverse entre 5:00 y 6:00 min/km. Lo más útil es partir de un ritmo que puedas sostener toda la distancia y mejorarlo poco a poco.' },
+  { q: '¿Qué ritmo necesito para bajar de 4 horas en el maratón?', a: 'Para completar los 42,195 km del maratón en menos de 4 horas necesitas un ritmo medio en torno a 5:41 min/km o algo más rápido. Corriendo a 5:40 min/km terminarías en unas 3 horas y 59 minutos, con un pequeño margen para los avituallamientos.' },
+  { q: '¿Es mejor guiarme por el ritmo o por las pulsaciones?', a: 'Son complementarios. El ritmo te dice a qué velocidad vas y las pulsaciones, cuánto te está costando ese esfuerzo. En días de calor o cansancio, un mismo ritmo puede disparar las pulsaciones, así que combinar ambos datos da una visión más completa. Puedes estimar tus zonas con la calculadora de frecuencia cardiaca.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de ritmo de carrera', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-ritmo-carrera' },
@@ -27,11 +31,49 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
+    <h2>Qué es el ritmo de carrera</h2>
+    <p>El <strong>ritmo de carrera</strong> es el tiempo que tardas en recorrer cada kilómetro y se expresa en <strong>minutos y segundos por kilómetro (min/km)</strong>. Es la referencia que usan tanto corredores populares como profesionales para controlar la intensidad de un entrenamiento o de una competición. Un ritmo de 5:00 min/km significa que completas cada kilómetro en cinco minutos exactos, y aquí funciona la lógica inversa de casi todo lo demás: cuanto <strong>más pequeño</strong> es el número, más rápido corres.</p>
+    <p>Junto al ritmo, esta calculadora te muestra la <strong>velocidad en kilómetros por hora (km/h)</strong>, que es la unidad que ves en la cinta del gimnasio. Ambas miden lo mismo desde dos ángulos distintos: el ritmo se fija en el tiempo por kilómetro y la velocidad, en la distancia por hora. Dominar la conversión entre las dos te ayuda a planificar tiradas largas, series y el objetivo de una carrera de 5K, 10K, media maratón o maratón.</p>
+
     <h2>Cómo se calcula</h2>
-    <p>El ritmo es el tiempo total dividido entre los kilómetros, y lo mostramos en minutos y segundos por kilómetro. La velocidad es la distancia dividida entre el tiempo en horas. Ideal para preparar una carrera de 5K, 10K, media maratón o maratón.</p>
+    <p>Las dos fórmulas que utiliza la calculadora son sencillas:</p>
+    <p style="text-align:center"><strong>Ritmo (min/km) = tiempo total (min) / distancia (km)</strong></p>
+    <p style="text-align:center"><strong>Velocidad (km/h) = distancia (km) / tiempo (h)</strong></p>
+    <p>El resultado del ritmo se presenta en minutos y segundos. Un detalle que confunde a muchos: si la división da 5,5 min/km, no son «cinco minutos y medio» en decimal, sino <strong>5 minutos y 30 segundos</strong> (0,5 × 60 = 30 segundos). Para pasar de ritmo a velocidad basta con dividir 60 entre el ritmo: 60 / 5 = 12 km/h.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>10 km en 50 min:</strong> ritmo = 50 / 10 = <strong>5:00 min/km</strong>; velocidad = 10 / (50 / 60) = <strong>12 km/h</strong>.</li>
+      <li><strong>5 km en 25 min:</strong> ritmo = 25 / 5 = <strong>5:00 min/km</strong>, el mismo ritmo que el ejemplo anterior aunque la distancia sea la mitad; velocidad = <strong>12 km/h</strong>.</li>
+      <li><strong>Media maratón (21,097 km) en 1 h 45 min:</strong> 105 min / 21,097 km = <strong>4:59 min/km</strong>; velocidad ≈ <strong>12,06 km/h</strong>.</li>
+    </ul>
+
+    <h2>Tabla de ritmos y tiempos de referencia</h2>
+    <p>Esta tabla muestra el tiempo aproximado que tardarías en las distancias más populares según tu ritmo. Es una guía cómoda para fijar un objetivo realista antes de una carrera:</p>
+    <div class="tablewrap"><table class="amort">
+      <thead><tr><th>Ritmo</th><th>Velocidad</th><th>5K</th><th>10K</th><th>Media</th><th>Maratón</th></tr></thead>
+      <tbody>
+        <tr><td>4:00 min/km</td><td>15 km/h</td><td>20:00</td><td>40:00</td><td>1:24:23</td><td>2:48:47</td></tr>
+        <tr><td>5:00 min/km</td><td>12 km/h</td><td>25:00</td><td>50:00</td><td>1:45:29</td><td>3:30:58</td></tr>
+        <tr><td>6:00 min/km</td><td>10 km/h</td><td>30:00</td><td>1:00:00</td><td>2:06:35</td><td>4:13:10</td></tr>
+        <tr><td>7:00 min/km</td><td>8,57 km/h</td><td>35:00</td><td>1:10:00</td><td>2:27:41</td><td>4:55:22</td></tr>
+      </tbody>
+    </table></div>
+    <p>La media maratón son 21,097 km y el maratón, 42,195 km. Fíjate en que un mismo ritmo se «paga» mucho más caro en distancias largas: entre correr un 5K y un maratón al mismo paso hay más de dos horas de diferencia.</p>
+
+    <h2>Consejos para usar tu ritmo al entrenar</h2>
+    <ul>
+      <li><strong>No corras siempre igual.</strong> Alterna tiradas suaves —a un ritmo cómodo en el que puedas mantener una conversación— con series más rápidas y cortas. La mayor parte del volumen semanal debería ir a ritmo fácil.</li>
+      <li><strong>Ajusta el objetivo a la distancia.</strong> El ritmo que aguantas en un 5K siempre será más rápido que el de un maratón; no esperes sostener tu mejor paso de 5K durante 42 kilómetros.</li>
+      <li><strong>Ten en cuenta el terreno y el clima.</strong> Las cuestas, el viento en contra y el calor ralentizan el ritmo aunque el esfuerzo sea el mismo. Es completamente normal y no significa que hayas empeorado.</li>
+      <li><strong>Cuida la salida.</strong> Empezar demasiado rápido es el error más común; muchas marcas personales se logran con un ritmo regular o ligeramente progresivo, corriendo la segunda mitad igual o algo más rápido que la primera.</li>
+    </ul>
+
+    <p class="hint">Estas cifras son orientativas: el ritmo real depende de tu forma física, del terreno y de las condiciones del día. Si tienes alguna condición de salud, consulta con un profesional antes de empezar a entrenar.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-calorias-quemadas">Calorías quemadas</a></div>
+    <div class="more"><a href="/calculadora-calorias-quemadas">Calorías quemadas</a><a href="/calculadora-frecuencia-cardiaca">Frecuencia cardiaca</a><a href="/calculadora-calorias">Calorías diarias</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

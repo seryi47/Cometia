@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se redondea un número?', a: 'Si la cifra siguiente a la posición de redondeo es 5 o más, se redondea hacia arriba; si es menor que 5, hacia abajo. Por ejemplo, 3,146 redondeado a dos decimales es 3,15.' },
-  { q: '¿Qué son los decimales?', a: 'Son las cifras después de la coma. Redondear a 0 decimales da un número entero; a 2 decimales, dos cifras tras la coma, y así sucesivamente.' },
+  { q: '¿Cómo se redondea un número?', a: 'Se mira la primera cifra que se va a eliminar: si es 5 o mayor, la última cifra que se conserva sube una unidad; si es menor que 5, se queda igual. Por ejemplo, 3,146 redondeado a dos decimales es 3,15, y 3,144 es 3,14.' },
+  { q: '¿Qué son los decimales?', a: 'Son las cifras situadas después de la coma. Redondear a 0 decimales da un número entero; a 2 decimales, deja dos cifras tras la coma; a 3 decimales, tres, y así sucesivamente. Cuantos más decimales conserves, más preciso es el resultado.' },
+  { q: '¿Cuánto es 2,5 redondeado a un entero?', a: 'Es 3. Al redondear a 0 decimales miramos la primera cifra decimal, que en este caso es un 5; como es 5 o mayor, la parte entera sube una unidad y el 2 pasa a 3. Este es el redondeo estándar que usa la calculadora.' },
+  { q: '¿Qué diferencia hay entre redondear y truncar?', a: 'Truncar es cortar las cifras sobrantes sin ajustar nada, mientras que redondear tiene en cuenta la cifra siguiente para decidir si la última sube. Por ejemplo, 3,149 truncado a dos decimales es 3,14, pero redondeado a dos decimales es 3,15.' },
+  { q: '¿Cómo se redondea a decenas o centenas?', a: 'Para redondear a la decena más cercana se mira la cifra de las unidades; para redondear a la centena, la de las decenas. Así, 47 redondeado a decenas es 50, y 1.234 redondeado a centenas es 1.200.' },
+  { q: '¿Por qué al redondear a veces las sumas no cuadran?', a: 'Porque cada número se redondea por separado y los pequeños ajustes pueden acumularse. Si necesitas que el total sea exacto, es mejor sumar los valores completos y redondear solo el resultado final.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de redondeo', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-redondeo' },
@@ -23,11 +27,47 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Miramos la primera cifra que se elimina: si es 5 o mayor, la última que se queda sube una unidad; si es menor, se queda igual. Redondear a 0 decimales te da el entero más cercano.</p>
+    <h2>Qué es redondear un número</h2>
+    <p>Redondear un número consiste en <strong>sustituirlo por otro más sencillo y cercano</strong>, quedándonos con menos cifras de las que tenía. En lugar de arrastrar una larga fila de decimales, elegimos hasta qué posición queremos conservar y ajustamos el resto. El resultado es un valor aproximado, pero mucho más cómodo de leer, comparar y comunicar. Por eso redondeamos casi sin darnos cuenta: cuando decimos que algo cuesta "unos 20 euros" o que hemos tardado "media hora", estamos redondeando.</p>
+    <p>La idea clave es que el número redondeado debe ser el más próximo posible al original dentro de la precisión que hayamos elegido. Redondear bien no es recortar cifras al azar, sino decidir si la última cifra que conservamos se queda igual o sube una unidad.</p>
+
+    <h2>La regla del 5</h2>
+    <p>Para saber en qué dirección redondear solo hay que mirar la <strong>primera cifra que vamos a eliminar</strong>:</p>
+    <ul>
+      <li>Si esa cifra es <strong>5 o mayor</strong> (5, 6, 7, 8 o 9), la última cifra que conservamos <strong>sube una unidad</strong>.</li>
+      <li>Si es <strong>menor que 5</strong> (0, 1, 2, 3 o 4), la última cifra que conservamos <strong>se queda igual</strong>.</li>
+    </ul>
+    <p>Esta es la conocida "regla del 5" o redondeo estándar. Con ella, por ejemplo, 2,5 redondeado a un número entero es 3, porque la cifra que eliminamos es un 5 y hace subir al 2.</p>
+
+    <h2>Redondear a decimales, a enteros y a decenas o centenas</h2>
+    <p>Redondear <strong>a decimales</strong> significa dejar solo un número concreto de cifras después de la coma. Si redondeamos 3,14159 a dos decimales, miramos la tercera cifra decimal (un 1): como es menor que 5, el resultado es 3,14.</p>
+    <p>Redondear <strong>a un entero</strong> es redondear a 0 decimales: nos quedamos con la parte entera y miramos la primera cifra decimal. Así, 7,8 se convierte en 8 y 12,3 se convierte en 12.</p>
+    <p>También podemos redondear hacia la izquierda de la coma, es decir, <strong>a decenas o centenas</strong>. Para redondear a la decena más cercana miramos las unidades: 47 pasa a 50 y 143 pasa a 140. Para redondear a la centena miramos las decenas: 1.234 se redondea a 1.200 porque la cifra de las decenas (un 3) es menor que 5.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>3,146 a dos decimales:</strong> la tercera cifra decimal es 6, así que la última sube: <strong>3,15</strong>.</li>
+      <li><strong>3,144 a dos decimales:</strong> la tercera cifra decimal es 4, así que se queda igual: <strong>3,14</strong>.</li>
+      <li><strong>1.234 a centenas:</strong> la cifra de las decenas es 3 (menor que 5), luego baja: <strong>1.200</strong>.</li>
+    </ul>
+
+    <h2>Diferencia entre redondear y truncar</h2>
+    <p>No es lo mismo redondear que <strong>truncar</strong>. Truncar es cortar las cifras sobrantes sin mirar nada: simplemente se eliminan y las que quedan no cambian. Redondear, en cambio, sí tiene en cuenta la cifra siguiente para decidir si la última sube.</p>
+    <p>Por ejemplo, el número 3,149 <strong>truncado</strong> a dos decimales es 3,14, porque cortamos el 9 y no tocamos el resto. Ese mismo número <strong>redondeado</strong> a dos decimales sería 3,15, porque el 9 hace subir al 4. Truncar siempre acerca el número hacia cero; redondear busca el valor más próximo.</p>
+
+    <h2>Para qué sirve redondear</h2>
+    <p>Redondear está presente en el día a día más de lo que parece:</p>
+    <ul>
+      <li><strong>Dinero:</strong> los precios se expresan con dos decimales porque el céntimo es la unidad mínima. Un cálculo que da 4,3333 euros se redondea a 4,33 euros.</li>
+      <li><strong>Notas y medias:</strong> una media de 7,48 puede aparecer como 7,5 en un boletín, y una nota final suele dejarse con uno o dos decimales.</li>
+      <li><strong>Medidas y estimaciones:</strong> en recetas, obras o presupuestos se redondea para trabajar con cifras manejables.</li>
+    </ul>
+
+    <p class="hint">Al redondear pierdes algo de precisión: si vas a encadenar varios cálculos, redondea solo al final para que los pequeños ajustes no se acumulen.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a></div>
+    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-notacion-cientifica">Notación científica</a><a href="/calculadora-media-mediana-moda">Media, mediana y moda</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

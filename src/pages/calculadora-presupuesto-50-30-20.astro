@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es la regla 50/30/20?', a: 'Es una forma sencilla de repartir tu sueldo: 50% para necesidades (vivienda, comida, facturas), 30% para deseos (ocio, caprichos) y 20% para ahorro o pagar deudas.' },
-  { q: '¿Sobre el sueldo bruto o neto?', a: 'Sobre el neto: el dinero que te llega a la cuenta después de impuestos y Seguridad Social. Es lo que realmente puedes repartir.' },
+  { q: '¿Qué es la regla 50/30/20?', a: 'Es una forma sencilla de repartir tu sueldo neto: 50% para necesidades (vivienda, comida, facturas), 30% para deseos (ocio, restaurantes, caprichos) y 20% para ahorro o para pagar deudas. Es un método flexible que no exige apuntar cada gasto en una hoja de cálculo.' },
+  { q: '¿Se aplica sobre el sueldo bruto o el neto?', a: 'Sobre el neto: el dinero que te llega a la cuenta después de impuestos y de la Seguridad Social. Es lo que realmente puedes repartir. Si haces el reparto sobre el bruto, los tres bloques quedan inflados y no cuadran a fin de mes.' },
+  { q: '¿Qué hago si el alquiler se lleva más del 50%?', a: 'Es habitual en ciudades caras. En ese caso ajusta a la baja el bloque de deseos e intenta mantener el ahorro. La regla es una guía flexible: lo importante es que los tres bloques sumen el 100% de tu neto, aunque los porcentajes no salgan exactos.' },
+  { q: '¿Dónde encaja el pago de deudas?', a: 'La cuota mínima obligatoria de un préstamo o de la hipoteca forma parte de las necesidades (el 50%). El dinero que dediques a amortizar por encima de ese mínimo, para quitarte la deuda antes, va en el bloque del 20% junto al ahorro.' },
+  { q: '¿Sirve si tengo ingresos variables?', a: 'Sí. Si cobras cantidades distintas cada mes, calcula los porcentajes sobre la media de tus últimos meses o, para ir sobre seguro, sobre el mes en que menos ingresas. Así el reparto sigue funcionando incluso en los meses más flojos.' },
+  { q: '¿De dónde viene la regla 50/30/20?', a: 'La popularizó la senadora estadounidense Elizabeth Warren en el libro "All Your Worth", escrito junto a su hija. Su objetivo era ofrecer un método de presupuesto tan simple que cualquiera pudiera seguirlo sin llevar una contabilidad detallada.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora presupuesto 50/30/20', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-presupuesto-50-30-20' },
@@ -24,11 +28,39 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Repartimos tus ingresos netos en tres bloques: <strong>50%</strong> necesidades básicas, <strong>30%</strong> gastos que disfrutas y <strong>20%</strong> para ahorrar o reducir deudas. Es una guía flexible: si tu alquiler se come más del 50%, ajusta los otros bloques.</p>
+    <h2>Qué es la regla 50/30/20</h2>
+    <p>La <strong>regla 50/30/20</strong> es un método de presupuesto personal que reparte tu sueldo en tres bloques: un <strong>50%</strong> para las necesidades, un <strong>30%</strong> para los deseos y un <strong>20%</strong> para el ahorro o el pago de deudas. La popularizó la senadora estadounidense Elizabeth Warren, y su éxito se debe a lo fácil que resulta aplicarla: no hace falta apuntar cada gasto en una hoja de cálculo, basta con encajar cada euro en una de las tres cajas.</p>
+    <p>Un detalle clave: los porcentajes se calculan siempre sobre el <strong>sueldo neto</strong>, es decir, el dinero que te llega a la cuenta después de impuestos y de la Seguridad Social. Si no sabes cuánto cobras limpio, puedes estimarlo con la <a href="/calculadora-sueldo-neto">calculadora de sueldo neto</a> antes de repartir.</p>
+
+    <h2>Qué entra en cada categoría</h2>
+    <p><strong>50% Necesidades.</strong> Son los gastos imprescindibles, los que tendrías que pagar sí o sí para vivir y trabajar: el alquiler o la hipoteca, la luz, el agua, el gas, la comida del supermercado, el transporte para ir a trabajar, los seguros obligatorios y las cuotas mínimas de tus préstamos. Si dejaras de pagarlos, tu vida se complicaría de verdad.</p>
+    <p><strong>30% Deseos.</strong> Es todo lo que mejora tu día a día pero de lo que podrías prescindir: cenas en restaurantes, ocio, suscripciones de streaming, ropa que no necesitas, viajes, caprichos y aficiones. No son "gastos malos", simplemente no son obligatorios.</p>
+    <p><strong>20% Ahorro y deudas.</strong> Este bloque construye tu futuro: el fondo de emergencia, las aportaciones a inversión o a un plan de pensiones y la amortización de deudas por encima del mínimo obligatorio (por ejemplo, adelantar cuota de la hipoteca o cancelar antes la tarjeta). Cuanto antes lo automatices, mejor.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Neto de 1.500 €:</strong> 750 € para necesidades, 450 € para deseos y 300 € para ahorro.</li>
+      <li><strong>Neto de 1.600 €:</strong> 800 € para necesidades, 480 € para deseos y 320 € para ahorro.</li>
+      <li><strong>Neto de 2.000 €:</strong> 1.000 € para necesidades, 600 € para deseos y 400 € para ahorro.</li>
+    </ul>
+    <p>Para obtener cada cifra solo tienes que multiplicar tu neto por 0,5, por 0,3 y por 0,2. Si quieres afinar cualquier otro reparto, la <a href="/calculadora-porcentaje">calculadora de porcentaje</a> lo resuelve en un momento.</p>
+
+    <h2>Cómo adaptarla a tu caso</h2>
+    <p>La regla 50/30/20 es una guía, no una ley. En ciudades caras es frecuente que solo el alquiler se lleve más del 50% del neto; en ese caso lo sensato es recortar de forma temporal los deseos y proteger todo lo posible el ahorro. Al revés, si tus necesidades te cuestan bastante menos del 50%, aprovecha el margen para subir el bloque de ahorro: variantes como 50/20/30 o 60/20/20 son perfectamente válidas. Lo esencial es que los tres bloques sumen el 100% de tu neto y que el ahorro no quede siempre para el final.</p>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Calcular sobre el bruto:</strong> repartir el salario antes de impuestos infla los tres bloques y te deja sin cuadrar a fin de mes.</li>
+      <li><strong>Colar deseos entre las necesidades:</strong> la fibra de máxima velocidad o el coche de gama alta no son necesidades; ubicar bien cada gasto es lo que hace útil el método.</li>
+      <li><strong>Dejar el ahorro para el final:</strong> si esperas a ver "lo que sobra", casi nunca sobra. Aparta el 20% en cuanto cobras, idealmente con una transferencia automática.</li>
+      <li><strong>Olvidar los gastos anuales:</strong> el seguro del coche o el IBI también cuentan; divídelos entre doce y reserva su parte cada mes.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora es orientativa y no constituye asesoramiento financiero personalizado.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-ahorro">Ahorro</a><a href="/calculadora-sueldo-neto">Sueldo neto</a></div>
+    <div class="more"><a href="/calculadora-sueldo-neto">Sueldo neto</a><a href="/calculadora-ahorro">Ahorro</a><a href="/calculadora-porcentaje">Porcentaje</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

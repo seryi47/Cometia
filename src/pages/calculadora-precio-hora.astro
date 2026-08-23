@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo sé cuánto cobrar la hora como autónomo?', a: 'Parte de lo que quieres ganar al mes y de cuántas horas puedes facturar de verdad (no todas las horas trabajadas son facturables). Dividir lo primero entre lo segundo te da tu tarifa mínima por hora.' },
-  { q: '¿Debo incluir gastos e impuestos?', a: 'Sí. Suma a tus ingresos deseados los gastos (cuota de autónomo, software, seguros) e ten en cuenta impuestos, porque de tu tarifa saldrá también para eso.' },
+  { q: '¿Cómo sé cuánto cobrar la hora como autónomo?', a: 'Parte de lo que necesitas ingresar al mes (lo que quieres ganar más tus gastos) y de cuántas horas puedes facturar de verdad, que suelen ser bastantes menos que las que trabajas. Dividir lo primero entre lo segundo te da tu tarifa mínima por hora, un punto de partida por debajo del cual trabajarías perdiendo dinero.' },
+  { q: '¿Debo incluir gastos e impuestos?', a: 'Sí. En el campo de ingresos conviene sumar, además de lo que quieres ganar, tus gastos mensuales: cuota de autónomo, software, seguros, gestoría o material. Ten presente también que de lo que factures se descuenta el IRPF, así que lo que te queda limpio es menor que la tarifa.' },
+  { q: '¿Cuántas horas al mes puedo facturar de verdad?', a: 'Menos de las que parece. Aunque un mes tenga unas 160 horas laborables, buena parte se va en administración, captar clientes, preparar presupuestos y formación. Muchos autónomos facturan entre 100 y 130 horas al mes; ser realista con este dato es lo que evita que tu tarifa salga demasiado baja.' },
+  { q: '¿Qué pasa con las vacaciones y los días que no trabajo?', a: 'Como autónomo no cobras los días que no facturas: vacaciones, festivos o una baja no generan ingresos. Por eso conviene repartir su coste entre las horas que sí facturas, subiendo un poco la tarifa, para no quedarte sin colchón cuando pares.' },
+  { q: '¿El IVA va incluido en la tarifa?', a: 'No. La tarifa por hora es tu precio antes de impuestos; el IVA se añade aparte en la factura (en España, normalmente el 21 %). Es decir, si tu tarifa es de 30 €/h, al cliente le facturas esos 30 € más el IVA correspondiente.' },
+  { q: '¿Esta tarifa es la que pongo en el presupuesto al cliente?', a: 'Es tu tarifa de referencia, el mínimo por debajo del cual no deberías bajar. En un presupuesto real puedes ajustarla según el valor del proyecto, la urgencia o tu experiencia, pero conocer tu suelo te ayuda a negociar sin trabajar a pérdida.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de precio por hora', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-precio-hora' },
@@ -27,11 +31,44 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
+    <h2>Para qué sirve esta calculadora</h2>
+    <p>Poner precio a tu trabajo es una de las decisiones más difíciles cuando eres <strong>autónomo o freelance</strong>. Esta calculadora te ayuda a fijar una <strong>tarifa por hora</strong> partiendo de algo muy concreto: lo que necesitas ingresar cada mes y el número de horas que de verdad puedes facturar. En lugar de copiar la tarifa de otro o de tirar de intuición, obtienes un punto de partida basado en tus propios números.</p>
+    <p>Es útil tanto si empiezas y no sabes qué cobrar, como si ya trabajas por tu cuenta y sospechas que te has quedado corto. También sirve para preparar un presupuesto: si sabes cuántas horas lleva un encargo, multiplicar por tu tarifa te da una cifra defendible.</p>
+
     <h2>Cómo se calcula</h2>
-    <p>Dividimos los ingresos que quieres al mes entre las horas que realmente puedes facturar. Ojo: de un día laboral no todo es facturable (hay administración, ventas, formación). Sé realista con esas horas para no quedarte corto de tarifa.</p>
+    <p>La idea es sencilla: se dividen los <strong>ingresos que quieres al mes</strong> entre las <strong>horas facturables al mes</strong>.</p>
+    <p style="text-align:center"><strong>Tarifa por hora = ingresos deseados al mes / horas facturables al mes</strong></p>
+    <p>La calculadora también te muestra la <strong>tarifa por día</strong> multiplicando por 8 horas, como referencia de jornada completa. El punto clave está en las horas: de un mes de trabajo, muy pocas son realmente facturables, porque buena parte del tiempo se va en administración, captar clientes, formación o gestiones. Por eso conviene ser realista y no meter todas las horas del calendario.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>2.000 € al mes y 100 horas facturables:</strong> 2.000 / 100 = <strong>20 €/h</strong>, lo que equivale a 160 € al día (8 horas).</li>
+      <li><strong>2.500 € al mes y 120 horas facturables:</strong> 2.500 / 120 = <strong>20,83 €/h</strong>, unos 166,67 € al día.</li>
+      <li><strong>3.000 € al mes y 90 horas facturables:</strong> 3.000 / 90 = <strong>33,33 €/h</strong>, unos 266,67 € al día. Al facturar menos horas, la tarifa sube para llegar al mismo objetivo.</li>
+    </ul>
+
+    <h2>Qué tener en cuenta</h2>
+    <p>Para que la tarifa cubra de verdad tu actividad, ten presente esto:</p>
+    <ul>
+      <li><strong>Horas facturables reales:</strong> un año tiene unas 1.800-2.000 horas laborables, pero difícilmente facturarás todas. Descontando vacaciones, festivos, formación y tareas internas, muchos autónomos facturan bastante menos, a menudo entre 100 y 130 horas al mes.</li>
+      <li><strong>Gastos:</strong> incluye en el campo de ingresos no solo lo que quieres ganar, sino también tus gastos mensuales (software, seguros, material o gestoría), para que la tarifa los cubra.</li>
+      <li><strong>Cuota de autónomo:</strong> la cotización a la Seguridad Social es un gasto fijo mensual más. Súmalo también a esa cifra de ingresos.</li>
+      <li><strong>IRPF:</strong> de lo que factures aún se descuenta el IRPF, así que lo que te queda limpio es menor. Deja un margen para no llevarte sorpresas.</li>
+      <li><strong>Vacaciones:</strong> como autónomo, los días que no trabajas no se cobran. Repartir su coste entre las horas que sí facturas evita quedarte sin colchón.</li>
+    </ul>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Cobrar como un asalariado:</strong> dividir un sueldo de referencia entre las horas de un empleado no funciona. Un asalariado no paga su cuota, ni su equipo, ni sus vacaciones; tú sí.</li>
+      <li><strong>Contar todas las horas:</strong> si divides tus ingresos entre 160 horas "de calendario" en vez de entre las que realmente facturas, tu tarifa saldrá demasiado baja.</li>
+      <li><strong>Olvidar los gastos:</strong> una tarifa que solo cubre lo que quieres ganar, sin sumar gastos ni impuestos, te deja trabajando casi gratis.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora ofrece una tarifa orientativa a partir de tus datos; no sustituye el asesoramiento de un gestor o asesor fiscal.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-sueldo-neto">Sueldo neto</a><a href="/calculadora-iva">IVA</a></div>
+    <div class="more"><a href="/calculadora-sueldo-neto">Sueldo neto</a><a href="/calculadora-presupuesto-50-30-20">Presupuesto 50/30/20</a><a href="/calculadora-margen-comercial">Margen comercial</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

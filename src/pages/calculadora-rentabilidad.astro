@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es el ROI o rentabilidad?', a: 'El ROI (retorno de la inversión) mide cuánto ganas respecto a lo que invertiste, en porcentaje. Se calcula como (valor final − inversión) ÷ inversión × 100.' },
-  { q: '¿Un ROI del 20 % es bueno?', a: 'Depende del plazo y del riesgo. Un 20 % en un año es alto; el mismo 20 % en diez años es modesto. Compáralo siempre con el tiempo y las alternativas.' },
+  { q: '¿Qué es el ROI o rentabilidad?', a: 'El ROI (retorno de la inversión) mide cuánto ganas respecto a lo que invertiste, expresado en porcentaje. Se calcula como (valor final − inversión) ÷ inversión × 100. Sirve para comparar con una misma vara operaciones muy distintas, como un fondo, un piso o una acción.' },
+  { q: '¿Cómo se calcula la rentabilidad de una inversión?', a: 'Primero restas la inversión inicial al valor final para obtener el beneficio; después divides ese beneficio entre la inversión y multiplicas por 100. Por ejemplo, invertir 1.000 € y recuperar 1.200 € da un beneficio de 200 € y un ROI del 20 %.' },
+  { q: '¿Un ROI del 20 % es bueno?', a: 'Depende del plazo y del riesgo. Un 20 % en un año es alto; el mismo 20 % repartido en diez años es modesto. Compáralo siempre con el tiempo transcurrido y con las alternativas de riesgo parecido.' },
+  { q: '¿Qué diferencia hay entre rentabilidad total y rentabilidad anual?', a: 'La rentabilidad total es el porcentaje ganado durante toda la inversión, sin importar cuánto ha durado. La anual reparte esa ganancia por año y permite comparar inversiones de distinta duración. Anualizar es imprescindible para no comparar peras con manzanas.' },
+  { q: '¿Se puede tener una rentabilidad negativa?', a: 'Sí. Si el valor final es menor que la inversión inicial, el beneficio es negativo y el ROI también. Por ejemplo, invertir 5.000 € y recuperar 4.500 € supone una pérdida de 500 € y un ROI del −10 %.' },
+  { q: '¿La rentabilidad incluye los impuestos y las comisiones?', a: 'El ROI que calcula esta herramienta es bruto: compara lo invertido con el valor final que introduces. Para conocer la rentabilidad real, resta antes las comisiones y la fiscalidad de las plusvalías, porque son las que determinan cuánto acaba en tu bolsillo.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de rentabilidad (ROI)', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-rentabilidad' },
@@ -27,10 +31,43 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>El beneficio es el valor final menos lo invertido. La rentabilidad (ROI) es ese beneficio dividido entre la inversión, en porcentaje. Por ejemplo, invertir 1.000 € y recuperar 1.300 € da un beneficio de 300 € y un ROI del 30 %.</p>
+    <h2>Qué es la rentabilidad (ROI) de una inversión</h2>
+    <p>La <strong>rentabilidad</strong> mide cuánto ganas (o pierdes) con una inversión en relación con el dinero que pusiste. Se expresa en porcentaje mediante el <strong>ROI</strong> (del inglés <em>return on investment</em>, retorno de la inversión), un indicador que permite comparar operaciones muy distintas —un fondo, un piso, unas acciones o un pequeño negocio— con una misma vara de medir. Ganar 500 € no significa lo mismo si has invertido 1.000 € que si has invertido 50.000 €: el ROI convierte esos euros en un porcentaje comparable.</p>
+    <p>Su gran ventaja es la sencillez. Solo necesitas dos datos que casi siempre conoces: cuánto invertiste al principio y cuánto vale la inversión al final (o cuánto has recuperado al venderla). Por eso es el primer número que conviene calcular antes de decidir si una operación ha merecido la pena.</p>
+
+    <h2>Fórmula del ROI</h2>
+    <p>La fórmula de la rentabilidad es esta:</p>
+    <p style="text-align:center"><strong>ROI (%) = (valor final − inversión) ÷ inversión × 100</strong></p>
+    <p>Primero se calcula el <strong>beneficio</strong> (el valor final menos lo invertido) y después se divide entre la inversión inicial. Multiplicar por 100 lo convierte en porcentaje. Si el resultado es positivo, has ganado dinero; si es negativo, has perdido parte de lo invertido.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Inviertes 1.000 € y recuperas 1.200 €:</strong> beneficio de 200 €. ROI = 200 ÷ 1.000 × 100 = <strong>20 %</strong>. Ganancia clara.</li>
+      <li><strong>Inviertes 1.000 € y recuperas 1.300 €:</strong> beneficio de 300 €. ROI = 300 ÷ 1.000 × 100 = <strong>30 %</strong>.</li>
+      <li><strong>Inviertes 5.000 € y recuperas 4.500 €:</strong> beneficio de −500 €. ROI = −500 ÷ 5.000 × 100 = <strong>−10 %</strong>. Pérdida: recuperas menos de lo que pusiste.</li>
+    </ul>
+
+    <h2>Cómo interpretar el resultado</h2>
+    <p>Un <strong>ROI positivo</strong> indica ganancia y uno <strong>negativo</strong>, pérdida; un ROI del 0 % significa que has recuperado justo lo invertido, sin ganar ni perder. Pero el porcentaje por sí solo dice poco si no lo pones en contexto:</p>
+    <ul>
+      <li><strong>El plazo lo cambia todo.</strong> Un 30 % en un año es excelente; ese mismo 30 % repartido en diez años es modesto. Por eso conviene <strong>anualizar</strong> la rentabilidad antes de comparar inversiones.</li>
+      <li><strong>El riesgo importa.</strong> Una rentabilidad alta suele venir acompañada de más riesgo. Compárala siempre con alternativas de riesgo parecido, no solo con la que más promete.</li>
+    </ul>
+    <p>Para anualizar de forma sencilla puedes dividir el ROI total entre los años: un 30 % en 3 años equivale a unos 10 % anuales (aproximado). El cálculo exacto emplea interés compuesto: (1,30)^(1/3) − 1 ≈ 9,1 % anual. Con la <a href="/calculadora-interes-compuesto">calculadora de interés compuesto</a> puedes ver cómo se acumula año a año.</p>
+
+    <h2>Errores frecuentes y consejos</h2>
+    <ul>
+      <li><strong>Olvidar comisiones e impuestos.</strong> El ROI real se calcula sobre lo que de verdad entra en tu bolsillo, después de comisiones y de la fiscalidad de las plusvalías.</li>
+      <li><strong>No contar el tiempo.</strong> Comparar dos inversiones sin mirar su plazo lleva a conclusiones equivocadas; anualiza siempre antes de decidir.</li>
+      <li><strong>Confundir rentabilidad con margen.</strong> En un negocio, el margen comercial y el ROI miden cosas distintas; puedes repasarlo en la <a href="/calculadora-margen-comercial">calculadora de margen comercial</a>.</li>
+      <li><strong>Ignorar la inflación.</strong> Una rentabilidad del 3 % con una inflación del 3 % apenas mantiene tu poder adquisitivo real.</li>
+    </ul>
+
+    <p class="hint">Las rentabilidades pasadas no garantizan resultados futuros. Esta herramienta es orientativa y no constituye asesoramiento financiero.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-interes-compuesto">Interés compuesto</a><a href="/calculadora-margen-comercial">Margen comercial</a><a href="/calculadora-ahorro">Ahorro</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

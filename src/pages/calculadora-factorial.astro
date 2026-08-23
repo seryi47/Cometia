@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es el factorial de un número?', a: 'El factorial de n (se escribe n!) es el producto de todos los números enteros desde 1 hasta n. Por ejemplo, 5! = 5 × 4 × 3 × 2 × 1 = 120.' },
-  { q: '¿Cuánto vale 0!?', a: 'Por convención, 0! = 1. Es una definición que hace que muchas fórmulas de combinatoria funcionen correctamente.' },
+  { q: '¿Qué es el factorial de un número?', a: 'El factorial de n (se escribe n!) es el producto de todos los números enteros positivos desde 1 hasta n. Por ejemplo, 5! = 5 × 4 × 3 × 2 × 1 = 120. Solo está definido para números enteros mayores o iguales que 0.' },
+  { q: '¿Cuánto vale 0!?', a: 'Por convenio, 0! = 1, no cero. Puede parecer extraño, pero es la definición que hace que las fórmulas de combinatoria (permutaciones y combinaciones) sigan funcionando cuando aparece el cero. También encaja con la idea de que solo hay una forma de ordenar un conjunto vacío: no colocar nada.' },
+  { q: '¿Y cuánto vale 1!?', a: '1! = 1, porque su único factor es el propio uno. Junto con 0! = 1, son los dos únicos casos en los que el factorial vale 1.' },
+  { q: '¿Para qué sirve el factorial?', a: 'El factorial aparece sobre todo en combinatoria y probabilidad. Sirve para contar de cuántas maneras se pueden ordenar los elementos de un conjunto (permutaciones) y es la base de las fórmulas de variaciones y combinaciones. También se usa en el desarrollo de series matemáticas y en estadística.' },
+  { q: '¿Por qué el factorial crece tan rápido?', a: 'Porque en cada paso multiplicamos por un número cada vez mayor. Así, 10! ya supera los tres millones y medio y 20! tiene 19 cifras. Este crecimiento tan acelerado se conoce como crecimiento factorial y es de los más veloces de las matemáticas.' },
+  { q: '¿Se puede calcular el factorial de un número negativo o decimal?', a: 'Con la definición clásica, no: el factorial solo se define para enteros mayores o iguales que 0. Existe una extensión llamada función gamma que generaliza el factorial a otros números, pero se sale del uso habitual de esta calculadora.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de factorial', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-factorial' },
@@ -20,10 +24,40 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>Multiplicamos todos los enteros desde 1 hasta el número que indiques. El factorial crece muy rápido: 10! ya son más de tres millones y medio. Es clave en probabilidad y combinatoria (permutaciones y combinaciones).</p>
+    <h2>Qué es el factorial de un número</h2>
+    <p>El <strong>factorial</strong> de un número entero n, que se escribe <strong>n!</strong> (con un signo de exclamación), es el resultado de multiplicar todos los números enteros positivos desde 1 hasta ese número. Es una de las operaciones básicas de las matemáticas discretas y aparece constantemente cuando queremos <strong>contar</strong> de cuántas formas se puede ordenar o agrupar un conjunto de elementos.</p>
+    <p>Su definición formal es sencilla: <strong>n! = 1 · 2 · 3 · … · n</strong>. Solo está definido para números enteros mayores o iguales que cero; no tiene sentido hablar del factorial de un número decimal o negativo con la definición clásica.</p>
+
+    <h2>Cómo se calcula el factorial</h2>
+    <p>Para calcular un factorial basta con ir multiplicando de forma encadenada. Puedes empezar en 1 e ir subiendo hasta n, o al revés, desde n hasta 1: el resultado es el mismo porque la multiplicación es conmutativa. Un truco muy útil es que <strong>cada factorial contiene al anterior</strong>: n! = n · (n−1)!. Por eso, si ya sabes que 4! = 24, calcular 5! es tan fácil como multiplicar 5 × 24 = 120.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>5!</strong> = 5 × 4 × 3 × 2 × 1 = <strong>120</strong>.</li>
+      <li><strong>6!</strong> = 6 × 5! = 6 × 120 = <strong>720</strong>.</li>
+      <li><strong>10!</strong> = 10 × 9 × 8 × 7 × 6 × 5 × 4 × 3 × 2 × 1 = <strong>3.628.800</strong> (más de tres millones y medio).</li>
+    </ul>
+
+    <h2>Por qué 0! = 1</h2>
+    <p>Uno de los resultados que más sorprende es que el <strong>factorial de cero vale 1</strong>, no cero. No es un error ni un capricho: es un <strong>convenio</strong> elegido precisamente para que las fórmulas encajen. Piénsalo así: n! cuenta de cuántas maneras se pueden ordenar n objetos, y solo hay <strong>una</strong> forma de ordenar un conjunto vacío, que es no colocar nada. Además, la relación n! = n · (n−1)! obliga a que 1! = 1 · 0!, y como 1! = 1, necesariamente 0! = 1. Del mismo modo, 1! = 1, porque su único factor es el propio uno.</p>
+
+    <h2>Para qué sirve el factorial</h2>
+    <p>El factorial es la herramienta central de la <strong>combinatoria</strong>, la rama de las matemáticas que se ocupa de contar. Sus usos más frecuentes son:</p>
+    <ul>
+      <li><strong>Permutaciones:</strong> el número de formas distintas de ordenar n elementos es exactamente n!. Por ejemplo, 5 libros se pueden colocar en una estantería de 5! = 120 maneras diferentes.</li>
+      <li><strong>Combinaciones y variaciones:</strong> las fórmulas para elegir grupos de elementos (con o sin tener en cuenta el orden) se construyen dividiendo factoriales.</li>
+      <li><strong>Probabilidad:</strong> para calcular la probabilidad de un suceso muchas veces hay que contar los casos favorables y los posibles, y ahí reaparece el factorial.</li>
+    </ul>
+    <p>Si trabajas con este tipo de cálculos, te puede venir bien nuestra <a href="/calculadora-combinatoria">calculadora de combinatoria</a>.</p>
+
+    <h2>Lo rápido que crece</h2>
+    <p>El factorial es famoso por lo <strong>vertiginosamente rápido</strong> que crece: mucho más deprisa que una potencia o una función exponencial. Con 10! ya superamos los 3,6 millones; con 20! llegamos a un número de 19 cifras. Por eso, aunque esta calculadora usa aritmética de gran precisión para no perder ningún dígito, los factoriales muy altos generan resultados con cientos o miles de cifras. Este ritmo se conoce como <strong>crecimiento factorial</strong> y es de los más veloces que aparecen en matemáticas.</p>
+
+    <p class="hint">El factorial solo está definido para números enteros mayores o iguales que 0.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-combinatoria">Combinatoria</a><a href="/calculadora-numeros-primos">Números primos</a><a href="/calculadora-potencias-raices">Potencias y raíces</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

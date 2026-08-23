@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es un número primo?', a: 'Es un número mayor que 1 que solo se puede dividir exactamente entre 1 y él mismo. Por ejemplo, 2, 3, 5, 7 y 11 son primos; 12 no lo es (se divide entre 2, 3, 4 y 6).' },
-  { q: '¿Qué es la descomposición en factores primos?', a: 'Es escribir un número como producto de números primos. Por ejemplo, 60 = 2 × 2 × 3 × 5. Es muy útil para calcular el MCM y el MCD.' },
+  { q: '¿Qué es un número primo?', a: 'Es un número natural mayor que 1 que solo se puede dividir exactamente entre 1 y él mismo. Por ejemplo, 2, 3, 5, 7 y 11 son primos; 12 no lo es, porque además de 1 y 12 se divide entre 2, 3, 4 y 6.' },
+  { q: '¿El 1 es un número primo?', a: 'No. El 1 no es primo ni compuesto: solo tiene un divisor (él mismo), y la definición de número primo exige tener exactamente dos divisores distintos. Por eso los matemáticos dejan al 1 fuera de ambas categorías por convenio.' },
+  { q: '¿Cómo sé si un número es primo?', a: 'Busca un divisor distinto de 1 y del propio número. Si lo encuentras, es compuesto; si no aparece ninguno, es primo. Para ir rápido basta con probar divisores hasta la raíz cuadrada del número, y empezar por los criterios de divisibilidad entre 2, 3 y 5.' },
+  { q: '¿Cuál es el único número primo par?', a: 'El 2. Cualquier otro número par se puede dividir entre 2, así que tiene al menos tres divisores (1, 2 y él mismo) y deja de ser primo. Por eso el 2 es una excepción: el único primo par que existe.' },
+  { q: '¿Qué es la descomposición en factores primos?', a: 'Es escribir un número como producto de números primos. Por ejemplo, 60 = 2 × 2 × 3 × 5, que también se escribe 2² · 3 · 5. Cada número tiene una única descomposición posible, y es muy útil para calcular el MCM, el MCD y para simplificar fracciones.' },
+  { q: '¿Para qué sirven los números primos?', a: 'Más allá de las matemáticas escolares, son la base de la criptografía moderna. Sistemas como RSA, que protegen compras y contraseñas en internet, se apoyan en que multiplicar dos primos grandes es fácil, pero descubrir cuáles eran a partir del resultado es prácticamente imposible.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de números primos', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-numeros-primos' },
@@ -23,11 +27,34 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Comprobamos si el número tiene algún divisor distinto de 1 y de sí mismo. Si no lo tiene, es primo. Si lo tiene, lo dividimos sucesivamente entre sus factores primos hasta descomponerlo por completo.</p>
+    <h2>Qué es un número primo</h2>
+    <p>Un <strong>número primo</strong> es un número natural mayor que 1 que solo tiene dos divisores: el 1 y él mismo. Dicho de otra forma, no se puede dividir de manera exacta entre ningún otro número. Los primeros números primos son 2, 3, 5, 7, 11, 13, 17, 19, 23 y 29, y la lista continúa sin fin: los matemáticos demostraron hace más de dos mil años que existen <strong>infinitos números primos</strong>.</p>
+    <p>Los números mayores que 1 que no son primos se llaman <strong>números compuestos</strong>, porque se pueden formar multiplicando primos más pequeños. Por ejemplo, 12 es compuesto porque, además de 1 y 12, se divide entre 2, 3, 4 y 6. Hay dos casos que conviene recordar: el <strong>1 no es primo ni compuesto</strong> (solo tiene un divisor, así que queda fuera de la definición por convenio), y el <strong>2 es el único número primo par</strong>, ya que cualquier otro número par se divide entre 2.</p>
+
+    <h2>Cómo comprobar si un número es primo</h2>
+    <p>Para saber si un número es primo basta con buscar un divisor. Si encuentras uno distinto de 1 y del propio número, es compuesto; si no aparece ninguno, es primo. El truco práctico es que <strong>no hace falta probar con todos los números anteriores</strong>: basta con comprobar los divisores hasta la raíz cuadrada del número. Si tuviera un divisor mayor que su raíz, el factor que lo acompaña sería menor y ya lo habrías encontrado antes.</p>
+    <p>Para números pequeños ayudan los <strong>criterios de divisibilidad</strong>: si acaba en 0, 2, 4, 6 u 8 es divisible entre 2; si la suma de sus cifras es múltiplo de 3, se divide entre 3; y si termina en 0 o en 5, se divide entre 5. Si un número supera estos primeros filtros, ya tienes buena parte del trabajo hecho.</p>
+
+    <h2>Qué es la descomposición en factores primos</h2>
+    <p>La <strong>descomposición en factores primos</strong> consiste en escribir un número compuesto como una multiplicación de números primos. Cada número tiene una única descomposición posible (salvo el orden de los factores), un resultado tan importante que se conoce como <strong>Teorema Fundamental de la Aritmética</strong>. Por eso los primos se consideran los "ladrillos" con los que se construyen todos los demás números.</p>
+    <p>Para descomponer un número se divide repetidamente entre el primo más pequeño que quepa y se continúa con el cociente hasta llegar a 1. Esta descomposición es la base para calcular el <a href="/calculadora-mcm-mcd">mínimo común múltiplo y el máximo común divisor</a>, y también para simplificar fracciones.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>¿Es 97 primo?</strong> Su raíz cuadrada es algo menos de 10, así que solo hay que probar con los primos 2, 3, 5 y 7. No es par, sus cifras suman 16 (no es múltiplo de 3), no acaba en 0 ni en 5 y no se divide entre 7. Como no aparece ningún divisor, <strong>97 es primo</strong>.</li>
+      <li><strong>Descomponer 60:</strong> 60 = 2 × 30 = 2 × 2 × 15 = 2 × 2 × 3 × 5. Por tanto, <strong>60 = 2² · 3 · 5</strong>.</li>
+      <li><strong>¿Es 91 primo?</strong> A primera vista lo parece, pero 91 = 7 × 13. Como tiene divisores distintos de 1 y de sí mismo, <strong>91 no es primo</strong>: es compuesto.</li>
+    </ul>
+
+    <h2>Curiosidades y usos de los números primos</h2>
+    <p>Aunque parezcan un juego matemático, los números primos son la base de la <strong>seguridad en internet</strong>. El sistema de cifrado RSA —que protege compras, contraseñas y mensajes— se apoya en un hecho curioso: multiplicar dos números primos enormes es facilísimo para un ordenador, pero hacer el camino inverso (averiguar qué dos primos se multiplicaron) resulta tan lento que es prácticamente imposible con números lo bastante grandes. Esa asimetría es lo que mantiene tus datos a salvo.</p>
+    <p>Los primos también fascinan por su misterio: no existe una fórmula sencilla que los prediga, y buscar primos cada vez mayores es un reto que ocupa a superordenadores de todo el mundo, con récords que ya superan los millones de cifras.</p>
+
+    <p class="hint">Esta calculadora comprueba primos y factores al instante, pero entender el porqué te ayudará a resolver cualquier problema de matemáticas.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-mcm-mcd">MCM y MCD</a></div>
+    <div class="more"><a href="/calculadora-mcm-mcd">MCM y MCD</a><a href="/calculadora-factorial">Factorial</a><a href="/calculadora-combinatoria">Combinatoria</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

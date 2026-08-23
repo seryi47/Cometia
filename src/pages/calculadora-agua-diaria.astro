@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cuánta agua hay que beber al día?', a: 'Una referencia habitual es de unos 30-35 ml por kilo de peso. Para una persona de 70 kg serían unos 2,1-2,5 litros al día, contando también el agua de alimentos y otras bebidas.' },
-  { q: '¿Influyen el calor o el deporte?', a: 'Sí. Con calor, ejercicio intenso o fiebre necesitas más. La sed y el color de la orina (cuanto más clara, mejor) son buenas señales para ajustarte.' },
+  { q: '¿Cuánta agua hay que beber al día?', a: 'Una referencia habitual para adultos es de unos 35 ml por kilo de peso al día. Para una persona de 70 kg serían unos 2,45 litros, contando también el agua de los alimentos y otras bebidas. No es una meta rígida: la sed y tus circunstancias (calor, ejercicio) también mandan.' },
+  { q: '¿Influyen el calor y el deporte?', a: 'Sí. Con calor, humedad, ejercicio intenso o fiebre el cuerpo pierde más líquido y necesitas beber más. La sed y el color de la orina (cuanto más clara, mejor) son buenas señales para ajustarte.' },
+  { q: '¿El café, el té o los refrescos hidratan?', a: 'Sí aportan líquido, aunque el agua sigue siendo la mejor opción. Las infusiones, el café suave o los caldos hidratan; los refrescos y zumos también suman líquido, pero aportan azúcar, así que conviene tomarlos con moderación.' },
+  { q: '¿Se puede beber demasiada agua?', a: 'En casos poco frecuentes, beber cantidades muy grandes de agua en poco tiempo puede diluir el sodio de la sangre (hiponatremia), algo raro pero que puede ser grave. Para una persona sana que bebe según la sed no supone ningún riesgo.' },
+  { q: '¿Cómo sé si estoy bien hidratado?', a: 'Una forma sencilla es fijarse en el color de la orina: un tono amarillo pálido suele indicar buena hidratación, mientras que un amarillo oscuro sugiere que conviene beber más. La ausencia de sed intensa y de dolor de cabeza también son buenas señales.' },
+  { q: '¿Necesitan lo mismo los niños y las personas mayores?', a: 'No exactamente. Los niños y las personas mayores son más sensibles a la deshidratación: los mayores porque a menudo perciben menos la sed y los niños porque pierden líquido con más facilidad. En ambos casos conviene vigilar que beban con regularidad.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de agua diaria', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-agua-diaria' },
@@ -25,11 +29,46 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>Multiplicamos tu peso por unos 35 ml, una referencia general para adultos. El resultado lo mostramos en litros y en vasos de 250 ml para que sea fácil de seguir a lo largo del día.</p>
+    <h2>Por qué es importante hidratarse bien</h2>
+    <p>El agua es el componente más abundante de nuestro cuerpo: supone en torno al 60 % del peso de un adulto. Interviene en casi todo lo que hace el organismo: transporta nutrientes y oxígeno, regula la temperatura a través del sudor, lubrica las articulaciones, ayuda a los riñones a eliminar residuos y mantiene la piel y las mucosas en buen estado. Cada día perdemos líquido por la orina, la respiración, el sudor y las heces, así que reponerlo es necesario para que todo funcione con normalidad.</p>
+    <p>Una hidratación insuficiente puede notarse antes de lo que parece: cansancio, dolor de cabeza, dificultad para concentrarse o estreñimiento son señales frecuentes. La buena noticia es que el cuerpo regula la sed con bastante precisión, y para la mayoría de las personas beber cuando se tiene sed y acompañar las comidas con agua suele ser suficiente.</p>
+
+    <h2>Cómo se estima el agua diaria</h2>
+    <p>Existen varias formas de orientar la cantidad de líquido recomendable. Una de las más sencillas y usadas parte del peso corporal: se calcula alrededor de <strong>35 ml de agua por cada kilo</strong> al día en adultos. Esta calculadora usa ese criterio y después traduce el resultado a litros y a vasos de 250 ml, para que sea más fácil repartirlo a lo largo del día.</p>
+    <p>La fórmula es directa:</p>
+    <p style="text-align:center"><strong>Agua (ml) = peso (kg) × 35</strong></p>
+    <p>Ten en cuenta que esa cifra incluye <strong>todo el líquido del día</strong>, no solo el agua que bebes: también cuentan otras bebidas y el agua presente en los alimentos. No es una meta rígida, sino un punto de partida que conviene ajustar a tus circunstancias.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>60 kg:</strong> 60 × 35 = 2.100 ml = <strong>2,1 L</strong>, es decir unos 8 vasos de 250 ml.</li>
+      <li><strong>70 kg:</strong> 70 × 35 = 2.450 ml ≈ <strong>2,45 L</strong> (la calculadora lo redondea a 2,5 L), alrededor de 10 vasos.</li>
+      <li><strong>80 kg:</strong> 80 × 35 = 2.800 ml = <strong>2,8 L</strong>, unos 11 vasos de 250 ml.</li>
+    </ul>
+
+    <h2>Factores que aumentan la necesidad de agua</h2>
+    <p>La cifra anterior es una referencia para un día normal en una persona sana. Hay situaciones en las que el cuerpo pierde más líquido y conviene beber algo más:</p>
+    <ul>
+      <li><strong>Ejercicio físico:</strong> con el sudor se pierden agua y sales. Tras una actividad intensa o prolongada hay que reponer más de lo habitual.</li>
+      <li><strong>Calor y humedad:</strong> en verano o en ambientes calurosos sudamos más, incluso en reposo.</li>
+      <li><strong>Fiebre, vómitos o diarrea:</strong> aumentan las pérdidas y elevan el riesgo de deshidratación, sobre todo en niños y personas mayores.</li>
+      <li><strong>Embarazo y lactancia:</strong> las necesidades de líquido son algo mayores; conviene seguir las indicaciones del profesional que lleva el seguimiento.</li>
+      <li><strong>Altitud y ambientes muy secos:</strong> también pueden aumentar las pérdidas de agua a través de la respiración.</li>
+    </ul>
+
+    <h2>Mitos habituales sobre beber agua</h2>
+    <p>Circulan muchas ideas exageradas sobre la hidratación. Conviene matizarlas:</p>
+    <ul>
+      <li><strong>«Hay que beber exactamente 2 litros o 8 vasos».</strong> No existe una cifra mágica igual para todos. Las necesidades dependen del peso, la actividad, el clima y la dieta. Forzarse a beber una cantidad fija no aporta ningún beneficio extra.</li>
+      <li><strong>«Solo cuenta el agua que bebo».</strong> Falso. Una parte importante del líquido diario procede de los alimentos —frutas, verduras, sopas, lácteos— y de otras bebidas como infusiones o caldos.</li>
+      <li><strong>«Si tengo sed, ya es tarde».</strong> En condiciones normales, la sed es un mecanismo fiable que se activa a tiempo. Solo en situaciones especiales (calor extremo, ejercicio largo o personas mayores) conviene adelantarse a ella.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora ofrece una estimación orientativa y no sustituye el consejo de un profesional sanitario, especialmente si tienes una enfermedad renal, cardíaca o cualquier otra condición que exija controlar la ingesta de líquidos.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-calorias">Calorías diarias</a><a href="/calculadora-imc">IMC</a></div>
+    <div class="more"><a href="/calculadora-calorias">Calorías diarias</a><a href="/calculadora-imc">IMC</a><a href="/calculadora-macros">Macros</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

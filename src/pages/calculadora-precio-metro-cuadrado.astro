@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Para qué sirve el precio por metro cuadrado?', a: 'Es la forma estándar de comparar viviendas o locales de distinto tamaño. Dividiendo el precio entre los metros útiles obtienes una cifra que puedes comparar entre inmuebles y zonas.' },
-  { q: '¿Metros útiles o construidos?', a: 'Depende de lo que estés comparando. Lo importante es usar siempre el mismo criterio (útiles o construidos) en todos los inmuebles que compares.' },
+  { q: '¿Para qué sirve el precio por metro cuadrado?', a: 'Es la forma estándar de comparar viviendas o locales de distinto tamaño. Dividiendo el precio total entre los metros cuadrados obtienes una cifra homogénea (€/m²) que sí puedes poner una al lado de otra, aunque los inmuebles tengan superficies muy diferentes. Es la unidad que usan agencias, tasadores y portales para hablar el mismo idioma.' },
+  { q: '¿Cómo se calcula el precio por m²?', a: 'Se divide el precio total entre la superficie en metros cuadrados: precio ÷ m². Por ejemplo, una vivienda de 200.000 € con 80 m² sale a 2.500 €/m² (200.000 ÷ 80). Solo necesitas esos dos datos.' },
+  { q: '¿Metros útiles o construidos?', a: 'El mismo piso da un precio por metro distinto según la superficie que uses. La construida siempre es mayor que la útil, así que con ella el €/m² sale más bajo. Lo importante es usar siempre el mismo criterio (útiles o construidos) en todos los inmuebles que compares; mezclar criterios distorsiona la comparación.' },
+  { q: '¿Un piso más barato en total es siempre mejor compra?', a: 'No. Un piso de 180.000 € y 60 m² sale a 3.000 €/m², mientras que otro de 210.000 € y 84 m² sale a 2.500 €/m². El segundo cuesta más en total, pero paga menos por cada metro: es mejor relación precio-superficie. Por eso conviene mirar el €/m² y no solo el precio total.' },
+  { q: '¿Por qué varía tanto el precio por m² entre zonas?', a: 'La ubicación es el factor que más pesa. El centro de una ciudad, un barrio bien comunicado o una vivienda exterior y reformada pueden multiplicar el valor del metro frente a otra zona a pocos kilómetros. Por eso solo tiene sentido comparar inmuebles parecidos en zonas parecidas.' },
+  { q: '¿Sirve también para locales, oficinas o terrenos?', a: 'Sí. El cálculo es el mismo: precio total dividido entre la superficie. Se usa habitualmente en locales comerciales, oficinas, plazas de garaje y suelo, siempre que compares superficies medidas con el mismo criterio.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de precio por metro cuadrado', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-precio-metro-cuadrado' },
@@ -23,11 +27,44 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
+    <h2>Para qué sirve el precio por metro cuadrado</h2>
+    <p>El <strong>precio por metro cuadrado</strong> (€/m²) es la referencia más usada para valorar y comparar inmuebles. Un piso puede costar 180.000 € y otro 240.000 €, pero esas cifras por sí solas no dicen cuál es más caro: todo depende del tamaño. Al reducir el precio a lo que cuesta cada metro, obtienes una cifra homogénea que sí puedes poner una al lado de otra, aunque las viviendas tengan superficies muy distintas.</p>
+    <p>Es la unidad que manejan agencias, tasadores y portales inmobiliarios para hablar el mismo idioma. También te sirve a ti como comprador o vendedor: te ayuda a detectar si un anuncio está por encima o por debajo del precio medio de su zona y a negociar con datos en la mano en lugar de con sensaciones.</p>
+
     <h2>Cómo se calcula</h2>
-    <p>Es una división sencilla: <strong>precio ÷ metros cuadrados</strong>. Por ejemplo, 180.000 € entre 90 m² son 2.000 €/m². Úsalo para comparar pisos de distinto tamaño de forma justa.</p>
+    <p>La fórmula es una división directa:</p>
+    <p style="text-align:center"><strong>Precio por m² = precio total ÷ superficie (m²)</strong></p>
+    <p>Solo necesitas dos datos: el precio de la vivienda en euros y su superficie en metros cuadrados. El resultado se expresa en <strong>€/m²</strong>. La única precaución es tener claro qué superficie estás usando (útil o construida), porque cambia bastante el resultado, como verás más abajo.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>200.000 € y 80 m²:</strong> 200.000 ÷ 80 = <strong>2.500 €/m²</strong>.</li>
+      <li><strong>126.000 € y 70 m²:</strong> 126.000 ÷ 70 = <strong>1.800 €/m²</strong>.</li>
+      <li><strong>315.000 € y 90 m²:</strong> 315.000 ÷ 90 = <strong>3.500 €/m²</strong>.</li>
+    </ul>
+
+    <h2>Cómo usarlo para comparar viviendas</h2>
+    <p>Aquí está la verdadera utilidad del cálculo. Imagina dos pisos en la misma zona:</p>
+    <ul>
+      <li><strong>Piso A:</strong> 180.000 € y 60 m² → 180.000 ÷ 60 = <strong>3.000 €/m²</strong>.</li>
+      <li><strong>Piso B:</strong> 210.000 € y 84 m² → 210.000 ÷ 84 = <strong>2.500 €/m²</strong>.</li>
+    </ul>
+    <p>A primera vista el Piso A parece más barato porque su precio total es menor. Pero al mirar el precio por metro, el Piso B es claramente mejor compra: pagas 2.500 € por cada metro frente a 3.000 €. Es decir, el Piso A es un 20 % más caro por metro. Sin este cálculo, comparar solo por el precio total llevaría a la conclusión equivocada.</p>
+    <p>La regla es sencilla: <strong>compara siempre inmuebles parecidos</strong> (misma zona, estado y tipo) y usa el €/m² como criterio de fondo, sin perder de vista el precio total, que es lo que realmente vas a pagar y financiar.</p>
+
+    <h2>Matices: superficie útil, construida y ubicación</h2>
+    <p>El mismo piso puede dar dos precios por metro muy distintos según qué superficie uses:</p>
+    <ul>
+      <li><strong>Superficie útil:</strong> los metros que realmente pisas dentro de la vivienda, sin contar el grosor de las paredes.</li>
+      <li><strong>Superficie construida:</strong> incluye paredes, tabiques y, a veces, la parte proporcional de zonas comunes (portal, escalera). Siempre es mayor que la útil.</li>
+    </ul>
+    <p>Como la construida es mayor, el precio por metro sale más bajo si la usas. Por eso lo esencial es <strong>usar el mismo criterio en todos los inmuebles que compares</strong>: mezclar la superficie útil de uno con la construida de otro distorsiona por completo la comparación. Además, el €/m² depende enormemente de la <strong>ubicación</strong>: el centro de una ciudad, un barrio con buenas comunicaciones o una vivienda exterior y reformada pueden multiplicar el valor del metro frente a otra zona a pocos kilómetros.</p>
+
+    <p class="hint">El precio por m² es una referencia para comparar; el valor final de una vivienda también depende del estado, la planta, la orientación y la demanda de la zona.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-hipoteca">Hipoteca</a></div>
+    <div class="more"><a href="/calculadora-hipoteca">Hipoteca</a><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-precio-hora">Precio por hora</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

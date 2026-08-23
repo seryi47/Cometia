@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula la frecuencia cardíaca máxima?', a: 'La fórmula más conocida es 220 menos tu edad. Es una estimación: la máxima real varía de una persona a otra.' },
-  { q: '¿Para qué sirven las zonas de entrenamiento?', a: 'Cada zona (un porcentaje de tu máxima) trabaja cosas distintas: las bajas queman grasa y mejoran el fondo; las altas mejoran la potencia y la velocidad. Ayudan a entrenar con criterio.' },
+  { q: '¿Cómo se calcula la frecuencia cardíaca máxima?', a: 'La fórmula más conocida es 220 menos tu edad. También se usa la de Tanaka, 208 − (0,7 × edad), que suele ajustar mejor en personas mayores. Las dos son estimaciones a partir de la edad: tu máxima real puede variar en torno a 10-12 ppm por encima o por debajo según tu genética y tu nivel de forma.' },
+  { q: '¿Para qué sirven las zonas de entrenamiento?', a: 'Cada zona es un tramo de intensidad (un porcentaje de tu máxima) que trabaja adaptaciones distintas: las bajas mejoran el fondo y la resistencia de base, y las altas la potencia y la velocidad. Entrenar por zonas te ayuda a dosificar el esfuerzo y a no ir siempre al mismo ritmo.' },
+  { q: '¿Qué fórmula es mejor, 220 − edad o la de Tanaka?', a: 'Ninguna es exacta, porque ambas estiman a partir de la edad. La clásica (220 − edad) es la más extendida y sencilla; la de Tanaka tiende a ser algo más precisa en adultos mayores. Para conocer tu máxima real de forma fiable haría falta una prueba de esfuerzo supervisada por profesionales.' },
+  { q: '¿En qué zona se quema más grasa?', a: 'En las zonas suaves (Z1 y Z2) el cuerpo usa un mayor porcentaje de grasa como combustible, por eso se habla de "zona quemagrasa". Pero en intensidades altas se gastan más calorías totales en el mismo tiempo. Para perder peso lo que más cuenta es el gasto total y la constancia, no solo la zona en la que entrenes.' },
+  { q: '¿Necesito un pulsómetro para entrenar por zonas?', a: 'Ayuda mucho, porque te muestra tus pulsaciones en tiempo real y puedes mantenerte en la zona que buscas. Sin él puedes guiarte por sensaciones (el "test del habla": si puedes conversar sin ahogarte estás en una zona suave), pero es menos preciso.' },
+  { q: '¿Es normal que mi máxima real no coincida con la calculada?', a: 'Sí, es lo habitual. La FCmáx que da la fórmula es un promedio para tu edad; la tuya puede ser bastante distinta sin que signifique nada malo. Si notas pulsaciones muy altas en reposo, mareos o un ritmo irregular al esforzarte, coméntalo con tu médico.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de frecuencia cardíaca', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-frecuencia-cardiaca' },
@@ -25,11 +29,40 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
+    <h2>Qué es la frecuencia cardíaca máxima y las zonas</h2>
+    <p>La <strong>frecuencia cardíaca máxima (FCmáx)</strong> es el número más alto de pulsaciones por minuto (ppm) que tu corazón puede alcanzar durante un esfuerzo muy intenso. Es un valor de referencia personal: a partir de él se calculan las <strong>zonas de entrenamiento</strong>, que son tramos de intensidad expresados como un porcentaje de esa máxima. Entrenar mirando la frecuencia cardíaca, y no solo por sensación, te permite dosificar el esfuerzo: saber cuándo estás rodando suave para ganar fondo y cuándo estás apretando de verdad.</p>
+    <p>Las zonas van de la más suave (Z1, recuperación) a la más exigente (Z5, cerca del máximo). Cada una entrena adaptaciones distintas, y un plan equilibrado suele combinar mucho tiempo en zonas bajas con dosis puntuales de intensidad alta.</p>
+    <p>Una pauta muy repetida entre corredores y ciclistas es la <strong>regla 80/20</strong>: dedicar en torno al 80 % del tiempo a zonas suaves (Z1-Z2) y solo el 20 % restante a intensidades altas (Z4-Z5). Rodar demasiado en la zona intermedia sin llegar a descansar ni a estimular de verdad es un error frecuente en quien empieza. Para tener una foto más completa de tu forma física también conviene fijarse en la <strong>frecuencia cardíaca en reposo</strong>, la que tienes al despertar: en personas entrenadas tiende a ser más baja.</p>
+
     <h2>Cómo se calcula</h2>
-    <p>Estimamos tu frecuencia máxima con la fórmula <strong>220 − edad</strong> y calculamos cinco zonas de entrenamiento como porcentajes de esa máxima. Un pulsómetro te ayuda a mantenerte en la zona que buscas en cada sesión.</p>
+    <p>Existen varias fórmulas para estimar la FCmáx. Esta calculadora usa la clásica, la más extendida:</p>
+    <p style="text-align:center"><strong>FCmáx = 220 − edad</strong></p>
+    <p>Otra fórmula muy citada es la de <strong>Tanaka</strong>, que suele ajustar algo mejor en personas mayores:</p>
+    <p style="text-align:center"><strong>FCmáx = 208 − (0,7 × edad)</strong></p>
+    <p>Ambas son estimaciones estadísticas: tu máxima real puede diferir en unas 10 o 12 ppm arriba o abajo, porque depende de la genética y no solo de la edad. Una vez tienes la FCmáx, cada zona se obtiene multiplicándola por su porcentaje. Por ejemplo, el límite inferior de la Z2 (60 %) para una FCmáx de 190 ppm es 190 × 0,60 = 114 ppm.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>30 años:</strong> 220 − 30 = <strong>190 ppm</strong> con la fórmula clásica; con Tanaka, 208 − (0,7 × 30) = 187 ppm.</li>
+      <li><strong>45 años:</strong> 220 − 45 = <strong>175 ppm</strong>; con Tanaka, 208 − (0,7 × 45) ≈ 177 ppm.</li>
+      <li><strong>60 años:</strong> 220 − 60 = <strong>160 ppm</strong>; con Tanaka, 208 − (0,7 × 60) = 166 ppm.</li>
+    </ul>
+    <p>Con una FCmáx de 180 ppm (edad de 40 años, fórmula clásica), las cinco zonas quedarían así: Z1 90–108, Z2 108–126, Z3 126–144, Z4 144–162 y Z5 162–180 ppm.</p>
+
+    <h2>Tabla de zonas de entrenamiento</h2>
+    <div class="tablewrap"><table class="amort"><thead><tr><th>Zona</th><th>% FCmáx</th><th>Para qué sirve</th></tr></thead><tbody>
+      <tr><td>Z1 · Recuperación</td><td>50–60 %</td><td>Calentamiento, vuelta a la calma y días fáciles. Apenas cansa y facilita la recuperación.</td></tr>
+      <tr><td>Z2 · Aeróbica suave</td><td>60–70 %</td><td>Mejora el fondo y la resistencia de base; puedes mantener una conversación mientras entrenas.</td></tr>
+      <tr><td>Z3 · Aeróbica</td><td>70–80 %</td><td>Ritmo cómodo pero exigente; desarrolla la capacidad aeróbica y la eficiencia.</td></tr>
+      <tr><td>Z4 · Umbral</td><td>80–90 %</td><td>Cerca del umbral; mejora el ritmo que puedes sostener y la velocidad.</td></tr>
+      <tr><td>Z5 · Máxima</td><td>90–100 %</td><td>Esfuerzos cortos e intensos; trabaja la potencia y la velocidad máxima.</td></tr>
+    </tbody></table></div>
+
+    <p class="hint">Estos valores son orientativos y no sustituyen la valoración de un profesional. Si tienes alguna patología cardíaca, tomas medicación que afecte al pulso o notas síntomas al esforzarte, consulta con tu médico antes de entrenar por zonas.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-ritmo-carrera">Ritmo de carrera</a></div>
+    <div class="more"><a href="/calculadora-ritmo-carrera">Ritmo de carrera</a><a href="/calculadora-calorias-quemadas">Calorías quemadas</a><a href="/calculadora-calorias">Calorías diarias</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

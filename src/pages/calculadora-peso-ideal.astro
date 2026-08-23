@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es el peso ideal?', a: 'Es una estimación del peso saludable para tu altura. No hay un único número perfecto: lo razonable es un rango, porque influyen la constitución, la masa muscular y otros factores.' },
-  { q: '¿Cómo se calcula?', a: 'Mostramos el rango de peso saludable según el IMC (entre 18,5 y 24,9) para tu altura, y una estimación clásica con la fórmula de Devine. Son orientativos.' },
+  { q: '¿Qué es el peso ideal?', a: 'Es una estimación del peso que suele asociarse a una buena salud para tu altura y, en algunas fórmulas, tu sexo. No es un objetivo médico ni un número exacto: lo sensato es hablar de un rango de pesos saludables, porque influyen la constitución, la masa muscular y otros factores personales.' },
+  { q: '¿Cómo calcula esta página el peso ideal?', a: 'Mostramos dos cosas. El rango de peso saludable aplica los límites del IMC (18,5 y 24,9) a tu altura, y la estimación de peso ideal usa la fórmula clásica de Devine: 50 kg en hombres o 45,5 kg en mujeres para una altura de 1,52 m, más 2,3 kg por cada 2,54 cm de más. Ambos valores son orientativos.' },
+  { q: '¿Por qué distintas fórmulas dan pesos ideales diferentes?', a: 'Porque cada una se creó en un contexto y con un método distinto. Fórmulas como Devine, Broca, Lorentz o Hamwi parten de bases y ajustes diferentes, así que es normal que ofrezcan cifras que no coinciden. Más que buscar el número exacto, conviene quedarse con la horquilla que sugieren en conjunto.' },
+  { q: '¿El peso ideal sirve para deportistas o personas muy musculadas?', a: 'Con cautela. Estas fórmulas solo tienen en cuenta la altura y el sexo, no la masa muscular. Como el músculo pesa más que la grasa, una persona muy entrenada puede quedar por encima de su "peso ideal" estando en muy buena forma. En estos casos, el porcentaje de grasa corporal resulta más informativo.' },
+  { q: '¿Es lo mismo el peso ideal que el peso saludable?', a: 'No exactamente. El peso saludable es un rango amplio de pesos compatibles con una buena salud para tu altura, mientras que el "peso ideal" suele expresarse como una única cifra estimada por una fórmula. Esa cifra debería caer dentro del rango saludable, pero no es una meta que haya que clavar.' },
+  { q: '¿Debo intentar alcanzar mi peso ideal exacto?', a: 'No es necesario ni recomendable obsesionarse con una cifra concreta. El peso ideal es una referencia orientativa, no un objetivo médico. Si quieres cambiar tu peso, lo mejor es plantear objetivos realistas y progresivos con el apoyo de un profesional sanitario, valorando también hábitos, alimentación y actividad física.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de peso ideal', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-peso-ideal' },
@@ -25,11 +29,43 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>El <strong>rango saludable</strong> se obtiene aplicando los límites del IMC (18,5 y 24,9) a tu altura. La <strong>estimación de peso ideal</strong> usa la fórmula de Devine. Recuerda que son orientaciones: la masa muscular y tu constitución cuentan.</p>
+    <h2>Qué es el "peso ideal" y qué límites tiene</h2>
+    <p>El <strong>peso ideal</strong> es una estimación del peso que suele asociarse a una buena salud para una altura determinada y, en algunas fórmulas, según el sexo. Conviene entenderlo bien desde el principio: no es un número mágico ni un objetivo médico que haya que alcanzar a toda costa. De hecho, hablar de "el" peso ideal induce a error, porque lo razonable es pensar en un <strong>rango</strong> de pesos saludables y no en una única cifra. Dos personas con la misma altura pueden estar perfectamente sanas con pesos distintos, según su constitución, su masa muscular y su historia personal.</p>
+    <p>Muchas de estas fórmulas nacieron hace décadas en el ámbito hospitalario, a menudo para ajustar dosis de medicamentos, no para marcar metas estéticas. Por eso deben tomarse como una <strong>orientación</strong> y nunca como un veredicto sobre tu cuerpo.</p>
+
+    <h2>Las fórmulas que usa esta calculadora</h2>
+    <p>Esta página combina dos referencias distintas:</p>
+    <ul>
+      <li><strong>Rango de peso saludable (según el IMC):</strong> se toman los límites del Índice de Masa Corporal para población adulta —18,5 y 24,9— y se aplican a tu altura. La fórmula es <strong>peso = IMC × altura²</strong>, con la altura en metros. Así se obtiene el peso mínimo y máximo que dejarían tu IMC dentro del rango normal.</li>
+      <li><strong>Estimación de peso ideal (fórmula de Devine):</strong> parte de una base de 50 kg en hombres y 45,5 kg en mujeres para una altura de 1,52 m (5 pies) y suma 2,3 kg por cada pulgada (2,54 cm) por encima de esa altura. Es una de las fórmulas clásicas más utilizadas.</li>
+    </ul>
+    <p>Existen otras fórmulas conocidas —Broca, Lorentz o Hamwi— que dan resultados algo diferentes entre sí. Esto no es un fallo: simplemente confirma que el peso ideal es una estimación y que ninguna cifra es absoluta.</p>
+
+    <h3>Ejemplo resuelto</h3>
+    <p>Tomemos a un <strong>hombre de 175 cm</strong> de altura:</p>
+    <ul>
+      <li><strong>Rango saludable:</strong> con 1,75 m, el cuadrado de la altura es 1,75 × 1,75 = 3,0625. El mínimo es 18,5 × 3,0625 = <strong>56,7 kg</strong> y el máximo 24,9 × 3,0625 = <strong>76,3 kg</strong>.</li>
+      <li><strong>Devine:</strong> 175 cm equivalen a 68,9 pulgadas, es decir 8,9 por encima de las 60 (5 pies). El cálculo es 50 + 2,3 × 8,9 = <strong>70,5 kg</strong>.</li>
+    </ul>
+    <p>Para una <strong>mujer de la misma altura</strong>, la base cambia a 45,5 kg, de modo que la estimación de Devine sería de unos 66 kg. Como ves, la cifra de Devine cae dentro del rango saludable calculado con el IMC, que es justo lo esperable.</p>
+
+    <h2>Por qué es solo orientativo</h2>
+    <p>La principal limitación es que estas fórmulas <strong>solo miran la altura</strong> (y a veces el sexo). No tienen en cuenta datos tan importantes como:</p>
+    <ul>
+      <li><strong>La complexión:</strong> una persona de huesos anchos pesará más que otra de estructura fina con la misma altura, sin que ninguna esté "mal".</li>
+      <li><strong>La masa muscular:</strong> el músculo pesa más que la grasa, así que alguien muy entrenado puede superar su "peso ideal" estando en plena forma.</li>
+      <li><strong>La distribución de la grasa y la edad:</strong> dónde se acumula la grasa influye más en la salud que el peso total, y con los años cambia la composición del cuerpo.</li>
+    </ul>
+    <p>Por eso el peso ideal no debería convertirse en una obsesión ni en un objetivo rígido. Es más útil como una referencia amplia para saber, a grandes rasgos, si tu peso está dentro de lo esperable para tu altura.</p>
+
+    <h2>Otras formas de valorar tu peso</h2>
+    <p>Si quieres una foto más completa, combina esta estimación con otros indicadores. El <a href="/calculadora-imc">IMC</a> resume la relación entre peso y altura en un solo número; el <a href="/calculadora-grasa-corporal">porcentaje de grasa corporal</a> te dice qué parte de tu cuerpo es grasa, algo que el peso no distingue; y el perímetro de cintura ayuda a valorar la grasa abdominal. Si tu objetivo es ajustar el peso, conocer tus <a href="/calculadora-calorias">calorías diarias</a> es un buen punto de partida.</p>
+
+    <p class="hint">El peso ideal es una estimación orientativa y no sustituye la valoración de un profesional sanitario. Si tienes dudas sobre tu peso o quieres cambiarlo, consulta con tu médico o con un dietista-nutricionista.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-imc">IMC</a><a href="/calculadora-calorias">Calorías</a></div>
+    <div class="more"><a href="/calculadora-imc">IMC</a><a href="/calculadora-grasa-corporal">Grasa corporal</a><a href="/calculadora-calorias">Calorías</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

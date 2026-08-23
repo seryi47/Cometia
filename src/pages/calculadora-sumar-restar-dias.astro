@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Para qué sirve sumar o restar días a una fecha?', a: 'Para saber qué día caerá dentro de un plazo (por ejemplo, 30 días para pagar una factura) o qué fecha era hace cierto tiempo. También te decimos el día de la semana.' },
-  { q: '¿Cuenta fines de semana y festivos?', a: 'Sí, suma o resta días naturales (todos los días). Para días hábiles habría que descontar fines de semana y festivos, que varían según la comunidad.' },
+  { q: '¿Para qué sirve sumar o restar días a una fecha?', a: 'Sirve para saber qué día caerá dentro de un plazo (por ejemplo, los 30 días que tienes para pagar una factura) o qué fecha era hace cierto tiempo. Basta con indicar la fecha de partida, cuántos días y si quieres sumar o restar. Además te decimos en qué día de la semana cae el resultado, algo útil para no fijar una entrega o una cita en sábado o domingo.' },
+  { q: '¿Cuenta los fines de semana y los festivos?', a: 'Sí. La calculadora trabaja con días naturales, es decir, cuenta todos los días del calendario, incluidos sábados, domingos y festivos. Si necesitas días hábiles (los laborables), tendrías que descontar a mano los fines de semana y los festivos, que además cambian según la comunidad autónoma y el municipio.' },
+  { q: '¿Cómo se suman días naturales a una fecha?', a: 'Se avanza en el calendario tantos días como indiques, pasando de un mes al siguiente cuando se agotan sus días. Por ejemplo, sumar 15 días al 25 de enero de 2026 lleva al 9 de febrero de 2026: quedan 6 días hasta acabar enero (del 26 al 31) y los 9 restantes ya caen en febrero. La calculadora hace ese salto de mes automáticamente, incluso teniendo en cuenta si el año es bisiesto.' },
+  { q: '¿Los plazos administrativos se cuentan en días naturales o hábiles?', a: 'Depende de la norma. Muchos plazos administrativos y judiciales se cuentan en días hábiles, y en ese caso no cuentan sábados, domingos ni festivos. Otros, como algunos plazos civiles o de pago entre empresas, se cuentan en días naturales. Revisa siempre qué tipo de día señala la ley o el contrato antes de fiarte del resultado.' },
+  { q: '¿El plazo empieza a contar el mismo día o el día siguiente?', a: 'Suele empezar el día siguiente al del hecho que lo inicia (una notificación, una factura, una firma). Esta herramienta suma o resta días sobre la fecha de partida que tú elijas, así que, si el cómputo arranca al día siguiente, introduce esa fecha como punto de partida para que el resultado cuadre.' },
+  { q: '¿Puedo restar días para saber qué fecha era antes?', a: 'Sí. Elige la opción "Restar" e indica cuántos días quieres retroceder. Es práctico para reconstruir cuándo empezó un plazo, cuándo se envió algo o qué fecha era hace un número concreto de días.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Sumar o restar días a una fecha', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-sumar-restar-dias' },
@@ -22,11 +26,39 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Tomamos tu fecha de partida y le sumamos o restamos los días naturales que indiques. Es muy útil para plazos de pago, entregas, vencimientos o cuentas atrás, y además te decimos en qué día de la semana cae.</p>
+    <h2>Para qué sirve sumar o restar días a una fecha</h2>
+    <p>A diario nos topamos con plazos que se expresan en días: «tienes 30 días para pagar», «la garantía dura 730 días», «el pedido llega en 5 días laborables». Calcular a mano en qué fecha termina un plazo es fácil equivocarse, sobre todo cuando el conteo cruza de un mes a otro o de un año al siguiente. Esta calculadora resuelve justo eso: partes de una fecha, indicas cuántos días quieres <strong>sumar</strong> (avanzar hacia el futuro) o <strong>restar</strong> (retroceder hacia el pasado) y obtienes la fecha exacta, junto con el día de la semana en que cae.</p>
+    <p>Es una herramienta útil para cualquiera que maneje vencimientos, entregas o citas: autónomos que controlan facturas, particulares que siguen el plazo de una devolución o de una garantía, o quien simplemente quiere saber qué día será dentro de un número concreto de días.</p>
+
+    <h2>Cómo se calcula</h2>
+    <p>El cálculo consiste en avanzar o retroceder por el calendario tantos días como indiques, contando <strong>días naturales</strong>: todos los días cuentan, también sábados, domingos y festivos. Cuando se agotan los días de un mes se pasa al siguiente, y la herramienta tiene en cuenta que unos meses tienen 30 días, otros 31 y febrero 28 o 29 según sea año bisiesto.</p>
+    <p>Para <strong>sumar</strong> días, se cuenta hacia delante desde la fecha de partida; para <strong>restar</strong>, hacia atrás. El punto de partida no se cuenta como día transcurrido: si sumas 30 días al 1 de enero, el resultado es el día que hace el número 30 a partir de esa fecha, no el trigésimo día del calendario.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>1 de enero de 2026 + 30 días:</strong> enero tiene 31 días, así que quedan 30 días desde el día 1 hasta el 31. El resultado es el <strong>31 de enero de 2026</strong> (sábado).</li>
+      <li><strong>15 de marzo de 2026 − 10 días:</strong> al retroceder diez días dentro del mismo mes llegamos al <strong>5 de marzo de 2026</strong> (jueves).</li>
+      <li><strong>10 de febrero de 2026 + 45 días:</strong> desde el 10 de febrero quedan 18 días hasta acabar el mes (2026 no es bisiesto, febrero tiene 28 días) y los 27 restantes caen en marzo. El resultado es el <strong>27 de marzo de 2026</strong> (viernes).</li>
+    </ul>
+
+    <h2>Usos habituales</h2>
+    <ul>
+      <li><strong>Plazos administrativos:</strong> saber cuándo termina el plazo para presentar una alegación, un recurso o una solicitud a partir de la fecha de notificación.</li>
+      <li><strong>Vencimientos de pago:</strong> calcular la fecha límite de una factura a 30, 60 o 90 días desde su emisión.</li>
+      <li><strong>Entregas y envíos:</strong> estimar el día de llegada de un pedido o el fin de un periodo de fabricación contado en días.</li>
+      <li><strong>Garantías y devoluciones:</strong> comprobar hasta qué fecha puedes devolver un producto o reclamar una garantía.</li>
+      <li><strong>Recordatorios personales:</strong> averiguar qué día caerá dentro de X días o qué fecha era hace un tiempo concreto.</li>
+    </ul>
+
+    <h2>Días naturales frente a días hábiles</h2>
+    <p>Es la distinción más importante y donde más gente se equivoca. Esta calculadora usa <strong>días naturales</strong>, es decir, cuenta todos los días del calendario. Sin embargo, muchos plazos oficiales se miden en <strong>días hábiles</strong>, que excluyen los fines de semana y los festivos. Como los festivos varían según la comunidad autónoma y el municipio, dos personas pueden obtener fechas distintas para el mismo plazo hábil.</p>
+    <p>Antes de dar por buena una fecha, comprueba en la norma o el contrato si el plazo se cuenta en días naturales o hábiles. Si necesitas contar solo los días transcurridos entre dos fechas concretas, te resultará útil la <a href="/calculadora-dias-entre-fechas">calculadora de días entre fechas</a>.</p>
+
+    <p class="hint">La calculadora trabaja con días naturales; para plazos legales en días hábiles, descuenta a mano los fines de semana y festivos que correspondan.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-edad">Edad</a></div>
+    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-cuenta-atras">Cuenta atrás</a><a href="/calculadora-edad">Edad</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

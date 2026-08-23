@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se pasa de binario a decimal?', a: 'Cada cifra binaria vale una potencia de 2 según su posición. Por ejemplo, 1011 = 1×8 + 0×4 + 1×2 + 1×1 = 11.' },
-  { q: '¿Y de decimal a binario?', a: 'Se divide el número entre 2 repetidamente y se leen los restos de abajo a arriba. Aquí lo hacemos automáticamente.' },
+  { q: '¿Cómo se pasa de binario a decimal?', a: 'Cada cifra binaria (cada bit) vale una potencia de 2 según su posición, empezando por 2⁰ a la derecha. Se multiplica cada bit por el valor de su posición y se suman los resultados. Por ejemplo, 1011 = 1×8 + 0×4 + 1×2 + 1×1 = 11. Como los bits solo pueden ser 0 o 1, basta con sumar las potencias donde hay un 1.' },
+  { q: '¿Y de decimal a binario?', a: 'Se divide el número entre 2 de forma repetida, anotando el resto (0 o 1) en cada paso, hasta que el cociente llega a 0. Después se leen los restos de abajo hacia arriba. Aquí lo hacemos automáticamente, pero conviene entender el método para comprobarlo a mano.' },
+  { q: '¿Qué es un bit y qué es un byte?', a: 'Un bit es cada una de las cifras binarias, es decir, un solo 0 o un solo 1; es la unidad mínima de información en informática. Un byte es un grupo de 8 bits, y con él se pueden representar 256 valores distintos (de 0 a 255), suficiente para codificar una letra o un carácter.' },
+  { q: '¿Por qué los ordenadores usan el sistema binario?', a: 'Porque sus componentes electrónicos solo distinguen con fiabilidad dos estados: hay corriente o no la hay, un voltaje es alto o bajo. Esos dos estados se representan de forma natural con 1 y 0, lo que hace los circuitos más sencillos, rápidos y resistentes a los errores que si tuvieran que diferenciar diez niveles como en el sistema decimal.' },
+  { q: '¿Cuánto es el número binario 1010 en decimal?', a: '1010 en binario equivale a 10 en decimal: 1×8 + 0×4 + 1×2 + 0×1 = 8 + 0 + 2 + 0 = 10.' },
+  { q: '¿Cómo se escribe el número 13 en binario?', a: 'El 13 en binario es 1101. Se obtiene con divisiones sucesivas entre 2: 13÷2 = 6 (resto 1), 6÷2 = 3 (resto 0), 3÷2 = 1 (resto 1) y 1÷2 = 0 (resto 1). Leyendo los restos de abajo a arriba resulta 1101.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Conversor binario a decimal', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-binario-decimal' },
@@ -21,10 +25,32 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>El sistema binario usa solo dos cifras (0 y 1) y es la base de la informática. Para pasar a decimal se suman las potencias de 2; para pasar a binario se divide entre 2 y se leen los restos. Aquí lo haces en un clic en los dos sentidos.</p>
+    <h2>Qué son el sistema binario y el decimal</h2>
+    <p>El <strong>sistema decimal</strong> es el que usamos a diario: tiene diez cifras (del 0 al 9) y por eso se dice que trabaja en <strong>base 10</strong>. En él, cada posición vale diez veces más que la de su derecha. En el número 275, el 5 son unidades, el 7 son decenas y el 2 son centenas; es decir, 2×100 + 7×10 + 5×1. Ese "valor según la posición" se llama notación posicional, y es la idea que hay detrás de cualquier sistema de numeración.</p>
+    <p>El <strong>sistema binario</strong> funciona igual, pero con solo dos cifras: <strong>0 y 1</strong>. Al tener dos símbolos se dice que trabaja en <strong>base 2</strong>, y cada posición vale el doble que la de su derecha en lugar de diez veces más. Cada una de esas cifras (cada 0 o cada 1) recibe el nombre de <strong>bit</strong>, la unidad mínima de información en informática, y un grupo de ocho bits forma un <strong>byte</strong>.</p>
+
+    <h2>Cómo pasar de binario a decimal</h2>
+    <p>Para convertir un número binario a decimal se usan las <strong>potencias de 2</strong>. Se numera cada posición de derecha a izquierda empezando por 0: la primera cifra vale 2⁰ (= 1), la siguiente 2¹ (= 2), luego 2² (= 4), 2³ (= 8), 2⁴ (= 16) y así sucesivamente. Después se multiplica cada bit por el valor de su posición y se suman todos los resultados. Como los bits solo valen 0 o 1, en la práctica basta con sumar las potencias donde hay un 1 e ignorar las que tienen un 0. Por eso 100000 en binario es simplemente 2⁵ = 32: tiene un único 1 en la posición del 32 y ceros en el resto.</p>
+
+    <h2>Cómo pasar de decimal a binario</h2>
+    <p>El camino inverso se hace con <strong>divisiones sucesivas entre 2</strong>. Se divide el número decimal entre 2 y se anota el resto, que siempre será 0 o 1. El cociente se vuelve a dividir entre 2, se anota el nuevo resto, y se repite el proceso hasta que el cociente llega a 0. El número binario se forma leyendo los restos <strong>de abajo hacia arriba</strong>, es decir, empezando por el último que hemos obtenido.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>1010 de binario a decimal:</strong> 1×8 + 0×4 + 1×2 + 0×1 = 8 + 0 + 2 + 0 = <strong>10</strong>.</li>
+      <li><strong>1111 de binario a decimal:</strong> 1×8 + 1×4 + 1×2 + 1×1 = 8 + 4 + 2 + 1 = <strong>15</strong>.</li>
+      <li><strong>13 de decimal a binario:</strong> 13÷2 = 6 (resto 1), 6÷2 = 3 (resto 0), 3÷2 = 1 (resto 1), 1÷2 = 0 (resto 1). Leyendo los restos de abajo a arriba: <strong>1101</strong>.</li>
+    </ul>
+
+    <h2>Por qué los ordenadores usan binario</h2>
+    <p>Los ordenadores usan el sistema binario porque sus componentes electrónicos solo distinguen con fiabilidad dos estados: hay corriente o no la hay, un interruptor está abierto o cerrado, un voltaje es alto o bajo. Esos dos estados se representan de forma natural con 1 y 0. Trabajar con solo dos valores hace que los circuitos sean sencillos, rápidos y muy resistentes a los errores: es mucho más fácil detectar la diferencia entre "encendido" y "apagado" que distinguir diez niveles de voltaje distintos, como haría falta en un sistema decimal.</p>
+    <p>Sobre esa base tan simple se construye todo lo demás. Cadenas de bits representan números, letras (mediante códigos como ASCII o Unicode), imágenes, sonido y las propias instrucciones que ejecuta el procesador. Por eso el binario es el idioma común de toda la informática, desde la calculadora más básica hasta el superordenador más potente.</p>
+
+    <p class="hint">Truco rápido: memoriza las primeras potencias de 2 (1, 2, 4, 8, 16, 32, 64, 128) y convertir números pequeños de binario a decimal se vuelve casi mental.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-numeros-romanos">Números romanos</a><a href="/calculadora-notacion-cientifica">Notación científica</a><a href="/calculadora-potencias-raices">Potencias y raíces</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

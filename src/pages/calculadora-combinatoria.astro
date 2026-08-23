@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué diferencia hay entre combinaciones y permutaciones?', a: 'En las permutaciones el orden importa (no es lo mismo el podio 1º-2º-3º que 3º-2º-1º). En las combinaciones el orden no importa (elegir 3 personas de un grupo es lo mismo en cualquier orden).' },
-  { q: '¿Qué significan n y r?', a: 'n es el total de elementos disponibles y r cuántos eliges. Por ejemplo, de n = 10 personas eliges r = 3.' },
+  { q: '¿Qué diferencia hay entre combinaciones y permutaciones?', a: 'En las permutaciones el orden importa: no es lo mismo el podio 1.º-2.º-3.º que 3.º-2.º-1.º. En las combinaciones el orden no importa: elegir a 3 personas de un grupo es el mismo resultado en cualquier orden. Por eso, para los mismos n y r, siempre hay más permutaciones que combinaciones.' },
+  { q: '¿Qué significan n y r?', a: 'n es el total de elementos disponibles y r cuántos eliges. Por ejemplo, de n = 10 personas eliges r = 3. En todas las fórmulas de combinatoria, r debe ser menor o igual que n.' },
+  { q: '¿Cómo sé si mi problema es una combinación o una permutación?', a: 'Hazte una pregunta: ¿cambia el resultado si cambio el orden? Si al reordenar los elementos obtienes un caso distinto (un podio, una contraseña, un ranking), es una permutación. Si el orden da igual (un grupo de personas, los números de la lotería, una mano de cartas), es una combinación.' },
+  { q: '¿Qué es el factorial y por qué aparece en las fórmulas?', a: 'El factorial de un número (n!) es el producto de todos los enteros positivos hasta n: 5! = 5 · 4 · 3 · 2 · 1 = 120. Aparece en la combinatoria porque cuenta de cuántas formas se pueden ordenar n elementos. Puedes calcularlo en nuestra calculadora de factorial.' },
+  { q: '¿Cuántas combinaciones posibles tiene la Lotería Primitiva?', a: 'En la Primitiva se eligen 6 números de entre 49 sin que importe el orden, así que hay C(49,6) = 13.983.816 combinaciones posibles. Solo una es la ganadora, de ahí que la probabilidad de acertar los seis sea de aproximadamente 1 entre 14 millones.' },
+  { q: '¿Estas fórmulas cuentan repeticiones?', a: 'No. Las fórmulas C(n,r) y P(n,r) son sin repetición: cada elemento se usa una sola vez, como al repartir cartas o al elegir personas. La combinatoria con repetición (por ejemplo, contraseñas en las que una cifra puede repetirse) usa fórmulas distintas.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de combinaciones y permutaciones', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-combinatoria' },
@@ -26,11 +30,36 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
+    <h2>Qué es la combinatoria</h2>
+    <p>La <strong>combinatoria</strong> es la rama de las matemáticas que cuenta de cuántas maneras se pueden agrupar o disponer los elementos de un conjunto. En lugar de enumerar una a una todas las posibilidades —algo inviable en cuanto los números crecen—, ofrece fórmulas que dan el resultado al instante. La usamos a diario sin darnos cuenta: al calcular las apuestas posibles de una lotería, el número de contraseñas de una longitud dada, las manos posibles en una partida de cartas o las formas de repartir los asientos de una mesa.</p>
+    <p>Sus dos operaciones básicas son las <strong>combinaciones</strong> y las <strong>permutaciones</strong>. La clave para distinguirlas es una sola pregunta: <em>¿importa el orden?</em></p>
+
+    <h2>Combinaciones y permutaciones: ¿importa el orden?</h2>
+    <p>En las <strong>permutaciones el orden sí importa</strong>: cambiarlo crea un resultado distinto. El podio de una carrera es el ejemplo clásico, porque no es lo mismo quedar 1.º que 3.º; así, «Ana-Luis-Marta» y «Marta-Luis-Ana» cuentan como dos resultados diferentes.</p>
+    <p>En las <strong>combinaciones el orden no importa</strong>: solo cuenta qué elementos eliges, no en qué orden los sacas. Elegir a tres personas para un comité es una combinación, porque da igual a quién nombres primero: el grupo resultante es el mismo. Por eso, para un mismo n y r, siempre habrá <strong>más permutaciones que combinaciones</strong> (o, como mucho, las mismas): las permutaciones cuentan, además, todas las reordenaciones de cada grupo.</p>
+
     <h2>Las fórmulas</h2>
-    <p><strong>Permutaciones:</strong> P(n,r) = n! / (n−r)!. <strong>Combinaciones:</strong> C(n,r) = n! / (r! · (n−r)!). Las permutaciones siempre son mayores o iguales que las combinaciones, porque cuentan además el orden.</p>
+    <p>Ambas se apoyan en el <a href="/calculadora-factorial">factorial</a> (n!, el producto de todos los enteros del 1 al n):</p>
+    <p style="text-align:center"><strong>P(n,r) = n! / (n−r)!</strong> &nbsp;·&nbsp; <strong>C(n,r) = n! / (r! · (n−r)!)</strong></p>
+    <p>Donde <strong>n</strong> es el total de elementos disponibles y <strong>r</strong> cuántos eliges. La única diferencia entre las dos fórmulas es el <strong>r!</strong> del denominador de las combinaciones: es justo el número de formas de reordenar los r elementos elegidos, que en las combinaciones no queremos contar.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Combinaciones C(10,3):</strong> 10! / (3! · 7!) = (10 · 9 · 8) / (3 · 2 · 1) = 720 / 6 = <strong>120</strong>. Hay 120 maneras de elegir a 3 personas de un grupo de 10.</li>
+      <li><strong>Permutaciones P(10,3):</strong> 10! / 7! = 10 · 9 · 8 = <strong>720</strong>. Hay 720 formas de repartir oro, plata y bronce entre 10 atletas (aquí el orden sí cuenta).</li>
+      <li><strong>Combinaciones C(6,2):</strong> 6! / (2! · 4!) = (6 · 5) / 2 = <strong>15</strong>. Con 6 amigos se pueden formar 15 parejas distintas.</li>
+    </ul>
+
+    <h2>Ejemplos de la vida real</h2>
+    <p><strong>La lotería es una combinación.</strong> En la Lotería Primitiva eliges 6 números de entre 49 y el orden en que salen las bolas no importa, así que el número de boletos posibles es C(49,6) = <strong>13.983.816</strong>. Solo uno de esos casi catorce millones es el premiado: esa es la razón matemática de que acertar sea tan difícil.</p>
+    <p><strong>El podio es una permutación.</strong> Si en una final compiten 8 corredores y quieres saber cuántos podios distintos (1.º, 2.º y 3.º) pueden formarse, el orden es decisivo: P(8,3) = 8 · 7 · 6 = <strong>336</strong> podios posibles.</p>
+    <p><strong>Las cartas también son combinaciones.</strong> El número de manos distintas de 5 cartas en una baraja de póker de 52 es C(52,5) = <strong>2.598.960</strong>, porque tener las mismas cinco cartas en otro orden sigue siendo la misma mano.</p>
+
+    <p class="hint">Regla rápida: si al cambiar el orden obtienes un resultado distinto, es una permutación; si no, es una combinación.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-factorial">Factorial</a></div>
+    <div class="more"><a href="/calculadora-factorial">Factorial</a><a href="/calculadora-numeros-primos">Números primos</a><a href="/calculadora-numeros-aleatorios">Números aleatorios</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

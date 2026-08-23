@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Para qué sirve la tabla de multiplicar?', a: 'Es la base del cálculo mental. Saberla de memoria ayuda a multiplicar, dividir y resolver problemas mucho más rápido, sobre todo en primaria.' },
-  { q: '¿Hasta qué número llega?', a: 'Mostramos la tabla del número que elijas del 1 al 10, que es el rango habitual que se aprende en el colegio.' },
+  { q: '¿Para qué sirve la tabla de multiplicar?', a: 'Es la base del cálculo mental. Saberla de memoria ayuda a multiplicar, dividir, simplificar fracciones y resolver problemas mucho más rápido, sobre todo en primaria.' },
+  { q: '¿Hasta qué número llega esta calculadora?', a: 'Genera la tabla del número que elijas multiplicado del 1 al 10, que es el rango habitual que se estudia en el colegio. Puedes escribir cualquier número, no solo del 1 al 10.' },
+  { q: '¿A qué edad se aprenden las tablas de multiplicar?', a: 'Suelen empezar a estudiarse hacia los 7 u 8 años, en segundo y tercero de primaria, cuando los niños ya dominan la suma. No hay prisa: es mejor asentarlas bien que correr.' },
+  { q: '¿Cuál es la tabla más difícil de aprender?', a: 'Para la mayoría, las del 6, 7 y 8 son las que más cuestan. La propiedad conmutativa ayuda: como 7 × 8 = 8 × 7, al aprender una línea ya conoces la contraria.' },
+  { q: '¿En qué consiste el truco de la tabla del 9 con los dedos?', a: 'Abres las dos manos y bajas el dedo que corresponde al número por el que multiplicas: los dedos que quedan a su izquierda son las decenas y los de la derecha, las unidades. Por ejemplo, para 9 × 4 bajas el cuarto dedo y lees 36.' },
+  { q: '¿Cómo puedo aprender las tablas más rápido?', a: 'Con sesiones cortas y diarias en vez de un atracón, empezando por las fáciles (2, 5 y 10) y apoyándote en patrones y juegos. La repetición espaciada es más eficaz que estudiar muchas horas de golpe.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Tabla de multiplicar', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-tabla-multiplicar' },
@@ -20,11 +24,53 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Aprender las tablas</h2>
-    <p>Multiplicar es sumar un número varias veces: 7 × 3 es lo mismo que 7 + 7 + 7 = 21. Practicar las tablas del 1 al 10 hasta saberlas de memoria acelera muchísimo cualquier cálculo posterior.</p>
+    <h2>Qué es una tabla de multiplicar</h2>
+    <p>Una <strong>tabla de multiplicar</strong> es la lista ordenada de los resultados de multiplicar un número por los valores del 1 al 10. Multiplicar no es más que sumar un número varias veces: 7 × 3 significa "siete tres veces", es decir 7 + 7 + 7 = 21. La tabla del 7, por ejemplo, recoge esos resultados uno tras otro (7, 14, 21, 28...) para que puedas consultarlos de un vistazo sin tener que repetir la suma cada vez.</p>
+    <p>Aprender las tablas del 1 al 10 de memoria es una de las bases del cálculo mental: acelera las multiplicaciones, ayuda a dividir, a simplificar fracciones y a resolver problemas de primaria con soltura. Por eso se practican tanto en el colegio.</p>
+
+    <h2>Cómo generar la tabla con la calculadora</h2>
+    <p>Usar esta herramienta es inmediato: escribe el número que quieras en la casilla y pulsa <strong>Ver tabla</strong> (o la tecla Intro). Al momento verás la tabla completa de ese número, desde ×1 hasta ×10, con cada operación y su resultado. Puedes cambiar el número tantas veces como necesites para repasar una tabla distinta o comprobar un resultado concreto mientras haces los deberes.</p>
+    <p>Sirve tanto para estudiar como para verificar: si dudas de cuánto es 8 × 6, escribes el 8 y localizas la línea del ×6 al instante (es 48).</p>
+
+    <h2>Trucos para aprender las tablas</h2>
+    <p>Memorizar las tablas cuesta mucho menos si te apoyas en algunos patrones:</p>
+    <ul>
+      <li><strong>La propiedad conmutativa:</strong> el orden de los factores no cambia el resultado, así que 7 × 3 = 3 × 7 = 21. Esto significa que en realidad hay que memorizar bastante menos de lo que parece: si ya sabes la tabla del 3, buena parte de la del 7, la del 8 y la del 9 ya la conoces.</li>
+      <li><strong>La tabla del 5:</strong> todos sus resultados terminan en 5 o en 0, alternándose: 5, 10, 15, 20, 25, 30... Es una de las más fáciles de recordar.</li>
+      <li><strong>La tabla del 10:</strong> solo hay que añadir un cero al número: 10, 20, 30, 40... Prácticamente se aprende sola.</li>
+      <li><strong>La tabla del 9 con los dedos:</strong> abre las dos manos con los diez dedos. Para 9 × 4, baja el cuarto dedo empezando por la izquierda; los dedos que quedan a su izquierda son las decenas (3) y los de la derecha, las unidades (6): 36. Funciona con todos los resultados desde 9 × 1 hasta 9 × 10.</li>
+    </ul>
+
+    <h3>Ejemplos</h3>
+    <p>Así queda, por ejemplo, la <strong>tabla del 7</strong> completa:</p>
+    <ul>
+      <li>7 × 1 = 7</li>
+      <li>7 × 2 = 14</li>
+      <li>7 × 3 = 21</li>
+      <li>7 × 4 = 28</li>
+      <li>7 × 5 = 35</li>
+      <li>7 × 6 = 42</li>
+      <li>7 × 7 = 49</li>
+      <li>7 × 8 = 56</li>
+      <li>7 × 9 = 63</li>
+      <li>7 × 10 = 70</li>
+    </ul>
+    <p>Fíjate en que 7 × 8 = 56 es el mismo resultado que 8 × 7: gracias a la propiedad conmutativa, aprender una línea te regala automáticamente la contraria.</p>
+
+    <h2>Consejos para niños</h2>
+    <p>Para que aprender las tablas no se haga cuesta arriba, funcionan mejor las sesiones cortas y frecuentes que los atracones. Algunas ideas que ayudan:</p>
+    <ul>
+      <li>Practicar 5 o 10 minutos al día, siempre a la misma hora, en lugar de una hora entera el domingo.</li>
+      <li>Empezar por las más fáciles (2, 5 y 10) para ganar confianza antes de pasar a las del 6, 7 y 8.</li>
+      <li>Convertirlo en juego: cartas, canciones, dados o preguntas rápidas durante un trayecto en coche.</li>
+      <li>Repasar en voz alta y felicitar los aciertos; el refuerzo positivo motiva más que corregir cada fallo.</li>
+    </ul>
+
+    <p class="hint">Consejo: no intentes memorizar las diez tablas a la vez. Domina una, repásala al día siguiente y añade la siguiente cuando la anterior te salga sin pensar.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-regla-de-tres">Regla de tres</a></div>
+    <div class="more"><a href="/calculadora-potencias-raices">Potencias y raíces</a><a href="/calculadora-mcm-mcd">MCM y MCD</a><a href="/calculadora-numero-a-letras">Número a letras</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

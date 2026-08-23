@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Para qué sirve un generador de números aleatorios?', a: 'Para sorteos, juegos, elegir un ganador, repartir turnos o cualquier situación en la que necesites números al azar dentro de un rango.' },
-  { q: '¿Puedo evitar que se repitan?', a: 'Sí. Activa la opción "sin repetición" y cada número saldrá una sola vez (siempre que el rango tenga suficientes valores).' },
+  { q: '¿Para qué sirve un generador de números aleatorios?', a: 'Para sorteos, juegos, elegir uno o varios ganadores, repartir el orden de turnos, tirar dados o cualquier situación en la que necesites números al azar dentro de un rango y sin sesgos.' },
+  { q: '¿Cómo elijo el rango de números?', a: 'Escribe el valor mínimo en "Desde" y el máximo en "Hasta". Los dos extremos entran en el sorteo: de 1 a 100 incluye tanto el 1 como el 100. Si te equivocas y pones el mínimo mayor que el máximo, la herramienta los intercambia automáticamente.' },
+  { q: '¿Puedo generar varios números a la vez?', a: 'Sí. Indica en "¿Cuántos?" la cantidad que necesitas y obtendrás todos de una sola vez, separados por comas y listos para copiar.' },
+  { q: '¿Qué diferencia hay entre con y sin repetición?', a: 'Con repetición un mismo número puede salir varias veces, como al lanzar un dado. Sin repetición cada número aparece una sola vez, como al extraer bolas de un bombo, ideal para sortear varios ganadores distintos.' },
+  { q: '¿Puedo pedir más números de los que hay en el rango?', a: 'Sin repetición no: entre 1 y 10 solo existen diez valores posibles, así que como mucho obtendrás diez números distintos. Si pides más, la cantidad se ajusta sola al máximo disponible. Con repetición sí puedes pedir tantos como quieras.' },
+  { q: '¿Los números son realmente aleatorios?', a: 'Son pseudoaleatorios: los calcula un algoritmo del navegador cuyas secuencias son, a efectos prácticos, imprevisibles. Para sorteos, juegos y decisiones cotidianas son perfectamente válidos y justos, aunque no están pensados para usos criptográficos o de seguridad.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Generador de números aleatorios', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-numeros-aleatorios' },
@@ -27,10 +31,42 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Generamos números al azar entre el valor mínimo y el máximo que indiques. Puedes pedir varios a la vez y elegir si pueden repetirse o no. Perfecto para sorteos, juegos de mesa o elegir al azar.</p>
+    <h2>Para qué sirve un generador de números aleatorios</h2>
+    <p>Un <strong>generador de números aleatorios</strong> es una herramienta que elige uno o varios números al azar dentro del rango que tú decidas. Sirve para cualquier situación en la que necesites imparcialidad: un <strong>sorteo</strong> en redes sociales, repartir el <strong>orden de turnos</strong> de una lista, tirar un <strong>dado</strong> cuando no lo tienes a mano o simplemente <strong>tomar una decisión</strong> sin dejarte llevar por preferencias personales. La idea es sencilla: en lugar de elegir tú, con el sesgo que eso implica, dejas que el azar decida de forma limpia y verificable.</p>
+
+    <h2>Cómo usar el generador</h2>
+    <p>Solo tienes que rellenar cuatro campos y pulsar <strong>Generar</strong>:</p>
+    <ul>
+      <li><strong>Desde y Hasta:</strong> marcan el rango. Los dos extremos entran en el sorteo, así que "de 1 a 100" incluye tanto el 1 como el 100. Si por error escribes el mínimo mayor que el máximo, la herramienta los intercambia sola.</li>
+      <li><strong>¿Cuántos?:</strong> la cantidad de números que quieres obtener de una sola vez. Pon 1 para un único resultado o más para una lista.</li>
+      <li><strong>Sin repetición:</strong> elige "No" si un mismo número puede salir varias veces, o "Sí" si quieres que cada número aparezca una sola vez.</li>
+    </ul>
+    <p>El resultado aparece justo debajo, separado por comas y listo para copiar.</p>
+
+    <h3>Ejemplos de uso</h3>
+    <ul>
+      <li><strong>Sorteo con un ganador:</strong> numera a los participantes del 1 al total, pon "¿Cuántos? 1" y genera. El número que salga es el ganador.</li>
+      <li><strong>Elegir varios ganadores:</strong> para un sorteo con tres premios, usa el rango 1–(nº de participantes), "¿Cuántos? 3" y activa <strong>sin repetición</strong> para que no salga la misma persona dos veces.</li>
+      <li><strong>Tirar dados:</strong> un dado normal es el rango 1–6; dos dados, "¿Cuántos? 2". Para un dado de rol de veinte caras, usa 1–20.</li>
+      <li><strong>Decidir al azar:</strong> asigna un número a cada opción (1 = plan A, 2 = plan B…) y deja que el generador elija por ti.</li>
+    </ul>
+
+    <h2>Diferencia entre con y sin repetición</h2>
+    <p>Esta opción cambia por completo el comportamiento del generador:</p>
+    <ul>
+      <li><strong>Con repetición (No):</strong> cada número se saca de forma independiente, como si lanzaras un dado varias veces. Puede salir el mismo valor más de una vez. Es lo natural para dados o cuando cada extracción no depende de las anteriores.</li>
+      <li><strong>Sin repetición (Sí):</strong> cada número sale como máximo una vez, como cuando extraes bolas de un bombo y no las devuelves. Es lo que necesitas para <strong>sortear varios ganadores distintos</strong> o repartir un orden.</li>
+    </ul>
+    <p>Ten en cuenta un límite lógico: sin repetición no puedes pedir más números de los que caben en el rango. Entre 1 y 10 hay diez valores posibles, así que como mucho obtendrás diez números distintos; si pides más, la herramienta ajusta la cantidad automáticamente al máximo disponible.</p>
+
+    <h2>¿Son de verdad aleatorios?</h2>
+    <p>Los números que verás son <strong>pseudoaleatorios</strong>: los calcula un algoritmo del navegador que produce secuencias tan imprevisibles que, a efectos prácticos, se comportan como el azar. Para un sorteo, un juego o una decisión cotidiana son perfectamente válidos y justos. No están pensados, eso sí, para usos criptográficos o de seguridad, donde se emplean generadores especializados. Si quieres reforzar la transparencia de un sorteo público, basta con hacerlo en directo o grabar el momento de la generación.</p>
+
+    <p class="hint">Cada vez que pulsas "Generar" se calcula una combinación nueva e independiente de la anterior.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-combinatoria">Combinatoria</a><a href="/calculadora-media-mediana-moda">Media, mediana y moda</a><a href="/calculadora-factorial">Factorial</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

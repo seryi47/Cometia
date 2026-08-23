@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula la variación porcentual?', a: 'Restas el valor inicial al final, divides entre el inicial y multiplicas por 100: (final − inicial) / inicial × 100. Si sale positivo es una subida; si sale negativo, una bajada.' },
-  { q: '¿Sirve para precios, sueldos o cualquier cosa?', a: 'Sí. Sirve para saber cuánto ha subido un precio, cuánto ha crecido una cifra de ventas, la variación de un sueldo, etc.' },
+  { q: '¿Cómo se calcula la variación porcentual?', a: 'Restas el valor inicial al final, divides entre el inicial y multiplicas por 100: (final − inicial) ÷ inicial × 100. Si sale positivo es una subida; si sale negativo, una bajada; y si sale cero, no ha habido cambio.' },
+  { q: '¿Qué diferencia hay entre puntos porcentuales y por ciento?', a: 'Los puntos porcentuales son la resta directa entre dos porcentajes; la variación porcentual mide ese cambio respecto al valor inicial. Si un tipo de interés pasa del 5 % al 7 %, ha subido 2 puntos porcentuales, pero la variación porcentual es del +40 %, porque (7 − 5) ÷ 5 × 100 = 40.' },
+  { q: '¿Por qué subir y bajar el mismo porcentaje no me devuelve al valor inicial?', a: 'Porque cada porcentaje se calcula sobre una base distinta. Si 100 sube un 20 % llega a 120, y si ese 120 baja un 20 % queda en 96, no en 100 (120 × 0,80 = 96). La segunda operación parte de 120, no de 100.' },
+  { q: '¿Sirve para precios, sueldos o cualquier cosa?', a: 'Sí. Vale para saber cuánto ha subido un precio, cuánto han crecido las ventas, la variación de un sueldo, la audiencia de una web o cualquier par de valores que quieras comparar en el tiempo.' },
+  { q: '¿Qué significa un resultado negativo?', a: 'Que el valor final es menor que el inicial, es decir, ha habido una bajada. Un −15 % quiere decir que la cifra actual es un 15 % inferior a la de partida.' },
+  { q: '¿Qué pasa si el valor inicial es cero?', a: 'No se puede calcular la variación porcentual: la fórmula divide entre el valor inicial y no se puede dividir entre cero. Cuando se parte de cero, el cambio se expresa en valor absoluto, no en porcentaje.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de variación porcentual', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-cambio-porcentual' },
@@ -23,11 +27,37 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
+    <h2>Qué es la variación porcentual</h2>
+    <p>La <strong>variación porcentual</strong> —también llamada cambio porcentual o tasa de variación— indica cuánto ha crecido o disminuido una cantidad respecto a su valor anterior, expresado en porcentaje. En lugar de decir "el precio subió 30 euros", la variación porcentual responde a otra pregunta: ¿cuánto es ese aumento comparado con lo que costaba antes? Esa relación es lo que la hace tan útil, porque permite comparar cambios de magnitudes muy distintas —un sueldo, el precio del pan, las ventas de una tienda o las visitas de una web— con una única cifra fácil de interpretar.</p>
+    <p>Su gran ventaja es que pone el cambio en contexto. Una subida de 20 euros es enorme si algo costaba 40, pero casi imperceptible si costaba 4.000. El porcentaje recoge esa diferencia de forma automática, porque siempre mide el cambio en relación con el punto de partida.</p>
+
     <h2>Cómo se calcula</h2>
-    <p>La fórmula es <strong>(final − inicial) ÷ inicial × 100</strong>. Por ejemplo, de 100 a 125 hay una subida del 25%; de 125 a 100, una bajada del 20%. Ojo: subir y luego bajar el mismo porcentaje no te devuelve al punto de partida.</p>
+    <p>La fórmula de la variación porcentual es sencilla:</p>
+    <p style="text-align:center"><strong>Variación % = (valor final − valor inicial) ÷ valor inicial × 100</strong></p>
+    <p>Se resta el valor inicial (el "de antes") al valor final (el "de ahora"), se divide el resultado entre el valor inicial y se multiplica por 100. Si el resultado es <strong>positivo</strong>, ha habido una subida; si es <strong>negativo</strong>, una bajada; y si es cero, el valor no ha cambiado. El detalle clave está en el denominador: siempre se divide entre el valor de partida, nunca entre el final.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Subida, de 150 a 180:</strong> (180 − 150) ÷ 150 × 100 = 30 ÷ 150 × 100 = <strong>+20 %</strong>. El valor ha aumentado un 20 %.</li>
+      <li><strong>Bajada, de 200 a 150:</strong> (150 − 200) ÷ 200 × 100 = −50 ÷ 200 × 100 = <strong>−25 %</strong>. El valor ha caído un 25 %.</li>
+      <li><strong>Subida, de 100 a 125:</strong> (125 − 100) ÷ 100 × 100 = 25 ÷ 100 × 100 = <strong>+25 %</strong>. Y a la inversa: pasar de 125 a 100 es una bajada del 20 %, porque ahora el punto de partida es mayor.</li>
+    </ul>
+
+    <h2>Cómo interpretar el resultado</h2>
+    <p>El signo te dice la dirección y el número, la intensidad. Un <strong>+20 %</strong> significa que el valor final es un 20 % mayor que el inicial; un <strong>−25 %</strong>, que es un 25 % menor. Conviene fijarse siempre en cuál es el valor de referencia: el mismo cambio absoluto da porcentajes distintos según desde dónde se mida, como muestra el tercer ejemplo. Por eso, cuando compares dos variaciones, asegúrate de que ambas parten de la misma base.</p>
+
+    <h2>Errores comunes</h2>
+    <p>Hay dos confusiones que aparecen una y otra vez:</p>
+    <ul>
+      <li><strong>Creer que subir y bajar el mismo porcentaje devuelve al origen.</strong> No es así. Si 100 sube un 20 % llega a 120; si después ese 120 baja un 20 %, no vuelve a 100, sino a 96 (120 × 0,80 = 96). El motivo es que el segundo porcentaje se calcula sobre una base distinta: 120 en vez de 100.</li>
+      <li><strong>Confundir "puntos porcentuales" con "por ciento".</strong> Si un tipo de interés pasa del 5 % al 7 %, ha subido 2 <strong>puntos porcentuales</strong>, pero su variación porcentual es del +40 %, porque (7 − 5) ÷ 5 × 100 = 40. Son cosas distintas: los puntos son la resta directa entre dos porcentajes; la variación porcentual mide ese cambio en relación con el valor inicial.</li>
+    </ul>
+
+    <p class="hint">Truco rápido: si el resultado es positivo hay subida y si es negativo hay bajada; el valor de referencia siempre es el inicial.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-descuento">Descuento</a></div>
+    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-descuento">Descuento</a><a href="/calculadora-rentabilidad">Rentabilidad</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;
