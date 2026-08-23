@@ -1,9 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es el IMC?', a: 'El Índice de Masa Corporal (IMC) relaciona tu peso con tu altura para dar una idea orientativa de si tu peso está en un rango saludable. Se calcula dividiendo el peso (en kg) entre la altura (en metros) al cuadrado.' },
-  { q: '¿Qué IMC es saludable?', a: 'Según la OMS: por debajo de 18,5 es bajo peso; entre 18,5 y 24,9 es peso normal; entre 25 y 29,9 es sobrepeso; y 30 o más es obesidad. Son rangos orientativos para población adulta general.' },
+  { q: '¿Qué es el IMC?', a: 'El Índice de Masa Corporal (IMC) relaciona tu peso con tu altura para dar una idea orientativa de si tu peso está en un rango saludable. Se calcula dividiendo el peso (en kg) entre la altura (en metros) al cuadrado. Es una de las medidas más usadas en consulta porque solo necesita dos datos y es fácil de comparar entre personas.' },
+  { q: '¿Qué IMC es saludable?', a: 'Según la OMS: por debajo de 18,5 es bajo peso; entre 18,5 y 24,9 es peso normal; entre 25 y 29,9 es sobrepeso; y 30 o más es obesidad. Son rangos orientativos para población adulta general (18-65 años) y no distinguen por sexo.' },
   { q: '¿El IMC sirve para todo el mundo?', a: 'No del todo. El IMC no distingue entre grasa y músculo, así que puede no ser preciso en personas muy musculadas, deportistas, embarazadas, niños o personas mayores. Es una orientación, no un diagnóstico: consulta a un profesional sanitario.' },
+  { q: '¿Un IMC alto significa siempre que tengo un problema de salud?', a: 'No necesariamente. El IMC mide una proporción entre peso y altura, no la composición corporal ni dónde se acumula la grasa. Una persona con mucha masa muscular puede tener un IMC de 27 y estar perfectamente sana. Por eso el IMC se interpreta junto a otros datos como el perímetro de cintura, la tensión, la analítica o el estilo de vida.' },
+  { q: '¿Qué diferencia hay entre el IMC y el porcentaje de grasa corporal?', a: 'El IMC solo usa peso y altura, mientras que el porcentaje de grasa corporal estima qué parte de tu cuerpo es grasa. El porcentaje de grasa es más preciso para valorar la composición corporal, pero requiere mediciones adicionales. Puedes estimarlo con nuestra calculadora de grasa corporal.' },
+  { q: '¿Cómo puedo bajar mi IMC de forma saludable?', a: 'Bajar de IMC pasa por reducir el peso de forma progresiva combinando alimentación equilibrada y actividad física, idealmente con el seguimiento de un profesional. Como referencia, para conocer tus necesidades diarias puedes usar la calculadora de calorías, y para valorar tu progreso, el perímetro de cintura suele reflejar los cambios antes que la báscula.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de IMC', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-imc' },
@@ -37,20 +40,55 @@ const jsonLd = [
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 
   <section class="prose">
+    <h2>Qué es el IMC y para qué sirve</h2>
+    <p>El <strong>Índice de Masa Corporal (IMC)</strong> es una medida que relaciona tu peso con tu altura para situar tu peso dentro de un rango de referencia. Lo propuso el matemático belga Adolphe Quetelet en el siglo XIX y hoy lo usa la <strong>Organización Mundial de la Salud (OMS)</strong> como primer indicador para clasificar el peso de la población adulta. Su gran ventaja es la sencillez: con solo dos datos que cualquiera conoce —cuánto pesas y cuánto mides— obtienes un número comparable entre personas y a lo largo del tiempo.</p>
+    <p>No es un diagnóstico ni mide la salud por sí solo, pero sí es un buen punto de partida para saber si conviene prestar atención al peso y comentarlo con un profesional sanitario.</p>
+
     <h2>Cómo se calcula el IMC</h2>
-    <p>La fórmula del Índice de Masa Corporal es sencilla:</p>
+    <p>La fórmula del Índice de Masa Corporal es esta:</p>
     <p style="text-align:center"><strong>IMC = peso (kg) / altura (m)²</strong></p>
-    <p>Por ejemplo, una persona de <strong>70 kg</strong> y <strong>1,70 m</strong> tiene un IMC de 70 / (1,70 × 1,70) = <strong>24,2</strong>, que está dentro del rango de peso normal.</p>
+    <p>Es decir, se divide el peso en kilogramos entre el cuadrado de la altura en metros. Un detalle importante: la altura va en <strong>metros</strong>, no en centímetros. Si mides 170 cm, en la fórmula entra como 1,70 m, y ese valor se eleva al cuadrado (1,70 × 1,70 = 2,89).</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>70 kg y 1,70 m:</strong> 70 / (1,70 × 1,70) = 70 / 2,89 = <strong>24,2</strong> → peso normal.</li>
+      <li><strong>90 kg y 1,75 m:</strong> 90 / (1,75 × 1,75) = 90 / 3,06 = <strong>29,4</strong> → sobrepeso.</li>
+      <li><strong>55 kg y 1,68 m:</strong> 55 / (1,68 × 1,68) = 55 / 2,82 = <strong>19,5</strong> → peso normal.</li>
+    </ul>
+
     <h2>Tabla de rangos de IMC (OMS)</h2>
     <ul>
       <li><strong>Menos de 18,5</strong> — Bajo peso</li>
       <li><strong>18,5 – 24,9</strong> — Peso normal</li>
       <li><strong>25 – 29,9</strong> — Sobrepeso</li>
-      <li><strong>30 o más</strong> — Obesidad</li>
+      <li><strong>30 – 34,9</strong> — Obesidad grado I</li>
+      <li><strong>35 – 39,9</strong> — Obesidad grado II</li>
+      <li><strong>40 o más</strong> — Obesidad grado III</li>
     </ul>
+
+    <h2>Cómo interpretar tu resultado</h2>
+    <p>El número por sí solo dice poco; lo importante es el rango en el que cae y el contexto de cada persona:</p>
+    <ul>
+      <li><strong>Bajo peso:</strong> puede indicar que se está por debajo del peso recomendable. Conviene descartar causas y valorar la alimentación con un profesional.</li>
+      <li><strong>Peso normal:</strong> el rango asociado a menor riesgo en población general. Mantenerlo con buena alimentación y actividad física es un objetivo razonable.</li>
+      <li><strong>Sobrepeso:</strong> zona de atención. No implica un problema por sí misma, pero es un buen momento para revisar hábitos antes de llegar a la obesidad.</li>
+      <li><strong>Obesidad:</strong> se asocia a mayor riesgo cardiovascular, metabólico y articular. Es recomendable abordarlo con seguimiento médico.</li>
+    </ul>
+
+    <h2>Límites del IMC (léelo antes de preocuparte)</h2>
+    <p>El IMC tiene una limitación clara: <strong>no distingue entre grasa y músculo</strong>, ni indica dónde se acumula la grasa. Por eso puede ser engañoso en varios casos:</p>
+    <ul>
+      <li><strong>Personas muy musculadas o deportistas:</strong> el músculo pesa, así que pueden dar "sobrepeso" sin exceso de grasa.</li>
+      <li><strong>Personas mayores:</strong> con la edad se pierde masa muscular, y el IMC puede subestimar el porcentaje de grasa.</li>
+      <li><strong>Embarazadas y niños:</strong> en estos casos el IMC adulto no aplica; se usan tablas específicas.</li>
+    </ul>
+    <p>Para completar la foto son útiles el <strong>perímetro de cintura</strong> (un buen indicador de la grasa abdominal) y el <a href="/calculadora-grasa-corporal">porcentaje de grasa corporal</a>.</p>
+
     <p class="hint">El IMC es orientativo y no sustituye la valoración de un profesional sanitario.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-grasa-corporal">Grasa corporal</a><a href="/calculadora-calorias">Calorías diarias</a><a href="/calculadora-peso-ideal">Peso ideal</a></div>
   </section>
 
   <script>

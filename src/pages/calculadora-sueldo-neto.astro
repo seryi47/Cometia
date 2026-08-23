@@ -1,9 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula el sueldo neto?', a: 'Al salario bruto se le restan las cotizaciones a la Seguridad Social (en torno al 6,35 % para el trabajador) y la retención de IRPF, que es progresiva según lo que ganes. Lo que queda es el neto que cobras.' },
-  { q: '¿Por qué es una estimación?', a: 'La retención real de IRPF depende de tu comunidad autónoma, tu situación familiar, hijos, discapacidad, tipo de contrato y otras circunstancias. Esta calculadora da una estimación orientativa con la escala general estatal.' },
-  { q: '¿Qué diferencia hay entre 12 y 14 pagas?', a: 'El salario bruto anual es el mismo; con 14 pagas cada mensualidad es menor porque dos pagas son las extras (verano y Navidad). El neto anual no cambia por esto.' },
+  { q: '¿Qué diferencia hay entre el sueldo bruto y el neto?', a: 'El sueldo bruto es todo lo que la empresa te paga antes de descuentos; es la cifra que suele aparecer en las ofertas de empleo y en el contrato. El neto es lo que finalmente te ingresan en la cuenta, una vez restadas las cotizaciones a la Seguridad Social y la retención de IRPF. Por eso el bruto siempre es mayor que el neto.' },
+  { q: '¿Qué se descuenta de la nómina?', a: 'Básicamente dos cosas. Primero, tu cotización a la Seguridad Social, que ronda el 6,35 % del salario (contingencias comunes 4,7 %, desempleo 1,55 % y formación 0,1 %). Segundo, la retención de IRPF, que es un adelanto de tu impuesto sobre la renta y varía según lo que ganes y tu situación personal. Lo que queda después de ambos descuentos es tu neto.' },
+  { q: '¿Por qué mi retención de IRPF es distinta a la de un compañero que cobra lo mismo?', a: 'Porque la retención no depende solo del salario. También influyen tu situación familiar (hijos, ascendientes a cargo), un posible grado de discapacidad, el tipo de contrato, la edad, si tienes hipoteca anterior a 2013 y tu comunidad autónoma. Dos personas con el mismo bruto pueden tener retenciones muy diferentes por estas circunstancias.' },
+  { q: '¿Cobrar en 12 o 14 pagas cambia el neto anual?', a: 'No. El bruto anual es el mismo y, por tanto, el neto anual también. Lo único que cambia es cómo se reparte: con 14 pagas cada mensualidad es menor porque dos pagas son las extras (normalmente verano y Navidad); con 12 pagas esas extras se prorratean y cada mes cobras algo más. A final de año la suma es equivalente.' },
+  { q: '¿Esta calculadora es exacta?', a: 'No, es una estimación orientativa. Usa la escala general del IRPF y un porcentaje medio de Seguridad Social, pero no conoce tu situación personal completa ni el tramo autonómico exacto. La cifra oficial la fija tu empresa en la nómina y se ajusta con la declaración de la renta. Úsala para hacerte una idea, no como dato definitivo.' },
+  { q: '¿Cómo puedo pagar menos IRPF de forma legal?', a: 'Comunicando bien tu situación personal a la empresa en el modelo 145 (hijos, ascendientes, discapacidad) y aprovechando deducciones y reducciones previstas por la ley, como las aportaciones a planes de pensiones dentro de los límites vigentes o determinados gastos deducibles. No se trata de retener menos sin más, porque eso puede dejarte una declaración a pagar: la idea es que la retención se ajuste a tu impuesto real.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de sueldo neto', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-sueldo-neto' },
@@ -34,11 +37,44 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo pasamos del bruto al neto</h2>
-    <p>Primero restamos al bruto las <strong>cotizaciones a la Seguridad Social</strong> del trabajador (aprox. 6,35 %) y los gastos deducibles. Sobre esa base aplicamos la <strong>escala del IRPF</strong>, que es progresiva: cuanto más ganas, mayor es el tipo de los tramos altos. El resultado es una estimación de lo que te ingresan.</p>
+    <h2>Qué es el sueldo neto y de qué se compone</h2>
+    <p>El <strong>sueldo neto</strong> es el dinero que realmente cobras cada mes en tu cuenta bancaria, es decir, lo que te queda del salario una vez descontados todos los conceptos obligatorios. Se diferencia del <strong>sueldo bruto</strong>, que es la cifra total que la empresa destina a tu retribución antes de aplicar ningún descuento y que suele ser la que aparece en las ofertas de empleo y en el contrato.</p>
+    <p>La diferencia entre ambos no es un capricho: de tu bruto salen dos aportaciones distintas. Por un lado, tu parte de las <strong>cotizaciones a la Seguridad Social</strong>, que financian la pensión, la sanidad, el desempleo y otras prestaciones. Por otro, la <strong>retención de IRPF</strong>, que es un adelanto a cuenta del impuesto sobre la renta que después regularizas en la declaración anual.</p>
+
+    <h2>Qué se resta del bruto</h2>
+    <p>Al pasar del bruto al neto intervienen básicamente dos descuentos:</p>
+    <ul>
+      <li><strong>Cotizaciones a la Seguridad Social (aprox. 6,35 %).</strong> Es la parte que paga el trabajador y se reparte, de forma orientativa, en contingencias comunes (en torno al 4,7 %), desempleo (alrededor del 1,55 %) y formación profesional (cerca del 0,1 %). La empresa, aparte, aporta su propia cuota, que no aparece en tu nómina como descuento.</li>
+      <li><strong>Retención de IRPF (variable y progresiva).</strong> No es un porcentaje fijo: cuanto mayor es el salario, mayor tiende a ser el tipo aplicado, porque el impuesto se calcula por tramos. Además depende de tu <strong>situación personal y familiar</strong>, del número de hijos o personas a cargo, de un posible grado de discapacidad, del tipo de contrato y de tu <strong>comunidad autónoma</strong>. Por eso dos personas con el mismo bruto pueden cobrar netos distintos.</li>
+    </ul>
+    <p>El orden importa: primero se restan las cotizaciones y algunos gastos deducibles, y sobre esa base se aplica la escala del IRPF. Lo que queda tras ambos pasos es tu neto estimado.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <p>Estas cifras son <strong>orientativas</strong> y usan rangos de IRPF porque el tipo real depende de tu situación:</p>
+    <ul>
+      <li><strong>Bruto de 18.000 €/año (14 pagas):</strong> Seguridad Social ≈ 1.143 € (6,35 %) y una retención de IRPF que puede rondar el 8-11 %. El neto anual queda aproximadamente entre <strong>14.900 € y 15.400 €</strong>, es decir, unos <strong>1.065-1.100 € por paga</strong>.</li>
+      <li><strong>Bruto de 24.000 €/año (14 pagas):</strong> Seguridad Social ≈ 1.524 € y un IRPF que puede situarse en torno al 11-14 %. El neto anual ronda los <strong>19.100-19.800 €</strong>, alrededor de <strong>1.365-1.415 € por paga</strong>.</li>
+      <li><strong>Bruto de 30.000 €/año (12 pagas):</strong> Seguridad Social ≈ 1.905 € y una retención que suele moverse entre el 12-16 %. El neto anual queda aproximadamente entre <strong>23.300 € y 24.500 €</strong>, unos <strong>1.940-2.040 € al mes</strong>.</li>
+    </ul>
+
+    <h2>Cómo interpretar tu resultado</h2>
+    <p>La calculadora te muestra el <strong>neto por paga</strong>, el <strong>neto anual</strong> y cuánto se lleva cada descuento. Un truco útil: fíjate más en el <strong>neto anual</strong> que en el importe mensual, porque el número de pagas cambia cómo se reparte el dinero pero no cuánto ganas en total. Si divides el neto anual entre 12 obtienes tu capacidad de gasto media real por mes, independientemente de si cobras en 12 o en 14 pagas.</p>
+    <p>El <strong>prorrateo</strong> es precisamente eso: con 14 pagas, dos mensualidades son las pagas extra (habitualmente verano y Navidad) y el resto del año cobras algo menos; con 12 pagas esas extras se reparten entre todos los meses. El bruto y el neto anuales no cambian por elegir una u otra opción.</p>
+
+    <h2>Factores que cambian el resultado</h2>
+    <ul>
+      <li><strong>El nivel de salario:</strong> al ser el IRPF progresivo, cada euro que sube de tramo tributa a un tipo mayor, así que el porcentaje medio de retención crece con el sueldo.</li>
+      <li><strong>La situación familiar:</strong> tener hijos, ascendientes a cargo o un grado de discapacidad reconocido reduce la retención.</li>
+      <li><strong>La comunidad autónoma:</strong> el IRPF tiene un tramo estatal y otro autonómico, y este varía según dónde residas.</li>
+      <li><strong>El tipo de contrato y su duración:</strong> los contratos temporales o de corta duración pueden tener reglas de retención específicas.</li>
+      <li><strong>Otros descuentos:</strong> anticipos, embargos, cuotas sindicales o retribución en especie también pueden aparecer en la nómina real.</li>
+    </ul>
+
+    <p class="hint">Importante: esta calculadora ofrece una <strong>estimación orientativa</strong>. Utiliza la escala general del IRPF y un porcentaje medio de Seguridad Social, pero no sustituye a tu nómina oficial ni al cálculo de tu asesoría o de la Agencia Tributaria. La cifra definitiva la fija tu empresa y se ajusta con la declaración de la renta.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-iva">IVA</a><a href="/calculadora-porcentaje">Porcentajes</a></div>
+    <div class="more"><a href="/calculadora-finiquito">Finiquito</a><a href="/calculadora-precio-hora">Precio por hora</a><a href="/calculadora-presupuesto-50-30-20">Presupuesto 50/30/20</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

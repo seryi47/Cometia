@@ -1,9 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calculan las semanas de embarazo?', a: 'Se cuentan desde el primer día de tu última regla (regla de Naegele). Por eso, en el momento de la concepción ya se consideran unas 2 semanas de embarazo. La duración habitual es de 40 semanas.' },
-  { q: '¿Cómo se calcula la fecha probable de parto?', a: 'Se suman 280 días (40 semanas) al primer día de la última regla. Es una estimación: solo un pequeño porcentaje de bebés nace exactamente ese día.' },
-  { q: '¿Esto sustituye al médico?', a: 'No. Es una estimación orientativa. La datación precisa la hace tu matrona o ginecólogo con una ecografía.' },
+  { q: '¿Desde cuándo se cuentan las semanas de embarazo?', a: 'Desde el primer día de tu última regla (lo que en consulta se abrevia como FUR), no desde el momento de la concepción. Es la referencia estándar en todo el mundo porque esa fecha suele recordarse mejor que el día exacto de la fecundación. Por ese motivo, cuando se produce la concepción ya se consideran unas 2 semanas de embarazo.' },
+  { q: '¿Cómo se calcula la fecha probable de parto?', a: 'Con la regla de Naegele: se suman 280 días (40 semanas) al primer día de la última regla. Un atajo equivalente es restar 3 meses a esa fecha y sumarle 7 días. En ambos casos es una estimación, ya que solo una minoría de bebés nace justo el día calculado.' },
+  { q: '¿Cuántas semanas dura un embarazo?', a: 'Alrededor de 40 semanas contadas desde el primer día de la última regla. Se considera a término a partir de la semana 37, y es normal que el nacimiento se produzca en cualquier momento entre la semana 37 y la 42.' },
+  { q: '¿Cuándo empieza cada trimestre?', a: 'El primer trimestre abarca de la semana 1 a la 13; el segundo, de la 14 a la 27; y el tercero, de la 28 hasta el nacimiento, en torno a la semana 40. Es una división orientativa que ayuda a organizar las revisiones y a seguir el desarrollo del bebé.' },
+  { q: '¿Es fiable la fecha probable de parto?', a: 'Es orientativa. La regla de Naegele da por supuesto un ciclo regular de 28 días, así que la fecha real puede adelantarse o retrasarse. La datación más fiable la aporta la ecografía del primer trimestre, con la que tu matrona o ginecólogo pueden ajustarla si hace falta.' },
+  { q: '¿Qué pasa si tengo ciclos irregulares?', a: 'Con ciclos irregulares, muy largos o muy cortos, la ovulación no cae necesariamente hacia el día 14 y el cálculo pierde precisión. En esos casos la ecografía del primer trimestre es especialmente importante para fijar la fecha. Coméntalo siempre con tu matrona o ginecólogo.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de embarazo', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-embarazo' },
@@ -29,10 +32,40 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>Usamos la <strong>regla de Naegele</strong>: se cuenta desde el primer día de la última regla y se suman 280 días (40 semanas) para estimar la fecha de parto. El embarazo se divide en tres trimestres: hasta la semana 13, de la 14 a la 27 y de la 28 hasta el nacimiento.</p>
+    <h2>Cómo se cuentan las semanas de embarazo</h2>
+    <p>Aunque pueda parecer contradictorio, las semanas de embarazo no se cuentan desde el momento de la concepción, sino desde el <strong>primer día de tu última regla</strong> (lo que en las consultas se abrevia como FUR, fecha de la última regla). Es la referencia que usan matronas y ginecólogos en todo el mundo, porque casi ninguna mujer sabe con exactitud el día en que se produjo la fecundación, mientras que la fecha de la última menstruación suele recordarse mejor.</p>
+    <p>Esta forma de contar tiene una consecuencia curiosa: en el momento en que se produce la concepción, hacia la ovulación, ya se consideran unas <strong>2 semanas de embarazo</strong>, porque el reloj empezó a correr dos semanas antes. Por eso, cuando una prueba da positivo tras una falta, es habitual estar ya de cuatro o cinco semanas. Contar siempre desde una fecha conocida permite medir todas las gestaciones con el mismo criterio y facilita seguir el desarrollo del bebé.</p>
+
+    <h2>Cómo se calcula la fecha probable de parto</h2>
+    <p>La <strong>fecha probable de parto (FPP)</strong> se estima con la <strong>regla de Naegele</strong>, un método sencillo que se emplea desde hace casi dos siglos. Consiste en sumar <strong>280 días (40 semanas)</strong> al primer día de la última regla. Ese es exactamente el cálculo que hace esta calculadora.</p>
+    <p>Existe un atajo mental equivalente muy conocido: al primer día de la última regla se le <strong>restan 3 meses y se le suman 7 días</strong> (ajustando el año cuando corresponde). Los dos caminos llevan prácticamente al mismo resultado y parten de la misma idea: un embarazo dura, de media, unas 40 semanas contadas desde la FUR.</p>
+
+    <h3>Ejemplo resuelto</h3>
+    <p>Imaginemos que el primer día de tu última regla fue el <strong>1 de enero de 2026</strong>.</p>
+    <ul>
+      <li><strong>Sumando días:</strong> 1 de enero + 280 días ≈ <strong>8 de octubre de 2026</strong>.</li>
+      <li><strong>Con el atajo:</strong> 1 de enero − 3 meses = 1 de octubre; + 7 días = <strong>8 de octubre de 2026</strong>.</li>
+    </ul>
+    <p>Como ves, ambos métodos coinciden: la fecha probable de parto sería alrededor del 8 de octubre de 2026, unas 40 semanas después de la última regla. Si quieres comprobar por tu cuenta cuántos días separan dos fechas o adelantar cálculos, puedes apoyarte en la <a href="/calculadora-sumar-restar-dias">calculadora para sumar y restar días</a>.</p>
+
+    <h2>Los tres trimestres del embarazo</h2>
+    <p>El embarazo se organiza en tres etapas que ayudan a seguir el desarrollo del bebé y a ordenar las revisiones:</p>
+    <ul>
+      <li><strong>Primer trimestre (semanas 1 a 13):</strong> se forman los órganos principales. Es la etapa de la primera ecografía y de los primeros análisis.</li>
+      <li><strong>Segundo trimestre (semanas 14 a 27):</strong> suele ser el más llevadero; se nota el crecimiento de la barriga y llegan los primeros movimientos.</li>
+      <li><strong>Tercer trimestre (semanas 28 a 40):</strong> el bebé gana peso y se prepara para nacer, y las revisiones se hacen más frecuentes.</li>
+    </ul>
+    <p>Un embarazo se considera <strong>a término</strong> a partir de la semana 37, y es completamente normal que el nacimiento ocurra en cualquier momento entre la semana 37 y la 42.</p>
+
+    <h2>Por qué es solo una estimación</h2>
+    <p>La regla de Naegele da por supuesto un <strong>ciclo regular de 28 días</strong> con ovulación hacia el día 14. En la práctica, muchos ciclos son más largos, más cortos o irregulares, de modo que el día real de la concepción puede adelantarse o retrasarse respecto a lo que indica el cálculo. Por eso la fecha probable de parto es una orientación, no una cita marcada en el calendario: de hecho, solo una minoría de bebés nace justo el día estimado.</p>
+    <p>La referencia más fiable es la <strong>ecografía del primer trimestre</strong>. Al medir al bebé, tu matrona o ginecólogo pueden <strong>ajustar la datación</strong> y corregir la fecha si es necesario, algo especialmente útil cuando no se recuerda bien la última regla o cuando los ciclos son irregulares. Si estás planificando un próximo embarazo, también puede ayudarte estimar tus días fértiles con la <a href="/calculadora-ovulacion">calculadora de ovulación</a>.</p>
+
+    <p class="hint">Esta calculadora es orientativa y no sustituye en ningún caso el criterio médico. La datación válida del embarazo y la fecha de parto las establece tu matrona o ginecólogo mediante el seguimiento y la ecografía; ante cualquier duda, consúltalo siempre con un profesional sanitario.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-ovulacion">Ovulación y días fértiles</a><a href="/calculadora-semanas-entre-fechas">Semanas entre fechas</a><a href="/calculadora-dias-entre-fechas">Días entre fechas</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

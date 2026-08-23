@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula un descuento?', a: 'Multiplicas el precio por el porcentaje de descuento y lo restas. Por ejemplo, un 30 % sobre 50 € es 50 × 0,30 = 15 € de descuento, y el precio final es 35 €.' },
-  { q: '¿Cómo saber el porcentaje de descuento entre dos precios?', a: 'Restas el precio final al original, divides entre el original y multiplicas por 100. Por ejemplo, de 50 € a 35 €: (50 − 35) / 50 × 100 = 30 %.' },
+  { q: '¿Cómo calculo el precio con descuento?', a: 'Multiplica el precio original por 1 menos el descuento en tanto por uno: precio × (1 − d/100). Por ejemplo, un 30 % sobre 50 € es 50 × (1 − 0,30) = 50 × 0,70 = 35 €. Otra forma equivalente es calcular primero el ahorro (50 × 0,30 = 15 €) y restarlo del precio (50 − 15 = 35 €). El resultado es el mismo.' },
+  { q: '¿Cuánto me ahorro con un descuento?', a: 'El ahorro es el precio original multiplicado por el descuento en tanto por uno: precio × (d/100). Por ejemplo, un 25 % sobre 80 € supone un ahorro de 80 × 0,25 = 20 €, y el precio final baja a 60 €. Cuanto mayor sea el precio de partida, mayor será el importe que te ahorras aunque el porcentaje sea el mismo.' },
+  { q: '¿Cómo se calcula el porcentaje de descuento a partir de dos precios?', a: 'Resta el precio final al original, divide el resultado entre el precio original y multiplícalo por 100. Por ejemplo, de 120 € a 90 €: (120 − 90) / 120 × 100 = 30 / 120 × 100 = 25 %. Y si algo costaba 100 € y ahora vale 75 €, el descuento es (100 − 75) / 100 × 100 = 25 %.' },
+  { q: '¿Los descuentos sucesivos se suman?', a: 'No. Un 20 % y luego otro 10 % no equivalen a un 30 %, porque el segundo descuento se aplica sobre un precio ya rebajado. Sobre 100 €: primero 100 − 20 % = 80 €, y después 80 − 10 % = 72 €. El descuento real es del 28 %, no del 30 %. Para encadenar descuentos se multiplican los factores: 0,80 × 0,90 = 0,72.' },
+  { q: '¿El IVA se aplica antes o después del descuento?', a: 'Matemáticamente da igual el orden, porque son factores que se multiplican y el resultado final es el mismo. En una tienda, el precio de venta al público ya lleva el IVA incluido, así que el descuento se aplica sobre ese importe con IVA. En una factura entre empresas, primero se descuenta de la base imponible y luego se calcula el IVA sobre la base ya rebajada.' },
+  { q: '¿A qué descuento equivale un 2x1?', a: 'Un 2x1 significa que pagas una unidad y te llevas dos, es decir, pagas la mitad del total: equivale a un 50 % de descuento. Un 3x2 (pagas dos y te llevas tres) equivale a un 33,3 % aproximadamente, porque dejas de pagar una de cada tres unidades.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de descuento', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-descuento' },
@@ -27,11 +31,42 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>El importe del descuento es <strong>precio × (% ÷ 100)</strong>, y el precio final es el original menos ese importe. Es el cálculo perfecto para saber al instante cuánto pagas de verdad en las rebajas.</p>
+    <h2>Qué es un descuento</h2>
+    <p>Un <strong>descuento</strong> es una rebaja que se aplica sobre el precio original de un producto o servicio, normalmente expresada en tanto por ciento. Cuando ves un cartel de "−30 %", significa que el vendedor renuncia a un 30 % del precio para que pagues menos. Los descuentos son la herramienta comercial más habitual en rebajas, promociones, códigos de cupón y liquidaciones, y entenderlos bien te ayuda a saber al instante cuánto vas a pagar de verdad y cuánto te ahorras.</p>
+    <p>Detrás de cualquier descuento hay dos cifras que interesan: el <strong>precio final</strong> (lo que acabas pagando en caja) y el <strong>ahorro</strong> (los euros que te quedan en el bolsillo). Ambas se obtienen con una operación muy sencilla.</p>
+
+    <h2>Cómo se calcula el precio final y el ahorro</h2>
+    <p>El importe del ahorro es el precio multiplicado por el porcentaje de descuento en tanto por uno, y el precio final es lo que queda al restarlo:</p>
+    <ul>
+      <li><strong>Ahorro = precio × (descuento ÷ 100)</strong></li>
+      <li><strong>Precio final = precio × (1 − descuento ÷ 100)</strong></li>
+    </ul>
+    <p>El "tanto por uno" no es más que el porcentaje dividido entre 100: un 25 % es 0,25 y un 10 % es 0,10. Multiplicar por 0,25 te da el ahorro, y multiplicar por 0,75 (es decir, 1 − 0,25) te da directamente el precio final sin tener que restar. Las dos vías llegan al mismo resultado, así que usa la que te resulte más cómoda.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>50 € con un 30 % de descuento:</strong> ahorro = 50 × 0,30 = 15 €; precio final = 50 − 15 = <strong>35 €</strong>. También podrías hacer 50 × 0,70 = 35 € de una sola operación.</li>
+      <li><strong>80 € con un 25 % de descuento:</strong> ahorro = 80 × 0,25 = 20 €; precio final = 80 − 20 = <strong>60 €</strong>.</li>
+      <li><strong>Descuento a partir de dos precios:</strong> una chaqueta que costaba 120 € está marcada en 90 €. El descuento es (120 − 90) ÷ 120 × 100 = 30 ÷ 120 × 100 = <strong>25 %</strong>.</li>
+    </ul>
+
+    <h2>Descuentos sucesivos: no se suman</h2>
+    <p>Este es el punto donde más gente se equivoca. Cuando a un precio le aplicas un descuento y luego otro, <strong>los porcentajes no se suman</strong>, porque el segundo se calcula sobre un precio que ya estaba rebajado. Un 20 % seguido de un 10 % no es un 30 %.</p>
+    <p>Veámoslo con 100 €: primero 100 − 20 % = 80 €, y sobre esos 80 € aplicas el 10 %: 80 − 10 % = <strong>72 €</strong>. El descuento real es del 28 %, no del 30 %. La forma rápida de encadenarlos es multiplicar los factores: 0,80 × 0,90 = 0,72, es decir, un 28 % de rebaja total. Con una prenda de 60 € y descuentos del 30 % y luego del 10 %, quedaría en 60 × 0,70 × 0,90 = <strong>37,80 €</strong>, un 37 % de ahorro efectivo.</p>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Sumar descuentos encadenados.</strong> Como acabamos de ver, un 20 % + 10 % es un 28 %, no un 30 %.</li>
+      <li><strong>Confundir el ahorro con el precio final.</strong> Un 40 % de descuento sobre 50 € son 20 € de ahorro y 30 € a pagar, no 20 € de precio final.</li>
+      <li><strong>Calcular el porcentaje sobre el precio equivocado.</strong> El porcentaje de descuento siempre se calcula sobre el precio <em>original</em>, no sobre el rebajado.</li>
+      <li><strong>Redondear demasiado pronto.</strong> Si vas a encadenar cálculos, arrastra los decimales y redondea solo al final para no acumular errores en el precio final.</li>
+    </ul>
+
+    <p class="hint">Truco rápido: para un 50 % divide el precio entre 2; para un 25 % divide entre 4; y para un 10 % corre la coma una posición a la izquierda (un 10 % de 45 € son 4,50 €).</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-iva">IVA</a></div>
+    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-iva">IVA</a><a href="/calculadora-cambio-porcentual">Cambio porcentual</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

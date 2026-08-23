@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula la nota media?', a: 'Si todas las asignaturas valen lo mismo, sumas las notas y divides entre el número de asignaturas. Si tienen distintos créditos o pesos, multiplicas cada nota por su peso, sumas todo y divides entre la suma de los pesos.' },
-  { q: '¿Cómo pongo los créditos?', a: 'En el segundo campo escribe los créditos o pesos separados por comas, en el mismo orden que las notas. Si lo dejas vacío, calculamos la media simple.' },
+  { q: '¿Cómo se calcula la nota media?', a: 'Si todas las asignaturas valen lo mismo, sumas todas las notas y divides entre el número de asignaturas: por ejemplo, (7 + 8 + 6) / 3 = 7. Si las asignaturas tienen créditos distintos, multiplicas cada nota por sus créditos, sumas esos productos y divides entre la suma total de créditos.' },
+  { q: '¿Qué es la media ponderada por créditos?', a: 'Es la media que tiene en cuenta el peso de cada asignatura. Cada una aporta a la nota final en proporción a sus créditos, de modo que las asignaturas grandes influyen más que las pequeñas. Se calcula como la suma de (nota × créditos) dividida entre la suma total de créditos.' },
+  { q: '¿Cuándo se usa la media simple y cuándo la ponderada?', a: 'La media simple se usa cuando todas las asignaturas pesan igual, como suele ocurrir en la ESO y el Bachillerato. La ponderada se usa cuando cada asignatura tiene un número distinto de créditos, algo habitual en la universidad y en los ciclos de Formación Profesional.' },
+  { q: '¿Cómo influyen los créditos en el expediente?', a: 'Cuantos más créditos tiene una asignatura, más pesa en la nota media. Por eso sacar un sobresaliente en una asignatura de 9 créditos sube el expediente más que sacarlo en una de 3. A la hora de repartir el esfuerzo conviene tener presente ese peso.' },
+  { q: '¿Cómo se redondea la nota media?', a: 'Lo más habitual es redondear a dos decimales: se mira el tercer decimal y, si es 5 o mayor, se sube el segundo. Por ejemplo, 7,246 se queda en 7,25. Aun así, cada centro puede fijar sus propias reglas de redondeo, así que conviene comprobar la normativa oficial.' },
+  { q: '¿Cómo calculo qué nota necesito para subir mi media?', a: 'Decide la media que quieres alcanzar y multiplícala por el número total de asignaturas (o de créditos, si es ponderada) para saber la suma que necesitas. Réstale lo que ya llevas acumulado: la diferencia es lo que te queda por conseguir en las asignaturas que aún tienes pendientes.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de nota media', applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-nota-media' },
@@ -21,11 +25,53 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Media simple y media ponderada</h2>
-    <p>La <strong>media simple</strong> es la suma de las notas dividida entre cuántas hay. La <strong>media ponderada</strong> tiene en cuenta el peso de cada asignatura (sus créditos): las que valen más influyen más en la nota final.</p>
+    <h2>Qué es la nota media</h2>
+    <p>La <strong>nota media</strong> es un único número que resume el rendimiento en varias asignaturas o pruebas. En España las notas se expresan habitualmente <strong>sobre 10</strong>, con coma decimal (por ejemplo, 7,25), y la media también se da sobre 10. Sirve para tener una foto global del expediente sin repasar asignatura por asignatura, y es el dato que piden becas, universidades y muchos procesos de selección.</p>
+    <p>Se puede calcular de dos formas según cuenten todas las asignaturas lo mismo o no: la <strong>media aritmética simple</strong> y la <strong>media ponderada por créditos</strong>. Esta calculadora hace las dos automáticamente: si dejas vacío el campo de créditos, aplica la media simple; si escribes los créditos de cada asignatura, aplica la ponderada.</p>
+
+    <h2>Media aritmética simple</h2>
+    <p>La media simple se usa cuando todas las asignaturas <strong>pesan igual</strong>. El método es directo: sumas todas las notas y divides el resultado entre el número de asignaturas.</p>
+    <p style="text-align:center"><strong>Media = suma de las notas / número de asignaturas</strong></p>
+    <p>Por ejemplo, con tres notas —un 7, un 8 y un 6— la media es (7 + 8 + 6) / 3 = 21 / 3 = <strong>7</strong>. Es la forma habitual en la ESO y el Bachillerato, donde cada asignatura suele contar lo mismo a la hora de calcular el expediente.</p>
+
+    <h2>Media ponderada por créditos</h2>
+    <p>En la universidad (y en muchos ciclos de Formación Profesional) no todas las asignaturas valen lo mismo: cada una tiene un número de <strong>créditos</strong> que refleja su carga de trabajo. Una asignatura de 9 créditos influye más en el expediente que una de 3. Para tenerlo en cuenta se usa la <strong>media ponderada</strong>, en la que cada asignatura pesa según sus créditos.</p>
+    <p>El método tiene tres pasos: multiplicas cada nota por sus créditos, sumas todos esos productos y divides entre la suma total de créditos.</p>
+    <p style="text-align:center"><strong>Media = suma de (nota × créditos) / suma de créditos</strong></p>
+    <p>Así, sacar buena nota en una asignatura "grande" sube más la media que hacerlo en una pequeña, que es justo lo que se pretende medir.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <p><strong>Media simple.</strong> Tienes tres asignaturas con un 7, un 8 y un 6, y todas cuentan igual:</p>
+    <ul>
+      <li>(7 + 8 + 6) / 3 = 21 / 3 = <strong>7</strong></li>
+    </ul>
+    <p><strong>Media ponderada.</strong> Una asignatura de 6 créditos con un 8 y otra de 4 créditos con un 6:</p>
+    <ul>
+      <li>(8 × 6 + 6 × 4) / (6 + 4) = (48 + 24) / 10 = 72 / 10 = <strong>7,2</strong></li>
+    </ul>
+    <p>Fíjate en que la nota ponderada (7,2) es mayor que la media simple de esas dos notas —(8 + 6) / 2 = 7— porque la mejor calificación está en la asignatura con más créditos y, por tanto, tira de la media hacia arriba.</p>
+
+    <h2>Para qué sirve la nota media</h2>
+    <ul>
+      <li><strong>Expediente académico:</strong> es el número que resume todo tu recorrido y aparece en certificados y en el suplemento al título.</li>
+      <li><strong>Becas:</strong> muchas ayudas exigen una nota mínima para concederlas o para renovarlas cada curso.</li>
+      <li><strong>Nota de acceso:</strong> para entrar en una carrera con plazas limitadas se ordena a los solicitantes por su media, así que unas décimas pueden marcar la diferencia.</li>
+      <li><strong>Baremos y oposiciones:</strong> en concursos de méritos y bolsas de empleo el expediente puntúa, y ahí también cuenta la media.</li>
+    </ul>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Hacer la media simple cuando hay créditos.</strong> Si las asignaturas tienen créditos distintos y las promedias como si pesaran igual, el resultado no coincidirá con el expediente oficial.</li>
+      <li><strong>Contar asignaturas convalidadas o sin calificación.</strong> Las que figuran como "apto" o convalidadas sin nota normalmente no entran en la media; revisa la normativa de tu centro.</li>
+      <li><strong>Redondear antes de tiempo.</strong> Conviene arrastrar todos los decimales durante el cálculo y redondear solo el resultado final.</li>
+      <li><strong>Mezclar escalas.</strong> Si una nota está sobre 100 o expresada en letras, pásala primero a la escala sobre 10 antes de promediar.</li>
+    </ul>
+
+    <p class="hint">Cada universidad y comunidad autónoma puede tener reglas propias para el redondeo y para las asignaturas que entran en la media: consulta siempre la normativa oficial de tu centro.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-regla-de-tres">Regla de tres</a></div>
+    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-media-mediana-moda">Media, mediana y moda</a><a href="/calculadora-redondeo">Redondeo</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

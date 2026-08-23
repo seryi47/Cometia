@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se cuentan los días entre dos fechas?', a: 'Restamos la fecha de inicio a la fecha de fin. El resultado es el número de días completos entre ambas. Puedes usarlo para plazos, vacaciones, cuentas atrás o cualquier periodo.' },
-  { q: '¿Incluye el día final?', a: 'Mostramos los días de diferencia entre las dos fechas. Si necesitas contar también el último día, súmale uno al resultado.' },
+  { q: '¿Cómo se cuentan los días entre dos fechas?', a: 'Se resta la fecha de inicio a la fecha de fin y el resultado es el número de días completos que las separan. No importa el orden en que las introduzcas, porque la calculadora usa siempre el valor absoluto de la diferencia. El cálculo se hace sobre días naturales, es decir, contando todos los del calendario.' },
+  { q: '¿Se incluye el primer y el último día?', a: 'La calculadora muestra la diferencia en días, que no incluye el día final. Del 1 al 2 de un mes hay 1 día de diferencia. Si necesitas contar también los dos extremos (el día de inicio y el de fin), algo habitual en muchos plazos, súmale 1 al resultado.' },
+  { q: '¿Qué diferencia hay entre días naturales y días laborables?', a: 'Los días naturales son todos los del calendario, incluidos sábados, domingos y festivos, y son los que cuenta esta herramienta. Los días laborables o hábiles excluyen los fines de semana y los festivos, que además cambian según la comunidad autónoma y el municipio. Por eso un plazo en días hábiles puede terminar en una fecha muy distinta a la de uno en días naturales.' },
+  { q: '¿Cómo afectan los años bisiestos al cálculo?', a: 'Un año bisiesto tiene 366 días porque febrero cuenta con 29. Si el periodo que calculas incluye un 29 de febrero, ese día suma como cualquier otro. 2024 fue bisiesto y 2026 no lo es; la calculadora lo tiene en cuenta automáticamente, así que no tienes que ajustar nada.' },
+  { q: '¿Cómo calculo las semanas o los meses entre dos fechas?', a: 'La calculadora te da la equivalencia junto al resultado: las semanas se obtienen dividiendo los días entre 7, y los meses son una aproximación usando la media de 30,44 días por mes. Son cifras orientativas, porque los meses tienen entre 28 y 31 días. Para trabajar solo con semanas puedes usar nuestra calculadora de semanas entre fechas.' },
+  { q: '¿Sirve para calcular plazos legales?', a: 'Sirve como orientación para saber cuántos días naturales hay entre dos fechas, pero muchos plazos legales se cuentan en días hábiles y con reglas propias sobre cuándo empiezan y terminan. Para un plazo oficial conviene comprobar si se mide en días naturales o hábiles y tener en cuenta los festivos aplicables.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Días entre dos fechas', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-dias-entre-fechas' },
@@ -30,11 +34,44 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Para qué sirve</h2>
-    <p>Contar días entre fechas es útil para plazos legales, días de vacaciones, tiempo hasta un evento o cuánto falta para una fecha. Introduce las dos fechas y el cálculo es inmediato.</p>
+    <h2>Para qué sirve calcular los días entre dos fechas</h2>
+    <p>Saber cuántos días hay entre dos fechas es una de esas cuentas que hacemos constantemente: cuánto falta para las vacaciones, cuántos días llevas en un trabajo, qué tiempo ha pasado desde una compra o de cuántos días dispones para presentar un documento. Hacerlo mentalmente es fácil equivocarse, sobre todo cuando el periodo cruza varios meses o un cambio de año. Con esta calculadora solo eliges la <strong>fecha de inicio</strong> y la <strong>fecha de fin</strong> y obtienes al instante la diferencia en días, junto con su equivalencia en semanas y en meses aproximados.</p>
+
+    <h2>Cómo se cuentan los días entre fechas</h2>
+    <p>El cálculo consiste en restar la fecha de inicio a la fecha de fin: el resultado es el número de <strong>días completos</strong> que separan ambas fechas. Es lo que se conoce como la diferencia en días, y no depende del orden en que las introduzcas, porque la herramienta toma siempre el valor absoluto.</p>
+    <p>Aquí surge la duda más habitual: <strong>¿se cuenta el último día o no?</strong> Por defecto mostramos la diferencia, que <strong>no incluye el día final</strong>. Por ejemplo, del lunes al martes hay 1 día de diferencia. Si lo que quieres es contar los dos extremos (el día de inicio y el de fin), como se hace en muchos plazos, súmale 1 al resultado. Esta distinción entre "días de diferencia" y "días contando ambos extremos" es la causa de casi todos los errores al medir periodos.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Del 1 al 31 de enero de 2026:</strong> hay <strong>30 días de diferencia</strong>. Si cuentas también el 1 y el 31 (ambos extremos), son <strong>31 días</strong>.</li>
+      <li><strong>Del 10 al 24 de marzo de 2026:</strong> son <strong>14 días</strong>, es decir, <strong>2 semanas exactas</strong>.</li>
+      <li><strong>Del 1 de enero de 2026 al 1 de enero de 2027:</strong> hay <strong>365 días</strong>, porque 2026 no es bisiesto.</li>
+      <li><strong>Del 1 de enero de 2024 al 1 de enero de 2025:</strong> hay <strong>366 días</strong>, porque 2024 sí fue bisiesto.</li>
+      <li><strong>Del 28 de febrero al 1 de marzo de 2024:</strong> hay <strong>2 días</strong> (28 → 29 → 1), porque febrero de 2024 tuvo 29 días; en 2026 ese mismo salto es de solo <strong>1 día</strong>.</li>
+    </ul>
+
+    <h2>Días naturales frente a días laborables</h2>
+    <p>Esta calculadora cuenta <strong>días naturales</strong>: todos los del calendario, incluidos sábados, domingos y festivos. Es lo que necesitas para la mayoría de los casos cotidianos. Sin embargo, muchos plazos administrativos y laborales se miden en <strong>días hábiles</strong> o <strong>laborables</strong>, que excluyen los fines de semana y los días festivos.</p>
+    <p>La diferencia no es menor: 15 días naturales y 15 días hábiles pueden terminar en fechas muy distintas. Además, los festivos varían según la comunidad autónoma y el municipio, así que un plazo en días hábiles depende del calendario laboral que aplique. Si un plazo te indica "días hábiles", conviene contar descartando fines de semana y festivos, o consultar el calendario oficial correspondiente.</p>
+
+    <h2>Usos habituales</h2>
+    <ul>
+      <li><strong>Plazos:</strong> saber cuántos días quedan para entregar un trabajo, pagar una factura o responder a una notificación.</li>
+      <li><strong>Vacaciones y viajes:</strong> calcular la duración exacta de un viaje o los días que abarca un periodo de descanso.</li>
+      <li><strong>Contratos y alquileres:</strong> comprobar la antigüedad, la duración de un contrato o el tiempo que falta para una renovación.</li>
+      <li><strong>Cuenta atrás:</strong> ver cuánto falta para una boda, un examen, un nacimiento o cualquier fecha señalada.</li>
+      <li><strong>Historial personal:</strong> cuántos días llevas en un empleo, con una suscripción o desde un acontecimiento importante.</li>
+    </ul>
+
+    <h2>Los años bisiestos</h2>
+    <p>Un <strong>año bisiesto</strong> tiene 366 días en lugar de 365, porque febrero cuenta con 29 días. Ocurre casi siempre cada cuatro años para compensar que la Tierra tarda algo más de 365 días en dar la vuelta al Sol. La regla exacta es: es bisiesto todo año divisible entre 4, salvo los divisibles entre 100 que no lo sean también entre 400. Por eso el año 2000 fue bisiesto y 1900 no lo fue.</p>
+    <p>En la práctica, si el periodo que calculas incluye un 29 de febrero, ese día suma como cualquier otro. <strong>2024 fue bisiesto</strong> (366 días) y <strong>2026 no lo es</strong> (365 días). La calculadora lo tiene en cuenta automáticamente, así que no tienes que añadir ni quitar días a mano.</p>
+
+    <p class="hint">El resultado muestra los días de diferencia; para contar ambos extremos, súmale 1.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-edad">Calcular edad</a><a href="/calculadora-horas">Horas</a></div>
+    <div class="more"><a href="/calculadora-edad">Calcular edad</a><a href="/calculadora-sumar-restar-dias">Sumar o restar días</a><a href="/calculadora-cuenta-atras">Cuenta atrás</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula la cuota de un préstamo?', a: 'Con el sistema francés de cuota fija: cuota = capital × i / (1 − (1 + i)^−n), donde i es el interés mensual (el TIN anual dividido entre 12) y n el número de meses del préstamo.' },
-  { q: '¿Qué diferencia hay entre TIN y TAE?', a: 'El TIN es el interés nominal que se usa para calcular la cuota. La TAE incluye además comisiones y gastos, así que refleja mejor el coste real. Esta calculadora usa el TIN.' },
+  { q: '¿Cómo se calcula la cuota de un préstamo?', a: 'Con el sistema francés de cuota fija: cuota = capital × i / (1 − (1 + i)^−n), donde i es el interés mensual (el TIN anual dividido entre 12) y n el número de meses del préstamo. Con esa cuota, los intereses totales son la cuota multiplicada por los meses menos el capital.' },
+  { q: '¿Qué diferencia hay entre TIN y TAE?', a: 'El TIN es el interés nominal que se usa para calcular la cuota. La TAE incluye además las comisiones y gastos obligatorios, así que refleja mejor el coste real del préstamo. Para comparar ofertas fíjate siempre en la TAE; esta calculadora trabaja con el TIN.' },
+  { q: '¿Me conviene un plazo largo o corto?', a: 'Depende de tu presupuesto. Un plazo largo reduce la cuota mensual, pero pagas durante más tiempo y el total de intereses es mayor. Un plazo corto encarece la cuota pero abarata el préstamo. Como regla general, elige el plazo más corto que puedas asumir con holgura.' },
+  { q: '¿Qué es la comisión de apertura?', a: 'Es un porcentaje del capital que la entidad cobra al firmar el préstamo, normalmente entre el 1 % y el 3 %. En un préstamo de 10.000 € una apertura del 2 % supone 200 € que encarecen la operación desde el primer día y que la TAE sí recoge.' },
+  { q: '¿Puedo amortizar el préstamo antes de tiempo?', a: 'Sí. Puedes hacer amortizaciones parciales o cancelar el préstamo por completo antes del final del plazo, lo que reduce los intereses que te quedan por pagar. La entidad puede aplicar una comisión por amortización anticipada, limitada por ley (habitualmente un 0,5 % o un 1 % del importe que adelantas).' },
+  { q: '¿Cuánto pagaré de intereses en total?', a: 'Los intereses totales son la suma de todas las cuotas menos el capital prestado. Por ejemplo, en un préstamo de 10.000 € a 5 años al 7 % TIN pagas unos 1.880 € de intereses; a 3 años, solo unos 1.116 €. Cuanto más largo es el plazo, más intereses acumulas.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de préstamo', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-prestamo' },
@@ -31,10 +35,47 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>La cuota fija de un préstamo se obtiene con la fórmula del sistema francés: <strong>cuota = C · i / (1 − (1 + i)<sup>−n</sup>)</strong>, con <strong>i</strong> el interés mensual y <strong>n</strong> el número de meses. Cuanto mayor es el plazo, menor es la cuota pero más intereses pagas en total.</p>
+    <h2>Qué es un préstamo personal y cómo funciona su cuota</h2>
+    <p>Un <strong>préstamo personal</strong> es una cantidad de dinero que una entidad te presta y que devuelves en cuotas fijas mensuales durante un plazo pactado. A diferencia de una <a href="/calculadora-hipoteca">hipoteca</a>, no suele ir ligado a una vivienda como garantía, por lo que el tipo de interés acostumbra a ser más alto y los plazos, más cortos. La mayoría de préstamos personales en España se amortizan con el <strong>sistema francés</strong>, en el que pagas siempre la misma cuota: al principio esa cuota se va sobre todo en intereses y, con el tiempo, cada vez amortiza más capital.</p>
+    <p>Esta calculadora te da tres datos de un vistazo: la <strong>cuota mensual</strong>, los <strong>intereses totales</strong> que pagarás y el <strong>total a devolver</strong> sumando capital e intereses. Con ellos puedes comparar ofertas y ver el coste real de financiar una compra antes de firmar nada.</p>
+
+    <h2>Cómo se calcula la cuota</h2>
+    <p>La cuota fija del sistema francés se obtiene con esta fórmula:</p>
+    <p style="text-align:center"><strong>cuota = C · i / (1 − (1 + i)<sup>−n</sup>)</strong></p>
+    <p>Donde <strong>C</strong> es el capital prestado, <strong>i</strong> es el interés mensual y <strong>n</strong> el número de meses. El interés mensual se obtiene dividiendo el <strong>TIN anual entre 12</strong>: si el TIN es del 7 %, entonces i = 0,07 / 12 ≈ 0,005833. Una vez tienes la cuota, los intereses totales son simplemente la cuota multiplicada por el número de meses, menos el capital: <strong>intereses = cuota · n − C</strong>.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>10.000 € a 5 años (60 meses) al 7 % TIN:</strong> con i ≈ 0,005833, la cuota sale de <strong>198,01 €/mes</strong>. En total devuelves 198,01 × 60 = 11.880,60 €, de los cuales unos <strong>1.880 € son intereses</strong>.</li>
+      <li><strong>El mismo préstamo a 3 años (36 meses) al 7 % TIN:</strong> la cuota sube a <strong>308,78 €/mes</strong>, pero solo pagas unos <strong>1.116 € de intereses</strong> (total ≈ 11.116 €). Acortar el plazo encarece la cuota y abarata el préstamo.</li>
+      <li><strong>15.000 € a 6 años (72 meses) al 8,5 % TIN:</strong> la cuota es de <strong>266,68 €/mes</strong> y los intereses ascienden a unos <strong>4.201 €</strong> (total ≈ 19.201 €).</li>
+    </ul>
+
+    <h2>TIN, TAE y comisiones: dónde está el coste real</h2>
+    <p>Para comparar préstamos no basta con mirar el tipo de interés. Conviene distinguir estos conceptos:</p>
+    <ul>
+      <li><strong>TIN (Tipo de Interés Nominal):</strong> el porcentaje que se aplica al capital para calcular la cuota. Es el dato que usa esta calculadora.</li>
+      <li><strong>TAE (Tasa Anual Equivalente):</strong> incluye el TIN más las comisiones y gastos obligatorios, así que refleja el <strong>coste real</strong> del préstamo. Dos préstamos con el mismo TIN pueden tener una TAE distinta.</li>
+      <li><strong>Comisión de apertura:</strong> un porcentaje del capital (por ejemplo, un 1-3 %) que se cobra al firmar. En un préstamo de 10.000 € una apertura del 2 % son 200 € que encarecen la operación desde el primer día.</li>
+      <li><strong>Comisión por amortización anticipada:</strong> lo que te cobran si devuelves el préstamo antes de tiempo. Por ley suele estar limitada (habitualmente un 0,5 % o un 1 % del importe que adelantas).</li>
+    </ul>
+
+    <h2>Plazo largo o corto: cómo interpretarlo</h2>
+    <p>La regla es sencilla: <strong>a mayor plazo, menor cuota pero más intereses en total</strong>. Alargar el préstamo alivia el pago mensual, pero pagas durante más tiempo y el coste total sube. Como se ve en los ejemplos, pasar de 3 a 5 años en un préstamo de 10.000 € baja la cuota de 308,78 € a 198,01 €, pero los intereses casi se duplican. Elige el plazo más corto que tu presupuesto pueda asumir con holgura.</p>
+
+    <h2>Errores comunes y consejos</h2>
+    <ul>
+      <li><strong>Fijarte solo en la cuota:</strong> una cuota baja puede esconder un plazo largo y muchos intereses. Mira siempre el <strong>total a pagar</strong>, no solo el importe mensual.</li>
+      <li><strong>Confundir TIN con TAE:</strong> compara las ofertas por su TAE, que es la que incluye las comisiones y refleja el coste real.</li>
+      <li><strong>Olvidar la comisión de apertura:</strong> súmala al cálculo; a veces un préstamo con un TIN algo mayor pero sin comisiones sale más barato.</li>
+      <li><strong>No dejar margen para imprevistos:</strong> reserva holgura en tu presupuesto para no llegar justo a fin de mes con la cuota.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora usa el TIN y ofrece un resultado orientativo: el coste real de tu préstamo dependerá de la TAE y de las comisiones que figuren en tu contrato.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-hipoteca">Hipoteca</a><a href="/calculadora-interes-compuesto">Interés compuesto</a><a href="/calculadora-interes-simple">Interés simple</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

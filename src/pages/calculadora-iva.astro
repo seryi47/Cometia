@@ -1,9 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula el IVA de un importe?', a: 'Multiplicas la base (el precio sin IVA) por el tipo. Con el IVA general del 21 %: base × 0,21. El total es la base más ese IVA.' },
-  { q: '¿Cómo quitar el IVA de un precio final?', a: 'Divides el precio con IVA entre 1 más el tipo. Para el 21 %: precio ÷ 1,21 te da la base sin IVA, y la diferencia es el IVA.' },
-  { q: '¿Qué tipos de IVA hay en España?', a: 'El general del 21 % (la mayoría de bienes y servicios), el reducido del 10 % (hostelería, transporte, algunos alimentos) y el superreducido del 4 % (pan, leche, libros, medicamentos, entre otros).' },
+  { q: '¿Cuáles son los tipos de IVA en España?', a: 'Hay tres tipos vigentes: el general del 21 %, que se aplica a la mayoría de bienes y servicios; el reducido del 10 %, para hostelería, transporte de viajeros y determinadas viviendas; y el superreducido del 4 %, reservado a productos de primera necesidad como el pan, la leche, los huevos, las frutas, las verduras, los libros y los medicamentos.' },
+  { q: '¿Cómo se calcula el IVA de un precio?', a: 'Para añadir el IVA a una base, la multiplicas por el tipo. Con el 21 %: 100 € × 0,21 = 21 € de IVA, y el total es 100 + 21 = 121 €. Un atajo equivalente es multiplicar la base directamente por 1,21 (100 × 1,21 = 121 €).' },
+  { q: '¿Cómo quito el IVA de un precio con IVA incluido?', a: 'Divides el precio final entre 1 más el tipo. Si un artículo cuesta 121 € con el 21 % incluido, la base es 121 ÷ 1,21 = 100 € y el IVA es la diferencia, 21 €. Con un precio de 50 € al 21 %: 50 ÷ 1,21 = 41,32 € de base y 8,68 € de IVA.' },
+  { q: '¿Qué es la base imponible?', a: 'La base imponible es el precio del producto o servicio antes de aplicar el IVA. Sobre esa cantidad se calcula el impuesto: la base más el IVA da el total que paga el cliente. En una factura aparecen separadas la base, el tipo aplicado, la cuota de IVA y el total.' },
+  { q: '¿Por qué no puedo restar el 21 % para quitar el IVA?', a: 'Porque el 21 % del precio final no es el mismo importe que el 21 % de la base. Si a 121 € le restas su 21 % (25,41 €) obtienes 95,59 €, un resultado incorrecto. La forma correcta es dividir entre 1,21, que devuelve la base real de 100 €.' },
+  { q: '¿Qué productos tienen IVA reducido o superreducido?', a: 'El 10 % se aplica, entre otros, a la hostelería, al transporte de viajeros y a algunas entregas de viviendas. El 4 % se reserva a bienes de primera necesidad: pan común, leche, huevos, frutas, verduras, legumbres, libros, periódicos y medicamentos de uso humano.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de IVA', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-iva' },
@@ -46,12 +49,45 @@ const jsonLd = [
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 
   <section class="prose">
-    <h2>Cómo se calcula el IVA</h2>
-    <p>Para <strong>añadir</strong> el IVA multiplicas la base por el tipo: 100 € × 21 % = 21 € de IVA, y el total es 121 €. Para <strong>quitar</strong> el IVA de un precio final divides entre 1 más el tipo: 121 € ÷ 1,21 = 100 € de base.</p>
-    <h2>Tipos de IVA en España</h2>
-    <ul><li><strong>21 %</strong> — general.</li><li><strong>10 %</strong> — reducido.</li><li><strong>4 %</strong> — superreducido.</li></ul>
+    <h2>Qué es el IVA</h2>
+    <p>El <strong>IVA (Impuesto sobre el Valor Añadido)</strong> es un impuesto indirecto que grava el consumo de bienes y servicios en España. Lo paga el consumidor final, pero lo recaudan las empresas y los autónomos: cuando compras algo, en el precio ya va incluida una parte que el vendedor debe ingresar después en Hacienda. Por eso el IVA aparece en casi todas las facturas y tickets, unas veces desglosado y otras ya sumado dentro del precio de venta al público.</p>
+    <p>Entender el IVA es útil tanto si compras como si vendes: te permite saber cuánto cuesta realmente un producto sin impuesto, calcular el precio final que verá tu cliente o comprobar que una factura está bien hecha.</p>
+
+    <h2>Los tipos de IVA en España</h2>
+    <p>En España conviven tres tipos, según la naturaleza del producto o servicio:</p>
+    <ul>
+      <li><strong>21 % (general):</strong> es el tipo por defecto y se aplica a la mayoría de bienes y servicios: ropa, electrónica, electrodomésticos, muebles, servicios profesionales, etc.</li>
+      <li><strong>10 % (reducido):</strong> afecta a la hostelería (bares y restaurantes), al transporte de viajeros, a determinadas entregas de viviendas y a algunos productos concretos.</li>
+      <li><strong>4 % (superreducido):</strong> se reserva a bienes de primera necesidad como el pan, la leche, los huevos, las frutas, las verduras, las legumbres, los libros, los periódicos y los medicamentos de uso humano.</li>
+    </ul>
+
+    <h2>Cómo añadir el IVA y cómo quitarlo</h2>
+    <p>Son dos operaciones distintas y conviene no confundirlas.</p>
+    <p><strong>Añadir el IVA a una base</strong> (partes de un precio sin impuesto y quieres el total): multiplicas la base por el tipo y lo sumas. La fórmula es <strong>total = base × (1 + tipo)</strong>. Por ejemplo, 100 € con el 21 %: 100 × 1,21 = 121 €.</p>
+    <p><strong>Quitar el IVA de un precio con IVA incluido</strong> (partes del precio final y quieres saber la base): divides entre 1 más el tipo. La fórmula es <strong>base = total ÷ (1 + tipo)</strong>. Por ejemplo, 121 € con el 21 % incluido: 121 ÷ 1,21 = 100 € de base, y el IVA es la diferencia, 21 €.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Añadir 21 % a 100 €:</strong> IVA = 100 × 0,21 = 21 €. Total = 100 + 21 = <strong>121 €</strong>.</li>
+      <li><strong>Quitar el 21 % de 50 € (IVA incluido):</strong> base = 50 ÷ 1,21 = <strong>41,32 €</strong> e IVA = 50 − 41,32 = <strong>8,68 €</strong>.</li>
+      <li><strong>Quitar el 10 % de 55 € (IVA incluido):</strong> base = 55 ÷ 1,10 = <strong>50 €</strong> e IVA = 55 − 50 = <strong>5 €</strong>.</li>
+    </ul>
+
+    <h2>Base imponible frente a total</h2>
+    <p>Para interpretar bien cualquier factura hay que distinguir dos cantidades. La <strong>base imponible</strong> es el precio antes de impuestos, la cifra sobre la que se calcula el IVA. El <strong>total</strong> es lo que paga el cliente: la base más la cuota de IVA. Una factura correcta muestra las dos por separado, junto con el tipo aplicado y la cuota resultante. Cuando ves un precio "con IVA incluido", estás viendo el total; para llegar a la base hay que dividir, nunca restar el porcentaje.</p>
+
+    <h2>Errores comunes al calcular el IVA</h2>
+    <ul>
+      <li><strong>Restar el 21 % para quitar el IVA.</strong> Es el fallo más frecuente: 100 € − 21 % = 79 € es incorrecto. El 21 % del precio final no coincide con el 21 % de la base, así que hay que dividir entre 1,21, no restar.</li>
+      <li><strong>Aplicar el tipo que no toca.</strong> No todo lleva el 21 %; conviene comprobar si el producto es reducido (10 %) o superreducido (4 %) antes de calcular.</li>
+      <li><strong>Confundir base y total.</strong> Sumar el IVA a un precio que ya lo incluía infla el importe y descuadra la factura.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora es orientativa y no sustituye el asesoramiento de un profesional; consulta a tu gestor o asesor fiscal para casos concretos.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-descuento">Descuentos</a><a href="/calculadora-margen-comercial">Margen comercial</a></div>
   </section>
 
   <script>

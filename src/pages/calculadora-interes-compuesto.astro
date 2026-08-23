@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es el interés compuesto?', a: 'Es el interés que se calcula sobre el capital inicial y también sobre los intereses ya generados. Con el tiempo, esos intereses generan a su vez más intereses, y el crecimiento se acelera (efecto bola de nieve).' },
-  { q: '¿Cómo influyen las aportaciones periódicas?', a: 'Si además del capital inicial añades una cantidad cada mes, cada aportación empieza a generar intereses desde que entra. Aportar de forma constante, aunque sea poco, tiene un gran efecto a largo plazo.' },
+  { q: '¿Qué es el interés compuesto?', a: 'Es el interés que se calcula sobre el capital inicial y también sobre los intereses ya generados en periodos anteriores. Como esos intereses producen a su vez nuevos intereses, el crecimiento se acelera con el tiempo: es el llamado efecto bola de nieve.' },
+  { q: '¿En qué se diferencia del interés simple?', a: 'En el interés simple los intereses se calculan siempre sobre el capital inicial y no se acumulan. En el compuesto, cada periodo parte del capital más los intereses ya ganados, así que la base crece y el resultado final es mayor, sobre todo a largo plazo.' },
+  { q: '¿Qué es la regla del 72?', a: 'Es un truco para estimar en cuántos años se duplica tu dinero: divide 72 entre el tipo de interés anual. A un 6% anual, 72 entre 6 son unos 12 años; a un 8%, unos 9 años; a un 3%, unos 24. Es una aproximación mental, no un cálculo exacto.' },
+  { q: '¿Por qué el tiempo importa tanto?', a: 'Porque el interés compuesto crece más rápido cuantos más intereses hay ya acumulados. Los primeros años el avance parece lento, pero los últimos son los que más pesan. Empezar pronto, aunque sea con cantidades pequeñas, suele rendir más que empezar tarde con mucho dinero.' },
+  { q: '¿Cómo afectan las aportaciones periódicas?', a: 'Si además del capital inicial añades una cantidad cada mes, cada aportación empieza a generar intereses desde el momento en que entra. Aportar de forma constante, aunque sea poco, tiene un efecto muy grande a largo plazo y multiplica el resultado.' },
+  { q: '¿La rentabilidad está garantizada?', a: 'No. La calculadora supone una rentabilidad constante para simplificar, pero en la práctica los tipos varían y ninguna inversión asegura un rendimiento fijo durante años. Los resultados son orientativos y no son una recomendación de inversión.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de interés compuesto', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-interes-compuesto' },
@@ -34,10 +38,42 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>El capital final se calcula capitalizando mes a mes el capital inicial y cada aportación al tipo de interés indicado. La fórmula combina el crecimiento del capital inicial, <strong>C·(1+r)<sup>n</sup></strong>, con el de las aportaciones periódicas, donde <strong>r</strong> es el interés mensual y <strong>n</strong> el número de meses.</p>
+    <h2>Qué es el interés compuesto</h2>
+    <p>El <strong>interés compuesto</strong> es el interés que se calcula no solo sobre el capital que has invertido, sino también sobre los intereses que ese capital ha generado en periodos anteriores. Dicho de otro modo: los intereses producen a su vez más intereses. Es el motor que hace crecer el ahorro a largo plazo y lo que suele llamarse, medio en broma, «la octava maravilla del mundo».</p>
+    <p>La diferencia con el <a href="/calculadora-interes-simple">interés simple</a> está en la base de cálculo. En el interés simple los intereses se calculan siempre sobre el capital inicial, sin acumularse. En el compuesto, en cambio, cada periodo parte de una base mayor: el capital más todo lo ganado hasta ese momento. Ese pequeño detalle, repetido muchos años, produce el famoso <strong>efecto bola de nieve</strong>.</p>
+
+    <h2>La fórmula del interés compuesto</h2>
+    <p>Para un capital inicial sin aportaciones, el capital final se obtiene así:</p>
+    <p style="text-align:center"><strong>CF = C₀ · (1 + i)<sup>n</sup></strong></p>
+    <p>Donde <strong>CF</strong> es el capital final, <strong>C₀</strong> el capital inicial, <strong>i</strong> el tipo de interés por periodo (en tanto por uno) y <strong>n</strong> el número de periodos. Si el interés es anual y dejas el dinero invertido varios años, <strong>i</strong> es el tipo anual y <strong>n</strong> el número de años. Por ejemplo, un 5% anual se introduce como 0,05.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>10.000 € al 5% durante 10 años:</strong> 10.000 × 1,05<sup>10</sup> = <strong>16.288,95 €</strong>. Has ganado 6.288,95 € en intereses sin tocar el dinero.</li>
+      <li><strong>2.000 € al 6% durante 25 años:</strong> 2.000 × 1,06<sup>25</sup> = <strong>8.583,74 €</strong>. El capital se ha multiplicado por más de cuatro solo dejándolo crecer.</li>
+      <li><strong>1.000 € al 8% durante 30 años:</strong> 1.000 × 1,08<sup>30</sup> = <strong>10.062,66 €</strong>. Mil euros se convierten en más de diez mil sin añadir nada más.</li>
+    </ul>
+
+    <h2>Interés compuesto frente a interés simple</h2>
+    <p>Volvamos al primer ejemplo. Con <strong>interés simple</strong>, esos 10.000 € al 5% generarían 500 € cada año, siempre calculados sobre el capital inicial: en 10 años sumarían 10.000 + (10 × 500) = <strong>15.000 €</strong>. Con interés compuesto el resultado es 16.288,95 €, es decir, <strong>1.288,95 € más</strong> sin haber hecho nada distinto. Esa diferencia parece modesta en una década, pero se dispara conforme aumentan el tipo y, sobre todo, los años: cuanto más largo es el plazo, más se separan las dos curvas.</p>
+
+    <h2>El papel del tiempo y la Regla del 72</h2>
+    <p>El tiempo es el ingrediente más poderoso del interés compuesto, más incluso que el propio tipo de interés. Los primeros años el crecimiento parece lento, pero la parte final es la que más pesa, porque los intereses ya acumulados son cada vez mayores. Por eso empezar pronto, aunque sea con poco, suele rendir más que empezar tarde con mucho.</p>
+    <p>Una forma rápida de hacerse una idea es la <strong>Regla del 72</strong>: divide 72 entre el tipo de interés anual y obtendrás, de forma aproximada, los años que tarda tu dinero en duplicarse. A un 6% anual, 72 / 6 ≈ <strong>12 años</strong>; a un 8%, unos 9 años; a un 3%, unos 24. Es una estimación mental, no un cálculo exacto, pero resulta muy útil para comparar opciones de un vistazo.</p>
+
+    <h2>Errores frecuentes y consejos</h2>
+    <ul>
+      <li><strong>Retirar los intereses:</strong> si sacas las ganancias cada año, rompes el efecto compuesto y vuelves prácticamente al interés simple. La clave es reinvertir.</li>
+      <li><strong>Olvidar la inflación:</strong> una rentabilidad del 4% con una inflación del 3% deja un crecimiento real de solo el 1%. Conviene pensar en términos reales, no solo nominales.</li>
+      <li><strong>Ignorar comisiones e impuestos:</strong> las comisiones anuales y la fiscalidad de las ganancias reducen el interés efectivo. Un 0,5% de comisión, sostenido durante décadas, resta mucho.</li>
+      <li><strong>Aportar de forma irregular:</strong> las aportaciones periódicas constantes aprovechan mejor el tiempo, porque cada una empieza a generar intereses desde que entra. Aportar poco y a menudo suele superar a esperar a «tener una buena cantidad».</li>
+    </ul>
+
+    <p class="hint">Esta calculadora es orientativa y supone una rentabilidad constante. Las rentabilidades reales varían y no están garantizadas: ninguna inversión asegura un tipo fijo durante años. No es una recomendación de inversión.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-interes-simple">Interés simple</a><a href="/calculadora-ahorro">Plan de ahorro</a><a href="/calculadora-rentabilidad">Rentabilidad</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

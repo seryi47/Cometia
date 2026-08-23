@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula la edad exacta?', a: 'Restamos tu fecha de nacimiento a la fecha de hoy y expresamos el resultado en años, meses y días completos que has vivido.' },
-  { q: '¿Sirve para saber cuántos días he vivido?', a: 'Sí, además de los años te mostramos el total de días vividos, útil por curiosidad o para celebraciones.' },
+  { q: '¿Cómo se calcula la edad exacta?', a: 'Se resta tu fecha de nacimiento a la fecha de hoy en tres pasos: primero los años completos, después los meses transcurridos desde tu último cumpleaños y por último los días sueltos. Cuando el día de hoy es anterior al día en que naciste, se toma prestado un mes para que la cuenta encaje con el calendario real, que tiene meses de 28, 29, 30 y 31 días.' },
+  { q: '¿Por qué se da la edad en años, meses y días?', a: 'Porque solo con los años se pierde información: entre un cumpleaños y el siguiente pueden pasar hasta doce meses. Detallar los meses y los días permite conocer la edad exacta para trámites, becas o requisitos que exigen tener cumplida una edad en una fecha concreta, y también para celebrar aniversarios al día.' },
+  { q: '¿Cuándo cambio de edad?', a: 'El mismo día de tu cumpleaños. Hasta que llega esa fecha mantienes la edad del año anterior, y justo ese día sumas un año. Por eso, si naciste el 15 de marzo, cumples años cada 15 de marzo y no antes.' },
+  { q: '¿Qué pasa con los nacidos el 29 de febrero?', a: 'Esa fecha solo existe en los años bisiestos, uno de cada cuatro. Los demás años se considera, a efectos prácticos y legales en España, que la edad queda cumplida al terminar el 28 de febrero. Así, quien nació un 29 de febrero cumple años todos los años, aunque su fecha real solo aparezca en el calendario cada cuatro.' },
+  { q: '¿Los años bisiestos afectan a mi edad?', a: 'No cambian tu edad en años: sigues cumpliendo en la misma fecha. Lo único que varía es el total de días vividos, que puede sumar un día extra por cada 29 de febrero que hayas atravesado a lo largo de tu vida.' },
+  { q: '¿Cómo calculo la edad en una fecha pasada o futura?', a: 'Esta calculadora toma siempre la fecha de hoy como referencia. Si quieres saber la edad que tendrás o que tenías en otra fecha, o medir el tiempo entre dos fechas cualesquiera, lo más cómodo es usar la calculadora de días entre fechas.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de edad', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-edad' },
@@ -24,11 +28,36 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo funciona</h2>
-    <p>Comparamos tu fecha de nacimiento con la fecha de hoy y calculamos los años, meses y días completos transcurridos, además del total de días que has vivido.</p>
+    <h2>Qué es la edad cronológica y cómo se cuenta</h2>
+    <p>La <strong>edad cronológica</strong> es el tiempo exacto que ha pasado desde el día en que naciste hasta hoy. Se mide contando <strong>años completos</strong> vividos: cumples un año más justo el día de tu cumpleaños, no antes. Por eso, si naciste el 15 de marzo, mantienes la misma edad hasta que vuelve a llegar esa fecha, momento en el que sumas un año. Es la forma en la que la miden el DNI, los formularios oficiales y la vida cotidiana en España.</p>
+    <p>Esta calculadora compara tu fecha de nacimiento con la fecha de hoy y te devuelve tu edad en <strong>años, meses y días</strong>, además del <strong>total de días vividos</strong>. Así obtienes tanto la cifra de siempre —los años— como el detalle fino que a veces hace falta para un trámite o por simple curiosidad.</p>
+
+    <h2>Cómo se calcula en años, meses y días</h2>
+    <p>El cálculo se hace por partes, de lo grande a lo pequeño. Primero se restan los <strong>años</strong>: la diferencia entre el año actual y el de tu nacimiento, ajustando si tu cumpleaños de este año todavía no ha llegado. Después se cuentan los <strong>meses</strong> completos transcurridos desde tu último cumpleaños. Y por último, los <strong>días</strong> sueltos que sobran hasta llegar a hoy.</p>
+    <p>Cuando el día de hoy es anterior al día de tu nacimiento dentro del mes, se "pide prestado" un mes: ese mes se convierte en los días que tenía el mes anterior y se resta uno a la cuenta de meses. Es el mismo mecanismo de una resta con llevadas, y es la razón por la que el resultado siempre encaja con el calendario real, que tiene meses de 28, 29, 30 y 31 días.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <p>Imagina a alguien nacido el <strong>15 de marzo de 1990</strong>. A fecha <strong>21 de agosto de 2026</strong>:</p>
+    <ul>
+      <li><strong>Años:</strong> de 1990 a 2026 van 36 años, y su cumpleaños (15 de marzo) ya ha pasado en 2026, así que tiene <strong>36 años</strong>.</li>
+      <li><strong>Meses:</strong> desde el 15 de marzo hasta el 15 de agosto hay <strong>5 meses</strong> completos.</li>
+      <li><strong>Días:</strong> del 15 al 21 de agosto van <strong>6 días</strong>.</li>
+    </ul>
+    <p>Resultado: <strong>36 años, 5 meses y 6 días</strong>. Si esa misma persona hubiera nacido el 25 de agosto en lugar del 15 de marzo, a día 21 de agosto todavía no habría cumplido años ese verano: tendría 35 años, porque el cumpleaños aún no ha llegado. La edad en años solo aumenta el propio día del cumpleaños.</p>
+
+    <h2>Detalles que confunden</h2>
+    <p><strong>¿Por qué a veces "sobran" meses y días?</strong> Porque casi nadie mira su edad justo el día de un cumpleaños. La parte de meses y días es, sencillamente, el trozo de año que has vivido desde tu último cumpleaños y que todavía no llega al siguiente; solo desaparece el día en que cumples años otra vez.</p>
+    <p><strong>Años bisiestos.</strong> Cada cuatro años, febrero tiene 29 días en lugar de 28. Esto no cambia tu edad en años —sigues cumpliendo en la misma fecha—, pero sí puede añadir un día al <strong>total de días vividos</strong>, porque a lo largo de tu vida habrás atravesado uno o varios 29 de febrero.</p>
+    <p><strong>Nacidos el 29 de febrero.</strong> Quien nace un 29 de febrero solo tiene esa fecha exacta en los años bisiestos. El resto de años se considera, a efectos prácticos y legales en España, que la edad queda cumplida al terminar el 28 de febrero. De este modo cumple años todos los años, aunque su fecha "de verdad" solo aparezca en el calendario cada cuatro.</p>
+
+    <h2>Para qué sirve conocer tu edad exacta</h2>
+    <p>Saber la edad al detalle es útil en muchos <strong>trámites</strong>: matrículas, becas, jubilaciones o requisitos que exigen tener cumplida una edad en una fecha concreta. También sirve para preparar <strong>aniversarios</strong> y celebraciones —los 10.000 días vividos, los 18 años exactos— o, simplemente, por la curiosidad de saber cuántos días llevas en el mundo. Si necesitas medir el tiempo entre dos fechas cualesquiera, y no solo hasta hoy, puedes usar nuestra <a href="/calculadora-dias-entre-fechas">calculadora de días entre fechas</a>; y para averiguar en qué día de la semana caíste al nacer, la <a href="/calculadora-dia-semana">calculadora del día de la semana</a>.</p>
+
+    <p class="hint">El cálculo se realiza siempre respecto a la fecha de hoy y sirve como orientación para trámites y curiosidades.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a></div>
+    <div class="more"><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-sumar-restar-dias">Sumar o restar días</a><a href="/calculadora-cuenta-atras">Cuenta atrás</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

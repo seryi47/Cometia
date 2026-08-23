@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calculan las calorías diarias?', a: 'Primero se calcula el metabolismo basal (las calorías que gastas en reposo) con la fórmula de Mifflin-St Jeor, a partir de tu sexo, edad, peso y altura. Luego se multiplica por un factor según tu nivel de actividad física.' },
-  { q: '¿Cuántas calorías para adelgazar o engordar?', a: 'Para perder peso se suele restar unas 300-500 kcal al gasto de mantenimiento, y para ganar peso se suman. Hazlo de forma gradual y, si es posible, con ayuda de un profesional de la nutrición.' },
+  { q: '¿Cuántas calorías necesito al día?', a: 'Depende de tu sexo, edad, peso, altura y, sobre todo, de tu actividad física. Como orientación, muchas mujeres adultas se mueven entre 1.700 y 2.200 kcal de mantenimiento, y muchos hombres entre 2.200 y 2.800 kcal, pero el rango real es muy amplio. La forma correcta de saberlo es calcular tu metabolismo basal y multiplicarlo por tu factor de actividad, que es justo lo que hace esta calculadora con tus datos concretos.' },
+  { q: '¿Qué es el metabolismo basal?', a: 'El metabolismo basal (TMB) son las calorías que tu cuerpo gasta en reposo absoluto solo para seguir vivo: respirar, mantener la temperatura, bombear sangre o renovar células. Suele suponer entre el 60 % y el 70 % del gasto diario total. A partir de él se calcula el gasto real sumando el efecto de moverte, entrenar y hacer la digestión mediante el factor de actividad.' },
+  { q: '¿Cuántas calorías debo comer para adelgazar?', a: 'Lo habitual es crear un déficit de 300 a 500 kcal por debajo de tu gasto de mantenimiento. Por eso la calculadora muestra directamente la cifra con −500 kcal. Un déficit moderado permite perder alrededor de 0,3-0,5 kg por semana conservando masa muscular; recortes mucho mayores suelen provocar hambre, pérdida de músculo y efecto rebote.' },
+  { q: '¿Y para ganar músculo?', a: 'Para ganar peso y músculo necesitas un superávit, es decir, comer algo por encima del mantenimiento; la calculadora lo muestra con +500 kcal. Para minimizar la ganancia de grasa, muchas personas prefieren un superávit más contenido, de 200 a 400 kcal, acompañado siempre de entrenamiento de fuerza y una ingesta suficiente de proteína.' },
+  { q: '¿Es exacta esta calculadora?', a: 'Da una estimación muy útil, pero no una cifra exacta al kilocaloría. La fórmula de Mifflin-St Jeor es una de las más precisas para población general, aunque no conoce tu composición corporal, tu genética ni tu actividad real día a día. Úsala como punto de partida y ajústala: si tras dos o tres semanas tu peso no evoluciona como esperabas, corrige la ingesta en 100-200 kcal.' },
+  { q: '¿Influye la actividad física?', a: 'Muchísimo. El factor de actividad es lo que más cambia el resultado: pasar de sedentario (1,2) a muy activo (1,9) puede sumar cientos de calorías al día. Por eso conviene ser honesto al elegirlo y no confundir tener un trabajo ajetreado con entrenar de forma regular. Si haces ejercicio intenso puntual, también puedes estimarlo con la calculadora de calorías quemadas.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de calorías', applicationCategory: 'HealthApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-calorias' },
@@ -35,11 +39,39 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se calcula</h2>
-    <p>Usamos la fórmula de <strong>Mifflin-St Jeor</strong> para el metabolismo basal y la multiplicamos por tu factor de actividad. El resultado son las calorías de mantenimiento; a partir de ahí, un déficit adelgaza y un superávit ayuda a ganar peso. Es orientativo: consulta a un profesional para un plan personalizado.</p>
+    <h2>Qué son las calorías diarias y el gasto energético</h2>
+    <p>Las <strong>calorías diarias</strong> que necesitas son la energía que tu cuerpo consume cada día para funcionar y moverse. Esa cantidad se conoce como <strong>gasto energético total</strong> y es la referencia clave para cualquier objetivo: si comes esa misma energía te mantienes en tu peso, si comes menos adelgazas y si comes más ganas peso. La caloría (en realidad, la kilocaloría o kcal que aparece en las etiquetas) es simplemente la unidad con la que medimos esa energía, tanto la que gastamos como la que aportan los alimentos.</p>
+    <p>El gasto total no depende solo del ejercicio. Se reparte principalmente entre el metabolismo basal, la actividad física de todo el día y la energía que cuesta digerir la comida. Conocer tu cifra aproximada te evita dietas a ciegas y te da un punto de partida realista para planificar tu alimentación.</p>
+
+    <h2>Cómo se calcula: metabolismo basal y factor de actividad</h2>
+    <p>Esta calculadora usa la fórmula de <strong>Mifflin-St Jeor</strong>, una de las más precisas para población general, en dos pasos. Primero estima tu <strong>metabolismo basal (TMB)</strong>, las calorías que gastarías en reposo absoluto, con estas fórmulas:</p>
+    <p style="text-align:center"><strong>Hombres: TMB = 10 × peso (kg) + 6,25 × altura (cm) − 5 × edad + 5</strong><br /><strong>Mujeres: TMB = 10 × peso (kg) + 6,25 × altura (cm) − 5 × edad − 161</strong></p>
+    <p>Después multiplica esa TMB por tu <strong>factor de actividad</strong> para obtener el gasto de mantenimiento. Los factores que empleamos son: sedentario <strong>1,2</strong>; actividad ligera (1-3 días) <strong>1,375</strong>; moderada (3-5 días) <strong>1,55</strong>; alta (6-7 días) <strong>1,725</strong>; y muy alta <strong>1,9</strong>. Sobre ese mantenimiento, la herramienta te muestra también la cifra para adelgazar (−500 kcal) y para ganar peso (+500 kcal).</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>Hombre, 30 años, 70 kg, 175 cm, actividad ligera:</strong> TMB = 10 × 70 + 6,25 × 175 − 5 × 30 + 5 = 1.648,75 kcal. Mantenimiento = 1.648,75 × 1,375 ≈ <strong>2.267 kcal</strong> (unas 1.767 para adelgazar y 2.767 para ganar peso).</li>
+      <li><strong>Mujer, 35 años, 65 kg, 165 cm, actividad moderada:</strong> TMB = 10 × 65 + 6,25 × 165 − 5 × 35 − 161 = 1.345,25 kcal. Mantenimiento = 1.345,25 × 1,55 ≈ <strong>2.085 kcal</strong> (unas 1.585 en déficit).</li>
+      <li><strong>Hombre, 45 años, 85 kg, 180 cm, sedentario:</strong> TMB = 10 × 85 + 6,25 × 180 − 5 × 45 + 5 = 1.755 kcal. Mantenimiento = 1.755 × 1,2 ≈ <strong>2.106 kcal</strong>.</li>
+    </ul>
+
+    <h2>Déficit para adelgazar y superávit para ganar peso</h2>
+    <p>Perder o ganar peso es, en esencia, una cuestión de balance energético. Para <strong>adelgazar</strong> necesitas un <strong>déficit calórico</strong>: comer menos de lo que gastas. Lo recomendable es un déficit moderado de <strong>300 a 500 kcal al día</strong>, que permite bajar en torno a 0,3-0,5 kg por semana sin pasar hambre extrema ni sacrificar masa muscular. Recortes agresivos suelen acabar en cansancio, ansiedad por la comida y efecto rebote.</p>
+    <p>Para <strong>ganar peso</strong> o músculo necesitas un <strong>superávit calórico</strong>: comer por encima del mantenimiento. Un superávit contenido de 200 a 500 kcal, combinado con entrenamiento de fuerza y suficiente proteína, favorece ganar músculo minimizando la grasa. En ambos casos conviene revisar el peso cada dos o tres semanas y ajustar la ingesta según los resultados.</p>
+
+    <h2>Factores que influyen en tus calorías</h2>
+    <ul>
+      <li><strong>Sexo, edad, peso y altura:</strong> son la base de la fórmula. A más masa corporal y menor edad, mayor gasto en reposo.</li>
+      <li><strong>Actividad física:</strong> el factor que más peso tiene en el resultado. Sé honesto al elegirlo y no confundas un día ajetreado con entrenar de verdad.</li>
+      <li><strong>Masa muscular:</strong> el músculo consume más energía que la grasa, así que dos personas del mismo peso pueden tener gastos distintos.</li>
+      <li><strong>Genética, hormonas y descanso:</strong> el metabolismo de cada persona varía, y factores como el sueño o el estrés también influyen.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora ofrece una estimación orientativa y no sustituye la valoración de un dietista-nutricionista o de un profesional sanitario, especialmente si tienes alguna condición médica.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-imc">IMC</a><a href="/calculadora-peso-ideal">Peso ideal</a></div>
+    <div class="more"><a href="/calculadora-macros">Macronutrientes</a><a href="/calculadora-imc">IMC</a><a href="/calculadora-calorias-quemadas">Calorías quemadas</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

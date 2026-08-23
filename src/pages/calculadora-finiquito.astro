@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué incluye el finiquito?', a: 'El finiquito recoge lo que la empresa te debe al terminar el contrato: los días trabajados del mes que aún no has cobrado, las vacaciones generadas y no disfrutadas, y la parte proporcional de las pagas extra si no las tienes prorrateadas.' },
-  { q: '¿El finiquito es lo mismo que la indemnización?', a: 'No. El finiquito son cantidades que ya has ganado y no cobrado. La indemnización por despido es una cantidad adicional que depende del tipo de despido y de tu antigüedad, y se calcula aparte.' },
+  { q: '¿Qué es el finiquito?', a: 'El finiquito es la liquidación que la empresa te paga cuando termina tu contrato, ya sea por despido, por fin de contrato temporal o por baja voluntaria. Recoge cantidades que ya has ganado con tu trabajo pero que todavía no habías cobrado. Se percibe siempre que acaba una relación laboral, con independencia de quién decida ponerle fin.' },
+  { q: '¿Qué conceptos incluye el finiquito?', a: 'Normalmente incluye el salario de los días trabajados del último mes que aún no has cobrado, las vacaciones generadas y no disfrutadas, y la parte proporcional de las pagas extra si no las tienes prorrateadas. Tu convenio colectivo puede añadir otros conceptos, como pluses o comisiones pendientes.' },
+  { q: '¿El finiquito y la indemnización por despido son lo mismo?', a: 'No. El finiquito son cantidades que ya has ganado y se cobra siempre que termina el contrato. La indemnización por despido es un pago adicional que solo corresponde en determinados despidos y depende de tu antigüedad y del tipo de despido. Son cosas distintas y se calculan por separado.' },
+  { q: '¿Se paga finiquito si me voy voluntariamente?', a: 'Sí. Aunque dimitas por tu propia voluntad, la empresa debe abonarte el finiquito: los días trabajados pendientes, las vacaciones no disfrutadas y la parte proporcional de las pagas extra. Lo que normalmente no cobrarás en una baja voluntaria es la indemnización.' },
+  { q: '¿Cómo se calculan las vacaciones no disfrutadas?', a: 'Se parte de tu salario diario (el salario bruto mensual dividido entre 30) y se multiplica por los días de vacaciones que te correspondían y no llegaste a disfrutar. Es una aproximación habitual: tu convenio puede fijar cuántos días de vacaciones generas al año y qué criterio usar para el salario diario.' },
+  { q: '¿Esta calculadora es exacta?', a: 'No, ofrece una estimación orientativa y en bruto. El importe real depende de tu convenio colectivo, de tu contrato y de las retenciones de IRPF y Seguridad Social. Úsala para hacerte una idea del orden de magnitud y contrasta siempre la cifra con tu nómina, tu convenio o un asesor laboral antes de firmar.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de finiquito', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-finiquito' },
@@ -36,11 +40,44 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se estima</h2>
-    <p>Calculamos el <strong>salario diario</strong> (mensual ÷ 30) y lo multiplicamos por los días de vacaciones no disfrutadas y por los días trabajados del mes pendientes de cobro. Si tus pagas extra no están prorrateadas, súmale su parte proporcional en el campo correspondiente. Es una estimación en bruto.</p>
+    <h2>Qué es el finiquito</h2>
+    <p>El <strong>finiquito</strong> es la liquidación económica que la empresa te entrega cuando termina tu relación laboral, sea cual sea el motivo: un despido, el fin de un contrato temporal, una baja voluntaria o una jubilación. No es una recompensa ni un extra; recoge las cantidades que <strong>ya has ganado con tu trabajo</strong> pero que todavía no habías cobrado en el momento de la salida. Por eso el finiquito se percibe <strong>siempre</strong> que se acaba un contrato, con independencia de quién tome la decisión de finalizarlo.</p>
+    <p>Al firmar el finiquito conviene revisar cada concepto con calma. Firmar el documento suele suponer dar por saldadas las cuentas con la empresa, así que si algo no cuadra puedes anotar la expresión "no conforme" antes de firmar y reclamar después. La cifra que verás aquí es una <strong>estimación en bruto</strong>, es decir, antes de aplicar las retenciones de IRPF y Seguridad Social.</p>
+
+    <h2>De qué partes se compone</h2>
+    <p>Un finiquito típico suma tres bloques, que son precisamente los que tiene en cuenta esta calculadora:</p>
+    <ul>
+      <li><strong>Salario de los días trabajados del último mes.</strong> Si dejas la empresa a mitad de mes, tienes derecho a cobrar los días que has trabajado y que aún no te han pagado. Se calcula a partir de tu salario diario.</li>
+      <li><strong>Vacaciones generadas y no disfrutadas.</strong> Las vacaciones se van acumulando a lo largo del año. Si te marchas sin haber disfrutado todas las que te correspondían, la empresa debe abonártelas en dinero.</li>
+      <li><strong>Parte proporcional de las pagas extra.</strong> Si tus pagas extraordinarias no están prorrateadas (es decir, no las cobras repartidas mes a mes), tendrás pendiente la parte generada desde el último abono. Ese importe se suma en el campo opcional.</li>
+    </ul>
+    <p>Para estimar el salario diario partimos del salario bruto mensual dividido entre 30. Es una aproximación muy habitual, aunque tu <strong>convenio colectivo</strong> puede usar otro criterio (por ejemplo, el salario anual dividido entre 365 días).</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <p>Imagina a una persona con un <strong>salario bruto mensual de 1.500 €</strong> que deja la empresa a mitad de mes. Su salario diario sería 1.500 ÷ 30 = <strong>50 €</strong>. Con ese dato, el finiquito se descompone así:</p>
+    <ul>
+      <li><strong>Vacaciones no disfrutadas (10 días):</strong> 10 × 50 = 500 €</li>
+      <li><strong>Días trabajados del mes sin cobrar (15 días):</strong> 15 × 50 = 750 €</li>
+      <li><strong>Parte proporcional de pagas extra pendiente:</strong> 400 €</li>
+    </ul>
+    <p>El finiquito estimado en bruto sería 500 + 750 + 400 = <strong>1.650 €</strong>. A esa cantidad habría que restarle después las retenciones correspondientes para conocer el importe neto que acaba llegando a la cuenta.</p>
+
+    <h2>Finiquito e indemnización no son lo mismo</h2>
+    <p>Es la confusión más habitual y conviene tenerla muy clara, porque son conceptos distintos:</p>
+    <ul>
+      <li>El <strong>finiquito</strong> son cantidades que <em>ya has ganado</em> (salario, vacaciones y pagas). Se cobra <strong>siempre</strong> que termina un contrato, incluso si te vas voluntariamente.</li>
+      <li>La <strong>indemnización por despido</strong> es una cantidad <em>adicional</em> que la empresa paga solo en determinados despidos (por ejemplo, un despido improcedente o uno objetivo). Depende de tu antigüedad y del tipo de despido, y se calcula aparte.</li>
+    </ul>
+    <p>Dicho de otra forma: si dimites por tu cuenta, cobrarás finiquito pero normalmente <strong>no</strong> indemnización. Si te despiden de forma improcedente, cobrarás el finiquito <strong>más</strong> la indemnización que corresponda. Esta herramienta estima únicamente el finiquito.</p>
+
+    <h2>Cómo interpretar el resultado</h2>
+    <p>El importe que obtienes es orientativo y está en bruto. Úsalo para hacerte una idea del orden de magnitud y para contrastar la cifra que te proponga la empresa, no como la cantidad exacta que vas a ingresar. Si el resultado se aleja mucho de lo que esperabas, revisa tu convenio, tus últimas nóminas y los días que realmente tienes pendientes. Puedes apoyarte en la <a href="/calculadora-dias-entre-fechas">calculadora de días entre fechas</a> para contar con precisión los días trabajados, y en la <a href="/calculadora-sueldo-neto">calculadora de sueldo neto</a> para estimar cuánto quedaría tras las retenciones.</p>
+
+    <p class="hint">Importante: esta calculadora ofrece una <strong>estimación orientativa</strong> y no tiene valor legal. El cálculo real depende de tu <strong>convenio colectivo</strong>, de tu contrato y de las retenciones aplicables. Ante cualquier duda, revisa la liquidación con tu convenio, con un asesor laboral o con el sindicato antes de firmar.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-sueldo-neto">Sueldo neto</a></div>
+    <div class="more"><a href="/calculadora-sueldo-neto">Sueldo neto</a><a href="/calculadora-dias-entre-fechas">Días entre fechas</a><a href="/calculadora-precio-hora">Precio por hora</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

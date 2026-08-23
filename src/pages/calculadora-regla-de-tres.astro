@@ -1,8 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Qué es una regla de tres directa?', a: 'Es cuando dos magnitudes aumentan o disminuyen juntas. Si A corresponde a B, entonces C corresponde a x = B × C / A.' },
-  { q: '¿Y una regla de tres inversa?', a: 'Es cuando una magnitud aumenta mientras la otra disminuye (por ejemplo, más trabajadores, menos tiempo). En ese caso x = A × B / C.' },
+  { q: '¿Qué es una regla de tres?', a: 'Es un método para resolver problemas de proporcionalidad: partes de tres datos conocidos y calculas un cuarto que desconoces, al que llamas x. Su nombre viene de esos tres valores de partida. Se usa a diario para ajustar recetas, calcular precios, repartir gastos o convertir unidades.' },
+  { q: '¿Cuándo es directa y cuándo inversa?', a: 'Es directa cuando las dos magnitudes crecen o decrecen a la vez (a más kilos, más precio). Es inversa cuando una sube y la otra baja (a más obreros, menos días). Para saberlo, pregúntate: si la primera magnitud aumenta, ¿la segunda aumenta o disminuye?' },
+  { q: '¿Cómo se resuelve una regla de tres directa?', a: 'Planteas «si A corresponde a B, entonces C corresponde a x» y aplicas x = (B × C) / A. Por ejemplo, si 3 kg cuestan 6 €, entonces 5 kg cuestan x = (6 × 5) / 3 = 10 €.' },
+  { q: '¿Y una regla de tres inversa?', a: 'En la inversa multiplicas los dos valores de la misma magnitud: x = (A × B) / C. Por ejemplo, si 4 obreros tardan 6 días, 8 obreros tardan x = (4 × 6) / 8 = 3 días. Usar la fórmula directa en un problema inverso es el error más habitual.' },
+  { q: '¿Qué relación tiene con los porcentajes?', a: 'Un porcentaje es una regla de tres directa disfrazada. Para hallar el 20 % de 80 planteas «si 100 corresponde a 80, entonces 20 corresponde a x» y sale x = (80 × 20) / 100 = 16. Por eso las rebajas, el IVA o los intereses se resuelven con la misma idea.' },
+  { q: '¿Existe la regla de tres compuesta?', a: 'Sí. La regla de tres compuesta interviene cuando hay tres o más magnitudes relacionadas a la vez (por ejemplo, obreros, horas y trabajo). Se resuelve encadenando varias reglas de tres simples, analizando por separado si cada magnitud es directa o inversa respecto a la incógnita.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de regla de tres', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-regla-de-tres' },
@@ -26,11 +30,42 @@ const jsonLd = [
   </div>
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   <section class="prose">
-    <h2>Cómo se resuelve</h2>
-    <p>En la <strong>regla de tres directa</strong>, x = B × C ÷ A. En la <strong>inversa</strong> (cuando una magnitud sube y la otra baja), x = A × B ÷ C. Es una de las operaciones más útiles del día a día: proporciones, recetas, precios, tiempos…</p>
+    <h2>Qué es la regla de tres</h2>
+    <p>La <strong>regla de tres</strong> es un método sencillo para resolver problemas de proporcionalidad: partimos de tres datos conocidos y calculamos un cuarto que desconocemos, al que llamamos <strong>x</strong>. Su nombre viene precisamente de ahí, de los tres valores de partida. La usamos a diario casi sin darnos cuenta: al ajustar las cantidades de una receta, al calcular cuánto cuestan varios kilos de fruta, al repartir un gasto entre amigos o al convertir unidades. La clave está en identificar bien qué relación une a las dos magnitudes, porque de eso depende cómo colocamos los números. Existen dos tipos: la <strong>directa</strong> y la <strong>inversa</strong>.</p>
+
+    <h2>Regla de tres directa (a más, más)</h2>
+    <p>Es <strong>directa</strong> cuando las dos magnitudes crecen o decrecen a la vez: si una aumenta, la otra aumenta en la misma proporción; si una baja, la otra baja. Por ejemplo, a más kilos de fruta, más dinero pagamos. Planteamos los datos así: «si <strong>A</strong> corresponde a <strong>B</strong>, entonces <strong>C</strong> corresponde a <strong>x</strong>». Para despejar la incógnita multiplicamos los valores que están enfrentados en diagonal y dividimos entre el que queda solo:</p>
+    <p style="text-align:center"><strong>x = (B · C) / A</strong></p>
+    <p>Es decir, multiplicamos B por C y el resultado lo dividimos entre A. Ese producto cruzado funciona porque la proporción entre B y A se mantiene constante para cualquier pareja de valores.</p>
+
+    <h2>Regla de tres inversa (a más, menos)</h2>
+    <p>Es <strong>inversa</strong> cuando una magnitud sube mientras la otra baja: al aumentar una, la otra disminuye en la misma proporción. El caso típico es el del trabajo: cuantos más obreros hay, menos días se tarda en terminar la obra; o cuanta más velocidad, menos tiempo de viaje. Aquí el planteamiento cambia y, en lugar de multiplicar en diagonal, multiplicamos los dos valores de la primera magnitud. La fórmula es:</p>
+    <p style="text-align:center"><strong>x = (A · B) / C</strong></p>
+    <p>Multiplicamos A por B y dividimos entre C. Ojo: aplicar la fórmula directa a un problema inverso es el fallo más frecuente y da un resultado sin sentido, como que con más obreros se tarde más tiempo.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <p><strong>Directa.</strong> Si 3 kg de manzanas cuestan 6 €, ¿cuánto cuestan 5 kg? Como a más kilos, más precio, la relación es directa. Con A = 3, B = 6 y C = 5: x = (6 · 5) / 3 = 30 / 3 = <strong>10 €</strong>.</p>
+    <p><strong>Inversa.</strong> Si 4 obreros tardan 6 días en levantar un muro, ¿cuánto tardarán 8 obreros al mismo ritmo? Como a más obreros, menos días, la relación es inversa. Con A = 4, B = 6 y C = 8: x = (4 · 6) / 8 = 24 / 8 = <strong>3 días</strong>.</p>
+    <p>Fíjate en la lógica: en el primer caso, más cantidad da un número mayor; en el segundo, más trabajadores da un número menor. Si el resultado no encaja con el sentido común, probablemente has confundido el tipo de regla.</p>
+
+    <h2>Cómo saber si es directa o inversa</h2>
+    <p>Antes de operar, pregúntate: «si la primera magnitud aumenta, ¿la segunda aumenta o disminuye?». Si crecen juntas, es <strong>directa</strong>; si una sube y la otra baja, es <strong>inversa</strong>. Un truco útil es pensar en casos extremos: si con un solo obrero la obra durase muchísimo y con cien apenas nada, está claro que la relación es inversa. Este pequeño razonamiento evita la mayoría de los errores de planteamiento.</p>
+
+    <h2>Relación con los porcentajes</h2>
+    <p>Calcular un porcentaje es, en el fondo, una regla de tres directa disfrazada. Cuando buscamos el 20 % de 80, planteamos «si 100 corresponde a 80, entonces 20 corresponde a x» y obtenemos x = (80 · 20) / 100 = 16. Por eso las rebajas, el IVA, las propinas o los intereses se resuelven con la misma idea. Si dominas la regla de tres, los porcentajes dejan de ser un misterio; puedes practicarlos en la <a href="/calculadora-porcentaje">calculadora de porcentaje</a> o en la de <a href="/calculadora-descuento">descuento</a>.</p>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Confundir el tipo:</strong> aplicar la fórmula directa a un problema inverso, o al revés, es el fallo número uno. Razona la relación antes de multiplicar.</li>
+      <li><strong>Colocar mal los datos:</strong> A y C deben pertenecer a la misma magnitud, y B a la otra. Si mezclas kilos con euros en la misma posición, el resultado no vale.</li>
+      <li><strong>Olvidar las unidades:</strong> mezclar horas con minutos, o metros con centímetros, distorsiona el cálculo. Convierte todo a la misma unidad antes de empezar.</li>
+    </ul>
+
+    <p class="hint">Truco rápido: si al terminar el resultado contradice el sentido común, casi siempre has confundido la regla directa con la inversa.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
-    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a></div>
+    <div class="more"><a href="/calculadora-porcentaje">Porcentajes</a><a href="/calculadora-fracciones">Fracciones</a><a href="/calculadora-descuento">Descuentos</a></div>
   </section>
   <script>
     const $ = (id: string) => document.getElementById(id) as HTMLElement;

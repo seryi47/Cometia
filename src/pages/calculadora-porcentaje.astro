@@ -1,9 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula el porcentaje de una cantidad?', a: 'Multiplicas la cantidad por el porcentaje y divides entre 100. Por ejemplo, el 20 % de 150 es 150 × 20 / 100 = 30.' },
-  { q: '¿Cómo saber qué porcentaje representa un número sobre otro?', a: 'Divides el número entre el total y multiplicas por 100. Por ejemplo, 30 sobre 150 es 30 / 150 × 100 = 20 %.' },
-  { q: '¿Cómo se aplica un descuento o un aumento?', a: 'Para un descuento del 20 % sobre 150: 150 × (1 − 0,20) = 120. Para un aumento del 20 %: 150 × (1 + 0,20) = 180.' },
+  { q: '¿Cómo calculo el X % de un número?', a: 'Multiplica el número por el porcentaje y divide entre 100. El 20 % de 150 es 150 × 20 ÷ 100 = 30. También puedes multiplicar por el decimal equivalente: 150 × 0,20 = 30.' },
+  { q: '¿Cómo sé qué porcentaje es un número de otro?', a: 'Divides la parte entre el total y multiplicas por 100. Por ejemplo, 30 respecto a 150 es 30 ÷ 150 × 100 = 20 %. Es la operación inversa de calcular el porcentaje de una cantidad.' },
+  { q: '¿Cómo aumento o descuento un porcentaje?', a: 'Multiplica por (1 + porcentaje ÷ 100) para aumentar y por (1 − porcentaje ÷ 100) para descontar. Aumentar 150 un 15 % da 150 × 1,15 = 172,50; descontar un 15 % da 150 × 0,85 = 127,50.' },
+  { q: '¿Qué es la variación porcentual?', a: 'Es el cambio relativo entre dos valores: (valor nuevo − valor viejo) ÷ valor viejo × 100. De 150 a 180 la variación es +20 %; si el resultado sale negativo, ha habido una bajada.' },
+  { q: '¿Por qué subir y bajar el mismo porcentaje no vuelve al valor original?', a: 'Porque cada porcentaje se aplica sobre una base distinta. Si 150 sube un 20 % llega a 180, pero al bajar un 20 % lo calculas sobre 180, no sobre 150, y obtienes 144. Para volver a 150 tendrías que descontar solo un 16,67 %.' },
+  { q: '¿Qué relación tienen los porcentajes con la regla de tres?', a: 'Un porcentaje es una regla de tres directa con 100 como referencia. Calcular el 20 % de 150 equivale a plantear «si a 100 le corresponde 150, a 20 le corresponde X», que da 150 × 20 ÷ 100 = 30.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de porcentajes', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-porcentaje' },
@@ -43,15 +46,58 @@ const jsonLd = [
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 
   <section class="prose">
-    <h2>Cómo calcular porcentajes</h2>
-    <p>Un porcentaje es una parte de 100. Estas son las tres operaciones más habituales:</p>
+    <h2>Qué es un porcentaje</h2>
+    <p>Un <strong>porcentaje</strong> es una forma de expresar una proporción tomando como referencia el número 100. El símbolo «%» significa literalmente «por cada cien»: cuando decimos que el 20 % de una clase aprobó, queremos decir que, de cada 100 alumnos, aprobaron 20. Por eso un porcentaje siempre se puede escribir también como fracción (20 % = 20/100) o como número decimal (20 % = 0,20). Esa triple forma —porcentaje, fracción y decimal— es la clave para entender todos los cálculos que verás a continuación.</p>
+    <p>Los porcentajes están por todas partes: rebajas, intereses bancarios, el IVA de una factura, la subida del alquiler o la nota de un examen. Manejarlos con soltura te ahorra errores en el día a día, y esta calculadora resuelve al instante los casos más frecuentes.</p>
+
+    <h2>Los cálculos con porcentajes más habituales</h2>
+    <p>Casi cualquier problema con porcentajes se reduce a una de estas cuatro situaciones.</p>
+
+    <h3>Cuánto es el X % de una cantidad</h3>
+    <p>Es el cálculo más básico. Multiplicas la cantidad por el porcentaje y divides entre 100:</p>
+    <p style="text-align:center"><strong>El X % de Y = Y × X ÷ 100</strong></p>
+    <p>Por ejemplo, para saber el 20 % de 150 haces 150 × 20 ÷ 100 = 30. Es el modo «¿Cuánto es un % de una cantidad?» de la calculadora de arriba.</p>
+
+    <h3>Qué porcentaje representa un número sobre otro</h3>
+    <p>Aquí conoces las dos cantidades y quieres saber qué proporción representa una de la otra. Divides la parte entre el total y multiplicas por 100:</p>
+    <p style="text-align:center"><strong>Porcentaje = (parte ÷ total) × 100</strong></p>
+    <p>Si 30 personas de un grupo de 150 llevan gafas, el porcentaje es 30 ÷ 150 × 100 = 20 %. Fíjate en que es la operación inversa de la anterior.</p>
+
+    <h3>Aumentar o disminuir una cantidad un porcentaje</h3>
+    <p>Para aplicar una subida usas el factor (1 + X ÷ 100); para un descuento, (1 − X ÷ 100):</p>
+    <p style="text-align:center"><strong>Aumento: Y × (1 + X ÷ 100) &nbsp;·&nbsp; Descuento: Y × (1 − X ÷ 100)</strong></p>
+    <p>Aumentar 150 en un 15 % da 150 × 1,15 = 172,50. Rebajar 150 en un 15 % da 150 × 0,85 = 127,50. Trabajar con el factor en un solo paso es más rápido y evita despistes.</p>
+
+    <h3>Variación porcentual entre dos valores</h3>
+    <p>Cuando un valor cambia con el tiempo —un precio, un sueldo, unas visitas— y quieres medir cuánto ha variado en términos relativos, usas:</p>
+    <p style="text-align:center"><strong>Variación = (valor nuevo − valor viejo) ÷ valor viejo × 100</strong></p>
+    <p>Si un producto pasa de 150 a 180 €, la variación es (180 − 150) ÷ 150 × 100 = +20 %. Un resultado negativo indica una bajada. Para este caso concreto tienes también la <a href="/calculadora-cambio-porcentual">calculadora de cambio porcentual</a>.</p>
+
+    <h3>Ejemplos resueltos</h3>
     <ul>
-      <li><strong>El X % de una cantidad:</strong> cantidad × X ÷ 100.</li>
-      <li><strong>Qué porcentaje es un número de otro:</strong> número ÷ total × 100.</li>
-      <li><strong>Aumento o descuento:</strong> cantidad × (1 ± X ÷ 100).</li>
+      <li><strong>El 25 % de 80:</strong> 80 × 25 ÷ 100 = <strong>20</strong>.</li>
+      <li><strong>El 8 % de 250:</strong> 250 × 8 ÷ 100 = <strong>20</strong>.</li>
+      <li><strong>¿Qué porcentaje es 45 de 300?</strong> 45 ÷ 300 × 100 = <strong>15 %</strong>.</li>
+      <li><strong>Descuento del 30 % sobre 90 €:</strong> 90 × 0,70 = <strong>63 €</strong>.</li>
+      <li><strong>Aumento del 10 % sobre 200 €:</strong> 200 × 1,10 = <strong>220 €</strong>.</li>
+      <li><strong>De 200 a 150 visitas:</strong> (150 − 200) ÷ 200 × 100 = <strong>−25 %</strong>.</li>
     </ul>
+
+    <h2>Relación con la regla de tres</h2>
+    <p>Todo porcentaje es en el fondo una <a href="/calculadora-regla-de-tres">regla de tres</a> directa, porque una proporción se mantiene constante. Calcular el 20 % de 150 equivale a plantear: «si a 100 le corresponde 150, ¿qué le corresponde a 20?». Se resuelve con 150 × 20 ÷ 100 = 30, exactamente la misma cuenta. Entender esto te permite deducir la fórmula cuando no la recuerdes: basta con colocar bien los datos y multiplicar en cruz.</p>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Creer que subir y bajar el mismo porcentaje devuelve al valor original.</strong> Si 150 sube un 20 % llega a 180; pero bajar 180 un 20 % da 144, no 150. El segundo porcentaje se calcula sobre una base mayor, así que no se compensan.</li>
+      <li><strong>Quitar el IVA restando el mismo porcentaje.</strong> Para descontar el 21 % de IVA a 121 € no restas el 21 % (daría 95,59 €); divides entre 1,21 y obtienes 100 €. Lo tienes resuelto en la <a href="/calculadora-iva">calculadora de IVA</a>.</li>
+      <li><strong>Confundir puntos porcentuales con porcentaje.</strong> Pasar del 10 % al 12 % es una subida de 2 puntos, pero de un 20 % en términos relativos.</li>
+    </ul>
+
+    <p class="hint">Consejo: convierte el porcentaje en su factor decimal (0,20 en vez de 20 %) y las operaciones encadenadas te saldrán en un solo paso.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-descuento">Descuentos</a><a href="/calculadora-iva">IVA</a><a href="/calculadora-regla-de-tres">Regla de tres</a></div>
   </section>
 
   <script>

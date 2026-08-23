@@ -1,10 +1,12 @@
 ---
 import CalcLayout from '../layouts/CalcLayout.astro';
 const faqs = [
-  { q: '¿Cómo se calcula la cuota de una hipoteca?', a: 'Con el sistema francés (el habitual en España), la cuota es fija cada mes y se obtiene con la fórmula: cuota = capital × i / (1 − (1 + i)^−n), donde i es el interés mensual (el anual dividido entre 12) y n el número de meses. Al principio pagas más intereses y menos capital; con el tiempo se invierte.' },
-  { q: '¿Los intereses totales por qué son tan altos?', a: 'Porque durante los primeros años la mayor parte de la cuota va a intereses, no a amortizar capital. Cuanto más largo es el plazo, más intereses pagas en total, aunque la cuota mensual sea más baja.' },
-  { q: '¿Esta calculadora incluye seguros y comisiones?', a: 'No. Calcula la cuota del préstamo (capital + intereses). Los seguros de hogar y vida, la comisión de apertura o la tasación se suman aparte según tu banco.' },
-  { q: '¿Qué pasa si el interés sube o baja (hipoteca variable)?', a: 'Esta calculadora asume un interés fijo. En una hipoteca variable la cuota se recalcula al revisar el euríbor, así que el resultado es una estimación con el tipo que introduzcas.' },
+  { q: '¿Qué es la cuota de una hipoteca?', a: 'Es la cantidad fija que pagas cada mes al banco e incluye dos partes: los intereses del periodo y la amortización de capital (lo que realmente rebaja tu deuda). En el sistema francés, el habitual en España, la cuota se mantiene constante durante todo el préstamo si el tipo no cambia, aunque la proporción entre intereses y capital sí varía mes a mes.' },
+  { q: '¿Miro el TIN o la TAE al comparar hipotecas?', a: 'Para comparar ofertas fíjate en la TAE, porque incluye el interés (TIN) más las comisiones y gastos obligatorios del préstamo. El TIN sirve para calcular la cuota, pero dos hipotecas con el mismo TIN pueden tener una TAE muy distinta si una lleva comisión de apertura o productos vinculados.' },
+  { q: '¿Me conviene una hipoteca fija o variable?', a: 'La fija te da una cuota estable durante toda la vida del préstamo y tranquilidad frente a subidas del euríbor. La variable suele partir de un tipo inicial más bajo, pero la cuota se recalcula cada 6 o 12 meses según el euríbor más el diferencial, así que puede subir o bajar. Elige según cuánta estabilidad necesites y cuánto plazo te quede.' },
+  { q: '¿Cuántos intereses pagaré en total?', a: 'Depende sobre todo del plazo. En una hipoteca de 150.000 € al 3 % TIN, pagarías unos 63.395 € de intereses a 25 años, pero cerca de 77.666 € a 30 años y solo unos 49.655 € a 20 años. Alargar el plazo baja la cuota mensual pero encarece bastante el coste total.' },
+  { q: '¿Puedo amortizar anticipadamente para pagar menos?', a: 'Sí. Puedes hacer amortizaciones parciales para reducir la cuota o para acortar el plazo (esta segunda opción suele ahorrar más intereses). En España, la comisión por amortización anticipada está limitada por ley y en muchas hipotecas es del 0 %; revisa tu escritura antes de decidir.' },
+  { q: '¿Cuánto necesito ahorrado para comprar una vivienda?', a: 'Los bancos suelen financiar hasta el 80 % del valor de tasación o compra, así que necesitas aportar como mínimo el 20 % de entrada. A eso hay que sumar los gastos de la compra (impuestos, notaría, registro y gestoría), que rondan entre el 10 % y el 12 % del precio. En la práctica conviene tener ahorrado en torno al 30 % del valor de la vivienda.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Calculadora de hipoteca', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, url: 'https://cometia.es/calculadora-hipoteca' },
@@ -44,14 +46,52 @@ const jsonLd = [
   <div class="adslot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6286326170489521" data-ad-slot="4016311751" data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 
   <section class="prose">
-    <h2>Cómo se calcula la cuota de la hipoteca</h2>
-    <p>En España se usa el <strong>sistema de amortización francés</strong>: pagas una cuota fija cada mes durante todo el préstamo. La fórmula es:</p>
+    <h2>Qué es la cuota de una hipoteca</h2>
+    <p>La <strong>cuota</strong> es lo que pagas al banco cada mes hasta devolver el préstamo con el que compras tu vivienda. Dentro de esa cuota hay siempre dos ingredientes: los <strong>intereses</strong>, que son el precio que cobra el banco por prestarte el dinero, y la <strong>amortización de capital</strong>, que es la parte que de verdad reduce tu deuda. Entender cómo se reparten esos dos componentes es la clave para saber cuánto te costará realmente tu casa y por qué el plazo importa tanto.</p>
+    <p>En España, casi todas las hipotecas usan el <strong>sistema de amortización francés</strong>, que tiene una característica muy cómoda: mientras el tipo de interés no cambie, la cuota es <strong>constante</strong> durante toda la vida del préstamo. Lo que sí cambia mes a mes es el reparto interno entre intereses y capital.</p>
+
+    <h2>Cómo se calcula la cuota</h2>
+    <p>La fórmula del sistema francés es la siguiente:</p>
     <p style="text-align:center; font-variant-numeric:tabular-nums"><strong>cuota = C · i / (1 − (1 + i)<sup>−n</sup>)</strong></p>
-    <p>Donde <strong>C</strong> es el capital prestado, <strong>i</strong> es el interés mensual (el interés anual dividido entre 12) y <strong>n</strong> el número total de meses (los años multiplicados por 12). Cada mes, una parte de la cuota paga intereses y otra amortiza capital; al principio pesan más los intereses y, con los años, cada vez amortizas más.</p>
-    <h2>Ejemplo</h2>
-    <p>Para una hipoteca de <strong>150.000 €</strong> a un <strong>3 %</strong> anual y <strong>25 años</strong>, la cuota ronda los <strong>711 €/mes</strong> y pagarías cerca de <strong>63.000 €</strong> en intereses a lo largo del préstamo. Baja el plazo o el interés y verás cuánto se reducen esos intereses totales.</p>
+    <p>Donde <strong>C</strong> es el capital prestado, <strong>i</strong> es el interés <strong>mensual</strong> (el TIN anual dividido entre 12) y <strong>n</strong> es el número total de meses (los años multiplicados por 12). El detalle que más despista es el interés: en la fórmula nunca entra el tipo anual directamente. Si tu hipoteca es al 3 % anual, el valor que usas es <strong>0,03 / 12 = 0,0025</strong> mensual. Y el plazo va en meses: 25 años son 300 meses.</p>
+
+    <h3>Ejemplos resueltos</h3>
+    <ul>
+      <li><strong>150.000 € al 3 % a 25 años:</strong> i = 0,0025 y n = 300. La cuota sale <strong>711,32 €/mes</strong>. En total devuelves 213.395,09 €, de los cuales <strong>63.395,09 €</strong> son intereses.</li>
+      <li><strong>200.000 € al 3,5 % a 30 años:</strong> i ≈ 0,002917 y n = 360. La cuota es de <strong>898,09 €/mes</strong> y pagarías 123.312,18 € en intereses a lo largo del préstamo.</li>
+      <li><strong>100.000 € al 2,5 % a 20 años:</strong> i ≈ 0,002083 y n = 240. La cuota queda en <strong>529,90 €/mes</strong> y los intereses totales son de solo 27.176,69 €.</li>
+    </ul>
+    <p>Fíjate en el peso del plazo: los mismos 150.000 € al 3 % cuestan <strong>831,90 €/mes a 20 años</strong>, <strong>711,32 € a 25 años</strong> y <strong>632,41 € a 30 años</strong>. Alargar el plazo baja la cuota, pero dispara los intereses totales (de 49.655 € a 20 años hasta 77.666 € a 30).</p>
+
+    <h2>Cómo afecta el plazo (tabla de referencia)</h2>
+    <p>Cuota mensual aproximada para un préstamo de <strong>150.000 € al 3 % TIN</strong> según el plazo:</p>
+    <ul>
+      <li><strong>15 años</strong> — 1.035,87 €/mes · intereses totales ≈ 36.457 €</li>
+      <li><strong>20 años</strong> — 831,90 €/mes · intereses totales ≈ 49.655 €</li>
+      <li><strong>25 años</strong> — 711,32 €/mes · intereses totales ≈ 63.395 €</li>
+      <li><strong>30 años</strong> — 632,41 €/mes · intereses totales ≈ 77.666 €</li>
+    </ul>
+
+    <h2>TIN, TAE y la tabla de amortización</h2>
+    <p>El <strong>TIN</strong> (Tipo de Interés Nominal) es el porcentaje que se usa para calcular la cuota, pero no refleja el coste real porque deja fuera las comisiones. La <strong>TAE</strong> (Tasa Anual Equivalente) sí incluye el TIN más los gastos y comisiones obligatorios del préstamo, por lo que <strong>es la cifra correcta para comparar hipotecas</strong> entre bancos.</p>
+    <p>La <strong>tabla de amortización</strong> (la que genera esta calculadora año a año) muestra cómo evoluciona el reparto de cada cuota. Al principio, casi todo va a intereses porque la deuda es grande; con los años, la balanza se invierte y cada vez amortizas más capital. Por eso, si amortizas anticipadamente al principio del préstamo, el ahorro en intereses es mucho mayor.</p>
+
+    <h2>Hipoteca fija o variable</h2>
+    <p>En una <strong>hipoteca fija</strong>, el tipo se pacta al firmar y la cuota no cambia nunca: sabes exactamente qué pagarás cada mes durante 25 o 30 años. En una <strong>hipoteca variable</strong>, el tipo se calcula como <strong>euríbor + un diferencial</strong> (por ejemplo, euríbor + 0,8 %) y se revisa cada 6 o 12 meses, así que la cuota sube o baja según se mueva el euríbor. La calculadora asume un tipo fijo, por lo que en una variable el resultado es una estimación con el tipo que introduzcas hoy.</p>
+
+    <h2>Errores comunes al calcular la hipoteca</h2>
+    <ul>
+      <li><strong>Confundir años con meses:</strong> la fórmula usa meses (n = años × 12) y el interés mensual (TIN / 12). Meter 25 en lugar de 300, o el 3 % anual sin dividir, distorsiona por completo el resultado.</li>
+      <li><strong>Olvidar los gastos asociados:</strong> a la cuota se suman el seguro de hogar, a menudo el de vida, la comisión de apertura y la tasación. La cuota real que verás en tu recibo suele ser algo mayor que la del préstamo puro.</li>
+      <li><strong>Mirar solo la cuota:</strong> una cuota baja puede esconder un plazo larguísimo y miles de euros de más en intereses. Compara siempre también el total a pagar.</li>
+      <li><strong>Comparar por el TIN:</strong> para elegir entre bancos usa la TAE, no el TIN.</li>
+    </ul>
+
+    <p class="hint">Esta calculadora es orientativa: no incluye seguros, comisiones ni bonificaciones, y no sustituye la oferta vinculante de tu banco ni el asesoramiento de un profesional.</p>
+
     <h2>Preguntas frecuentes</h2>
     {faqs.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    <div class="more"><a href="/calculadora-prestamo">Préstamos personales</a><a href="/calculadora-ahorro">Plan de ahorro</a><a href="/calculadora-interes-compuesto">Interés compuesto</a></div>
   </section>
 
   <script>
