@@ -1,0 +1,76 @@
+---
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import LugarCard from './LugarCard.astro';
+import {
+  CATEGORIAS, porZonaTipo, zonaUrl, zonaTipoUrl, tipoUrl,
+  type TypeKey, type Lang,
+} from '../data/guia/lugares';
+
+export interface Props { zona: string; tipo: TypeKey; lang: Lang; }
+const { zona, tipo, lang } = Astro.props;
+
+const plural = lang === 'en' ? CATEGORIAS[tipo].plural_en : CATEGORIAS[tipo].plural_es;
+const pluralLow = plural.toLowerCase();
+const places = porZonaTipo(zona, tipo).sort((a, b) => (b.photo ? 1 : 0) - (a.photo ? 1 : 0) || a.name.localeCompare(b.name));
+const canonical = zonaTipoUrl(zona, tipo, lang);
+const altUrl = zonaTipoUrl(zona, tipo, lang === 'en' ? 'es' : 'en');
+const SITE = 'https://cometia.es';
+
+const t = lang === 'en'
+  ? {
+      home: '/en/', homeL: 'Home',
+      h1: `The best ${pluralLow} in ${zona}`,
+      intro: `${places.length} ${pluralLow} in ${zona} (Costa Blanca), with address, map, opening hours and an honest description. Browse the full local guide in English and Spanish.`,
+      count: `${places.length} ${pluralLow}`,
+      backZone: `All bars & restaurants in ${zona}`,
+      backType: `${plural} across the Costa Blanca`,
+    }
+  : {
+      home: '/', homeL: 'Inicio',
+      h1: `Los mejores ${pluralLow} de ${zona}`,
+      intro: `${places.length} ${pluralLow} en ${zona} (Costa Blanca), con dirección, mapa, horarios y una descripción honesta. Consulta la guía local completa en español e inglés.`,
+      count: `${places.length} ${pluralLow}`,
+      backZone: `Todos los bares y restaurantes de ${zona}`,
+      backType: `${plural} de toda la Costa Blanca`,
+    };
+
+const title = lang === 'en'
+  ? `${plural} in ${zona} (${places.length}) — Cometia Guide`
+  : `${plural} en ${zona} (${places.length}) — Guía Cometia`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.homeL, item: SITE + t.home },
+      { '@type': 'ListItem', position: 2, name: zona, item: SITE + zonaUrl(zona, lang) },
+      { '@type': 'ListItem', position: 3, name: plural, item: SITE + canonical },
+    ],
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'ItemList',
+    name: t.h1, numberOfItems: places.length,
+    itemListElement: places.slice(0, 25).map((l, i) => ({
+      '@type': 'ListItem', position: i + 1, name: l.name,
+      url: SITE + (lang === 'en' ? '/en/place/' : '/sitio/') + l.slug,
+    })),
+  },
+];
+---
+<GuiaLayout title={title} description={t.intro} lang={lang} canonical={canonical} altUrl={altUrl} jsonLd={jsonLd}>
+  <section class="ficha wrap">
+    <div class="crumbs"><a href={t.home}>{t.homeL}</a> › <a href={zonaUrl(zona, lang)}>{zona}</a> › {plural}</div>
+    <h1>{CATEGORIAS[tipo].icon} {t.h1}</h1>
+    <p class="ficha__sub" style="max-width:760px">{t.intro}</p>
+    <p class="count">{t.count}</p>
+
+    <div class="grid">
+      {places.map((l) => <LugarCard l={l} lang={lang} />)}
+    </div>
+
+    <p style="margin-top:26px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="chip" href={zonaUrl(zona, lang)}>← {t.backZone}</a>
+      <a class="chip" href={tipoUrl(tipo, lang)}>{t.backType} →</a>
+    </p>
+  </section>
+</GuiaLayout>

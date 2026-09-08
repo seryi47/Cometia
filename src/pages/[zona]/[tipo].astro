@@ -1,0 +1,17 @@
+---
+import ZonaTipoGuia from '../../components/ZonaTipoGuia.astro';
+import { ZONAS, TYPE_ORDER, ZONA_SLUG, TIPO_SLUG, porZonaTipo, type TypeKey } from '../../data/guia/lugares';
+
+export function getStaticPaths() {
+  const paths: { params: { zona: string; tipo: string }; props: { zona: string; tipo: TypeKey } }[] = [];
+  for (const z of ZONAS) {
+    for (const t of TYPE_ORDER) {
+      if (porZonaTipo(z, t).length === 0) continue;
+      paths.push({ params: { zona: ZONA_SLUG[z], tipo: TIPO_SLUG.es[t] }, props: { zona: z, tipo: t } });
+    }
+  }
+  return paths;
+}
+const { zona, tipo } = Astro.props as { zona: string; tipo: TypeKey };
+---
+<ZonaTipoGuia zona={zona} tipo={tipo} lang="es" />

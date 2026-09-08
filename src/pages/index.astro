@@ -1,30 +1,38 @@
 ---
 import GuiaLayout from '../layouts/GuiaLayout.astro';
-import { LUGARES, CATEGORIAS, TYPE_ORDER, ZONAS, TOTAL } from '../data/guia/lugares';
+import { LUGARES, ZONAS, CATEGORIAS, TYPE_ORDER, TOTAL, N_FOTOS, porTipo, zonaUrl, tipoUrl } from '../data/guia/lugares';
 import LugarCard from '../components/LugarCard.astro';
 
 const porZona = (z: string) => LUGARES.filter((l) => l.zone === z).length;
 
-// Selección destacada: prioriza sitios con foto, equilibrado por zona (hasta 18 por zona).
+// Destacados: con foto, equilibrado por zona (6 por zona).
 const destacados = ZONAS.flatMap((z) => {
-  const inZone = LUGARES.filter((l) => l.zone === z);
-  const withP = inZone.filter((l) => l.photo).sort((a, b) => a.name.localeCompare(b.name));
-  const rest = inZone.filter((l) => !l.photo).sort((a, b) => a.name.localeCompare(b.name));
-  return [...withP, ...rest].slice(0, 18);
+  const inZone = LUGARES.filter((l) => l.zone === z && l.photo).sort((a, b) => a.name.localeCompare(b.name));
+  return inZone.slice(0, 6);
 }).sort((a, b) => a.name.localeCompare(b.name));
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: 'Guía de bares y restaurantes de la Costa Blanca',
-  url: 'https://cometia.es/',
-  inLanguage: 'es',
-  about: 'Bares, restaurantes, pubs y cafeterías de Gran Alacant, Santa Pola, Alicante y Elche (Costa Blanca).',
-};
+const tipos = TYPE_ORDER.filter((t) => porTipo(t).length > 0);
+
+const faqs = [
+  { q: '¿Qué es Cometia?', a: `Cometia es una guía local e independiente de bares, restaurantes, pubs y cafeterías de la Costa Blanca: Gran Alacant, Santa Pola, Alicante y Elche. Reunimos ${TOTAL} sitios con dirección, mapa, horarios y una descripción clara de cada uno, en español e inglés.` },
+  { q: '¿Es gratis?', a: 'Sí. Consultar la guía es totalmente gratis y sin registro. No vendemos posiciones ni publicamos reseñas falsas.' },
+  { q: '¿De dónde salen los datos?', a: 'Los datos de los establecimientos proceden de OpenStreetMap (proyecto libre, licencia ODbL) y los completamos con geocodificación. Las descripciones son propias. Las valoraciones, cuando aparecen, enlazan a Google.' },
+  { q: '¿Puedo ver los sitios en un mapa?', a: 'Sí. En el mapa interactivo puedes ver los sitios sobre el plano, filtrar por tipo y zona y pulsar cada pin para ver la ficha con foto.' },
+];
+
+const SITE = 'https://cometia.es';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Cometia', url: SITE + '/', inLanguage: 'es' },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: 'Cometia', url: SITE + '/', logo: SITE + '/favicon.svg',
+    description: 'Guía local bilingüe de bares y restaurantes de la Costa Blanca (Gran Alacant, Santa Pola, Alicante y Elche).' },
+  { '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Guía de bares y restaurantes de la Costa Blanca', url: SITE + '/', inLanguage: 'es' },
+];
 ---
 <GuiaLayout
   title="Bares y restaurantes de la Costa Blanca — Guía Cometia"
-  description="Guía local de bares, restaurantes, pubs y cafeterías de Gran Alacant, Santa Pola, Alicante y Elche. Con mapa, horarios y descripciones. En español e inglés."
+  description={`Guía local bilingüe de ${TOTAL} bares, restaurantes, pubs y cafeterías de Gran Alacant, Santa Pola, Alicante y Elche. Con mapa interactivo, horarios y descripciones. Español e inglés.`}
   lang="es"
   canonical="/"
   altUrl="/en/"
@@ -34,75 +42,125 @@ const jsonLd = {
     <div class="wrap">
       <p class="hero__eyebrow">Tu guía de la Costa Blanca</p>
       <h1>Dónde comer y tapear en <span class="grad">la Costa Blanca</span></h1>
-      <p>La guía local de bares, restaurantes, pubs y cafeterías de Gran Alacant, Santa Pola, Alicante y Elche. {TOTAL} sitios con mapa, horario y ficha.</p>
-      <div class="search"><input id="q" type="search" placeholder="Buscar en los destacados por nombre o tipo…" autocomplete="off" aria-label="Buscar" /><span class="loc">📍 Costa Blanca</span></div>
-      <div class="chips" id="chips">
-        <button class="chip is-active" data-f="tipo" data-v="">Todos</button>
-        {TYPE_ORDER.filter((t) => LUGARES.some((l) => l.type === t)).map((t) => (
-          <button class="chip" data-f="tipo" data-v={t}>{CATEGORIAS[t].icon} {CATEGORIAS[t].plural_es}</button>
-        ))}
+      <p>Bares, restaurantes, pubs y cafeterías de Gran Alacant, Santa Pola, Alicante y Elche. Con mapa, horarios y ficha de cada sitio.</p>
+
+      <div class="search-wrap">
+        <div class="search"><input id="q" type="search" placeholder="Busca un bar o restaurante…" autocomplete="off" aria-label="Buscar sitio" role="combobox" aria-expanded="false" aria-controls="results" /><span class="loc">📍 Costa Blanca</span></div>
+        <div class="results" id="results" role="listbox" aria-label="Resultados"></div>
       </div>
-      <div class="chips">
-        {ZONAS.map((z) => (<a class="chip zona" href={`/${z === 'Gran Alacant' ? 'gran-alacant' : z === 'Santa Pola' ? 'santa-pola' : z === 'Alicante' ? 'alicante' : 'elche'}`}>📍 {z} ({porZona(z)})</a>))}
-      </div>
+
       <div class="hero__cta">
         <a class="btn-hero" href="/mapa">🗺️ Ver el mapa</a>
-        <a class="btn-hero btn-hero--ghost" href="/alicante">Explorar Alicante</a>
+        <a class="btn-hero btn-hero--ghost" href="#zonas">Explorar por zona</a>
+      </div>
+
+      <div class="stats">
+        <div><b>{TOTAL}</b><span>sitios</span></div>
+        <div><b>{ZONAS.length}</b><span>zonas</span></div>
+        <div><b>{N_FOTOS}</b><span>con foto</span></div>
+        <div><b>ES · EN</b><span>bilingüe</span></div>
       </div>
     </div>
   </section>
 
-  <section class="wrap" id="lista">
-    <h2 class="section__h">Destacados de la zona</h2>
-    <p class="count"><span id="count">{destacados.length}</span> sitios destacados · entra en cada zona para verlos todos</p>
-    <div class="grid" id="grid">
-      {destacados.map((l) => <LugarCard l={l} lang="es" />)}
+  <section class="section wrap" id="zonas">
+    <h2>Explora por zona</h2>
+    <p class="lead">Elige tu ciudad y descubre todos los sitios para comer, tapear o tomar algo.</p>
+    <div class="zonecards">
+      {ZONAS.map((z) => (
+        <a class="zonecard reveal" href={zonaUrl(z, 'es')}>
+          <h3>{z}</h3><span>{porZona(z)} bares y restaurantes</span>
+        </a>
+      ))}
     </div>
-    <p class="noresults" id="noresults">No encontramos sitios con ese filtro. Prueba con otra palabra.</p>
   </section>
 
   <section class="section wrap">
-    <h2>Explora por zona</h2>
-    <p class="lead">Elige tu zona y descubre todos los sitios para comer, tapear o tomar algo.</p>
-    <div class="zonecards">
-      <a class="zonecard" href="/gran-alacant"><h3>Gran Alacant</h3><span>{porZona('Gran Alacant')} bares y restaurantes</span></a>
-      <a class="zonecard" href="/santa-pola"><h3>Santa Pola</h3><span>{porZona('Santa Pola')} bares y restaurantes</span></a>
-      <a class="zonecard" href="/alicante"><h3>Alicante</h3><span>{porZona('Alicante')} bares y restaurantes</span></a>
-      <a class="zonecard" href="/elche"><h3>Elche</h3><span>{porZona('Elche')} bares y restaurantes</span></a>
+    <h2>Explora por tipo</h2>
+    <p class="lead">Restaurantes, bares de tapas, pubs, cafeterías y más — por toda la Costa Blanca.</p>
+    <div class="typetiles">
+      {tipos.map((t) => (
+        <a class="typetile reveal" href={tipoUrl(t, 'es')}>
+          <span class="ic">{CATEGORIAS[t].icon}</span>
+          <span><b>{CATEGORIAS[t].plural_es}</b><span>{porTipo(t).length} sitios</span></span>
+        </a>
+      ))}
     </div>
   </section>
 
-  <script>
-    const cards = Array.from(document.querySelectorAll('.lugar')) as HTMLElement[];
-    const q = document.getElementById('q') as HTMLInputElement;
-    const countEl = document.getElementById('count')!;
-    const noRes = document.getElementById('noresults')!;
-    let fTipo = '', fText = '';
+  <section class="wrap" id="destacados">
+    <div class="sec__head"><h2 style="font-family:var(--display);font-size:2.1rem;margin:0">Sitios destacados</h2><a class="sec__link" href="/mapa">Ver todos en el mapa →</a></div>
+    <div class="grid">
+      {destacados.map((l) => <LugarCard l={l} lang="es" />)}
+    </div>
+  </section>
 
-    function apply() {
-      let n = 0;
-      cards.forEach((c) => {
-        const ok = (!fTipo || c.dataset.tipo === fTipo)
-          && (!fText || (c.dataset.name || '').includes(fText));
-        c.style.display = ok ? '' : 'none';
-        if (ok) n++;
-      });
-      countEl.textContent = String(n);
-      noRes.style.display = n ? 'none' : 'block';
-    }
-    document.querySelectorAll('.chip[data-f]').forEach((ch) => {
-      ch.addEventListener('click', () => {
-        const f = (ch as HTMLElement).dataset.f, v = (ch as HTMLElement).dataset.v || '';
-        if (f === 'tipo') fTipo = v;
-        document.querySelectorAll(`.chip[data-f="${f}"]`).forEach((x) => x.classList.remove('is-active'));
-        ch.classList.add('is-active');
-        apply();
-      });
-    });
-    q.addEventListener('input', () => { fText = q.value.trim().toLowerCase(); apply(); });
+  <section class="section wrap">
+    <div class="mapband reveal">
+      <h2>🗺️ Todos los sitios en un mapa</h2>
+      <p>Explora los {TOTAL} bares y restaurantes sobre el plano. Filtra por tipo y zona y pulsa cada pin para ver fotos y la ficha completa.</p>
+      <a class="btn-hero" href="/mapa">Abrir el mapa interactivo</a>
+    </div>
+  </section>
 
-    const params = new URLSearchParams(location.search);
-    const pt = params.get('tipo');
-    if (pt) { const b = document.querySelector(`.chip[data-f="tipo"][data-v="${CSS.escape(pt)}"]`) as HTMLElement; if (b) b.click(); }
+  <section class="section wrap">
+    <h2>Por qué Cometia</h2>
+    <div class="feats">
+      <div class="feat reveal"><div class="ic">🍽️</div><h3>Todo en un sitio</h3><p>{TOTAL} bares y restaurantes de la Costa Blanca con dirección, horario, mapa y contacto.</p></div>
+      <div class="feat reveal"><div class="ic">🇬🇧🇪🇸</div><h3>Bilingüe</h3><p>Cada ficha en español e inglés, pensada también para la comunidad británica de la zona.</p></div>
+      <div class="feat reveal"><div class="ic">✅</div><h3>Sin postureo</h3><p>Datos reales de OpenStreetMap y descripciones propias. Ni reseñas falsas ni posiciones a la venta.</p></div>
+      <div class="feat reveal"><div class="ic">🗺️</div><h3>Con mapa</h3><p>Encuentra lo que tienes cerca con el mapa interactivo y los filtros por tipo y zona.</p></div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq">
+      {faqs.map((f) => (
+        <details><summary>{f.q}</summary><p>{f.a}</p></details>
+      ))}
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var q = document.getElementById('q');
+      var box = document.getElementById('results');
+      if (!q || !box) return;
+      var base = '/sitio/';
+      var TL = { restaurante: ['🍽️', 'Restaurante'], bar: ['🍺', 'Bar'], pub: ['🍻', 'Pub'], cafeteria: ['☕', 'Cafetería'], 'comida-rapida': ['🍔', 'Comida rápida'], cerveceria: ['🍺', 'Cervecería'] };
+      var idx = [], hi = -1, cur = [];
+      function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+      var loaded = false;
+      function load() { if (loaded) return; loaded = true; fetch('/search-index.json').then(function (r) { return r.json(); }).then(function (d) { idx = d; run(); }); }
+      function run() {
+        var v = q.value.trim().toLowerCase();
+        if (v.length < 2) { close(); return; }
+        var starts = [], has = [];
+        for (var i = 0; i < idx.length && has.length < 40; i++) {
+          var n = idx[i].n.toLowerCase();
+          if (n.indexOf(v) === 0) starts.push(idx[i]);
+          else if (n.indexOf(v) > -1 || idx[i].z.toLowerCase().indexOf(v) > -1) has.push(idx[i]);
+        }
+        cur = starts.concat(has).slice(0, 8); hi = -1;
+        if (!cur.length) { box.innerHTML = '<div class="empty">Sin resultados para “' + esc(q.value.trim()) + '”.</div>'; box.classList.add('is-open'); q.setAttribute('aria-expanded', 'true'); return; }
+        box.innerHTML = cur.map(function (r) {
+          var tl = TL[r.t] || ['📍', ''];
+          return '<a class="result" role="option" href="' + base + r.s + '"><span class="ic">' + tl[0] + '</span><span class="nm">' + esc(r.n) + '</span><span class="mt">' + tl[1] + ' · ' + esc(r.z) + '</span></a>';
+        }).join('');
+        box.classList.add('is-open'); q.setAttribute('aria-expanded', 'true');
+      }
+      function close() { box.classList.remove('is-open'); q.setAttribute('aria-expanded', 'false'); hi = -1; }
+      function move(d) { var els = box.querySelectorAll('.result'); if (!els.length) return; hi = (hi + d + els.length) % els.length; els.forEach(function (e, i) { e.classList.toggle('is-hi', i === hi); }); }
+      q.addEventListener('focus', load);
+      q.addEventListener('input', function () { if (loaded) run(); else load(); });
+      q.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+        else if (e.key === 'Enter') { var els = box.querySelectorAll('.result'); if (hi > -1 && els[hi]) { location.href = els[hi].getAttribute('href'); } }
+        else if (e.key === 'Escape') { close(); }
+      });
+      document.addEventListener('click', function (e) { if (!box.contains(e.target) && e.target !== q) close(); });
+    })();
   </script>
 </GuiaLayout>

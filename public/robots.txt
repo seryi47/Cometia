@@ -1,9 +1,8 @@
-# Cometia — calculadoras online gratis. Bienvenidos buscadores e IAs.
-# Permitimos el rastreo, lectura y citación de todo el sitio (salvo la app privada).
+# Cometia — Guía de bares y restaurantes de la Costa Blanca.
+# Bienvenidos buscadores e IAs: se permite rastrear, leer y citar todo el sitio.
 
 User-agent: *
 Allow: /
-Disallow: /app/
 
 # --- Rastreadores de IA explícitamente permitidos (lectura y recomendación) ---
 User-agent: GPTBot

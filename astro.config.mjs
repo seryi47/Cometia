@@ -15,7 +15,16 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !NOINDEX.some((p) => page.includes(p)),
-      serialize: (item) => ({ ...item, lastmod: new Date().toISOString() }),
+      serialize: (item) => {
+        const u = item.url.replace('https://cometia.es', '').replace(/\/en\//, '/');
+        const segs = u.split('/').filter(Boolean);
+        let priority = 0.6;                 // fichas y resto
+        if (u === '/' || u === '') priority = 1.0;            // home
+        else if (u === '/mapa') priority = 0.9;               // mapa
+        else if (segs.length === 1) priority = 0.8;           // zona o tipo global
+        else if (segs.length === 2 && segs[0] !== 'sitio' && segs[0] !== 'place') priority = 0.8; // tipo+zona
+        return { ...item, lastmod: new Date().toISOString(), changefreq: 'weekly', priority };
+      },
     }),
   ],
 });

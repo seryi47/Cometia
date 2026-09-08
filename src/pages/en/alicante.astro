@@ -1,15 +1,4 @@
 ---
-import GuiaLayout from '../../layouts/GuiaLayout.astro';
 import ZonaGuia from '../../components/ZonaGuia.astro';
-import { porZona } from '../../data/guia/lugares';
-const n = porZona('Alicante').length;
 ---
-<GuiaLayout
-  title="Bars & restaurants in Alicante — Cometia Guide"
-  description={`A guide to ${n} bars, restaurants, pubs and cafés in Alicante city. With map and honest descriptions. English & Spanish.`}
-  lang="en"
-  canonical="/en/alicante"
-  altUrl="/alicante"
->
-  <ZonaGuia zona="Alicante" lang="en" />
-</GuiaLayout>
+<ZonaGuia zona="Alicante" lang="en" />

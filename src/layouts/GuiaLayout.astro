@@ -7,10 +7,13 @@ export interface Props {
   canonical: string;        // ruta relativa, ej "/" o "/sitio/zest"
   altUrl?: string;          // ruta del mismo contenido en el otro idioma (hreflang)
   jsonLd?: any;
+  noindex?: boolean;        // legales: no indexar
+  image?: string;           // og:image (ruta relativa o absoluta)
 }
-const { title, description, lang, canonical, altUrl, jsonLd } = Astro.props;
+const { title, description, lang, canonical, altUrl, jsonLd, noindex, image } = Astro.props;
 const SITE = 'https://cometia.es';
-const abs = (p: string) => SITE + p;
+const abs = (p: string) => (p.startsWith('http') ? p : SITE + p);
+const ogImage = abs(image || '/og.png');
 const t = lang === 'en'
   ? { home: '/en/', tagline: 'Costa Blanca food & drink guide', slogan: 'EAT & DRINK · COSTA BLANCA',
       nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', nav_al: 'Alicante', nav_el: 'Elche', map: '/en/map', mapLabel: 'Map', about: '/en/about', aboutLabel: 'About', contact: '/en/contact', contactLabel: 'Contact' }
@@ -26,16 +29,22 @@ const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, follow" />}
   <link rel="canonical" href={abs(canonical)} />
   {altUrl && <link rel="alternate" hreflang={lang === 'en' ? 'es' : 'en'} href={abs(altUrl)} />}
   {altUrl && <link rel="alternate" hreflang={lang === 'en' ? 'en' : 'es'} href={abs(canonical)} />}
   {altUrl && <link rel="alternate" hreflang="x-default" href={abs(lang === 'en' ? altUrl : canonical)} />}
+  <meta property="og:site_name" content="Cometia" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={abs(canonical)} />
   <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={ogImage} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" />

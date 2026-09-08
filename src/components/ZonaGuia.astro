@@ -1,10 +1,11 @@
 ---
-import { LUGARES, CATEGORIAS, TYPE_ORDER, type Lang } from '../data/guia/lugares';
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import { LUGARES, CATEGORIAS, TYPE_ORDER, zonaUrl, zonaTipoUrl, type Lang } from '../data/guia/lugares';
 import LugarCard from './LugarCard.astro';
 export interface Props { zona: string; lang: Lang; }
 const { zona, lang } = Astro.props;
+const SITE = 'https://cometia.es';
 const places = LUGARES.filter((l) => l.zone === zona).sort((a, b) => a.name.localeCompare(b.name));
-const fichaBase = lang === 'en' ? '/en/place/' : '/sitio/';
 
 const INTRO: Record<string, Record<Lang, string>> = {
   'Gran Alacant': {
@@ -25,27 +26,63 @@ const INTRO: Record<string, Record<Lang, string>> = {
   },
 };
 const intro = INTRO[zona]?.[lang] ?? '';
+const canonical = zonaUrl(zona, lang);
+const altUrl = zonaUrl(zona, lang === 'en' ? 'es' : 'en');
+const title = lang === 'en'
+  ? `Bars & restaurants in ${zona} (${places.length}) — Cometia Guide`
+  : `Bares y restaurantes en ${zona} (${places.length}) — Guía Cometia`;
+const description = lang === 'en'
+  ? `A guide to the ${places.length} bars, restaurants, pubs and cafés in ${zona} (Costa Blanca). With map, opening hours and honest descriptions. English & Spanish.`
+  : `Guía de los ${places.length} bares, restaurantes, pubs y cafeterías de ${zona} (Costa Blanca). Con mapa, horarios y descripciones. Español e inglés.`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: lang === 'en' ? 'Home' : 'Inicio', item: SITE + (lang === 'en' ? '/en/' : '/') },
+      { '@type': 'ListItem', position: 2, name: zona, item: SITE + canonical },
+    ],
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'ItemList',
+    name: title, numberOfItems: places.length,
+    itemListElement: places.slice(0, 25).map((l, i) => ({
+      '@type': 'ListItem', position: i + 1, name: l.name,
+      url: SITE + (lang === 'en' ? '/en/place/' : '/sitio/') + l.slug,
+    })),
+  },
+];
+
 const L = lang === 'en'
-  ? { count: 'places', view: 'View details →', brit: '🇬🇧 British-friendly', back: '← Back to the guide', home: '/en/' }
-  : { count: 'sitios', view: 'Ver ficha →', brit: '🇬🇧 British-friendly', back: '← Volver a la guía', home: '/' };
+  ? { count: 'places', home: '/en/', back: '← Back to the guide', see: (n: number, p: string) => `See all ${n} ${p.toLowerCase()} →` }
+  : { count: 'sitios', home: '/', back: '← Volver a la guía', see: (n: number, p: string) => `Ver los ${n} ${p.toLowerCase()} →` };
 ---
-<section class="ficha wrap">
-  <div class="crumbs"><a href={L.home}>{lang === 'en' ? 'Home' : 'Inicio'}</a> › {zona}</div>
-  <h1>{lang === 'en' ? `Bars & restaurants in ${zona}` : `Bares y restaurantes en ${zona}`}</h1>
-  <p class="ficha__sub" style="max-width:760px">{intro}</p>
-  <p class="count">{places.length} {L.count}</p>
+<GuiaLayout title={title} description={description} lang={lang} canonical={canonical} altUrl={altUrl} jsonLd={jsonLd}>
+  <section class="ficha wrap">
+    <div class="crumbs"><a href={L.home}>{lang === 'en' ? 'Home' : 'Inicio'}</a> › {zona}</div>
+    <h1>{lang === 'en' ? `Bars & restaurants in ${zona}` : `Bares y restaurantes en ${zona}`}</h1>
+    <p class="ficha__sub" style="max-width:760px">{intro}</p>
+    <p class="count">{places.length} {L.count}</p>
 
-  {TYPE_ORDER.filter((t) => places.some((l) => l.type === t)).map((t) => {
-    const items = places.filter((l) => l.type === t);
-    return (
-      <div class="section" style="padding-top:8px">
-        <h2>{CATEGORIAS[t].icon} {lang === 'en' ? CATEGORIAS[t].plural_en : CATEGORIAS[t].plural_es} <span style="color:var(--ink-2);font-weight:400;font-size:1rem">({items.length})</span></h2>
-        <div class="grid">
-          {items.map((l) => <LugarCard l={l} lang={lang} />)}
+    {TYPE_ORDER.filter((t) => places.some((l) => l.type === t)).map((t) => {
+      const items = places.filter((l) => l.type === t);
+      const plural = lang === 'en' ? CATEGORIAS[t].plural_en : CATEGORIAS[t].plural_es;
+      return (
+        <div class="section" style="padding-top:8px">
+          <div class="sec__head">
+            <h2>{CATEGORIAS[t].icon} {plural} <span style="color:var(--ink-2);font-weight:400;font-size:1rem">({items.length})</span></h2>
+            {items.length > 12 && <a class="sec__link" href={zonaTipoUrl(zona, t, lang)}>{L.see(items.length, plural)}</a>}
+          </div>
+          <div class="grid">
+            {items.slice(0, 12).map((l) => <LugarCard l={l} lang={lang} />)}
+          </div>
+          {items.length > 12 && (
+            <p style="margin-top:14px"><a class="chip" href={zonaTipoUrl(zona, t, lang)}>{L.see(items.length, plural)}</a></p>
+          )}
         </div>
-      </div>
-    );
-  })}
+      );
+    })}
 
-  <p style="margin-top:24px"><a class="chip" href={L.home}>{L.back}</a></p>
-</section>
+    <p style="margin-top:24px"><a class="chip" href={L.home}>{L.back}</a></p>
+  </section>
+</GuiaLayout>

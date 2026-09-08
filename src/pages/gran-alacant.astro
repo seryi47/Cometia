@@ -1,15 +1,4 @@
 ---
-import GuiaLayout from '../layouts/GuiaLayout.astro';
 import ZonaGuia from '../components/ZonaGuia.astro';
-import { porZona } from '../data/guia/lugares';
-const n = porZona('Gran Alacant').length;
 ---
-<GuiaLayout
-  title="Bares y restaurantes en Gran Alacant — Guía Cometia"
-  description={`Guía de los ${n} bares, restaurantes, pubs y cafeterías de Gran Alacant (Santa Pola, Alicante). Con mapa y descripciones. Español e inglés.`}
-  lang="es"
-  canonical="/gran-alacant"
-  altUrl="/en/gran-alacant"
->
-  <ZonaGuia zona="Gran Alacant" lang="es" />
-</GuiaLayout>
+<ZonaGuia zona="Gran Alacant" lang="es" />

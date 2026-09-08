@@ -52,6 +52,34 @@ export const TYPE_ORDER: TypeKey[] = ['restaurante', 'bar', 'pub', 'cafeteria', 
 
 export const ZONAS = ['Gran Alacant', 'Santa Pola', 'Alicante', 'Elche'] as const;
 
+// ── Slugs de URL (zonas y tipos, por idioma) ───────────────────────────────
+export const ZONA_SLUG: Record<string, string> = {
+  'Gran Alacant': 'gran-alacant', 'Santa Pola': 'santa-pola', 'Alicante': 'alicante', 'Elche': 'elche',
+};
+export const TIPO_SLUG: Record<Lang, Record<TypeKey, string>> = {
+  es: { 'restaurante': 'restaurantes', 'bar': 'bares', 'pub': 'pubs', 'cafeteria': 'cafeterias', 'comida-rapida': 'comida-rapida', 'cerveceria': 'cervecerias' },
+  en: { 'restaurante': 'restaurants', 'bar': 'bars', 'pub': 'pubs', 'cafeteria': 'cafes', 'comida-rapida': 'fast-food', 'cerveceria': 'beer-gardens' },
+};
+export function zonaSlug(z: string): string { return ZONA_SLUG[z] || ''; }
+export function zonaFromSlug(s: string): string | undefined {
+  return (Object.keys(ZONA_SLUG)).find((z) => ZONA_SLUG[z] === s);
+}
+export function tipoFromSlug(s: string, lang: Lang): TypeKey | undefined {
+  return TYPE_ORDER.find((t) => TIPO_SLUG[lang][t] === s);
+}
+/** URL de una página de zona en el idioma dado. */
+export function zonaUrl(z: string, lang: Lang): string {
+  return `${lang === 'en' ? '/en/' : '/'}${zonaSlug(z)}`;
+}
+/** URL de una página global de tipo. */
+export function tipoUrl(t: TypeKey, lang: Lang): string {
+  return `${lang === 'en' ? '/en/' : '/'}${TIPO_SLUG[lang][t]}`;
+}
+/** URL de una página tipo+zona. */
+export function zonaTipoUrl(z: string, t: TypeKey, lang: Lang): string {
+  return `${lang === 'en' ? '/en/' : '/'}${zonaSlug(z)}/${TIPO_SLUG[lang][t]}`;
+}
+
 // ── Helpers ────────────────────────────────────────────────────────────────
 export function getLugar(slug: string): Lugar | undefined {
   return LUGARES.find((l) => l.slug === slug);
@@ -90,4 +118,17 @@ export function esBritanico(l: Lugar): boolean {
   return /\b(the|british|english|grill|tavern|inn|lounge|fish|chips|breakfast|pub)\b/.test(n) || / & /.test(l.name);
 }
 
+export function porZonaTipo(zona: string, tipo: TypeKey): Lugar[] {
+  return LUGARES.filter((l) => l.zone === zona && l.type === tipo);
+}
+
+/** Sitios relacionados (misma zona y tipo; rellena con la misma zona) para enlazado interno. */
+export function relacionados(l: Lugar, n = 6): Lugar[] {
+  const mismo = LUGARES.filter((x) => x.slug !== l.slug && x.zone === l.zone && x.type === l.type);
+  const zona = LUGARES.filter((x) => x.slug !== l.slug && x.zone === l.zone && x.type !== l.type);
+  const conFoto = (a: Lugar, b: Lugar) => (b.photo ? 1 : 0) - (a.photo ? 1 : 0);
+  return [...mismo.sort(conFoto), ...zona.sort(conFoto)].slice(0, n);
+}
+
 export const TOTAL = LUGARES.length;
+export const N_FOTOS = LUGARES.filter((l) => l.photo).length;
