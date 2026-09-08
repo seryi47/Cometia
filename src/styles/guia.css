@@ -4,8 +4,9 @@
    ========================================================================== */
 :root {
   --saffron-200:#f8de8c; --saffron-300:#f3c853; --saffron-400:#efb02c; --saffron-500:#e8a82c; --saffron-600:#c4811a; --saffron-700:#9a5e16;
-  --jamon-100:#fce4e4; --jamon-200:#f9cccd; --jamon-500:#df3d47; --jamon-600:#c81f33; --jamon-700:#9b1b30;
-  --oliva-100:#e6ebd9; --oliva-200:#cdd9b6; --oliva-600:#556d36; --oliva-700:#43562e;
+  --jamon-100:#fce4e4; --jamon-200:#f9cccd; --jamon-500:#df3d47; --jamon-600:#c81f33; --jamon-700:#9b1b30; --jamon-800:#841a2e; --jamon-900:#71192c;
+  --oliva-100:#e6ebd9; --oliva-200:#cdd9b6; --oliva-600:#556d36; --oliva-700:#43562e; --oliva-800:#384628;
+  --cacao:#3a2016; --cacao-900:#2c1810;   /* marrón cálido para fondos oscuros (en vez del azul marino frío) */
   --cream-50:#fffdf8; --cream-100:#fff8e7; --cream-200:#fdedc4; --cream-300:#fadf95;
   --noche-900:#1a1e2e; --noche-800:#252a3d; --noche-700:#353c52;
   --bg:#fffdf8; --ink:#1a1e2e; --ink-2:#353c52; --line:#f1e6c8;
@@ -47,8 +48,8 @@ img { max-width:100%; display:block; }
 .nav a { color:var(--ink-2); font-weight:600; font-size:.95rem; }
 .nav a:hover { color:var(--jamon-700); text-decoration:none; }
 .nav__map { color:var(--jamon-700) !important; font-weight:700 !important; }
-.btn-contact { display:inline-flex; align-items:center; gap:6px; background:var(--noche-900); color:var(--cream-50); font-weight:700; font-size:.9rem; padding:9px 17px; border-radius:999px; }
-.btn-contact:hover { background:var(--jamon-700); color:var(--cream-50); text-decoration:none; }
+.btn-contact { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg, var(--jamon-600), var(--jamon-700)); color:var(--cream-50); font-weight:700; font-size:.9rem; padding:9px 17px; border-radius:999px; box-shadow:0 8px 18px -9px rgba(155,27,48,.55); }
+.btn-contact:hover { filter:brightness(1.08); color:var(--cream-50); text-decoration:none; }
 @media (max-width:720px){ .btn-contact{ padding:8px 13px; } }
 .lang { display:inline-flex; align-items:center; gap:7px; border:1.5px solid var(--saffron-400); border-radius:999px;
   padding:7px 14px; font-weight:700; font-size:.88rem; color:var(--saffron-700); background:var(--cream-100); }
@@ -87,7 +88,7 @@ img { max-width:100%; display:block; }
 .card { display:flex; flex-direction:column; background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .3s cubic-bezier(.21,.47,.32,.98), box-shadow .3s; height:100%; }
 .card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); text-decoration:none; }
 .card__media { position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--cream-200); display:flex; align-items:center; justify-content:center; }
-.card__media::after { content:""; position:absolute; inset:0; z-index:2; background:linear-gradient(to top, rgba(26,30,46,.62), rgba(26,30,46,.06) 55%, transparent); }
+.card__media::after { content:""; position:absolute; inset:0; z-index:2; background:linear-gradient(to top, rgba(44,24,16,.62), rgba(44,24,16,.06) 55%, transparent); }
 .card__media--gradient::before { content:""; position:absolute; inset:0; background-image:var(--texture); background-size:var(--texture-size); }
 .m-restaurante{ background:linear-gradient(135deg,#c81f33,#efb02c); }
 .m-bar{ background:linear-gradient(135deg,#e8a82c,#c4811a); }
@@ -127,7 +128,7 @@ img { max-width:100%; display:block; }
   background:linear-gradient(135deg, var(--jamon-600), var(--saffron-500)); transition:transform .25s; }
 .zonecard::before { content:""; position:absolute; inset:0; background-image:var(--texture); background-size:var(--texture-size); }
 .zonecard:nth-child(2){ background:linear-gradient(135deg, var(--oliva-600), var(--saffron-600)); }
-.zonecard:nth-child(3){ background:linear-gradient(135deg, var(--noche-900), var(--jamon-600)); }
+.zonecard:nth-child(3){ background:linear-gradient(135deg, var(--cacao), var(--jamon-600)); }
 .zonecard:nth-child(4){ background:linear-gradient(135deg, var(--saffron-600), var(--oliva-600)); }
 .zonecard:hover { text-decoration:none; transform:translateY(-4px); }
 .zonecard h3 { position:relative; font-family:var(--display); font-weight:700; margin:0 0 4px; font-size:2rem; }
@@ -205,8 +206,8 @@ img { max-width:100%; display:block; }
 .pop__b { padding:12px 14px 14px; }
 .pop__t { font-family:var(--display); font-weight:700; font-size:1.2rem; color:var(--noche-900); margin:0 0 2px; line-height:1.1; }
 .pop__s { font-size:.8rem; color:var(--ink-2); margin:0 0 10px; }
-.pop__btn { display:block; text-align:center; background:var(--noche-900); color:var(--cream-50); font-weight:700; font-size:.82rem; padding:9px; border-radius:999px; }
-.pop__btn:hover { background:var(--jamon-700); text-decoration:none; color:var(--cream-50); }
+.pop__btn { display:block; text-align:center; background:var(--jamon-700); color:var(--cream-50); font-weight:700; font-size:.82rem; padding:9px; border-radius:999px; }
+.pop__btn:hover { background:var(--jamon-800); text-decoration:none; color:var(--cream-50); }
 .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large { background:rgba(232,168,44,.35) !important; }
 .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div { background:var(--saffron-500) !important; color:#fff !important; font-weight:700; font-family:var(--font) !important; }
 
@@ -238,7 +239,7 @@ img { max-width:100%; display:block; }
 
 /* Home — banda del mapa */
 .mapband { position:relative; overflow:hidden; border-radius:var(--radius); padding:42px 32px; color:#fff; box-shadow:var(--shadow-lg);
-  background:linear-gradient(135deg, var(--noche-900), var(--jamon-700)); }
+  background:linear-gradient(135deg, var(--cacao-900), var(--jamon-700)); }
 .mapband::before { content:""; position:absolute; inset:0; background-image:var(--texture); background-size:var(--texture-size); }
 .mapband > * { position:relative; }
 .mapband h2 { font-family:var(--display); font-size:2.1rem; margin:0 0 6px; color:#fff; }
