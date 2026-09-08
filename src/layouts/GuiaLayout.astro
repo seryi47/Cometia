@@ -16,7 +16,8 @@ const t = lang === 'en'
       nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/en/about', contact: '/en/contact' }
   : { home: '/', bars: '/', restaurants: '/', tagline: 'Guía de bares y restaurantes de la Costa Blanca',
       nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/sobre', contact: '/contacto' };
-const zonaLink = (z: string) => `${t.home}?zona=${encodeURIComponent(z)}`;
+const ZSLUG: Record<string, string> = { 'Gran Alacant': 'gran-alacant', 'Santa Pola': 'santa-pola' };
+const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''}`;
 ---
 <!doctype html>
 <html lang={lang}>

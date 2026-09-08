@@ -1,0 +1,57 @@
+---
+import { LUGARES, CATEGORIAS, TYPE_ORDER, descripcion, tipoLabel, esBritanico, type Lang } from '../data/guia/lugares';
+export interface Props { zona: string; lang: Lang; }
+const { zona, lang } = Astro.props;
+const places = LUGARES.filter((l) => l.zone === zona).sort((a, b) => a.name.localeCompare(b.name));
+const fichaBase = lang === 'en' ? '/en/place/' : '/sitio/';
+
+const INTRO: Record<string, Record<Lang, string>> = {
+  'Gran Alacant': {
+    es: 'Gran Alacant concentra una gran variedad de bares y restaurantes repartidos por sus urbanizaciones y el Centro Comercial: mucha oferta internacional y locales de ambiente británico junto a cocina española de siempre. Aquí tienes todos los sitios para comer y tomar algo en Gran Alacant, ordenados por tipo.',
+    en: 'Gran Alacant has a wide range of bars and restaurants spread across its urbanisations and the Centro Comercial: plenty of international options and British-style venues alongside traditional Spanish cooking. Here are all the places to eat and drink in Gran Alacant, sorted by type.',
+  },
+  'Santa Pola': {
+    es: 'Santa Pola, con uno de los mayores puertos pesqueros del Mediterráneo, es un sitio estupendo para pescado y marisco, además de bares de tapas y cafeterías por todo el pueblo y la costa. Aquí tienes todos los locales de Santa Pola, por tipo.',
+    en: 'Santa Pola, home to one of the largest fishing ports in the Mediterranean, is a great spot for fish and seafood, plus tapas bars and cafés all over the town and seafront. Here are all the venues in Santa Pola, by type.',
+  },
+};
+const intro = INTRO[zona]?.[lang] ?? '';
+const L = lang === 'en'
+  ? { count: 'places', view: 'View details →', brit: '🇬🇧 British-friendly', back: '← Back to the guide', home: '/en/' }
+  : { count: 'sitios', view: 'Ver ficha →', brit: '🇬🇧 British-friendly', back: '← Volver a la guía', home: '/' };
+---
+<section class="ficha wrap">
+  <div class="crumbs"><a href={L.home}>{lang === 'en' ? 'Home' : 'Inicio'}</a> › {zona}</div>
+  <h1>{lang === 'en' ? `Bars & restaurants in ${zona}` : `Bares y restaurantes en ${zona}`}</h1>
+  <p class="ficha__sub" style="max-width:760px">{intro}</p>
+  <p class="count">{places.length} {L.count}</p>
+
+  {TYPE_ORDER.filter((t) => places.some((l) => l.type === t)).map((t) => {
+    const items = places.filter((l) => l.type === t);
+    return (
+      <div class="section" style="padding-top:8px">
+        <h2>{CATEGORIAS[t].icon} {lang === 'en' ? CATEGORIAS[t].plural_en : CATEGORIAS[t].plural_es} <span style="color:var(--ink-2);font-weight:400;font-size:1rem">({items.length})</span></h2>
+        <div class="grid">
+          {items.map((l) => {
+            const brit = esBritanico(l);
+            return (
+              <a class="card" href={`${fichaBase}${l.slug}`}>
+                <div class="card__top">
+                  <span class="card__ico">{CATEGORIAS[l.type].icon}</span>
+                  <span class="card__tag">{tipoLabel(l, lang)}</span>
+                  {brit && <span class="card__tag card__tag--brit">{L.brit}</span>}
+                </div>
+                <h3>{l.name}</h3>
+                <p class="card__zone">📍 {l.zone}</p>
+                <p class="card__desc">{descripcion(l, lang) || ''}</p>
+                <span class="card__more">{L.view}</span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    );
+  })}
+
+  <p style="margin-top:24px"><a class="chip" href={L.home}>{L.back}</a></p>
+</section>

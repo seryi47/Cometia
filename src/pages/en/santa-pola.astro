@@ -1,0 +1,15 @@
+---
+import GuiaLayout from '../../layouts/GuiaLayout.astro';
+import ZonaGuia from '../../components/ZonaGuia.astro';
+import { porZona } from '../../data/guia/lugares';
+const n = porZona('Santa Pola').length;
+---
+<GuiaLayout
+  title="Bars & restaurants in Santa Pola — Cometia Guide"
+  description={`A guide to the ${n} bars, restaurants, pubs and cafés in Santa Pola (Alicante). Fish, tapas and more, with map and descriptions. English & Spanish.`}
+  lang="en"
+  canonical="/en/santa-pola"
+  altUrl="/santa-pola"
+>
+  <ZonaGuia zona="Santa Pola" lang="en" />
+</GuiaLayout>
