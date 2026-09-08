@@ -49,7 +49,9 @@ const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''
       <nav class="nav">
         <a class="hide-sm" href={zonaLink('Gran Alacant')}>{t.nav_ga}</a>
         <a class="hide-sm" href={zonaLink('Santa Pola')}>{t.nav_sp}</a>
-        <a class="lang" href={altUrl || (lang === 'en' ? '/' : '/en/')}>{lang === 'en' ? 'ES' : 'EN'}</a>
+        <a class="lang" href={altUrl || (lang === 'en' ? '/' : '/en/')} title={lang === 'en' ? 'Ver en español' : 'View in English'} aria-label={lang === 'en' ? 'Cambiar a español' : 'Switch to English'}>
+          <span class="flag">{lang === 'en' ? '🇪🇸' : '🇬🇧'}</span> {lang === 'en' ? 'Español' : 'English'}
+        </a>
       </nav>
     </div>
   </header>

@@ -5,27 +5,30 @@ const { l, lang } = Astro.props;
 const brit = esBritanico(l);
 const href = (lang === 'en' ? '/en/place/' : '/sitio/') + l.slug;
 const cuisine = l.cuisine ? l.cuisine.split(';')[0].replace(/_/g, ' ') : null;
-const ver = lang === 'en' ? 'View →' : 'Ver ficha →';
+const ver = lang === 'en' ? 'View details →' : 'Ver ficha →';
 const terrLabel = lang === 'en' ? 'Terrace' : 'Terraza';
+const accent = [tipoLabel(l, lang), cuisine].filter(Boolean).join(' · ');
 ---
 <a class="card lugar" href={href}
    data-name={`${l.name} ${l.type} ${l.zone} ${l.cuisine || ''}`.toLowerCase()}
    data-tipo={l.type} data-zona={l.zone}>
   <div class={`card__media m-${l.type}`}>
-    <span class="ico">{CATEGORIAS[l.type].icon}</span>
+    <span class="card__ico" aria-hidden="true">{CATEGORIAS[l.type].icon}</span>
     <div class="card__badges">
       {brit && <span class="pill pill--brit">🇬🇧 British</span>}
       {l.outdoor === 'yes' && <span class="pill pill--terr">🌤️ {terrLabel}</span>}
     </div>
-    <div class="card__loc">📍 {l.zone}</div>
+    <div class="card__cover">
+      <span class="card__loc">📍 {l.zone}</span>
+      <h3 class="card__name">{l.name}</h3>
+    </div>
   </div>
   <div class="card__body">
-    <h3>{l.name}</h3>
-    <p class="card__accent">{tipoLabel(l, lang)}</p>
+    <p class="card__accent">{accent}</p>
     <p class="card__desc">{descripcion(l, lang) || ''}</p>
     <div class="card__foot">
       {cuisine && <span class="tagc">{cuisine}</span>}
-      <span class="tagc" style="margin-left:auto; background:transparent; color:var(--jamon-700);">{ver}</span>
+      <span class="card__more">{ver}</span>
     </div>
   </div>
 </a>

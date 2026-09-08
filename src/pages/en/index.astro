@@ -25,9 +25,10 @@ const jsonLd = {
 >
   <section class="hero">
     <div class="wrap">
+      <p class="hero__eyebrow">Your Costa Blanca guide</p>
       <h1>Where to eat & drink in <span class="grad">Gran Alacant & Santa Pola</span></h1>
-      <p>The local guide to bars, restaurants, pubs and cafés in the area. {TOTAL} places with map, hours and details. <a href="/">En español →</a></p>
-      <div class="search"><input id="q" type="search" placeholder="Search by name, type or area…" autocomplete="off" aria-label="Search" /></div>
+      <p>The local guide to bars, restaurants, pubs and cafés in the area. {TOTAL} places with map, hours and details.</p>
+      <div class="search"><input id="q" type="search" placeholder="Search by name, type or area…" autocomplete="off" aria-label="Search" /><span class="loc">📍 Costa Blanca</span></div>
       <div class="chips" id="chips">
         <button class="chip is-active" data-f="tipo" data-v="">All</button>
         {TYPE_ORDER.filter((t) => LUGARES.some((l) => l.type === t)).map((t) => (
