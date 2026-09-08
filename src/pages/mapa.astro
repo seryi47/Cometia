@@ -1,0 +1,14 @@
+---
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import MapaGuia from '../components/MapaGuia.astro';
+import { TOTAL } from '../data/guia/lugares';
+---
+<GuiaLayout
+  title="Mapa de bares y restaurantes de la Costa Blanca — Cometia"
+  description={`Mapa interactivo con los ${TOTAL} bares, restaurantes, pubs y cafeterías de Gran Alacant, Santa Pola, Alicante y Elche. Filtra por tipo y zona y pulsa cada pin para ver la ficha.`}
+  lang="es"
+  canonical="/mapa"
+  altUrl="/en/map"
+>
+  <MapaGuia lang="es" />
+</GuiaLayout>

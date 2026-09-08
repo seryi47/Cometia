@@ -13,9 +13,9 @@ const SITE = 'https://cometia.es';
 const abs = (p: string) => SITE + p;
 const t = lang === 'en'
   ? { home: '/en/', tagline: 'Costa Blanca food & drink guide', slogan: 'EAT & DRINK · COSTA BLANCA',
-      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', nav_al: 'Alicante', nav_el: 'Elche', about: '/en/about', aboutLabel: 'About', contact: '/en/contact', contactLabel: 'Contact' }
+      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', nav_al: 'Alicante', nav_el: 'Elche', map: '/en/map', mapLabel: 'Map', about: '/en/about', aboutLabel: 'About', contact: '/en/contact', contactLabel: 'Contact' }
   : { home: '/', tagline: 'Guía de bares y restaurantes de la Costa Blanca', slogan: 'COMER Y TAPEAR · COSTA BLANCA',
-      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', nav_al: 'Alicante', nav_el: 'Elche', about: '/sobre', aboutLabel: 'Sobre', contact: '/contacto', contactLabel: 'Contacto' };
+      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', nav_al: 'Alicante', nav_el: 'Elche', map: '/mapa', mapLabel: 'Mapa', about: '/sobre', aboutLabel: 'Sobre', contact: '/contacto', contactLabel: 'Contacto' };
 const ZSLUG: Record<string, string> = { 'Gran Alacant': 'gran-alacant', 'Santa Pola': 'santa-pola', 'Alicante': 'alicante', 'Elche': 'elche' };
 const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''}`;
 ---
@@ -41,6 +41,7 @@ const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  <script is:inline>document.documentElement.classList.add('reveal-on');</script>
 </head>
 <body>
   <header class="hdr">
@@ -58,6 +59,7 @@ const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''
         </span>
       </a>
       <nav class="nav">
+        <a class="nav__map" href={t.map}>🗺️ {t.mapLabel}</a>
         <a class="hide-md" href={zonaLink('Gran Alacant')}>{t.nav_ga}</a>
         <a class="hide-md" href={zonaLink('Santa Pola')}>{t.nav_sp}</a>
         <a class="hide-sm" href={zonaLink('Alicante')}>{t.nav_al}</a>
@@ -91,5 +93,21 @@ const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''
       <p class="ftr__attr">© {new Date().getFullYear()} Cometia · {t.tagline}</p>
     </div>
   </footer>
+
+  <script is:inline>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || !els.length) {
+        els.forEach(function (e) { e.classList.add('is-in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+  </script>
 </body>
 </html>

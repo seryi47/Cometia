@@ -45,6 +45,10 @@ const jsonLd = {
       <div class="chips">
         {ZONAS.map((z) => (<a class="chip zona" href={`/en/${z === 'Gran Alacant' ? 'gran-alacant' : z === 'Santa Pola' ? 'santa-pola' : z === 'Alicante' ? 'alicante' : 'elche'}`}>📍 {z} ({porZona(z)})</a>))}
       </div>
+      <div class="hero__cta">
+        <a class="btn-hero" href="/en/map">🗺️ Open the map</a>
+        <a class="btn-hero btn-hero--ghost" href="/en/alicante">Explore Alicante</a>
+      </div>
     </div>
   </section>
 
