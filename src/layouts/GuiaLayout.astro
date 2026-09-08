@@ -12,10 +12,10 @@ const { title, description, lang, canonical, altUrl, jsonLd } = Astro.props;
 const SITE = 'https://cometia.es';
 const abs = (p: string) => SITE + p;
 const t = lang === 'en'
-  ? { home: '/en/', bars: '/en/', restaurants: '/en/', tagline: 'Costa Blanca food & drink guide',
-      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/en/about', contact: '/en/contact' }
-  : { home: '/', bars: '/', restaurants: '/', tagline: 'Guía de bares y restaurantes de la Costa Blanca',
-      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/sobre', contact: '/contacto' };
+  ? { home: '/en/', tagline: 'Costa Blanca food & drink guide', slogan: 'EAT & DRINK · COSTA BLANCA',
+      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/en/about', aboutLabel: 'About', contact: '/en/contact', contactLabel: 'Contact' }
+  : { home: '/', tagline: 'Guía de bares y restaurantes de la Costa Blanca', slogan: 'COMER Y TAPEAR · COSTA BLANCA',
+      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/sobre', aboutLabel: 'Sobre', contact: '/contacto', contactLabel: 'Contacto' };
 const ZSLUG: Record<string, string> = { 'Gran Alacant': 'gran-alacant', 'Santa Pola': 'santa-pola' };
 const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''}`;
 ---
@@ -45,13 +45,26 @@ const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''
 <body>
   <header class="hdr">
     <div class="wrap hdr__in">
-      <a class="brand" href={t.home}><span class="pin">📍</span> Cometia</a>
+      <a class="brand" href={t.home} aria-label="Cometia">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fffdf8" stroke-width="1.8" stroke-linecap="round">
+            <circle cx="12" cy="12" r="7"/>
+            <circle cx="12" cy="12" r="2.4" fill="#fffdf8" stroke="none"/>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name"><b>Come</b>tia</span>
+          <span class="brand__tag">{t.slogan}</span>
+        </span>
+      </a>
       <nav class="nav">
         <a class="hide-sm" href={zonaLink('Gran Alacant')}>{t.nav_ga}</a>
         <a class="hide-sm" href={zonaLink('Santa Pola')}>{t.nav_sp}</a>
+        <a class="hide-sm" href={t.about}>{t.aboutLabel}</a>
         <a class="lang" href={altUrl || (lang === 'en' ? '/' : '/en/')} title={lang === 'en' ? 'Ver en español' : 'View in English'} aria-label={lang === 'en' ? 'Cambiar a español' : 'Switch to English'}>
           <span class="flag">{lang === 'en' ? '🇪🇸' : '🇬🇧'}</span> {lang === 'en' ? 'Español' : 'English'}
         </a>
+        <a class="btn-contact" href={t.contact}>{t.contactLabel}</a>
       </nav>
     </div>
   </header>
