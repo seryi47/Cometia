@@ -18,7 +18,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "el-cisne",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/445901656",
@@ -39,7 +42,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "wok-buffet",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1221458912",
@@ -60,7 +66,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Sierra Mar",
   "slug": "dick-turpins",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1221460442",
@@ -81,7 +90,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Sierra Mar",
   "slug": "zest",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1221461693",
@@ -102,7 +114,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Sierra Mar",
   "slug": "la-paletta",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1221465111",
@@ -123,7 +138,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "sezadu",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1221466796",
@@ -144,7 +162,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "cork-n-bottle",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1221469940",
@@ -165,7 +186,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Altomar II",
   "slug": "destination-bar-grill",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1339993160",
@@ -186,7 +210,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "tamarit",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1340575543",
@@ -207,7 +234,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "batiste",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1340576595",
@@ -228,7 +258,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "el-bronce",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1340576648",
@@ -249,7 +282,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "los-curros",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1663183213",
@@ -270,7 +306,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-taberna-del-puerto",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1669168164",
@@ -291,7 +330,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "hispania",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1669168167",
@@ -312,7 +354,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "restaurante-matola",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1669168169",
@@ -333,7 +378,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "el-rincon-de-manoli",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1669168171",
@@ -354,7 +402,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "texicano-internacional",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1669168174",
@@ -375,7 +426,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "alexandria",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1669168175",
@@ -396,7 +450,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "miley-o-rourke-s-irish-pub",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1669168177",
@@ -417,7 +474,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "maritao-kitchen",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1669168178",
@@ -438,7 +498,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "dragon-iii",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1669168179",
@@ -459,7 +522,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "heaven-star",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1675860612",
@@ -480,7 +546,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "la Vallverda Alta",
   "slug": "indalecio",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1896242730",
@@ -501,7 +570,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "taperia-y-arroceria-buenisimo",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/1896255719",
@@ -522,7 +594,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "cafeteria-el-golos",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2457751760",
@@ -543,7 +618,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "tapas-consueta",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2457765556",
@@ -564,7 +642,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-mandarina",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2459141223",
@@ -585,7 +666,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "el-jamon",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2459141225",
@@ -606,7 +690,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "bitacora",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2459141234",
@@ -627,7 +714,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "roraima",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2883820406",
@@ -648,7 +738,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "meson-gallego",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2883820506",
@@ -669,7 +762,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "meson-cervantes",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2883829001",
@@ -690,7 +786,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "asador-las-palomas",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2923300688",
@@ -711,7 +810,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "carmen",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2996045069",
@@ -732,7 +834,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "burger-king",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Burgerkingheadquarters.jpg?width=800",
+  "photo_credit": "Wikimedia Commons",
+  "photo_fit": "contain"
  },
  {
   "osm_id": "node/2998081449",
@@ -753,7 +858,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "cafe-paris",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/2998081450",
@@ -774,7 +882,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "cafe-de-la-mar",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319197",
@@ -795,7 +906,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "boule-vard",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319198",
@@ -816,7 +930,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "celestino-y-maria",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319199",
@@ -837,7 +954,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "el-portal-del-puerto-com",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319200",
@@ -858,7 +978,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-sal",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319201",
@@ -879,7 +1002,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "i-love-recycled",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319202",
@@ -900,7 +1026,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-taberna-de-lucia",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319203",
@@ -921,7 +1050,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "lizarran",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319204",
@@ -942,7 +1074,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "lugano",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319206",
@@ -963,7 +1098,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "saint-james",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3011319207",
@@ -984,7 +1122,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "vintage",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3012630690",
@@ -1005,7 +1146,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "restaurante-currican",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3012630691",
@@ -1026,7 +1170,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "the-good-burger",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3012630693",
@@ -1047,7 +1194,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "restaurante-narcea",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3013272029",
@@ -1068,7 +1218,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "restobar-laico",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3013272334",
@@ -1089,7 +1242,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "telepizza",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3013272335",
@@ -1110,7 +1266,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "virgen-del-carmen",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3018702044",
@@ -1131,7 +1290,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "poseidon",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3018702076",
@@ -1152,7 +1314,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "laico",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3020596306",
@@ -1173,7 +1338,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "cafe-paris-2",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3020596307",
@@ -1194,7 +1362,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "rendez-vous",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3020596308",
@@ -1215,7 +1386,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "china-town",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3020596310",
@@ -1236,7 +1410,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "don-jeronimo",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3020596311",
@@ -1257,7 +1434,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "la-vida-bonita-beach-club",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3020596312",
@@ -1278,7 +1458,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "havana-cafe",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3020596313",
@@ -1299,7 +1482,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "taperia-la-fabrica",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3020596314",
@@ -1320,7 +1506,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "chiringuito-azul-santa-pola",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3020596315",
@@ -1341,7 +1530,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "pizzeria-rollo",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3023352798",
@@ -1362,7 +1554,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "oceano",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3023352801",
@@ -1383,7 +1578,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "tamarit-2",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3024771062",
@@ -1404,7 +1602,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "sierra-nevada",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3032587181",
@@ -1425,7 +1626,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "casa-de-oro",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3032587187",
@@ -1446,7 +1650,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "patilla",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3032587188",
@@ -1467,7 +1674,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "bar-quesada",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3035264513",
@@ -1488,7 +1698,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Altomar II",
   "slug": "bar-sioux",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3035264514",
@@ -1509,7 +1722,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Altomar II",
   "slug": "tablao-los-lunares",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3037172767",
@@ -1530,7 +1746,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "brutos",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3037172772",
@@ -1551,7 +1770,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "saint-james-2",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3039452449",
@@ -1572,7 +1794,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "sabor-y-amistad",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3039452451",
@@ -1593,7 +1818,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "la-fragola",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3096458628",
@@ -1614,7 +1842,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "miano",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3096494847",
@@ -1635,7 +1866,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "blue-monkey",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3258434309",
@@ -1656,7 +1890,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "karaoke-disco-pub",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3258434317",
@@ -1677,7 +1914,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "a-sirvent",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3258434319",
@@ -1698,7 +1938,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "la-cocina-de-barbara",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3266595674",
@@ -1719,7 +1962,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Sierra Mar",
   "slug": "patagonia-steak-house",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3267989701",
@@ -1740,7 +1986,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "la-tasca",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/3457930647",
@@ -1761,7 +2010,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Monte y Mar",
   "slug": "the-belfry",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4038336301",
@@ -1782,7 +2034,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "vaig-a-dite",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4038346722",
@@ -1803,7 +2058,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "ricopollo-santapola",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4083028480",
@@ -1824,7 +2082,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": null,
   "slug": "las-torres",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4083073270",
@@ -1845,7 +2106,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "restaurante-casa-del-mar",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4130816089",
@@ -1866,7 +2130,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-matera",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4204405741",
@@ -1887,7 +2154,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Brisa Mar",
   "slug": "restaurante-alonai",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4245512989",
@@ -1908,7 +2178,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "nankinii",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4307492036",
@@ -1929,7 +2202,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "autoking",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4307492037",
@@ -1950,7 +2226,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "casa-joaquin",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4307492038",
@@ -1971,7 +2250,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-cofradia",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4307495274",
@@ -1992,7 +2274,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "100-montaditos",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Cerveceria%20100%20montaditos%20en%20Sevilla.jpg?width=800",
+  "photo_credit": "Wikimedia Commons",
+  "photo_fit": "contain"
  },
  {
   "osm_id": "node/4313591609",
@@ -2013,7 +2298,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "dream-corner",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4352263851",
@@ -2034,7 +2322,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Altomar",
   "slug": "kiosko-el-pinet",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4416535899",
@@ -2055,7 +2346,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "glorieta-nova",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4416535900",
@@ -2076,7 +2370,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "juande",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4416535901",
@@ -2097,7 +2394,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "krishna",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4416535903",
@@ -2118,7 +2418,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-fortaleza",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4417769957",
@@ -2139,7 +2442,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "nankin",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4417769960",
@@ -2160,7 +2466,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "tribeca",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4418140336",
@@ -2181,7 +2490,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-casa-de-marta",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4418140342",
@@ -2202,7 +2514,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-moruna",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4421245958",
@@ -2223,7 +2538,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "sabor-de-galicia",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4426991746",
@@ -2244,7 +2562,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "el-tapeo",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4426991748",
@@ -2265,7 +2586,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "o-furancho",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4426991749",
@@ -2286,7 +2610,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "pizza-pola",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4523664155",
@@ -2307,7 +2634,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Residencial Isla de Ízaro",
   "slug": "the-pub",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4618850489",
@@ -2328,7 +2658,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Monte y Mar",
   "slug": "chill-out-grill",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4638558490",
@@ -2349,7 +2682,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "azafran",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/4874904321",
@@ -2370,7 +2706,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "el-hatsikidee",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/5396112500",
@@ -2391,7 +2730,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "casa-sofia",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/5893492985",
@@ -2412,7 +2754,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "wok-hong",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6161339486",
@@ -2433,7 +2778,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "molly-malones",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6210298557",
@@ -2454,7 +2802,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-sidreria",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6356652275",
@@ -2475,7 +2826,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-parmigiana",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6356652276",
@@ -2496,7 +2850,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "meson-el-castillo",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6356652277",
@@ -2517,7 +2874,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-cadena",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6395825573",
@@ -2538,7 +2898,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "cafeteria-l-estacio",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6398226941",
@@ -2559,7 +2922,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "horchateria-berenguer",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6399471652",
@@ -2580,7 +2946,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "taperia-la-fragua",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6399471654",
@@ -2601,7 +2970,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "restaurante-rias-baixas",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6399471657",
@@ -2622,7 +2994,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "restaurante-sidreria-el-llagarin",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6441437504",
@@ -2643,7 +3018,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "los-olivos-playa",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6496385903",
@@ -2664,7 +3042,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "bar-bienvenido",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6496385904",
@@ -2685,7 +3066,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "chiringuito-moni",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6496385905",
@@ -2706,7 +3090,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "la-bodegueta-de-julia",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6496385906",
@@ -2727,7 +3114,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "los-barriles",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6533648451",
@@ -2748,7 +3138,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "soleluna",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6533668537",
@@ -2769,7 +3162,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "la-bodeguita-de-pascual",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6533995997",
@@ -2790,7 +3186,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "sueno-azul",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6533996014",
@@ -2811,7 +3210,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "el-chupao",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6534003974",
@@ -2832,7 +3234,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "restaurante-vistabella",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6534065752",
@@ -2853,7 +3258,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Balcones del Mar",
   "slug": "cafeteria-gran-alacant",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6535096246",
@@ -2874,7 +3282,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "el-campo-de-lili",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6552573994",
@@ -2895,7 +3306,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "la-mansion",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6566066935",
@@ -2916,7 +3330,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització La Colònia",
   "slug": "restaurante-picola",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6592830591",
@@ -2937,7 +3354,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Residencial Isla de Ízaro",
   "slug": "rogers",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6767395730",
@@ -2958,7 +3378,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "cafeteria-alexandra",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6767409567",
@@ -2979,7 +3402,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-dolce-vita",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6767425100",
@@ -3000,7 +3426,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "restaurante-2020",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6767445326",
@@ -3021,7 +3450,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "velvet-club",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6767449298",
@@ -3042,7 +3474,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "restaurante-casa-yolanda",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6767451538",
@@ -3063,7 +3498,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "camarote",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/6967706085",
@@ -3084,7 +3522,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Monte y Mar",
   "slug": "skipper",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/8499850918",
@@ -3105,7 +3546,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "snipe",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/8722773417",
@@ -3126,7 +3570,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "rincon-de-santi",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9084303370",
@@ -3147,7 +3594,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "pinseria-il-grano",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9084303392",
@@ -3168,7 +3618,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "fayago",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9087526637",
@@ -3189,7 +3642,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "heladeria-chulay",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9087526646",
@@ -3210,7 +3666,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "old-fox-beach-bar",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9094549456",
@@ -3231,7 +3690,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "miramar",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9094549459",
@@ -3252,7 +3714,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-raspa",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9094549460",
@@ -3273,7 +3738,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-mala-madre",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9094549464",
@@ -3294,7 +3762,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "azteca",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9094549466",
@@ -3315,7 +3786,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "mi-barra",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9094549467",
@@ -3336,7 +3810,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "mar-de-cristal",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9094549468",
@@ -3357,7 +3834,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "cafeteria-la-barca",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9095113733",
@@ -3378,7 +3858,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "pizza-reina",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9095217392",
@@ -3399,7 +3882,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "bb",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9095217394",
@@ -3420,7 +3906,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "cafeteria-ecus",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9095277002",
@@ -3441,7 +3930,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "casa-rico",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9095356990",
@@ -3462,7 +3954,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "pizzeria-la-deliziosa",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9115259767",
@@ -3483,7 +3978,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "asador-don-rodrigo",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9120893131",
@@ -3504,7 +4002,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "restaurante-el-zagal",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9122952861",
@@ -3525,7 +4026,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "il-viaggio",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9123098235",
@@ -3546,7 +4050,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "playa",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9123098250",
@@ -3567,7 +4074,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "heladeria-noor-kebab",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9124242062",
@@ -3588,7 +4098,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "casa-coco",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9127834113",
@@ -3609,7 +4122,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "el-olivo",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9127842024",
@@ -3630,7 +4146,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "kfc",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20modern%20KFC%20restaurant%20in%20Murphy%2C%20North%20Carolina.jpg?width=800",
+  "photo_credit": "Wikimedia Commons",
+  "photo_fit": "contain"
  },
  {
   "osm_id": "node/9140633713",
@@ -3651,7 +4170,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "gran-bahia",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9140633714",
@@ -3672,7 +4194,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "j-latorre",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9140633775",
@@ -3693,7 +4218,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "el-tiburon",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9140633776",
@@ -3714,7 +4242,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "la-bodeguita-de-serafin",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9140633793",
@@ -3735,7 +4266,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "resto-bar-akacia",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9142402465",
@@ -3756,7 +4290,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "chiringuito-la-mar-sala",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9457412326",
@@ -3777,7 +4314,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "la-cantina",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/9504426342",
@@ -3798,7 +4338,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "restaurante-infernum",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/10045989633",
@@ -3819,7 +4362,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "capricho",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/10706971505",
@@ -3840,7 +4386,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "malamadre-experience",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/10779549021",
@@ -3861,7 +4410,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "braseria-canto-del-mestre",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/10790865965",
@@ -3882,7 +4434,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "pizza-kebab-express",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/10790865966",
@@ -3903,7 +4458,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Novamar",
   "slug": "gourmet",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/11065098276",
@@ -3924,7 +4482,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "lizarran-2",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/11159783453",
@@ -3945,7 +4506,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "zbra",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/11305656406",
@@ -3966,7 +4530,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "els Ciprerets",
   "slug": "bar-skatebar-santa-pola",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/11513858823",
@@ -3987,7 +4554,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Residencial Isla de Ízaro",
   "slug": "azafran-indian-resto-bar",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/11898597153",
@@ -4008,7 +4578,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "churreria-pepito",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/11938181911",
@@ -4029,7 +4602,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "chiringuito-las-jamilas",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/11938181920",
@@ -4050,7 +4626,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Edificio Gran Playa",
   "slug": "fausti-burger",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/13638353485",
@@ -4071,7 +4650,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Altomar II",
   "slug": "tuttis-restaurante",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/13638353490",
@@ -4092,7 +4674,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Altomar II",
   "slug": "la-piedra-bar-grill",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/13659859724",
@@ -4113,7 +4698,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Residencial Isla de Ízaro",
   "slug": "james-bar-grill",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/13701075749",
@@ -4134,7 +4722,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "el-pilar",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/13711766401",
@@ -4155,7 +4746,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "brisa-beach",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/13931872710",
@@ -4176,7 +4770,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "dolce-vita",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/13931874456",
@@ -4197,7 +4794,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "las-vegas",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "node/13935099743",
@@ -4218,7 +4818,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "meson-montanes",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/71213930",
@@ -4239,7 +4842,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "platero",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/254030102",
@@ -4260,7 +4866,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "varadero",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/288773415",
@@ -4281,7 +4890,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "pena-grande",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/295936216",
@@ -4302,7 +4914,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "mcdonald-s",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/New-McDonald-HU-lg%20%2843261171540%29.jpg?width=800",
+  "photo_credit": "Wikimedia Commons",
+  "photo_fit": "contain"
  },
  {
   "osm_id": "way/298154742",
@@ -4323,7 +4938,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "camelot-pop-bar",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/298154745",
@@ -4344,7 +4962,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanización Marismas VIII",
   "slug": "camelot-beach-club",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/362828157",
@@ -4365,7 +4986,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "polamar",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/625839011",
@@ -4386,7 +5010,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "foster-s-hollywood",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Foster%27s%20Hollywood%2C%20Pozuelo%20de%20Alarc%C3%B3n%2C%20Madrid%2C%20Spain.jpg?width=800",
+  "photo_credit": "Wikimedia Commons",
+  "photo_fit": "contain"
  },
  {
   "osm_id": "way/625839012",
@@ -4407,7 +5034,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": "Gran Alacant",
   "slug": "burger-king-2",
-  "type": "comida-rapida"
+  "type": "comida-rapida",
+  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Burgerkingheadquarters.jpg?width=800",
+  "photo_credit": "Wikimedia Commons",
+  "photo_fit": "contain"
  },
  {
   "osm_id": "way/683082473",
@@ -4428,7 +5058,10 @@
   "zone": "Santa Pola",
   "neighbourhood": "Urbanització El Poble Llevantí",
   "slug": "venta-vista-alegre",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/713143712",
@@ -4449,7 +5082,10 @@
   "zone": "Gran Alacant",
   "neighbourhood": null,
   "slug": "el-faro",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/770748324",
@@ -4470,7 +5106,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "bar-restaurante-foque",
-  "type": "cafeteria"
+  "type": "cafeteria",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/783414921",
@@ -4491,7 +5130,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "club-de-petanca-santa-pola",
-  "type": "pub"
+  "type": "pub",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/1097319084",
@@ -4512,7 +5154,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "nomo-varadero-arroceria",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/1097319091",
@@ -4533,7 +5178,10 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "marina",
-  "type": "bar"
+  "type": "bar",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  },
  {
   "osm_id": "way/1097334336",
@@ -4554,6 +5202,9 @@
   "zone": "Santa Pola",
   "neighbourhood": null,
   "slug": "ca-pacorro",
-  "type": "restaurante"
+  "type": "restaurante",
+  "photo": null,
+  "photo_credit": null,
+  "photo_fit": null
  }
 ]

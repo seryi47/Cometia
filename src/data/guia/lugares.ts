@@ -26,6 +26,9 @@ export interface Lugar {
   diet_veg?: string | null;
   zone: string;                 // 'Gran Alacant' | 'Santa Pola'
   neighbourhood?: string | null;
+  photo?: string | null;        // URL de foto libre (Wikimedia/OSM) o subida
+  photo_credit?: string | null; // atribución
+  photo_fit?: 'cover' | 'contain' | null;
 }
 
 export type TypeKey = 'restaurante' | 'bar' | 'pub' | 'cafeteria' | 'comida-rapida' | 'cerveceria';

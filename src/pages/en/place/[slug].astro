@@ -47,6 +47,13 @@ const jsonLd = {
       {l.outdoor === 'yes' && <span class="badge badge--terr">🌤️ Terrace</span>}
     </div>
 
+    {l.photo && (
+      <figure class="ficha__photo">
+        <img src={l.photo} alt={l.name} class={l.photo_fit === 'contain' ? 'is-contain' : ''} loading="lazy" />
+        {l.photo_credit && <figcaption>Photo: {l.photo_credit}</figcaption>}
+      </figure>
+    )}
+
     <div class="ficha__layout">
       <div class="prose">
         {desc && <p>{desc}</p>}

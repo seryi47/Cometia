@@ -12,8 +12,10 @@ const accent = [tipoLabel(l, lang), cuisine].filter(Boolean).join(' · ');
 <a class="card lugar" href={href}
    data-name={`${l.name} ${l.type} ${l.zone} ${l.cuisine || ''}`.toLowerCase()}
    data-tipo={l.type} data-zona={l.zone}>
-  <div class={`card__media m-${l.type}`}>
-    <span class="card__ico" aria-hidden="true">{CATEGORIAS[l.type].icon}</span>
+  <div class={`card__media m-${l.type}${l.photo ? ' card__media--photo' : ''}`}>
+    {l.photo
+      ? <img class={`card__img${l.photo_fit === 'contain' ? ' is-contain' : ''}`} src={l.photo} alt={l.name} loading="lazy" />
+      : <span class="card__ico" aria-hidden="true">{CATEGORIAS[l.type].icon}</span>}
     <div class="card__badges">
       {brit && <span class="pill pill--brit">🇬🇧 British</span>}
       {l.outdoor === 'yes' && <span class="pill pill--terr">🌤️ {terrLabel}</span>}
