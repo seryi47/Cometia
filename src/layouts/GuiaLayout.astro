@@ -1,0 +1,77 @@
+---
+import '../styles/guia.css';
+export interface Props {
+  title: string;
+  description: string;
+  lang: 'es' | 'en';
+  canonical: string;        // ruta relativa, ej "/" o "/sitio/zest"
+  altUrl?: string;          // ruta del mismo contenido en el otro idioma (hreflang)
+  jsonLd?: any;
+}
+const { title, description, lang, canonical, altUrl, jsonLd } = Astro.props;
+const SITE = 'https://cometia.es';
+const abs = (p: string) => SITE + p;
+const t = lang === 'en'
+  ? { home: '/en/', bars: '/en/', restaurants: '/en/', tagline: 'Costa Blanca food & drink guide',
+      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/en/about', contact: '/en/contact' }
+  : { home: '/', bars: '/', restaurants: '/', tagline: 'Guía de bares y restaurantes de la Costa Blanca',
+      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/sobre', contact: '/contacto' };
+const zonaLink = (z: string) => `${t.home}?zona=${encodeURIComponent(z)}`;
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={abs(canonical)} />
+  {altUrl && <link rel="alternate" hreflang={lang === 'en' ? 'es' : 'en'} href={abs(altUrl)} />}
+  {altUrl && <link rel="alternate" hreflang={lang === 'en' ? 'en' : 'es'} href={abs(canonical)} />}
+  {altUrl && <link rel="alternate" hreflang="x-default" href={abs(lang === 'en' ? altUrl : canonical)} />}
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={abs(canonical)} />
+  <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+</head>
+<body>
+  <header class="hdr">
+    <div class="wrap hdr__in">
+      <a class="brand" href={t.home}><span class="pin">📍</span> Cometia</a>
+      <nav class="nav">
+        <a class="hide-sm" href={zonaLink('Gran Alacant')}>{t.nav_ga}</a>
+        <a class="hide-sm" href={zonaLink('Santa Pola')}>{t.nav_sp}</a>
+        <a class="lang" href={altUrl || (lang === 'en' ? '/' : '/en/')}>{lang === 'en' ? 'ES' : 'EN'}</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="ftr">
+    <div class="wrap">
+      <div class="ftr__row">
+        <a href={t.home}>{lang === 'en' ? 'Home' : 'Inicio'}</a>
+        <a href={t.about}>{lang === 'en' ? 'About' : 'Sobre la guía'}</a>
+        <a href={t.contact}>{lang === 'en' ? 'Contact' : 'Contacto'}</a>
+        <a href={lang === 'en' ? '/en/privacy' : '/privacidad'}>{lang === 'en' ? 'Privacy' : 'Privacidad'}</a>
+      </div>
+      <p class="ftr__attr">
+        {lang === 'en'
+          ? 'Business data from OpenStreetMap contributors (ODbL). Descriptions are original. Ratings, where shown, link to Google.'
+          : 'Datos de negocios de los colaboradores de OpenStreetMap (ODbL). Las descripciones son propias. Las valoraciones, cuando aparecen, enlazan a Google.'}
+      </p>
+      <p class="ftr__attr">© {new Date().getFullYear()} Cometia · {t.tagline}</p>
+    </div>
+  </footer>
+</body>
+</html>

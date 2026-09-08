@@ -1,16 +1,24 @@
 ---
-import CalcLayout from '../layouts/CalcLayout.astro';
+import GuiaLayout from '../layouts/GuiaLayout.astro';
 ---
-<CalcLayout title="Aviso legal — Cometia" description="Aviso legal y condiciones de uso de Cometia." path="/aviso-legal">
-  <h1>Aviso legal</h1>
-  <section class="prose">
-    <h2>Titular</h2>
-    <p>Este sitio web (cometia.es) ofrece calculadoras online gratuitas con fines informativos. Para cualquier consulta: <a href="mailto:cometia.es@gmail.com">cometia.es@gmail.com</a>.</p>
-    <h2>Uso del sitio</h2>
-    <p>El acceso y uso de Cometia es gratuito. Las calculadoras se ofrecen «tal cual» y sus resultados son <strong>orientativos</strong>. No sustituyen el asesoramiento de un profesional (financiero, sanitario, legal o fiscal). No nos hacemos responsables de decisiones tomadas a partir de los resultados.</p>
-    <h2>Propiedad intelectual</h2>
-    <p>El diseño, los textos y las calculadoras propias de Cometia están protegidos. Puedes usar la web libremente, pero no copiar su contenido de forma sistemática.</p>
-    <h2>Enlaces y terceros</h2>
-    <p>La web puede incluir publicidad y enlaces a terceros. No nos responsabilizamos del contenido de sitios externos.</p>
+<GuiaLayout
+  title="Aviso legal — Cometia"
+  description="Aviso legal y condiciones de uso de la guía Cometia."
+  lang="es"
+  canonical="/aviso-legal"
+  altUrl="/en/privacy"
+>
+  <section class="ficha wrap">
+    <h1>Aviso legal</h1>
+    <div class="prose" style="max-width:720px">
+      <h2>Titular</h2>
+      <p>Este sitio (cometia.es) es una guía informativa de bares y restaurantes de la Costa Blanca. Contacto: <a href="mailto:cometia.es@gmail.com">cometia.es@gmail.com</a>.</p>
+      <h2>Uso del sitio</h2>
+      <p>El acceso es gratuito y la información se ofrece con fines orientativos. Los horarios, precios y datos pueden cambiar; recomendamos confirmar con el local antes de acudir. No nos hacemos responsables de decisiones tomadas a partir de la información publicada.</p>
+      <h2>Contenido y fuentes</h2>
+      <p>Los datos de los establecimientos proceden de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> y fuentes públicas (© colaboradores de OpenStreetMap, ODbL). Las descripciones son de elaboración propia. Las marcas y nombres comerciales pertenecen a sus titulares.</p>
+      <h2>Enlaces a terceros</h2>
+      <p>La web enlaza a sitios de terceros (Google Maps, webs de los locales). No nos responsabilizamos de su contenido.</p>
+    </div>
   </section>
-</CalcLayout>
+</GuiaLayout>

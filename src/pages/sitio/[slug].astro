@@ -1,0 +1,82 @@
+---
+import GuiaLayout from '../../layouts/GuiaLayout.astro';
+import { LUGARES, CATEGORIAS, descripcion, tipoLabel, direccion, esBritanico, type Lugar } from '../../data/guia/lugares';
+
+export function getStaticPaths() {
+  return LUGARES.map((l) => ({ params: { slug: l.slug }, props: { l } }));
+}
+const { l } = Astro.props as { l: Lugar };
+const lang = 'es' as const;
+const desc = descripcion(l, lang);
+const dir = direccion(l);
+const brit = esBritanico(l);
+const gmaps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${l.name} ${l.street || ''} ${l.zone} Alicante`)}`;
+const bbox = `${(l.lng - 0.004).toFixed(5)},${(l.lat - 0.003).toFixed(5)},${(l.lng + 0.004).toFixed(5)},${(l.lat + 0.003).toFixed(5)}`;
+const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${l.lat},${l.lng}`;
+
+const SCHEMA_TYPE: Record<string, string> = {
+  restaurante: 'Restaurant', cafeteria: 'CafeOrCoffeeShop', bar: 'BarOrPub', pub: 'BarOrPub',
+  'comida-rapida': 'FastFoodRestaurant', cerveceria: 'BarOrPub',
+};
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': SCHEMA_TYPE[l.type] || 'FoodEstablishment',
+  name: l.name,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: [l.street, l.housenumber].filter(Boolean).join(' '),
+    addressLocality: l.zone,
+    postalCode: l.postcode || undefined,
+    addressRegion: 'Alicante',
+    addressCountry: 'ES',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: l.lat, longitude: l.lng },
+  telephone: l.phone || undefined,
+  url: l.website || undefined,
+  servesCuisine: l.cuisine || undefined,
+};
+---
+<GuiaLayout
+  title={`${l.name} — ${tipoLabel(l, 'es')} en ${l.zone} | Cometia`}
+  description={desc || `${l.name}, ${tipoLabel(l, 'es').toLowerCase()} en ${l.zone}. Dirección, mapa y datos de contacto.`}
+  lang="es"
+  canonical={`/sitio/${l.slug}`}
+  altUrl={`/en/place/${l.slug}`}
+  jsonLd={jsonLd}
+>
+  <section class="ficha wrap">
+    <div class="crumbs"><a href="/">Inicio</a> › <a href={`/?zona=${encodeURIComponent(l.zone)}`}>{l.zone}</a> › {l.name}</div>
+
+    <div class="ficha__head">
+      <h1>{l.name}</h1>
+    </div>
+    <p class="ficha__sub">{CATEGORIAS[l.type].icon} {tipoLabel(l, 'es')}{l.cuisine ? ` · ${l.cuisine}` : ''} · 📍 {l.zone}</p>
+
+    <div class="badges">
+      <span class="badge">{tipoLabel(l, 'es')}</span>
+      {brit && <span class="badge badge--brit">🇬🇧 British-friendly</span>}
+      {l.outdoor === 'yes' && <span class="badge badge--terr">🌤️ Terraza</span>}
+    </div>
+
+    <div class="ficha__layout">
+      <div class="prose">
+        {desc && <p>{desc}</p>}
+        <h2>Cómo llegar</h2>
+        <iframe class="mapembed" src={mapSrc} title={`Mapa de ${l.name}`} loading="lazy"></iframe>
+      </div>
+
+      <aside class="panel">
+        <h2>Información</h2>
+        <ul class="info">
+          <li><span class="k">📍</span> <span>{dir}</span></li>
+          {l.opening_hours && <li><span class="k">🕒</span> <span>{l.opening_hours}</span></li>}
+          {l.phone && <li><span class="k">📞</span> <a href={`tel:${l.phone.replace(/\s/g, '')}`}>{l.phone}</a></li>}
+          {l.website && <li><span class="k">🌐</span> <a href={l.website} target="_blank" rel="noopener nofollow">Sitio web</a></li>}
+          {l.cuisine && <li><span class="k">🍴</span> <span>{l.cuisine}</span></li>}
+        </ul>
+        <a class="btn" href={gmaps} target="_blank" rel="noopener">Ver en Google Maps y reseñas</a>
+        <a class="btn btn--ghost" href="/">← Volver a la guía</a>
+      </aside>
+    </div>
+  </section>
+</GuiaLayout>

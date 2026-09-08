@@ -1,0 +1,870 @@
+{
+ "node/309773339": {
+  "es": "El Cisne es un restaurante de Santa Pola, en la avenida del alcalde Francisco Conejero Bas. Una dirección más para comer o cenar dentro de la localidad, en plena trama urbana.",
+  "en": "El Cisne is a restaurant in Santa Pola, on Avinguda Alcalde Francisco Conejero Bas. A straightforward option for lunch or dinner within the town itself."
+ },
+ "node/445901656": {
+  "es": "Restaurante ubicado en el Edificio Gran Playa de Santa Pola, junto a la N-332. Su situación a pie de carretera lo hace fácil de localizar para quien pasa por la zona.",
+  "en": "A restaurant in the Edificio Gran Playa in Santa Pola, right by the N-332. Its roadside location makes it easy to find if you're passing through."
+ },
+ "node/1221458912": {
+  "es": "Pub en la zona de Sierra Mar, en Gran Alacant, sobre el carrer Ebre. Un local de estilo británico que suele ser punto de encuentro para la comunidad angloparlante de la urbanización.",
+  "en": "A pub in the Sierra Mar area of Gran Alacant, on Carrer Ebre. A British-style spot that's popular with the area's English-speaking community."
+ },
+ "node/1221460442": {
+  "es": "Cafetería en Sierra Mar, dentro de Gran Alacant, en el carrer del Riu Segura. Un sitio para un café, un desayuno o una pausa mientras se recorre la urbanización.",
+  "en": "A café in Sierra Mar, Gran Alacant, on Carrer del Riu Segura. Handy for a coffee, breakfast or a quick break while you're out and about in the resort."
+ },
+ "node/1221461693": {
+  "es": "Restaurante en Sierra Mar (Gran Alacant), en el carrer Ebre, especializado en carnes a la parrilla de estilo argentino y en pasta. Una propuesta para quienes buscan carne y platos italianos en la misma carta.",
+  "en": "A restaurant in Sierra Mar, Gran Alacant, on Carrer Ebre, specialising in Argentine-style grilled steaks and pasta. A good bet if you fancy a proper cut of meat or an Italian dish."
+ },
+ "node/1221465111": {
+  "es": "Pub en la zona de Novamar, en Gran Alacant, que cuenta con terraza para los días de buen tiempo. De aire británico, encaja bien con la comunidad angloparlante de la urbanización.",
+  "en": "A pub in the Novamar area of Gran Alacant, with a terrace for warmer days. British in feel, it fits right in with the resort's English-speaking crowd."
+ },
+ "node/1221466796": {
+  "es": "Bar situado en Novamar, dentro de Gran Alacant, sobre la avenida de Noruega. Una parada de barrio para tomar algo sin salir de la urbanización.",
+  "en": "A bar in Novamar, Gran Alacant, on Avinguda de Noruega. A local spot for a drink without leaving the resort."
+ },
+ "node/1221469940": {
+  "es": "Bar y grill en la zona de Altomar II, en Gran Alacant, sobre la avenida de Escandinavia. Combina barra y parrilla, y resulta habitual entre la comunidad angloparlante de la urbanización.",
+  "en": "A bar and grill in the Altomar II area of Gran Alacant, on Avinguda d'Escandinàvia. Part bar, part grill, and a familiar haunt for the area's English-speaking residents."
+ },
+ "node/1339993160": {
+  "es": "Restaurante de Santa Pola, en el carrer d'Àvila, dentro de la trama de calles del municipio. Una dirección práctica para comer o cenar en el centro de la localidad.",
+  "en": "A restaurant in Santa Pola, on Carrer d'Avila, set among the town's streets. A handy option for lunch or dinner in the town centre."
+ },
+ "node/1340575543": {
+  "es": "Restaurante de cocina regional en Santa Pola, en la avenida de Fernando Pérez de Ojeda. Apuesta por los sabores de la zona y dispone de página web propia para consultar su oferta.",
+  "en": "A restaurant serving regional cuisine in Santa Pola, on Avinguda de Fernando Pérez de Ojeda. It focuses on local flavours and has its own website where you can check what's on offer."
+ },
+ "node/1340576595": {
+  "es": "Restaurante de cocina regional situado en el paseo del Puerto de Santa Pola. Ofrece platos de la zona en pleno frente marítimo y cuenta con web propia.",
+  "en": "A restaurant serving regional dishes on the port promenade in Santa Pola. Right by the waterfront, it also has its own website."
+ },
+ "node/1340576648": {
+  "es": "Restaurante ubicado en el carrer del Moll, en la zona portuaria de Santa Pola. Una dirección para comer o cenar cerca del muelle de la localidad.",
+  "en": "A restaurant on Carrer del Moll, in the harbour area of Santa Pola. A spot for lunch or dinner close to the quayside."
+ },
+ "node/1663183213": {
+  "es": "Restaurante de cocina española situado en el puerto de Santa Pola. Una propuesta de platos tradicionales a pie de dársena, en pleno entorno marinero de la localidad.",
+  "en": "A restaurant serving Spanish cuisine down at Santa Pola's harbour. Traditional dishes just steps from the quay, in the heart of the town's seafaring setting."
+ },
+ "node/1669168164": {
+  "es": "Restaurante en Novamar (Gran Alacant), en la avenida de Noruega, que combina comida rápida con platos de cocina regional. Una carta variada para resolver desde un bocado informal hasta una comida más completa.",
+  "en": "A restaurant in Novamar, Gran Alacant, on Avinguda de Noruega, mixing fast food with regional dishes. A varied menu, whether you want a quick bite or a fuller meal."
+ },
+ "node/1669168167": {
+  "es": "Restaurante de cocina española en Gran Alacant, en la avenida de Finlandia. Ofrece platos tradicionales y dispone de página web propia donde consultar su propuesta.",
+  "en": "A restaurant serving Spanish cuisine in Gran Alacant, on Avinguda de Finlàndia. It offers traditional dishes and has its own website to browse the menu."
+ },
+ "node/1669168169": {
+  "es": "Cafetería en la urbanización Sueño Azul, en Gran Alacant, sobre la avenida del Mediterráneo. Cuenta con terraza, ideal para un café o un desayuno al aire libre.",
+  "en": "A café in the Sueño Azul development in Gran Alacant, on Avinguda del Mediterrani. It has a terrace, perfect for a coffee or breakfast in the open air."
+ },
+ "node/1669168171": {
+  "es": "Restaurante en Novamar (Gran Alacant), en la avenida de Noruega, con una carta que va de la cocina mexicana a la pizza y la pasta. Dispone de terraza para comer al aire libre.",
+  "en": "A restaurant in Novamar, Gran Alacant, on Avinguda de Noruega, with a menu spanning Mexican food, pizza and pasta. There's a terrace for dining outdoors."
+ },
+ "node/1669168174": {
+  "es": "Restaurante en Novamar, dentro de Gran Alacant, en la avenida de Noruega, especializado en cocina griega junto a una carta internacional. Tiene terraza para los días de buen tiempo.",
+  "en": "A restaurant in Novamar, Gran Alacant, on Avinguda de Noruega, specialising in Greek cooking alongside an international menu. It has a terrace for sunny days."
+ },
+ "node/1669168175": {
+  "es": "Pub irlandés en Novamar, en Gran Alacant, sobre la avenida de Noruega. Con el aire propio de un local irlandés, es una parada conocida entre la comunidad angloparlante de la zona.",
+  "en": "An Irish pub in Novamar, Gran Alacant, on Avinguda de Noruega. With the feel of a proper Irish bar, it's a well-known stop for the area's English-speaking community."
+ },
+ "node/1669168177": {
+  "es": "Restaurante de cocina asiática en Gran Alacant, en la avenida de Finlandia. Abre todos los días de 12:00 a 00:00, con amplio horario para comer o cenar.",
+  "en": "A restaurant serving Asian cuisine in Gran Alacant, on Avinguda de Finlàndia. Open every day from midday to midnight, with plenty of scope for lunch or dinner."
+ },
+ "node/1669168178": {
+  "es": "Restaurante en la urbanización Sueño Azul, en Gran Alacant, con una carta muy variada que reúne pizza, cocina persa y griega, platos españoles y kebab. Abre a diario de 13:00 a 01:00.",
+  "en": "A restaurant in the Sueño Azul development, Gran Alacant, with a wide-ranging menu taking in pizza, Persian and Greek cooking, Spanish dishes and kebabs. Open daily from 1pm to 1am."
+ },
+ "node/1669168179": {
+  "es": "Pub en Novamar, en Gran Alacant, sobre la avenida de Noruega, con una carta amplia que abarca cocina internacional, tex-mex, pizza, carnes a la parrilla y kebab. Un local de estilo británico habitual entre la comunidad angloparlante.",
+  "en": "A pub in Novamar, Gran Alacant, on Avinguda de Noruega, with a broad menu covering international dishes, Tex-Mex, pizza, grilled meats and kebabs. A British-style spot popular with English-speaking locals."
+ },
+ "node/13931872710": {
+  "es": "Restaurante de pizza en la Carrer Cervantes de Santa Pola. Una opción para los amantes de la pizza en pleno casco de la localidad, a un paso del centro y del ambiente marinero del pueblo.",
+  "en": "A pizza restaurant on Carrer Cervantes in Santa Pola. A handy spot for pizza lovers right in the heart of town, close to the centre and the resort's seaside buzz."
+ },
+ "node/13931874456": {
+  "es": "Restaurante situado en la Carrer Cervantes de Santa Pola, en pleno casco urbano. Un local céntrico, bien colocado para combinar la comida con un paseo por el pueblo y su puerto.",
+  "en": "A restaurant on Carrer Cervantes in the middle of Santa Pola. A central choice, well placed for pairing a meal with a stroll around the town and its harbour."
+ },
+ "node/13935099743": {
+  "es": "Mesón en la Plaça del Mestre Quislant de Santa Pola. Ubicado en una plaza del pueblo, es una opción de estilo mesón para comer o cenar cerca del centro de la localidad.",
+  "en": "A traditional mesón on Plaça del Mestre Quislant in Santa Pola. Set on a town square, it's a tavern-style choice for lunch or dinner near the centre."
+ },
+ "way/71213930": {
+  "es": "Restaurante con terraza en la Avinguda de Vicente Blasco Ibáñez de Santa Pola. El espacio al aire libre lo hace ideal para disfrutar de la comida en los días soleados de la Costa Blanca.",
+  "en": "A restaurant with a terrace on Avinguda de Vicente Blasco Ibáñez in Santa Pola. The outdoor seating makes it a great pick for eating al fresco on the Costa Blanca's sunny days."
+ },
+ "way/254030102": {
+  "es": "Restaurante en la Avinguda de Santiago Bernabéu de Santa Pola, cerca de la zona del puerto. Cuenta con web propia donde consultar más información antes de tu visita.",
+  "en": "A restaurant on Avinguda de Santiago Bernabéu in Santa Pola, near the harbour area. It has its own website where you can check further details before you visit."
+ },
+ "way/288773415": {
+  "es": "Restaurante en la Avinguda Alcalde Francisco Conejero Bas de Santa Pola. Una opción para comer o cenar dentro de la localidad, algo apartada del bullicio del centro.",
+  "en": "A restaurant on Avinguda Alcalde Francisco Conejero Bas in Santa Pola. A place to eat lunch or dinner within the town, a little away from the busy centre."
+ },
+ "way/295936216": {
+  "es": "Local de McDonald's en la Avinguda de Salamanca de Santa Pola. La conocida cadena de hamburguesas de comida rápida, práctica para una parada rápida o para comer en familia.",
+  "en": "A McDonald's on Avinguda de Salamanca in Santa Pola. The well-known fast-food burger chain, handy for a quick bite or an easy family meal."
+ },
+ "way/298154742": {
+  "es": "Pub en la urbanización Marismas VIII de Santa Pola, en la Avinguda de Vicente Blasco Ibáñez. De ambiente angloparlante, es un punto de encuentro para la comunidad británica de la zona.",
+  "en": "A pub in the Marismas VIII urbanisation of Santa Pola, on Avinguda de Vicente Blasco Ibáñez. With an English-speaking feel, it's a familiar meeting point for the area's British community."
+ },
+ "way/298154745": {
+  "es": "Bar en la urbanización Marismas VIII de Santa Pola, en la Avinguda de Vicente Blasco Ibáñez. Un local de barrio en zona residencial, práctico para tomar algo dentro de la urbanización.",
+  "en": "A bar in the Marismas VIII urbanisation of Santa Pola, on Avinguda de Vicente Blasco Ibáñez. A local spot in a residential area, handy for a drink without leaving the estate."
+ },
+ "way/362828157": {
+  "es": "Restaurante de cocina regional en la Plaça de la Constitució de Santa Pola. Situado en una plaza céntrica, apuesta por los sabores de la zona en pleno corazón de la localidad.",
+  "en": "A restaurant serving regional cuisine on Plaça de la Constitució in Santa Pola. Set on a central square, it leans on local flavours right in the heart of town."
+ },
+ "way/625839011": {
+  "es": "Foster's Hollywood en la Avinguda de Finlàndia de Gran Alacant. La cadena de cocina americana, con su carta de estilo estadounidense, dentro de la zona comercial de Gran Alacant. Dispone de web propia.",
+  "en": "Foster's Hollywood on Avinguda de Finlàndia in Gran Alacant. The American-style chain and its stateside menu, in the Gran Alacant commercial area. It has its own website."
+ },
+ "way/625839012": {
+  "es": "Local de Burger King en la Avinguda de Finlàndia de Gran Alacant. La cadena de hamburguesas de comida rápida, abierta todos los días de 11:00 a 03:00, con web propia.",
+  "en": "A Burger King on Avinguda de Finlàndia in Gran Alacant. The fast-food burger chain, open every day from 11:00 to 03:00, with its own website."
+ },
+ "way/683082473": {
+  "es": "Venta situada junto a la N-332, en la urbanización El Poble Llevantí de Santa Pola. Su ubicación a pie de carretera la hace cómoda para parar de camino por la zona.",
+  "en": "A roadside venta beside the N-332, in the El Poble Llevantí urbanisation of Santa Pola. Its position right by the road makes it an easy stop as you pass through the area."
+ },
+ "way/713143712": {
+  "es": "Restaurante junto a la N-332 en Gran Alacant. Su emplazamiento a pie de carretera resulta cómodo para una parada, y cuenta con web propia para consultar más detalles.",
+  "en": "A restaurant beside the N-332 in Gran Alacant. Its roadside location makes for a convenient stop, and it has its own website where you can check more details."
+ },
+ "way/770748324": {
+  "es": "Bar restaurante y cafetería en la Avinguda Maribel López Pérez-Ojeda de Santa Pola. Un local de tipo cafetería, práctico tanto para desayunar o tomar algo como para comer.",
+  "en": "A bar-restaurant and café on Avinguda Maribel López Pérez-Ojeda in Santa Pola. A café-style venue, handy for breakfast, a drink or a full meal alike."
+ },
+ "way/783414921": {
+  "es": "Bar del Club de Petanca de Santa Pola, en la Carrer de Sant Josep. De ambiente angloparlante, es un punto de encuentro social muy ligado a la comunidad británica aficionada a la petanca.",
+  "en": "The bar at Santa Pola's petanque club, on Carrer de Sant Josep. With an English-speaking crowd, it's a sociable meeting point tied to the British community's love of petanque."
+ },
+ "way/1097319084": {
+  "es": "Arrocería en la Avinguda de Santiago Bernabéu de Santa Pola, cerca de la zona del puerto. Como indica su nombre, es un restaurante especializado en arroces, muy en la línea de la cocina de la costa alicantina.",
+  "en": "A rice restaurant on Avinguda de Santiago Bernabéu in Santa Pola, near the harbour. As its name suggests, it specialises in rice dishes, very much in keeping with Alicante's coastal cooking."
+ },
+ "way/1097319091": {
+  "es": "Bar en la Avinguda de Santiago Bernabéu de Santa Pola, cerca del puerto. Abre cada día, incluidos festivos, de 09:00 a 17:30, lo que lo hace ideal para el desayuno o el mediodía.",
+  "en": "A bar on Avinguda de Santiago Bernabéu in Santa Pola, near the harbour. Open daily, bank holidays included, from 09:00 to 17:30, making it ideal for breakfast or a midday stop."
+ },
+ "way/1097334336": {
+  "es": "Restaurante en la Avinguda de l'Armada Espanyola de Santa Pola. Una opción para comer o cenar en la localidad, en una avenida próxima al ambiente marinero del pueblo.",
+  "en": "A restaurant on Avinguda de l'Armada Espanyola in Santa Pola. A choice for lunch or dinner in town, on an avenue close to the resort's seaside atmosphere."
+ },
+ "node/1675860612": {
+  "es": "Bar de barrio en la Vallverda Alta, dentro de Gran Alacant. Está en la Carrer la Tenda, una opción cercana para tomar algo sin salir de la zona.",
+  "en": "A neighbourhood bar in la Vallverda Alta, part of Gran Alacant. You'll find it on Carrer la Tenda, handy for a drink without leaving the area."
+ },
+ "node/1896242730": {
+  "es": "Tapería y arrocería de cocina regional en la Carrer Marqués de Molins de Santa Pola. Abre a mediodía y por la noche de martes a sábado, y solo a mediodía los domingos; cierra los lunes. Tiene web propia.",
+  "en": "A tapas bar and rice-dish specialist serving regional cooking on Carrer Marqués de Molins in Santa Pola. Open for lunch and dinner Tuesday to Saturday, lunch only on Sundays, and closed Mondays. It has its own website."
+ },
+ "node/1896255719": {
+  "es": "Cafetería en la Carrer de Sant Antoni, en Santa Pola. Un sitio para un café o algo ligero dentro del casco urbano.",
+  "en": "A café on Carrer de Sant Antoni in Santa Pola. A spot for a coffee or a light bite in the town centre."
+ },
+ "node/2457751760": {
+  "es": "Restaurante de tapas situado en el Edificio Gran Playa, en la Avinguda de Ronda de Santa Pola. Una opción para picar por la zona.",
+  "en": "A tapas restaurant in the Edificio Gran Playa on Avinguda de Ronda in Santa Pola. A choice for something to share in the area."
+ },
+ "node/2457765556": {
+  "es": "Restaurante en Santa Pola, una opción más dentro de la oferta gastronómica de la localidad.",
+  "en": "A restaurant in Santa Pola, one more option among the town's places to eat."
+ },
+ "node/2459141223": {
+  "es": "Cafetería en la Carrer Madrid, en Santa Pola. Para un café o un tentempié en el centro.",
+  "en": "A café on Carrer Madrid in Santa Pola, good for a coffee or a snack in the centre."
+ },
+ "node/2459141225": {
+  "es": "Cafetería situada en la Avinguda del Portus Illicitanus, en Santa Pola. Un lugar para tomar café en esta avenida de la localidad.",
+  "en": "A café on Avinguda del Portus Illicitanus in Santa Pola, a place for a coffee along this local avenue."
+ },
+ "node/2459141234": {
+  "es": "Restaurante ubicado en la Avinguda del Portus Illicitanus, en Santa Pola. Una opción para comer en esta avenida.",
+  "en": "A restaurant on Avinguda del Portus Illicitanus in Santa Pola, an option for a meal along this avenue."
+ },
+ "node/2883820406": {
+  "es": "Mesón de cocina regional en la Carrer Almirall Antequera de Santa Pola. Un restaurante de corte tradicional en el centro del pueblo.",
+  "en": "A traditional-style mesón serving regional cooking on Carrer Almirall Antequera in Santa Pola, in the heart of the town."
+ },
+ "node/2883820506": {
+  "es": "Mesón de cocina regional en la Carrer Cervantes, en Santa Pola. Una opción de estilo tradicional dentro del casco urbano.",
+  "en": "A mesón serving regional cooking on Carrer Cervantes in Santa Pola, a traditional-style choice in the town centre."
+ },
+ "node/2883829001": {
+  "es": "Asador de cocina regional en la urbanización Els Arenals del Sol, en Gran Alacant, en la calle Illa d'Eivissa. Dispone de web propia.",
+  "en": "A grill-house (asador) serving regional cooking in the Els Arenals del Sol area of Gran Alacant, on Calle Illa d'Eivissa. It has its own website."
+ },
+ "node/2923300688": {
+  "es": "Cafetería en la Carrer Almirall Antequera, en Santa Pola. Para tomar un café o algo ligero en el centro.",
+  "en": "A café on Carrer Almirall Antequera in Santa Pola, for a coffee or a light bite in the centre."
+ },
+ "node/2996045069": {
+  "es": "Local de la cadena de hamburgueserías Burger King, en el Passeig d'Adolfo Suárez de Santa Pola. Comida rápida en el paseo.",
+  "en": "A branch of the Burger King burger chain on Passeig d'Adolfo Suárez in Santa Pola. Fast food on the promenade."
+ },
+ "node/2998081449": {
+  "es": "Cafetería en la urbanización Marismas VIII, en la Avinguda de Vicente Blasco Ibáñez de Santa Pola. Cuenta con terraza para sentarse al aire libre.",
+  "en": "A café in the Marismas VIII development on Avinguda de Vicente Blasco Ibáñez in Santa Pola, with a terrace for sitting outside."
+ },
+ "node/2998081450": {
+  "es": "Cafetería situada en la urbanización Marismas VIII, junto a la Avinguda de Vicente Blasco Ibáñez de Santa Pola. Dispone de terraza al aire libre.",
+  "en": "A café in the Marismas VIII development off Avinguda de Vicente Blasco Ibáñez in Santa Pola, with an outdoor terrace."
+ },
+ "node/3011319197": {
+  "es": "Pub en el Passeig d'Adolfo Suárez de Santa Pola. Un local del tipo que suele gustar a la comunidad angloparlante de la zona.",
+  "en": "A pub on Passeig d'Adolfo Suárez in Santa Pola, the sort of place popular with the area's English-speaking crowd."
+ },
+ "node/3011319198": {
+  "es": "Restaurante ubicado junto a la carretera Elx - Santa Pola. Una opción para comer en este acceso a la localidad.",
+  "en": "A restaurant beside the Elx–Santa Pola road, an option for a meal on this approach into town."
+ },
+ "node/3011319199": {
+  "es": "Bar en el Passeig d'Adolfo Suárez de Santa Pola. Un sitio para tomar algo en el paseo.",
+  "en": "A bar on Passeig d'Adolfo Suárez in Santa Pola, a place for a drink along the promenade."
+ },
+ "node/3011319200": {
+  "es": "Restaurante situado en el Passeig d'Adolfo Suárez de Santa Pola. Dispone de web propia donde consultar más información.",
+  "en": "A restaurant on Passeig d'Adolfo Suárez in Santa Pola. It has its own website where you can find more details."
+ },
+ "node/3011319201": {
+  "es": "Bar en el Passeig d'Adolfo Suárez, en Santa Pola. Una opción para tomar algo en la zona del paseo.",
+  "en": "A bar on Passeig d'Adolfo Suárez in Santa Pola, an option for a drink around the promenade."
+ },
+ "node/3011319202": {
+  "es": "Taberna en el Passeig d'Adolfo Suárez de Santa Pola. Un bar más en esta zona de paseo.",
+  "en": "A tavern on Passeig d'Adolfo Suárez in Santa Pola, another bar along this promenade area."
+ },
+ "node/3011319203": {
+  "es": "Bar perteneciente a la cadena Lizarrán, en el Passeig d'Adolfo Suárez de Santa Pola. Una opción en el paseo con el sello de esta franquicia.",
+  "en": "A bar belonging to the Lizarrán chain on Passeig d'Adolfo Suárez in Santa Pola, an option on the promenade under this franchise's banner."
+ },
+ "node/3011319204": {
+  "es": "Restaurante situado en el Passeig d'Adolfo Suárez, en pleno Santa Pola. Una opción a pie de paseo para quienes buscan comer cerca del frente marítimo de la localidad.",
+  "en": "A restaurant on Passeig d'Adolfo Suárez in Santa Pola. Well placed along the seafront promenade, it's a handy stop if you're after a meal near the waterfront."
+ },
+ "node/3011319206": {
+  "es": "Bar en el Passeig d'Adolfo Suárez de Santa Pola. Un local de paso por el paseo marítimo, ideal para una parada rápida junto a la costa.",
+  "en": "A bar along Passeig d'Adolfo Suárez in Santa Pola. Sitting right on the promenade, it makes an easy spot for a quick drink by the coast."
+ },
+ "node/3011319207": {
+  "es": "Restaurante de cocina mediterránea en el Carrer del Moll de Ponent, junto al puerto de Santa Pola. Puedes consultar su carta y detalles en su web.",
+  "en": "A Mediterranean restaurant on Carrer del Moll de Ponent, near Santa Pola's harbour. Its menu and further details are available on the restaurant's own website."
+ },
+ "node/3012630690": {
+  "es": "Restaurante Curricán, en la Avinguda de Fernando Pérez de Ojeda de Santa Pola. Una dirección para comer dentro del casco de esta localidad costera.",
+  "en": "Restaurante Curricán sits on Avinguda de Fernando Pérez de Ojeda in Santa Pola, a straightforward choice for a meal within this coastal town."
+ },
+ "node/3012630691": {
+  "es": "The Good Burger es un local de hamburguesas en el Passeig d'Adolfo Suárez de Santa Pola. Suele contar con clientela angloparlante, algo habitual en la zona.",
+  "en": "The Good Burger is a burger spot on Passeig d'Adolfo Suárez in Santa Pola. It draws a fair share of English-speaking regulars, as is common along this coast."
+ },
+ "node/3012630693": {
+  "es": "Restaurante Narcea, en el Carrer d'Ángel Nieto de Santa Pola. Abre todos los días al mediodía y por la noche (12:00-17:00 y 20:00-24:00). Más información en su web.",
+  "en": "Restaurante Narcea, on Carrer d'Ángel Nieto in Santa Pola, opens daily for lunch and dinner (12:00-17:00 and 20:00-24:00). See the restaurant's website for more."
+ },
+ "node/3013272029": {
+  "es": "Restobar Laico, en el Carrer de Lleó de Santa Pola. Un restobar del centro de la localidad; puedes consultar su propuesta en la web del local.",
+  "en": "Restobar Laico is on Carrer de Lleó in Santa Pola. A restobar in the town centre; you can look up what it offers on its own website."
+ },
+ "node/3013272334": {
+  "es": "Local de Telepizza en el Carrer de Sòria de Santa Pola. Cadena de pizza para llevar y a domicilio, útil para una comida rápida sin complicaciones.",
+  "en": "A Telepizza branch on Carrer de Sòria in Santa Pola. Part of the takeaway and delivery pizza chain, handy for a quick, no-fuss meal."
+ },
+ "node/3013272335": {
+  "es": "Virgen del Carmen, restaurante en el Carrer del Moll de Santa Pola, junto a la zona del puerto. Una opción para comer cerca del muelle de la localidad.",
+  "en": "Virgen del Carmen is a restaurant on Carrer del Moll in Santa Pola, close to the harbour. A place to eat near the town's quayside."
+ },
+ "node/3018702044": {
+  "es": "Bar Poseidón, en la Avinguda Alcalde Francisco Conejero Bas de Santa Pola. Un bar de barrio para tomar algo dentro de la localidad.",
+  "en": "Bar Poseidón on Avinguda Alcalde Francisco Conejero Bas in Santa Pola. A neighbourhood bar for a drink within the town."
+ },
+ "node/3018702076": {
+  "es": "Laíco, cafetería en el Carrer d'Elx de Santa Pola. Un espacio de interior para tomar un café o un desayuno en el centro de la localidad.",
+  "en": "Laíco is a café on Carrer d'Elx in Santa Pola. An indoor spot for a coffee or breakfast in the heart of the town."
+ },
+ "node/3020596306": {
+  "es": "Café París, restaurante en la Avinguda de Vicente Blasco Ibáñez, en la urbanización Marismas VIII de Santa Pola. Dispone de terraza al aire libre.",
+  "en": "Café París is a restaurant on Avinguda de Vicente Blasco Ibáñez, in Santa Pola's Marismas VIII area. It has an outdoor terrace for al fresco dining."
+ },
+ "node/3020596307": {
+  "es": "Rendez Vous, restaurante en la Avinguda de Vicente Blasco Ibáñez (urbanización Marismas VIII, Santa Pola). Cuenta con terraza para comer al aire libre.",
+  "en": "Rendez Vous is a restaurant on Avinguda de Vicente Blasco Ibáñez in Santa Pola's Marismas VIII area, with a terrace for dining outdoors."
+ },
+ "node/3020596308": {
+  "es": "China Town, restaurante de cocina china en la Avinguda de València de Santa Pola. Una opción para quienes buscan comida asiática en la localidad.",
+  "en": "China Town is a Chinese restaurant on Avinguda de València in Santa Pola, a go-to for anyone after Asian food in town."
+ },
+ "node/3020596310": {
+  "es": "Don Jerónimo, restaurante en la Avinguda de València de Santa Pola. Una dirección para comer en esta arteria de la localidad costera.",
+  "en": "Don Jerónimo is a restaurant on Avinguda de València in Santa Pola, a spot to eat along one of the town's main avenues."
+ },
+ "node/3020596311": {
+  "es": "La Vida Bonita Beach Club, en la Avinguda de Vicente Blasco Ibáñez (urbanización Marismas VIII, Santa Pola). Un bar tipo beach club con terraza al aire libre.",
+  "en": "La Vida Bonita Beach Club sits on Avinguda de Vicente Blasco Ibáñez in Santa Pola's Marismas VIII area. A beach-club style bar with an outdoor terrace."
+ },
+ "node/3020596312": {
+  "es": "Havana Cafe, bar en la Avinguda de Vicente Blasco Ibáñez (urbanización Marismas VIII, Santa Pola). Dispone de terraza para tomar algo al aire libre.",
+  "en": "Havana Cafe is a bar on Avinguda de Vicente Blasco Ibáñez in Santa Pola's Marismas VIII area, with a terrace for drinks in the open air."
+ },
+ "node/3020596313": {
+  "es": "Tapería La Fábrica, en la Avinguda de València de Santa Pola. Una tapería dentro de la localidad, pensada para picar y compartir.",
+  "en": "Tapería La Fábrica on Avinguda de València in Santa Pola. A tapas bar in town, geared towards nibbling and sharing."
+ },
+ "node/3020596314": {
+  "es": "Chiringuito Azul Santa Pola, en la Avinguda de Vicente Blasco Ibáñez (urbanización Marismas VIII). Un chiringuito con terraza al aire libre junto a la costa.",
+  "en": "Chiringuito Azul Santa Pola sits on Avinguda de Vicente Blasco Ibáñez in the Marismas VIII area. A beach bar with an outdoor terrace by the coast."
+ },
+ "node/3020596315": {
+  "es": "Pizzería Rollo, en la Avinguda de Vicente Blasco Ibáñez (urbanización Marismas VIII, Santa Pola). Ofrece pizza y kebab, con terraza al aire libre.",
+  "en": "Pizzería Rollo on Avinguda de Vicente Blasco Ibáñez in Santa Pola's Marismas VIII area serves pizza and kebabs, with an outdoor terrace."
+ },
+ "node/3023352798": {
+  "es": "Océano, cafetería en la Avinguda de Ronda de Santa Pola, en el Edificio Gran Playa. Un lugar para un café o desayuno cerca de esta zona de la localidad.",
+  "en": "Océano is a café on Avinguda de Ronda in Santa Pola, in the Edificio Gran Playa. A place for a coffee or breakfast in this part of town."
+ },
+ "node/3023352801": {
+  "es": "Tamarit, restaurante en Santa Pola. Una opción más para comer dentro de esta localidad de la Costa Blanca.",
+  "en": "Tamarit is a restaurant in Santa Pola, another option for a meal in this Costa Blanca town."
+ },
+ "node/3024771062": {
+  "es": "Bar en Gran Alacant, dentro de la urbanización Els Arenals del Sol, en el Camí del Carabassí. Un local sencillo de barrio para tomar algo en el día a día.",
+  "en": "A neighbourhood bar in Gran Alacant, set in the Els Arenals del Sol area along Camí del Carabassí. A straightforward local spot for a drink."
+ },
+ "node/3032587181": {
+  "es": "Restaurante chino en Santa Pola, en el Carrer de Sòria. Una opción para quienes buscan cocina china en el centro del municipio.",
+  "en": "A Chinese restaurant in Santa Pola on Carrer de Sòria, a handy choice if you fancy Chinese food in town."
+ },
+ "node/3032587187": {
+  "es": "Restaurante en Santa Pola, en el Carrer de Francisco Santamaría, vinculado al Hotel Patilla. Cuenta con página web propia donde detalla su propuesta gastronómica.",
+  "en": "A restaurant in Santa Pola on Carrer de Francisco Santamaría, linked to the Hotel Patilla. It has its own website setting out its food offering."
+ },
+ "node/3032587188": {
+  "es": "Restaurante en el Edificio Gran Playa de Santa Pola, sobre la Avinguda de Vicente Blasco Ibáñez. Dispone de terraza para comer al aire libre.",
+  "en": "A restaurant in the Edificio Gran Playa in Santa Pola, on Avinguda de Vicente Blasco Ibáñez, with a terrace for eating outdoors."
+ },
+ "node/3035264513": {
+  "es": "Bar en Gran Alacant, en la zona de Altomar II sobre la Avinguda d'Escandinàvia. Un local de barrio para una consumición cerca de casa.",
+  "en": "A bar in Gran Alacant, in the Altomar II area on Avinguda d'Escandinàvia. A local spot for a quick drink."
+ },
+ "node/3035264514": {
+  "es": "Restaurante en Gran Alacant, en Altomar II sobre la Avinguda d'Escandinàvia. Una opción para comer o cenar en esta zona residencial.",
+  "en": "A restaurant in Gran Alacant, in Altomar II on Avinguda d'Escandinàvia, an option for lunch or dinner in this residential area."
+ },
+ "node/3037172767": {
+  "es": "Hamburguesería en Santa Pola, en el Carrer Almirall Antequera. Especializada en hamburguesas para comer en el centro del pueblo.",
+  "en": "A burger restaurant in Santa Pola on Carrer Almirall Antequera, focused on burgers right in town."
+ },
+ "node/3037172772": {
+  "es": "Pub en Santa Pola, en el Carrer del Moll, cerca del puerto. De estilo británico, resulta cómodo para la comunidad angloparlante de la zona.",
+  "en": "A pub on Carrer del Moll in Santa Pola, near the harbour. A British-style spot that's popular with the area's English-speaking crowd."
+ },
+ "node/3039452449": {
+  "es": "Restaurante en el Edificio Gran Playa de Santa Pola, en la Avinguda de Vicente Blasco Ibáñez. Cuenta con terraza para disfrutar de la comida al aire libre.",
+  "en": "A restaurant in the Edificio Gran Playa, Santa Pola, on Avinguda de Vicente Blasco Ibáñez, with a terrace for dining outside."
+ },
+ "node/3039452451": {
+  "es": "Restaurante y pizzería en el Edificio Gran Playa de Santa Pola. Abre solo al mediodía y cierra los martes y miércoles. Dispone de página web propia.",
+  "en": "A restaurant and pizzeria in the Edificio Gran Playa, Santa Pola. It serves lunchtimes only and closes on Tuesdays and Wednesdays, and has its own website."
+ },
+ "node/3096458628": {
+  "es": "Restaurante en Santa Pola, en la Avinguda Alcalde Francisco Conejero Bas. Una opción para comer o cenar en el municipio.",
+  "en": "A restaurant in Santa Pola on Avinguda Alcalde Francisco Conejero Bas, an option for a meal in town."
+ },
+ "node/3096494847": {
+  "es": "Bar en Gran Alacant, en la urbanización Els Arenals del Sol, sobre la Avinguda de San Bartolomé de Tirajana. Un local para tomar algo en la zona.",
+  "en": "A bar in Gran Alacant's Els Arenals del Sol area, on Avinguda de San Bartolomé de Tirajana. A handy spot for a drink."
+ },
+ "node/3258434309": {
+  "es": "Pub con karaoke en Santa Pola, en la urbanización Marismas VIII sobre la Avinguda de Vicente Blasco Ibáñez. Tiene terraza y un ambiente animado, próximo a la comunidad angloparlante.",
+  "en": "A pub with karaoke in Santa Pola's Marismas VIII area, on Avinguda de Vicente Blasco Ibáñez. It has a terrace and a lively feel, popular with the English-speaking community."
+ },
+ "node/3258434317": {
+  "es": "Cafetería en Santa Pola, en la urbanización Marismas VIII sobre la Avinguda de Vicente Blasco Ibáñez. Cuenta con terraza para desayunar o tomar café al aire libre.",
+  "en": "A café in Santa Pola's Marismas VIII area, on Avinguda de Vicente Blasco Ibáñez, with a terrace for breakfast or coffee outdoors."
+ },
+ "node/3258434319": {
+  "es": "Local de comida rápida en Santa Pola, en la urbanización Marismas VIII sobre la Avinguda de Vicente Blasco Ibáñez. Una opción para comer algo rápido en la zona.",
+  "en": "A fast-food spot in Santa Pola's Marismas VIII area, on Avinguda de Vicente Blasco Ibáñez, handy for a quick bite."
+ },
+ "node/3266595674": {
+  "es": "Steak house en Gran Alacant, en la zona de Sierra Mar sobre el Carrer Ebre. Un restaurante especializado en carnes, como refleja su nombre.",
+  "en": "A steakhouse in Gran Alacant's Sierra Mar area, on Carrer Ebre. A meat-focused restaurant, as the name suggests."
+ },
+ "node/3267989701": {
+  "es": "Pub de estilo británico en Gran Alacant. Un punto de encuentro cómodo para la comunidad angloparlante de la zona.",
+  "en": "A British-style pub in Gran Alacant, a comfortable meeting point for the area's English-speaking community."
+ },
+ "node/3457930647": {
+  "es": "Restaurante de estilo británico en Gran Alacant, en la zona de Monte y Mar sobre el Carrer d'Holanda. Especializado en carvery (carne asada al corte), abre por las tardes de 17:00 a 22:00 y tiene web propia.",
+  "en": "A British-style carvery restaurant in Gran Alacant's Monte y Mar area, on Carrer d'Holanda. It serves in the evenings from 5pm to 10pm, has its own website and is a favourite with the English-speaking community."
+ },
+ "node/4038336301": {
+  "es": "Restaurante en Santa Pola, sobre la Avinguda de Vicente Blasco Ibáñez. Una opción para comer o cenar en esta avenida del municipio.",
+  "en": "A restaurant in Santa Pola on Avinguda de Vicente Blasco Ibáñez, an option for a meal along this main avenue."
+ },
+ "node/4038346722": {
+  "es": "Restaurante en Santa Pola, en la urbanización Marismas VIII, en la Plaça del Baix Vinalopó. Una opción para comer en esta zona del municipio.",
+  "en": "A restaurant in Santa Pola's Marismas VIII area, on Plaça del Baix Vinalopó, an option for a meal in this part of town."
+ },
+ "node/4083028480": {
+  "es": "Restaurante en Gran Alacant, situado junto a la carretera CV-851. Una opción para comer o cenar en la zona.",
+  "en": "A restaurant in Gran Alacant, set beside the CV-851 road, an option for lunch or dinner in the area."
+ },
+ "node/4083073270": {
+  "es": "Restaurante italiano en Santa Pola, en la Avinguda de Fernando Pérez de Ojeda. Una opción para quienes buscan cocina italiana en el municipio.",
+  "en": "An Italian restaurant in Santa Pola on Avinguda de Fernando Pérez de Ojeda, a good choice if you're after Italian food in town."
+ },
+ "node/4130816089": {
+  "es": "Asador de estilo argentino en la Carrer de la Mar de Santa Pola, especializado en carnes a la brasa. Cuenta con terraza y abre todos los días de 13:00 a medianoche, así que va bien tanto para comer como para cenar tarde.",
+  "en": "An Argentinian-style steakhouse on Carrer de la Mar in Santa Pola, built around chargrilled meats. There's outdoor seating, and it's open every day from 1pm right through to midnight, so it suits both lunch and a late dinner."
+ },
+ "node/4204405741": {
+  "es": "Restaurante de cocina regional en la zona de Brisa Mar, en Gran Alacant, sobre la Carrer del Mont de Santa Pola. Una opción de barrio para quien busque platos de la tierra cerca de casa.",
+  "en": "A restaurant serving regional cooking in the Brisa Mar area of Gran Alacant, on Carrer del Mont de Santa Pola. A neighbourhood choice for anyone after local dishes close to home."
+ },
+ "node/4245512989": {
+  "es": "Restaurante de cocina asiática en la urbanización Sueño Azul de Gran Alacant, en la Avinguda d'Àfrica. Según los datos, abre las 24 horas, algo poco habitual en la zona.",
+  "en": "An Asian restaurant in the Sueño Azul development in Gran Alacant, on Avinguda d'Àfrica. According to the listing it's open around the clock, which is unusual for the area."
+ },
+ "node/4307492036": {
+  "es": "Local de comida rápida especializado en hamburguesas, en el Passeig d'Adolfo Suárez de Santa Pola. Una parada práctica para picar algo rápido cerca del paseo.",
+  "en": "A fast-food spot specialising in burgers, on Passeig d'Adolfo Suárez in Santa Pola. A handy stop for a quick bite near the promenade."
+ },
+ "node/4307492037": {
+  "es": "Restaurante en la Carrer de Veneçuela, en Santa Pola. Un sitio de la zona para quienes buscan comer por el centro del pueblo.",
+  "en": "A restaurant on Carrer de Veneçuela in Santa Pola. A local option for anyone looking to eat around the centre of town."
+ },
+ "node/4307492038": {
+  "es": "Restaurante en la Plaça de la Constitució de Santa Pola, en pleno centro. Una opción bien situada para comer o cenar dando un paseo por la plaza.",
+  "en": "A restaurant on Plaça de la Constitució in the heart of Santa Pola. A well-placed choice for lunch or dinner while you're strolling around the square."
+ },
+ "node/4307495274": {
+  "es": "Franquicia de 100 Montaditos en la Avinguda de Jesús Astondoa Santamaría de Santa Pola, conocida por su carta de montaditos y raciones sencillas para compartir.",
+  "en": "A branch of the 100 Montaditos chain on Avinguda de Jesús Astondoa Santamaría in Santa Pola, known for its menu of small filled rolls and simple plates to share."
+ },
+ "node/4313591609": {
+  "es": "Restaurante con carta variada (india, mexicana, pizza y kebab) en la urbanización Sueño Azul de Gran Alacant. Tiene terraza y abre a diario de 12:00 a 01:00, cómodo para cenas tardías.",
+  "en": "A restaurant with a mixed menu of Indian, Mexican, pizza and kebabs in the Sueño Azul development in Gran Alacant. It has outdoor seating and opens daily from noon until 1am, handy for a late dinner."
+ },
+ "node/4352263851": {
+  "es": "Kiosco-bar en la zona de Altomar, en Gran Alacant. Un punto sencillo para tomar algo en el barrio.",
+  "en": "A kiosk bar in the Altomar area of Gran Alacant. A simple spot for a drink in the neighbourhood."
+ },
+ "node/4416535899": {
+  "es": "Bar en la Plaça de la Glorieta de Santa Pola. Bien situado en el centro para tomar algo al paso.",
+  "en": "A bar on Plaça de la Glorieta in Santa Pola. Centrally placed for a quick drink as you pass by."
+ },
+ "node/4416535900": {
+  "es": "Cafetería en la Plaça de la Glorieta de Santa Pola, en pleno centro. Un sitio para el café o el desayuno junto a la plaza.",
+  "en": "A café on Plaça de la Glorieta in central Santa Pola. A place for a coffee or breakfast right by the square."
+ },
+ "node/4416535901": {
+  "es": "Restaurante de cocina india en la Carrer Garcia Braceli de Santa Pola. Una opción para quienes buscan sabores del subcontinente en el pueblo.",
+  "en": "An Indian restaurant on Carrer Garcia Braceli in Santa Pola. A choice for anyone after subcontinental flavours in town."
+ },
+ "node/4416535903": {
+  "es": "Cafetería en la Carrer Almirall Antequera de Santa Pola. Un local de barrio para el café o un tentempié.",
+  "en": "A café on Carrer Almirall Antequera in Santa Pola. A neighbourhood spot for a coffee or a snack."
+ },
+ "node/4417769957": {
+  "es": "Restaurante chino en la Plaça de Silvia Martínez Santiago, en Santa Pola. Una opción para comida asiática cerca del centro.",
+  "en": "A Chinese restaurant on Plaça de Silvia Martínez Santiago in Santa Pola. An option for Asian food near the centre."
+ },
+ "node/4417769960": {
+  "es": "Bar en la Avinguda del Portus Illicitanus de Santa Pola. Un sitio de la zona para tomar algo.",
+  "en": "A bar on Avinguda del Portus Illicitanus in Santa Pola. A local spot for a drink."
+ },
+ "node/4418140336": {
+  "es": "Cafetería en la Carrer de Lleó, en Santa Pola. Un rincón de barrio para el café o el desayuno.",
+  "en": "A café on Carrer de Lleó in Santa Pola. A neighbourhood corner for a coffee or breakfast."
+ },
+ "node/4418140342": {
+  "es": "Restaurante en el Passeig d'Adolfo Suárez de Santa Pola, junto al paseo. Una opción bien situada para comer cerca de la costa.",
+  "en": "A restaurant on Passeig d'Adolfo Suárez in Santa Pola, right by the promenade. A well-placed option for a meal close to the seafront."
+ },
+ "node/4421245958": {
+  "es": "Restaurante de inspiración gallega en la urbanización Marismas VIII de Santa Pola, en la Avinguda de Vicente Blasco Ibáñez. Por el nombre, orientado a la cocina del norte.",
+  "en": "A Galician-inspired restaurant in the Marismas VIII development in Santa Pola, on Avinguda de Vicente Blasco Ibáñez. As the name suggests, it leans towards cooking from Spain's north-west."
+ },
+ "node/4426991746": {
+  "es": "Bar de tapeo en el Edificio Gran Playa de Santa Pola, en la Avinguda de Ronda. Una parada de barrio para picar y tomar algo.",
+  "en": "A tapas bar in the Gran Playa building in Santa Pola, on Avinguda de Ronda. A neighbourhood stop for nibbles and a drink."
+ },
+ "node/4426991748": {
+  "es": "Restaurante en el Edificio Gran Playa de Santa Pola, en la Avinguda de Ronda. Su nombre gallego apunta a una cocina de raíz norteña.",
+  "en": "A restaurant in the Gran Playa building in Santa Pola, on Avinguda de Ronda. Its Galician name points to cooking rooted in the north-west."
+ },
+ "node/4426991749": {
+  "es": "Local de comida rápida especializado en pizza, en el Edificio Gran Playa de Santa Pola, en la Avinguda de Ronda. Una opción práctica para llevar o comer al momento.",
+  "en": "A fast-food pizza place in the Gran Playa building in Santa Pola, on Avinguda de Ronda. A practical choice for takeaway or a quick bite."
+ },
+ "node/4523664155": {
+  "es": "Pub en el residencial Isla de Ízaro de Gran Alacant, en la Carrer d'Holanda. Como pub, encaja con la clientela angloparlante de la zona para tomar algo en ambiente de estilo británico.",
+  "en": "A pub in the Isla de Ízaro residential area of Gran Alacant, on Carrer d'Holanda. As a pub, it fits the local English-speaking crowd looking for a drink in a British-style setting."
+ },
+ "node/4618850489": {
+  "es": "Bar en la zona de Monte y Mar, en Gran Alacant. Abre todos los días desde las once de la mañana hasta la una de la madrugada, un horario amplio para tomar algo. Es un punto habitual entre la comunidad angloparlante de la zona.",
+  "en": "A bar in the Monte y Mar area of Gran Alacant, open every day from 11am right through to 1am. The long hours make it an easy spot for a drink at almost any point of the day, and it draws a good share of the local English-speaking crowd."
+ },
+ "node/4638558490": {
+  "es": "Restaurante situado en la urbanización Novamar, en Gran Alacant, junto a la Avinguda de Polònia. Una opción de proximidad para quienes se alojan o viven en esta parte residencial de la Costa Blanca.",
+  "en": "A restaurant in the Novamar development in Gran Alacant, just off Avinguda de Polònia. A handy local choice for anyone staying or living in this residential corner of the Costa Blanca."
+ },
+ "node/4874904321": {
+  "es": "Cafetería en Gran Alacant, en la Avinguda de Finlàndia. Un sitio para el café o el desayuno en pleno núcleo residencial de la zona. Cuenta con página web propia donde consultar más detalles.",
+  "en": "A cafe on Avinguda de Finlàndia in Gran Alacant, well placed for a coffee or a bite within the residential heart of the area. It has its own website where you can check further details."
+ },
+ "node/5396112500": {
+  "es": "Bar restaurante de cocina regional en Santa Pola, en el Edificio Gran Playa sobre la Avinguda de Cristóbal Sanz. Abre a diario de nueve de la mañana a medianoche y dispone de terraza. Tiene web propia con más información.",
+  "en": "A bar and restaurant serving regional cuisine in Santa Pola, at Edificio Gran Playa on Avinguda de Cristóbal Sanz. It opens daily from 9am to midnight and has an outdoor terrace, with its own website for more details."
+ },
+ "node/5893492985": {
+  "es": "Restaurante situado en la carretera Elx - Santa Pola, a las afueras del núcleo de Santa Pola. Su nombre apunta a una propuesta de cocina de wok, cómoda de alcanzar en coche por su ubicación junto a la carretera.",
+  "en": "A restaurant set on the Elche to Santa Pola road, on the edge of town. The name points to wok-style cooking, and its roadside setting makes it an easy stop to reach by car."
+ },
+ "node/6161339486": {
+  "es": "Pub en la urbanización Novamar de Gran Alacant, en la Avinguda de Noruega. De aire irlandés y con cocina internacional, es el típico local donde se reúne la comunidad angloparlante de la zona para tomar algo.",
+  "en": "An Irish-style pub on Avinguda de Noruega in the Novamar area of Gran Alacant, with an international menu alongside the pints. It's the sort of place where the local English-speaking community tends to gather for a drink."
+ },
+ "node/6210298557": {
+  "es": "Sidrería de cocina española en Santa Pola, en el Carrer Sagrament, con terraza. Abre en dos turnos, mediodía y noche, también los festivos. Una opción para comer o cenar en el casco de la localidad.",
+  "en": "A Spanish cider house on Carrer Sagrament in Santa Pola, with a terrace out front. It serves in two sittings, at lunch and in the evening, holidays included, making it a solid choice for a meal in the town centre."
+ },
+ "node/6356652275": {
+  "es": "Restaurante italiano en Santa Pola, en la Avinguda de l'Armada Espanyola, cerca de la fachada marítima de la localidad. Su cocina de raíz italiana lo convierte en una alternativa para quien busca pasta o pizza por la zona. Dispone de web propia.",
+  "en": "An Italian restaurant on Avinguda de l'Armada Espanyola in Santa Pola, close to the seafront. Its Italian kitchen makes it an option for anyone after pasta or pizza in the area, and it has its own website."
+ },
+ "node/6356652276": {
+  "es": "Mesón en Santa Pola, en la Avinguda de l'Armada Espanyola, junto al frente marítimo. El formato de mesón sugiere una propuesta tradicional, en una de las avenidas más transitadas de la localidad.",
+  "en": "A traditional mesón on Avinguda de l'Armada Espanyola in Santa Pola, right by the seafront. The mesón format points to hearty, classic fare, set on one of the town's busier avenues."
+ },
+ "node/6356652277": {
+  "es": "Restaurante en Santa Pola, en la Avinguda de l'Armada Espanyola, cerca de la zona del puerto y la playa. Una opción más para comer en esta avenida marítima de la localidad.",
+  "en": "A restaurant on Avinguda de l'Armada Espanyola in Santa Pola, near the harbour and beach. One more choice for a meal along this seafront avenue."
+ },
+ "node/6395825573": {
+  "es": "Cafetería en Santa Pola, junto a la carretera CV-8651. Un sitio para el café o el desayuno de camino, práctico por su ubicación a pie de vía.",
+  "en": "A cafe in Santa Pola, sitting beside the CV-8651 road. A practical stop for a coffee or breakfast on the way through, thanks to its roadside spot."
+ },
+ "node/6398226941": {
+  "es": "Horchatería en Santa Pola, en el Carrer Garcia Braceli. Especializada en horchata, la bebida veraniega por excelencia de la Comunidad Valenciana, es una parada refrescante en el casco de la localidad.",
+  "en": "A horchata parlour on Carrer Garcia Braceli in Santa Pola. Specialising in horchata, the classic Valencian summer drink, it's a refreshing stop in the town centre."
+ },
+ "node/6399471652": {
+  "es": "Tapería en Santa Pola, en la Avinguda de València. Por su formato de tapería, es una opción para picar algo y tapear en esta zona de la localidad.",
+  "en": "A tapas bar on Avinguda de València in Santa Pola. Its tapería format makes it a natural spot to graze and share a few plates in this part of town."
+ },
+ "node/6399471654": {
+  "es": "Restaurante en Santa Pola, en la Avinguda de Vicente Blasco Ibáñez. Su nombre evoca las Rías Baixas gallegas, referencia habitual para cocina del noroeste peninsular. Una opción para comer o cenar en la localidad.",
+  "en": "A restaurant on Avinguda de Vicente Blasco Ibáñez in Santa Pola. Its name nods to Galicia's Rías Baixas, a common reference for north-western Spanish cooking, offering another choice for lunch or dinner in town."
+ },
+ "node/6399471657": {
+  "es": "Sidrería restaurante en Santa Pola, en la Avinguda de Vicente Blasco Ibáñez. Abre todos los días en dos turnos, mediodía y noche. Cuenta con web propia donde ampliar la información.",
+  "en": "A cider house and restaurant on Avinguda de Vicente Blasco Ibáñez in Santa Pola. It opens every day across two sittings, lunch and evening, and has its own website for more details."
+ },
+ "node/6441437504": {
+  "es": "Restaurante de cocina regional y a la brasa en la urbanización Els Arenals del Sol, en Gran Alacant, junto a la Avenida de San Bartolomé de Tirajana. Abre de martes a sábado de ocho de la mañana a once de la noche y dispone de terraza.",
+  "en": "A restaurant offering regional dishes and grilled meats in the Els Arenals del Sol development in Gran Alacant, on Avenida de San Bartolomé de Tirajana. It opens Tuesday to Saturday from 8am to 11pm and has an outdoor terrace."
+ },
+ "node/6496385903": {
+  "es": "Bar restaurante en Santa Pola, en el Edificio Gran Playa, sobre la Avinguda de Vicente Blasco Ibáñez. Una opción cercana a la zona de playa de la localidad.",
+  "en": "A bar and restaurant in Santa Pola, at Edificio Gran Playa on Avinguda de Vicente Blasco Ibáñez. A convenient option close to the town's beach area."
+ },
+ "node/6496385904": {
+  "es": "Chiringuito en Santa Pola, en el Edificio Gran Playa, junto a la Avinguda de Vicente Blasco Ibáñez. Con terraza y formato de chiringuito, es una parada al aire libre cerca del mar.",
+  "en": "A beach bar in Santa Pola, at Edificio Gran Playa on Avinguda de Vicente Blasco Ibáñez. With its terrace and chiringuito style, it's an open-air stop close to the sea."
+ },
+ "node/6496385905": {
+  "es": "Restaurante en Santa Pola, en el Edificio Gran Playa, sobre la Avinguda de Cristóbal Sanz. Una opción más para comer o cenar en esta zona céntrica de la localidad.",
+  "en": "A restaurant in Santa Pola, at Edificio Gran Playa on Avinguda de Cristóbal Sanz. Another choice for lunch or dinner in this central part of town."
+ },
+ "node/6496385906": {
+  "es": "Restaurante en Santa Pola, en el Edificio Gran Playa, junto a la Avinguda de Cristóbal Sanz. Situado en pleno centro, es una alternativa a mano para comer en la localidad.",
+  "en": "A restaurant in Santa Pola, at Edificio Gran Playa on Avinguda de Cristóbal Sanz. Right in the centre, it's a handy option for a meal in town."
+ },
+ "node/6533648451": {
+  "es": "Restaurante en Gran Alacant, dentro del núcleo residencial de la zona. Una opción de proximidad para quienes se alojan o viven en esta parte de la Costa Blanca.",
+  "en": "A restaurant in Gran Alacant, within the residential heart of the area. A local option for those staying or living in this part of the Costa Blanca."
+ },
+ "node/6533668537": {
+  "es": "Restaurante en la urbanización Sueño Azul, en Gran Alacant, sobre la Avinguda del Mediterrani. Una opción cercana para comer o cenar en esta zona residencial de la Costa Blanca.",
+  "en": "A restaurant in the Sueño Azul development in Gran Alacant, on Avinguda del Mediterrani. A nearby choice for lunch or dinner in this residential part of the Costa Blanca."
+ },
+ "node/6533995997": {
+  "es": "Restaurante situado en la urbanización Sueño Azul, en Gran Alacant, junto a la Avinguda del Mediterrani. Una opción de proximidad para comer o cenar sin salir de esta zona residencial, cómoda para residentes y para quienes pasan unos días por la Costa Blanca.",
+  "en": "A restaurant in the Sueño Azul urbanisation in Gran Alacant, just off Avinguda del Mediterrani. A handy local option for lunch or dinner without leaving this residential area, whether you live nearby or are staying in the area."
+ },
+ "node/6533996014": {
+  "es": "Restaurante especializado en paella en Gran Alacant, dentro de la urbanización Sueño Azul, sobre la Avinguda del Mediterrani. Una buena parada si buscas arroces en esta parte de la Costa Blanca.",
+  "en": "A restaurant specialising in paella in Gran Alacant, set within the Sueño Azul urbanisation on Avinguda del Mediterrani. A solid choice if you're after a rice dish in this corner of the Costa Blanca."
+ },
+ "node/6534003974": {
+  "es": "Restaurante en la urbanización Sueño Azul de Gran Alacant, con una carta centrada en paellas, pescado y carne. Una cocina variada para comidas y cenas dentro de esta zona residencial.",
+  "en": "A restaurant in Gran Alacant's Sueño Azul urbanisation, with a menu built around paella, fish and meat. A varied choice for lunch or dinner within this residential area."
+ },
+ "node/6534065752": {
+  "es": "Cafetería en la zona de Balcones del Mar, en Gran Alacant, sobre la Avinguda d'Escandinàvia. Un sitio de barrio para desayunar, tomar un café o hacer una pausa a lo largo del día.",
+  "en": "A café in the Balcones del Mar area of Gran Alacant, on Avinguda d'Escandinàvia. A neighbourhood spot for breakfast, a coffee or a break at any point in the day."
+ },
+ "node/6535096246": {
+  "es": "Restaurante situado en Santa Pola, en la Avinguda de Salamanca. Una opción de proximidad para comer o cenar sin salir de la localidad, práctica tanto para residentes como para quienes pasan unos días en la zona.",
+  "en": "A restaurant in Santa Pola, on Avinguda de Salamanca. A convenient local option for lunch or dinner within the town, handy for both residents and anyone spending a few days in the area."
+ },
+ "node/6552573994": {
+  "es": "Restaurante en la zona de Novamar, en Gran Alacant, junto a la Avinguda de Noruega. Una alternativa cercana para comer o cenar dentro de este núcleo residencial de la Costa Blanca.",
+  "en": "A restaurant in the Novamar area of Gran Alacant, by Avinguda de Noruega. A nearby option for lunch or dinner in this residential pocket of the Costa Blanca."
+ },
+ "node/6566066935": {
+  "es": "Restaurante ubicado en la urbanización La Colònia, en Gran Alacant. Una opción de barrio para comer o cenar sin desplazarte, cómoda para quienes viven o veranean en esta parte de la Costa Blanca.",
+  "en": "A restaurant in the La Colònia urbanisation in Gran Alacant. A local option for lunch or dinner without having to travel, convenient for anyone living or holidaying in this part of the Costa Blanca."
+ },
+ "node/6592830591": {
+  "es": "Bar de cocina británica en Gran Alacant, en el residencial Isla de Ízaro, sobre el Carrer de Luxemburg. Una parada para tomar algo y comer con propuesta de tinte británico en esta zona.",
+  "en": "A bar serving British food in Gran Alacant, in the Isla de Ízaro residential area on Carrer de Luxemburg. A spot for a drink and a British-style bite in this part of the resort."
+ },
+ "node/6767395730": {
+  "es": "Cafetería situada en Santa Pola, en el Carrer de Valladolid. Un lugar de barrio para desayunar, tomar un café o hacer una pausa a media mañana o media tarde, dentro del casco de la localidad.",
+  "en": "A café in Santa Pola, on Carrer de Valladolid. A neighbourhood spot for breakfast, a coffee or a mid-morning or afternoon break, right in the heart of town."
+ },
+ "node/6767409567": {
+  "es": "Pizzería en Santa Pola, en el Carrer de Lleó. Abre todos los días a mediodía (13:00-16:00) y por la noche (20:00-24:00), y cuenta con web propia para consultar su carta.",
+  "en": "A pizzeria in Santa Pola, on Carrer de Lleó. Open every day for lunch (1-4pm) and dinner (8pm-midnight), with its own website where you can check the menu."
+ },
+ "node/6767425100": {
+  "es": "Restaurante en Santa Pola, en la Avinguda de Castelló. Una opción de proximidad para comer o cenar dentro de la localidad, práctica tanto para residentes como para visitantes de la zona.",
+  "en": "A restaurant in Santa Pola, on Avinguda de Castelló. A convenient local option for lunch or dinner in town, handy for both residents and visitors to the area."
+ },
+ "node/6767445326": {
+  "es": "Pub en Santa Pola, en la urbanización Marismas VIII. Un local frecuentado por la comunidad angloparlante de la zona, ideal para tomar algo por la tarde o la noche en un ambiente distendido.",
+  "en": "A pub in Santa Pola, in the Marismas VIII urbanisation. Popular with the area's English-speaking crowd, it's a relaxed spot for an afternoon or evening drink."
+ },
+ "node/6767449298": {
+  "es": "Restaurante en Santa Pola, en el Carrer de Burgos. Una opción cercana para comer o cenar dentro del casco de la localidad, cómoda tanto para residentes como para quienes visitan la zona.",
+  "en": "A restaurant in Santa Pola, on Carrer de Burgos. A nearby option for lunch or dinner in the heart of town, easy for both residents and visitors."
+ },
+ "node/6767451538": {
+  "es": "Pub situado en Santa Pola, en la urbanización Marismas VIII. Un local frecuentado por la comunidad angloparlante de la zona y una buena parada para tomar algo en un ambiente distendido.",
+  "en": "A pub in Santa Pola, in the Marismas VIII urbanisation. A favourite with the local English-speaking community and a relaxed place for a drink."
+ },
+ "node/6967706085": {
+  "es": "Restaurante de cocina británica en Gran Alacant, en la zona de Monte y Mar, sobre el Carrer d'Holanda. Abre de martes a domingo en horario amplio (09:30-23:30), lo que lo hace práctico desde el desayuno hasta la cena.",
+  "en": "A British restaurant in Gran Alacant, in the Monte y Mar area on Carrer d'Holanda. Open Tuesday to Sunday with long hours (9.30am-11.30pm), so it works from breakfast right through to dinner."
+ },
+ "node/8499850918": {
+  "es": "Restaurante en la urbanización Els Arenals del Sol, en Gran Alacant. Abre a diario a mediodía (13:00-16:00) y por la noche (20:00-23:30), y cuenta con web propia donde ampliar información.",
+  "en": "A restaurant in the Els Arenals del Sol urbanisation in Gran Alacant. Open daily for lunch (1-4pm) and dinner (8-11.30pm), with its own website for more details."
+ },
+ "node/8722773417": {
+  "es": "Restaurante en la urbanización Els Arenals del Sol, en Gran Alacant. Una opción de proximidad para comer o cenar dentro de este núcleo residencial, cómoda para residentes y visitantes de la zona.",
+  "en": "A restaurant in the Els Arenals del Sol urbanisation in Gran Alacant. A convenient local option for lunch or dinner within this residential area, handy for residents and visitors alike."
+ },
+ "node/9084303370": {
+  "es": "Pinsería y pizzería en Santa Pola, en la Avinguda de València. Especializada en pinsa y pizza, cuenta con web propia donde consultar su propuesta.",
+  "en": "A pinseria and pizzeria in Santa Pola, on Avinguda de València. Specialising in pinsa and pizza, with its own website where you can see what's on offer."
+ },
+ "node/9084303392": {
+  "es": "Restaurante en Santa Pola, en el Edificio Gran Playa, sobre la Avinguda de Vicente Blasco Ibáñez. Dispone de web propia con información sobre el local.",
+  "en": "A restaurant in Santa Pola, in the Edificio Gran Playa on Avinguda de Vicente Blasco Ibáñez. It has its own website with details about the place."
+ },
+ "node/9087526637": {
+  "es": "Heladería en Santa Pola, en la zona del Edificio Gran Playa, sobre el Carrer de Villena. Una parada dulce para tomar un helado durante el paseo por la localidad.",
+  "en": "An ice cream parlour in Santa Pola, near the Edificio Gran Playa on Carrer de Villena. A sweet stop for an ice cream while you're out and about in town."
+ },
+ "node/9087526646": {
+  "es": "Bar en Santa Pola, en la urbanización Marismas VIII, sobre la Avinguda de Vicente Blasco Ibáñez. Un local para tomar algo en esta zona de la localidad.",
+  "en": "A bar in Santa Pola, in the Marismas VIII urbanisation on Avinguda de Vicente Blasco Ibáñez. A spot for a drink in this part of town."
+ },
+ "node/9094549456": {
+  "es": "Cafetería en Santa Pola, en el Passeig d'Adolfo Suárez. Un lugar para desayunar, tomar un café o hacer una pausa a lo largo del día en pleno paseo de la localidad.",
+  "en": "A café in Santa Pola, on the Passeig d'Adolfo Suárez. A place for breakfast, a coffee or a break at any point in the day, right on the town's promenade."
+ },
+ "node/9094549459": {
+  "es": "Restaurante en el paseo Adolfo Suárez de Santa Pola, junto al puerto. Abre a diario en horario de comidas y cenas, con servicio ininterrumpido de mediodía hasta media tarde. Buena opción para una parada tranquila en pleno frente marítimo.",
+  "en": "A restaurant on Santa Pola's Passeig d'Adolfo Suárez, close to the harbour. Open every day for lunch and dinner, with a continuous midday service running into the afternoon. A handy stop right by the seafront."
+ },
+ "node/9094549460": {
+  "es": "Bar situado en el paseo Adolfo Suárez de Santa Pola, cerca de la zona portuaria. Un local de barrio para tomar algo en pleno frente marítimo, a pocos pasos del puerto y de sus paseos.",
+  "en": "A bar on Santa Pola's Passeig d'Adolfo Suárez, near the harbour area. A local spot for a drink by the seafront, just a short walk from the port and its promenades."
+ },
+ "node/9094549464": {
+  "es": "Bar en el Passeig del Port de Santa Pola, junto al puerto. Un sitio de paso para tomar algo cerca del frente marítimo, en una de las zonas más transitadas de la localidad.",
+  "en": "A bar on Santa Pola's Passeig del Port, right by the harbour. An easy place to stop for a drink near the seafront, in one of the town's busiest areas."
+ },
+ "node/9094549466": {
+  "es": "Bar en el Passeig del Port de Santa Pola, próximo a la zona del puerto. Un local de ambiente cercano para una consumición junto al frente marítimo.",
+  "en": "A bar on Santa Pola's Passeig del Port, close to the harbour. A friendly local spot for a drink by the seafront."
+ },
+ "node/9094549467": {
+  "es": "Bar situado en la Avinguda dels Banys de Santa Pola, cerca de la playa. Una opción sencilla para tomar algo en la zona de baños del municipio.",
+  "en": "A bar on Santa Pola's Avinguda dels Banys, near the beach. A simple choice for a drink in the town's bathing area."
+ },
+ "node/9094549468": {
+  "es": "Cafetería en el Passeig del Port de Santa Pola, junto al puerto. Un punto para desayunar, tomar café o hacer una pausa cerca del frente marítimo.",
+  "en": "A cafe on Santa Pola's Passeig del Port, by the harbour. A spot for breakfast, coffee or a quick break near the seafront."
+ },
+ "node/9095113733": {
+  "es": "Local de comida rápida especializado en pizza, en la Plaça del Doctor Fleming de Santa Pola. Una opción práctica para comer pizza de forma rápida en el centro del pueblo.",
+  "en": "A pizza takeaway on Santa Pola's Plaça del Doctor Fleming. A handy option for a quick pizza in the centre of town."
+ },
+ "node/9095217392": {
+  "es": "Bar en el Carrer Gabriel Miró de Santa Pola. Un local de barrio para tomar algo en una de las calles del casco urbano.",
+  "en": "A bar on Santa Pola's Carrer Gabriel Miró. A neighbourhood spot for a drink on one of the streets in the town centre."
+ },
+ "node/9095217394": {
+  "es": "Cafetería en el Carrer Gabriel Miró de Santa Pola. Un sitio para el café de la mañana o una pausa en pleno centro de la localidad.",
+  "en": "A cafe on Santa Pola's Carrer Gabriel Miró. A place for a morning coffee or a break in the heart of town."
+ },
+ "node/9095277002": {
+  "es": "Restaurante de cocina regional en el Carrer Gabriel Miró de Santa Pola. Abre de martes a domingo en horario amplio, de la mañana hasta la medianoche, y cierra los lunes.",
+  "en": "A restaurant serving regional cuisine on Santa Pola's Carrer Gabriel Miró. Open Tuesday to Sunday with long hours, from morning until midnight, and closed on Mondays."
+ },
+ "node/9095356990": {
+  "es": "Pizzería en el Carrer Gabriel Miró de Santa Pola, en pleno centro. Especializada en pizza, es una opción para una comida sencilla en el casco urbano.",
+  "en": "A pizzeria on Santa Pola's Carrer Gabriel Miró, in the town centre. Pizza is the focus here, making it an easy choice for a casual meal."
+ },
+ "node/9115259767": {
+  "es": "Asador en la Plaça de la Glorieta de Santa Pola. Un restaurante en el centro del pueblo, en una plaza céntrica y de fácil acceso.",
+  "en": "A grill restaurant on Santa Pola's Plaça de la Glorieta. Set on a central, easy-to-reach square in the town."
+ },
+ "node/9120893131": {
+  "es": "Restaurante en el Carrer Ciutat de Mallorca de Santa Pola. Una opción para comer en una zona algo apartada del bullicio del puerto.",
+  "en": "A restaurant on Santa Pola's Carrer Ciutat de Mallorca. An option for a meal a little away from the bustle of the harbour."
+ },
+ "node/9122952861": {
+  "es": "Restaurante situado en el Carrer de la Mare de Déu del Carme, en Santa Pola. Un local para comer en el casco urbano de la localidad.",
+  "en": "A restaurant on Carrer de la Mare de Déu del Carme in Santa Pola. A place to eat within the town centre."
+ },
+ "node/9123098235": {
+  "es": "Bar en el Carrer Cisneros de Santa Pola. Un local de barrio para tomar algo dentro del casco urbano.",
+  "en": "A bar on Santa Pola's Carrer Cisneros. A neighbourhood spot for a drink within the town."
+ },
+ "node/9123098250": {
+  "es": "Local de comida rápida en la Avinguda Alcalde Francisco Conejero Bas de Santa Pola, con kebab y heladería. Una opción para picar algo rápido o tomar un helado.",
+  "en": "A fast-food spot on Santa Pola's Avinguda Alcalde Francisco Conejero Bas, combining kebabs and an ice-cream counter. A handy choice for a quick bite or a cool treat."
+ },
+ "node/9124242062": {
+  "es": "Restaurante en el Carrer Caritat de Santa Pola. Un sitio para comer en el casco urbano de la localidad.",
+  "en": "A restaurant on Santa Pola's Carrer Caritat. A place to eat within the town centre."
+ },
+ "node/9127834113": {
+  "es": "Restaurante en el Carrer de Finlàndia, en la urbanización de Gran Alacant. Una opción para comer en esta zona residencial próxima a las playas del sur de Santa Pola.",
+  "en": "A restaurant on Carrer de Finlàndia in Gran Alacant. An option for a meal in this residential area close to the beaches south of Santa Pola."
+ },
+ "node/9127842024": {
+  "es": "Establecimiento de la cadena de comida rápida KFC, especializado en pollo, en el Carrer de Finlàndia de Gran Alacant. Una opción conocida para una comida rápida en la zona.",
+  "en": "A branch of the fast-food chain KFC, specialising in chicken, on Carrer de Finlàndia in Gran Alacant. A familiar option for a quick meal in the area."
+ },
+ "node/9140633713": {
+  "es": "Restaurante en la avenida San Bartolomé de Tirajana, en la urbanización Els Arenals del Sol (Gran Alacant). Situado cerca de la playa, en una zona residencial y turística.",
+  "en": "A restaurant on Avenida de San Bartolomé de Tirajana, in the Els Arenals del Sol area of Gran Alacant. Set close to the beach, in a residential and holiday district."
+ },
+ "node/9140633714": {
+  "es": "Restaurante en la avenida San Bartolomé de Tirajana, en Els Arenals del Sol (Gran Alacant). Abre a diario con horario amplio, de la mañana a la noche entre semana y los sábados, y hasta media tarde los domingos.",
+  "en": "A restaurant on Avenida de San Bartolomé de Tirajana, in Els Arenals del Sol (Gran Alacant). Open daily with long hours, from morning until late Monday to Saturday, and until mid-afternoon on Sundays."
+ },
+ "node/9140633775": {
+  "es": "Restaurante en la Avinguda de San Bartolomé de Tirajana, en la urbanización Els Arenals del Sol (Gran Alacant). Una opción para comer cerca de la playa, en zona residencial.",
+  "en": "A restaurant on Avinguda de San Bartolomé de Tirajana, in Els Arenals del Sol (Gran Alacant). An option for a meal near the beach, in a residential area."
+ },
+ "node/9140633776": {
+  "es": "Restaurante en la urbanización Els Arenals del Sol, en Gran Alacant, junto a la avenida de San Bartolomé de Tirajana. Una opción de proximidad para comer o cenar en esta zona residencial cercana a la playa.",
+  "en": "A restaurant in the Els Arenals del Sol area of Gran Alacant, on Avenida de San Bartolomé de Tirajana. A handy local spot for lunch or dinner in this residential district close to the beach."
+ },
+ "node/9140633793": {
+  "es": "Restaurante y bar situado en Els Arenals del Sol (Gran Alacant), sobre la avenida de San Bartolomé de Tirajana. Un local de barrio para tomar algo o sentarse a comer en plena zona de Arenales.",
+  "en": "A restaurant and bar in Els Arenals del Sol, Gran Alacant, on Avenida de San Bartolomé de Tirajana. A neighbourhood spot for a drink or a sit-down meal in the heart of Arenales."
+ },
+ "node/9142402465": {
+  "es": "Chiringuito en la zona de Els Arenals del Sol, en Gran Alacant, en la avenida de l'Illa de Menorca. Un bar informal, ideal para una parada durante un día de playa.",
+  "en": "A beach bar (chiringuito) in the Els Arenals del Sol area of Gran Alacant, on Avinguda de l'Illa de Menorca. A laid-back spot for a break during a day by the sea."
+ },
+ "node/9457412326": {
+  "es": "Restaurante situado en el Carrer del Moll de Ponent de Santa Pola, junto a la zona del puerto de Poniente. Una opción práctica para comer o cenar durante un paseo por el muelle.",
+  "en": "A restaurant on Carrer del Moll de Ponent in Santa Pola, next to the western harbour. A practical choice for lunch or dinner while strolling along the quayside."
+ },
+ "node/9504426342": {
+  "es": "Restaurante de cocina mediterránea y arrocería en Gran Alacant, en el Carrer de Finlàndia. Especializado en arroces, es una buena parada para quienes buscan platos típicos de la zona en esta urbanización.",
+  "en": "A Mediterranean restaurant and arrocería (rice specialist) in Gran Alacant, on Carrer de Finlàndia. A good stop for anyone after the region's classic rice dishes in this residential area."
+ },
+ "node/10045989633": {
+  "es": "Restaurante situado en la avenida Alcalde Francisco Conejero Bas, en Santa Pola. Un local para comer o cenar dentro del casco urbano, cómodo para vecinos y visitantes de la zona.",
+  "en": "A restaurant on Avenida Alcalde Francisco Conejero Bas in Santa Pola. A spot for lunch or dinner within the town itself, handy for locals and visitors alike."
+ },
+ "node/10706971505": {
+  "es": "Restaurante en el paseo de Adolfo Suárez, en Santa Pola. Situado en pleno frente marítimo, es una opción para comer o cenar durante un paseo junto al mar.",
+  "en": "A restaurant on Passeig d'Adolfo Suárez in Santa Pola. Set right on the seafront promenade, it's a spot for lunch or dinner while taking a walk by the sea."
+ },
+ "node/10779549021": {
+  "es": "Brasería en la avenida de Salamanca, en Santa Pola. Especializada en platos a la brasa, es una opción para quienes buscan cocina de parrilla en la localidad.",
+  "en": "A grill house (brasería) on Avinguda de Salamanca in Santa Pola. A good bet for anyone after chargrilled meat and dishes cooked over the coals."
+ },
+ "node/10790865965": {
+  "es": "Local de comida rápida en la zona de Novamar, en Gran Alacant, sobre la avenida de Noruega. Ofrece pizza y kebab, ideal para llevar o para una comida rápida sin complicaciones.",
+  "en": "A fast-food spot in the Novamar area of Gran Alacant, on Avinguda de Noruega. Pizza and kebabs on offer, perfect for a quick bite or a takeaway."
+ },
+ "node/10790865966": {
+  "es": "Restaurante en Novamar (Gran Alacant), en la avenida de Noruega, con una carta variada que combina cocina india, pizzas y platos a la brasa. Una opción versátil para grupos con gustos distintos.",
+  "en": "A restaurant in Novamar, Gran Alacant, on Avinguda de Noruega, with a mixed menu spanning Indian dishes, pizzas and grilled fare. A versatile choice for groups with different tastes."
+ },
+ "node/11065098276": {
+  "es": "Local de comida rápida en el paseo de Adolfo Suárez, en Santa Pola. Situado en el frente marítimo, es una parada cómoda para picar algo durante un paseo junto al mar.",
+  "en": "A quick-service spot on Passeig d'Adolfo Suárez in Santa Pola. Right on the seafront, it's a handy place to grab a bite while walking along the promenade."
+ },
+ "node/11159783453": {
+  "es": "Restaurante italiano en el Carrer del Moll de Ponent de Santa Pola, junto a la zona portuaria. Una opción para disfrutar de cocina italiana cerca del puerto de Poniente.",
+  "en": "An Italian restaurant on Carrer del Moll de Ponent in Santa Pola, beside the harbour. A place to enjoy Italian cooking close to the western port."
+ },
+ "node/11305656406": {
+  "es": "Bar y restaurante en la zona de els Ciprerets, junto a la carretera de Elx a Santa Pola. Un local de paso para tomar algo o comer a las afueras del núcleo urbano.",
+  "en": "A bar and restaurant in the els Ciprerets area, on the Elx–Santa Pola road. A roadside spot for a drink or a meal on the edge of town."
+ },
+ "node/11513858823": {
+  "es": "Restaurante y bar de cocina india en Gran Alacant, en el Carrer d'Holanda (residencial Isla de Ízaro). Especializado en platos indios, es un local popular entre la comunidad angloparlante de la zona.",
+  "en": "An Indian restaurant and bar in Gran Alacant, on Carrer d'Holanda in the Isla de Ízaro area. Serving Indian dishes, it's a popular choice with the local English-speaking community."
+ },
+ "node/11898597153": {
+  "es": "Churrería y cafetería en el Carrer Colom, en Santa Pola. Un local para disfrutar de churros y un café en pleno casco urbano de la localidad.",
+  "en": "A churrería and café on Carrer Colom in Santa Pola. A spot for churros and a coffee in the heart of the town."
+ },
+ "node/11938181911": {
+  "es": "Chiringuito con aire de pub en la avenida del Catalanet, en Santa Pola. Un local relajado junto a la costa, frecuentado también por la comunidad angloparlante de la zona.",
+  "en": "A beach bar with a pub feel on Avinguda del Catalanet in Santa Pola. A relaxed coastal spot that's also popular with the area's English-speaking community."
+ },
+ "node/11938181920": {
+  "es": "Hamburguesería de comida rápida en Santa Pola, en el edificio Gran Playa junto a la N-332. Una opción directa para quienes buscan hamburguesas para comer allí o llevar.",
+  "en": "A burger joint in Santa Pola, in the Gran Playa building beside the N-332. A straightforward choice for anyone after a burger to eat in or take away."
+ },
+ "node/13638353485": {
+  "es": "Restaurante en la zona de Altomar II, en Gran Alacant, sobre la avenida d'Escandinàvia. Una opción de barrio para comer o cenar en esta urbanización residencial.",
+  "en": "A restaurant in the Altomar II area of Gran Alacant, on Avinguda d'Escandinàvia. A local option for lunch or dinner in this residential district."
+ },
+ "node/13638353490": {
+  "es": "Bar y grill en Altomar II (Gran Alacant), en la avenida d'Escandinàvia. Un local con carta de parrilla, habitual entre la comunidad angloparlante que reside en la zona.",
+  "en": "A bar and grill in Altomar II, Gran Alacant, on Avinguda d'Escandinàvia. A grill-focused spot that's a regular haunt for the area's English-speaking residents."
+ },
+ "node/13659859724": {
+  "es": "Bar y grill de cocina británica en Gran Alacant, en el Carrer d'Holanda (residencial Isla de Ízaro). Con platos de estilo británico, es una opción cómoda para la comunidad angloparlante de la zona.",
+  "en": "A British-style bar and grill in Gran Alacant, on Carrer d'Holanda in the Isla de Ízaro area. Serving British favourites, it's a comfortable choice for the local English-speaking community."
+ },
+ "node/13701075749": {
+  "es": "Churrería y cafetería en el Carrer d'Espoz i Mina, en Santa Pola. Especializada en churros, cuenta con terraza para tomar el desayuno o la merienda al aire libre.",
+  "en": "A churrería and café on Carrer d'Espoz i Mina in Santa Pola. Specialising in churros, it has a terrace for enjoying breakfast or an afternoon treat outdoors."
+ },
+ "node/13711766401": {
+  "es": "Cafetería situada en la plaça de Nati la Modista, en Santa Pola. Un lugar tranquilo para un café, un desayuno o un tentempié a lo largo del día.",
+  "en": "A café on Plaça de Nati la Modista in Santa Pola. A relaxed spot for a coffee, breakfast or a light snack at any time of day."
+ }
+}

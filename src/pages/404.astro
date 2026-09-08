@@ -1,21 +1,10 @@
 ---
-import CalcLayout from '../layouts/CalcLayout.astro';
-import { CALCULADORAS } from '../data/calculadoras';
-const populares = CALCULADORAS.filter((c) => ['calculadora-hipoteca', 'calculadora-sueldo-neto', 'calculadora-iva', 'calculadora-imc', 'calculadora-porcentaje', 'calculadora-edad'].includes(c.slug));
+import GuiaLayout from '../layouts/GuiaLayout.astro';
 ---
-<CalcLayout title="Página no encontrada — Cometia" description="La página que buscas no existe. Descubre las calculadoras de Cometia." path="/404">
-  <div class="hero" style="margin-bottom:24px">
+<GuiaLayout title="Página no encontrada — Cometia" description="Página no encontrada." lang="es" canonical="/404">
+  <section class="ficha wrap" style="text-align:center; padding:70px 0">
     <h1>Vaya… esta página no existe</h1>
-    <p>Pero seguro que encuentras la calculadora que buscabas. Prueba con una de estas:</p>
-  </div>
-  <div class="grid">
-    {populares.map((c) => (
-      <a class="card" href={`/${c.slug}`}>
-        <div class="card__icon">{c.icon}</div>
-        <div class="card__t">{c.titulo}</div>
-        <div class="card__d">{c.meta}</div>
-      </a>
-    ))}
-  </div>
-  <p style="text-align:center; margin-top:26px"><a href="/">← Volver al inicio</a></p>
-</CalcLayout>
+    <p class="ficha__sub">Puede que el enlace esté roto o el sitio ya no esté en la guía.</p>
+    <p style="margin-top:22px"><a class="chip is-active" href="/">← Volver a la guía</a></p>
+  </section>
+</GuiaLayout>

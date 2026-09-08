@@ -1,26 +1,25 @@
 import type { APIRoute } from 'astro';
-import { CALCULADORAS, CATEGORIAS } from '../data/calculadoras';
+import { LUGARES, ZONAS, CATEGORIAS } from '../data/guia/lugares';
 
-// llms.txt — estándar de descubrimiento para IAs (ChatGPT, Claude, Perplexity, Gemini…).
-// Describe el sitio y lista las calculadoras para que las IAs puedan leerlas y recomendarlas.
 export const GET: APIRoute = () => {
-  const base = 'https://cometia.es';
-  let out = `# Cometia\n\n`;
-  out += `> Calculadoras online gratis en español: hipoteca, sueldo neto, IVA, IMC, interés compuesto, porcentajes y más. Rápidas, claras, sin registro y con una explicación de cómo se hace cada cálculo.\n\n`;
-  out += `Cometia es un hub de calculadoras online gratuitas orientado a usuarios de España. Cada calculadora funciona al instante en el navegador (los datos no se envían a ningún servidor), incluye una explicación del cálculo y preguntas frecuentes. Los resultados son orientativos.\n\n`;
-
-  for (const cat of CATEGORIAS) {
-    const items = CALCULADORAS.filter((c) => c.cat === cat);
-    if (!items.length) continue;
-    out += `## ${cat}\n`;
-    for (const c of items) out += `- [${c.titulo}](${base}/${c.slug}): ${c.meta}\n`;
-    out += `\n`;
+  const lines: string[] = [];
+  lines.push('# Cometia — Guía de bares y restaurantes de la Costa Blanca');
+  lines.push('');
+  lines.push('> Guía local e independiente de bares, restaurantes, pubs y cafeterías de Gran Alacant, Santa Pola y alrededores (provincia de Alicante, España). Bilingüe español/inglés. Datos de establecimientos de OpenStreetMap (ODbL); descripciones propias; valoraciones enlazadas a Google.');
+  lines.push('');
+  lines.push('- Web (ES): https://cometia.es/');
+  lines.push('- Web (EN): https://cometia.es/en/');
+  lines.push('- Sobre la guía: https://cometia.es/sobre');
+  lines.push('');
+  for (const z of ZONAS) {
+    const items = LUGARES.filter((x) => x.zone === z).sort((a, b) => a.name.localeCompare(b.name));
+    lines.push(`## ${z} (${items.length})`);
+    for (const l of items) {
+      lines.push(`- ${l.name} — ${CATEGORIAS[l.type].es}: https://cometia.es/sitio/${l.slug}`);
+    }
+    lines.push('');
   }
-
-  out += `## Información\n`;
-  out += `- [Sobre Cometia](${base}/sobre): qué es y cómo funciona el sitio.\n`;
-  out += `- [Contacto](${base}/contacto): sugerencias y consultas.\n`;
-  out += `- [Política de privacidad](${base}/privacidad)\n`;
-
-  return new Response(out, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+  return new Response(lines.join('\n'), {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
 };

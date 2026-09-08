@@ -1,18 +1,24 @@
 ---
-import CalcLayout from '../layouts/CalcLayout.astro';
+import GuiaLayout from '../layouts/GuiaLayout.astro';
 ---
-<CalcLayout title="Política de privacidad — Cometia" description="Política de privacidad y de cookies de Cometia." path="/privacidad">
-  <h1>Política de privacidad</h1>
-  <section class="prose">
-    <p>En Cometia (cometia.es) nos tomamos en serio tu privacidad. Esta política explica qué datos tratamos y cómo.</p>
-    <h2>Qué datos recogemos</h2>
-    <p>Las calculadoras funcionan <strong>en tu propio navegador</strong>: los valores que introduces no se envían a nuestros servidores ni se almacenan. Solo tratamos datos personales si nos escribes voluntariamente por correo.</p>
-    <h2>Cookies y publicidad</h2>
-    <p>Cometia se financia con publicidad. Podemos usar <strong>Google AdSense</strong> y otros proveedores que utilizan cookies para mostrar anuncios relevantes y medir su rendimiento. Google, como proveedor externo, utiliza cookies para publicar anuncios en función de las visitas previas del usuario a este y otros sitios web. Puedes gestionar la personalización de anuncios en la <a href="https://adssettings.google.com" rel="nofollow noopener" target="_blank">configuración de anuncios de Google</a>.</p>
-    <h2>Analítica</h2>
-    <p>Podemos usar herramientas de analítica (como Google Analytics) para entender de forma agregada y anónima cómo se usa la web y mejorarla.</p>
-    <h2>Tus derechos</h2>
-    <p>Puedes solicitarnos información, rectificación o supresión de tus datos escribiendo a <a href="mailto:cometia.es@gmail.com">cometia.es@gmail.com</a>.</p>
-    <p class="hint">Última actualización: 2026.</p>
+<GuiaLayout
+  title="Política de privacidad — Cometia"
+  description="Política de privacidad de la guía Cometia."
+  lang="es"
+  canonical="/privacidad"
+  altUrl="/en/privacy"
+>
+  <section class="ficha wrap">
+    <h1>Política de privacidad</h1>
+    <div class="prose" style="max-width:720px">
+      <p>Cometia es una guía web informativa. No te pedimos registro ni recogemos datos personales para navegar por la guía. Solo tratamos datos si nos escribes voluntariamente por correo.</p>
+      <h2>Datos de terceros</h2>
+      <p>Los datos de los locales proceden de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (© colaboradores de OpenStreetMap, licencia ODbL). Los mapas se muestran mediante OpenStreetMap y los enlaces de valoraciones llevan a Google Maps, cada uno con su propia política de privacidad.</p>
+      <h2>Analítica y cookies</h2>
+      <p>Podemos usar herramientas de analítica de forma agregada y anónima para entender cómo se usa la web y mejorarla. Si en el futuro incorporamos publicidad, lo reflejaremos aquí.</p>
+      <h2>Contacto</h2>
+      <p>Para cualquier consulta sobre privacidad: <a href="mailto:cometia.es@gmail.com">cometia.es@gmail.com</a>.</p>
+      <p class="ftr__attr">Última actualización: 2026.</p>
+    </div>
   </section>
-</CalcLayout>
+</GuiaLayout>
