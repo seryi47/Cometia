@@ -43,9 +43,9 @@
   "neighbourhood": "Edificio Gran Playa",
   "slug": "wok-buffet",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/wok-buffet.jpg",
+  "photo_credit": "© miguel_andrade · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1221458912",
@@ -139,9 +139,9 @@
   "neighbourhood": "Novamar",
   "slug": "sezadu",
   "type": "pub",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/sezadu.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1221466796",
@@ -163,9 +163,9 @@
   "neighbourhood": "Novamar",
   "slug": "cork-n-bottle",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/cork-n-bottle.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1221469940",
@@ -187,9 +187,9 @@
   "neighbourhood": "Altomar II",
   "slug": "destination-bar-grill",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/destination-bar-grill.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1339993160",
@@ -235,9 +235,9 @@
   "neighbourhood": null,
   "slug": "batiste",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/batiste.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1340576595",
@@ -259,9 +259,9 @@
   "neighbourhood": null,
   "slug": "el-bronce",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/el-bronce.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1340576648",
@@ -331,9 +331,9 @@
   "neighbourhood": "Novamar",
   "slug": "hispania",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/hispania.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1669168167",
@@ -355,9 +355,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "restaurante-matola",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-matola.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1669168169",
@@ -379,9 +379,9 @@
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "el-rincon-de-manoli",
   "type": "cafeteria",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/el-rincon-de-manoli.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1669168171",
@@ -403,9 +403,9 @@
   "neighbourhood": "Novamar",
   "slug": "texicano-internacional",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/texicano-internacional.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1669168174",
@@ -427,9 +427,9 @@
   "neighbourhood": "Novamar",
   "slug": "alexandria",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/alexandria.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1669168175",
@@ -451,9 +451,9 @@
   "neighbourhood": "Novamar",
   "slug": "miley-o-rourke-s-irish-pub",
   "type": "pub",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/miley-o-rourke-s-irish-pub.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1669168177",
@@ -475,9 +475,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "maritao-kitchen",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/maritao-kitchen.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1669168178",
@@ -499,9 +499,9 @@
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "dragon-iii",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/dragon-iii.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1669168179",
@@ -523,9 +523,9 @@
   "neighbourhood": "Novamar",
   "slug": "heaven-star",
   "type": "pub",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/heaven-star.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1675860612",
@@ -547,9 +547,9 @@
   "neighbourhood": "la Vallverda Alta",
   "slug": "indalecio",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/indalecio.jpg",
+  "photo_credit": "© tobidi · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1896242730",
@@ -571,9 +571,9 @@
   "neighbourhood": null,
   "slug": "taperia-y-arroceria-buenisimo",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/taperia-y-arroceria-buenisimo.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/1896255719",
@@ -691,9 +691,9 @@
   "neighbourhood": null,
   "slug": "bitacora",
   "type": "cafeteria",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/bitacora.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/2459141234",
@@ -715,9 +715,9 @@
   "neighbourhood": null,
   "slug": "roraima",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/roraima.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/2883820406",
@@ -835,9 +835,9 @@
   "neighbourhood": null,
   "slug": "burger-king",
   "type": "comida-rapida",
-  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Burgerkingheadquarters.jpg?width=800",
-  "photo_credit": "Wikimedia Commons",
-  "photo_fit": "contain"
+  "photo": "/fotos-mapillary/burger-king.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/2998081449",
@@ -907,9 +907,9 @@
   "neighbourhood": null,
   "slug": "boule-vard",
   "type": "pub",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/boule-vard.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3011319198",
@@ -931,9 +931,9 @@
   "neighbourhood": null,
   "slug": "celestino-y-maria",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/celestino-y-maria.jpg",
+  "photo_credit": "© miguel_andrade · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3011319199",
@@ -955,9 +955,9 @@
   "neighbourhood": null,
   "slug": "el-portal-del-puerto-com",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/el-portal-del-puerto-com.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3011319200",
@@ -979,9 +979,9 @@
   "neighbourhood": null,
   "slug": "la-sal",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-sal.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3011319201",
@@ -1003,9 +1003,9 @@
   "neighbourhood": null,
   "slug": "i-love-recycled",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/i-love-recycled.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3011319202",
@@ -1027,9 +1027,9 @@
   "neighbourhood": null,
   "slug": "la-taberna-de-lucia",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-taberna-de-lucia.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3011319203",
@@ -1051,9 +1051,9 @@
   "neighbourhood": null,
   "slug": "lizarran",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/lizarran.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3011319204",
@@ -1075,9 +1075,9 @@
   "neighbourhood": null,
   "slug": "lugano",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/lugano.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3011319206",
@@ -1099,9 +1099,9 @@
   "neighbourhood": null,
   "slug": "saint-james",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/saint-james.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3011319207",
@@ -1147,9 +1147,9 @@
   "neighbourhood": null,
   "slug": "restaurante-currican",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-currican.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3012630691",
@@ -1195,9 +1195,9 @@
   "neighbourhood": null,
   "slug": "restaurante-narcea",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-narcea.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3013272029",
@@ -1219,9 +1219,9 @@
   "neighbourhood": null,
   "slug": "restobar-laico",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restobar-laico.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3013272334",
@@ -1243,9 +1243,9 @@
   "neighbourhood": null,
   "slug": "telepizza",
   "type": "comida-rapida",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/telepizza.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3013272335",
@@ -1267,9 +1267,9 @@
   "neighbourhood": null,
   "slug": "virgen-del-carmen",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/virgen-del-carmen.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3018702044",
@@ -1387,9 +1387,9 @@
   "neighbourhood": null,
   "slug": "china-town",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/china-town.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3020596310",
@@ -1411,9 +1411,9 @@
   "neighbourhood": null,
   "slug": "don-jeronimo",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/don-jeronimo.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3020596311",
@@ -1483,9 +1483,9 @@
   "neighbourhood": null,
   "slug": "taperia-la-fabrica",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/taperia-la-fabrica.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3020596314",
@@ -1603,9 +1603,9 @@
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "sierra-nevada",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/sierra-nevada.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3032587181",
@@ -1627,9 +1627,9 @@
   "neighbourhood": null,
   "slug": "casa-de-oro",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/casa-de-oro.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3032587187",
@@ -1699,9 +1699,9 @@
   "neighbourhood": "Altomar II",
   "slug": "bar-sioux",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/bar-sioux.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3035264514",
@@ -1723,9 +1723,9 @@
   "neighbourhood": "Altomar II",
   "slug": "tablao-los-lunares",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/tablao-los-lunares.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3037172767",
@@ -1987,9 +1987,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "la-tasca",
   "type": "pub",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-tasca.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/3457930647",
@@ -2035,9 +2035,9 @@
   "neighbourhood": null,
   "slug": "vaig-a-dite",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/vaig-a-dite.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4038346722",
@@ -2083,9 +2083,9 @@
   "neighbourhood": null,
   "slug": "las-torres",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/las-torres.jpg",
+  "photo_credit": "© tobidi · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4083073270",
@@ -2107,9 +2107,9 @@
   "neighbourhood": null,
   "slug": "restaurante-casa-del-mar",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-casa-del-mar.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4130816089",
@@ -2155,9 +2155,9 @@
   "neighbourhood": "Brisa Mar",
   "slug": "restaurante-alonai",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-alonai.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4245512989",
@@ -2179,9 +2179,9 @@
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "nankinii",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/nankinii.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4307492036",
@@ -2203,9 +2203,9 @@
   "neighbourhood": null,
   "slug": "autoking",
   "type": "comida-rapida",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/autoking.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4307492037",
@@ -2251,9 +2251,9 @@
   "neighbourhood": null,
   "slug": "la-cofradia",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-cofradia.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4307495274",
@@ -2275,9 +2275,9 @@
   "neighbourhood": null,
   "slug": "100-montaditos",
   "type": "restaurante",
-  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Cerveceria%20100%20montaditos%20en%20Sevilla.jpg?width=800",
-  "photo_credit": "Wikimedia Commons",
-  "photo_fit": "contain"
+  "photo": "/fotos-mapillary/100-montaditos.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4313591609",
@@ -2299,9 +2299,9 @@
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "dream-corner",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/dream-corner.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4352263851",
@@ -2323,9 +2323,9 @@
   "neighbourhood": "Altomar",
   "slug": "kiosko-el-pinet",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/kiosko-el-pinet.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4416535899",
@@ -2443,9 +2443,9 @@
   "neighbourhood": null,
   "slug": "nankin",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/nankin.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4417769960",
@@ -2467,9 +2467,9 @@
   "neighbourhood": null,
   "slug": "tribeca",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/tribeca.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4418140336",
@@ -2491,9 +2491,9 @@
   "neighbourhood": null,
   "slug": "la-casa-de-marta",
   "type": "cafeteria",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-casa-de-marta.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4418140342",
@@ -2515,9 +2515,9 @@
   "neighbourhood": null,
   "slug": "la-moruna",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-moruna.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/4421245958",
@@ -2707,9 +2707,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "el-hatsikidee",
   "type": "cafeteria",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/el-hatsikidee.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/5396112500",
@@ -2755,9 +2755,9 @@
   "neighbourhood": null,
   "slug": "wok-hong",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/wok-hong.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6161339486",
@@ -2779,9 +2779,9 @@
   "neighbourhood": "Novamar",
   "slug": "molly-malones",
   "type": "pub",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/molly-malones.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6210298557",
@@ -2827,9 +2827,9 @@
   "neighbourhood": null,
   "slug": "la-parmigiana",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-parmigiana.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6356652276",
@@ -2851,9 +2851,9 @@
   "neighbourhood": null,
   "slug": "meson-el-castillo",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/meson-el-castillo.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6356652277",
@@ -2875,9 +2875,9 @@
   "neighbourhood": null,
   "slug": "la-cadena",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-cadena.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6395825573",
@@ -2899,9 +2899,9 @@
   "neighbourhood": null,
   "slug": "cafeteria-l-estacio",
   "type": "cafeteria",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/cafeteria-l-estacio.jpg",
+  "photo_credit": "© miguel_andrade · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6398226941",
@@ -2947,9 +2947,9 @@
   "neighbourhood": null,
   "slug": "taperia-la-fragua",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/taperia-la-fragua.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6399471654",
@@ -2971,9 +2971,9 @@
   "neighbourhood": null,
   "slug": "restaurante-rias-baixas",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-rias-baixas.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6399471657",
@@ -2995,9 +2995,9 @@
   "neighbourhood": null,
   "slug": "restaurante-sidreria-el-llagarin",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-sidreria-el-llagarin.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6441437504",
@@ -3019,9 +3019,9 @@
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "los-olivos-playa",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/los-olivos-playa.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6496385903",
@@ -3139,9 +3139,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "soleluna",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/soleluna.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6533668537",
@@ -3163,9 +3163,9 @@
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "la-bodeguita-de-pascual",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-bodeguita-de-pascual.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6533995997",
@@ -3187,9 +3187,9 @@
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "sueno-azul",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/sueno-azul.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6533996014",
@@ -3211,9 +3211,9 @@
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "el-chupao",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/el-chupao.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6534003974",
@@ -3235,9 +3235,9 @@
   "neighbourhood": "Urbanización Sueño Azul",
   "slug": "restaurante-vistabella",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-vistabella.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6534065752",
@@ -3259,9 +3259,9 @@
   "neighbourhood": "Balcones del Mar",
   "slug": "cafeteria-gran-alacant",
   "type": "cafeteria",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/cafeteria-gran-alacant.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6535096246",
@@ -3307,9 +3307,9 @@
   "neighbourhood": "Novamar",
   "slug": "la-mansion",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-mansion.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6566066935",
@@ -3331,9 +3331,9 @@
   "neighbourhood": "Urbanització La Colònia",
   "slug": "restaurante-picola",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-picola.jpg",
+  "photo_credit": "© tobidi · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6592830591",
@@ -3379,9 +3379,9 @@
   "neighbourhood": null,
   "slug": "cafeteria-alexandra",
   "type": "cafeteria",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/cafeteria-alexandra.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6767409567",
@@ -3403,9 +3403,9 @@
   "neighbourhood": null,
   "slug": "la-dolce-vita",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-dolce-vita.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6767425100",
@@ -3427,9 +3427,9 @@
   "neighbourhood": null,
   "slug": "restaurante-2020",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-2020.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6767445326",
@@ -3475,9 +3475,9 @@
   "neighbourhood": null,
   "slug": "restaurante-casa-yolanda",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-casa-yolanda.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/6767451538",
@@ -3547,9 +3547,9 @@
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "snipe",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/snipe.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/8722773417",
@@ -3571,9 +3571,9 @@
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "rincon-de-santi",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/rincon-de-santi.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9084303370",
@@ -3595,9 +3595,9 @@
   "neighbourhood": null,
   "slug": "pinseria-il-grano",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/pinseria-il-grano.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9084303392",
@@ -3715,9 +3715,9 @@
   "neighbourhood": null,
   "slug": "la-raspa",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-raspa.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9094549460",
@@ -3739,9 +3739,9 @@
   "neighbourhood": null,
   "slug": "la-mala-madre",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-mala-madre.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9094549464",
@@ -3763,9 +3763,9 @@
   "neighbourhood": null,
   "slug": "azteca",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/azteca.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9094549466",
@@ -3787,9 +3787,9 @@
   "neighbourhood": null,
   "slug": "mi-barra",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/mi-barra.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9094549467",
@@ -3811,9 +3811,9 @@
   "neighbourhood": null,
   "slug": "mar-de-cristal",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/mar-de-cristal.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9094549468",
@@ -3859,9 +3859,9 @@
   "neighbourhood": null,
   "slug": "pizza-reina",
   "type": "comida-rapida",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/pizza-reina.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9095217392",
@@ -3907,9 +3907,9 @@
   "neighbourhood": null,
   "slug": "cafeteria-ecus",
   "type": "cafeteria",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/cafeteria-ecus.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9095277002",
@@ -3931,9 +3931,9 @@
   "neighbourhood": null,
   "slug": "casa-rico",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/casa-rico.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9095356990",
@@ -3955,9 +3955,9 @@
   "neighbourhood": null,
   "slug": "pizzeria-la-deliziosa",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/pizzeria-la-deliziosa.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9115259767",
@@ -4003,9 +4003,9 @@
   "neighbourhood": null,
   "slug": "restaurante-el-zagal",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-el-zagal.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9122952861",
@@ -4123,9 +4123,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "el-olivo",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/el-olivo.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9127842024",
@@ -4147,9 +4147,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "kfc",
   "type": "comida-rapida",
-  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20modern%20KFC%20restaurant%20in%20Murphy%2C%20North%20Carolina.jpg?width=800",
-  "photo_credit": "Wikimedia Commons",
-  "photo_fit": "contain"
+  "photo": "/fotos-mapillary/kfc.jpg",
+  "photo_credit": "© miguel_andrade · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9140633713",
@@ -4171,9 +4171,9 @@
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "gran-bahia",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/gran-bahia.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9140633714",
@@ -4195,9 +4195,9 @@
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "j-latorre",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/j-latorre.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9140633775",
@@ -4219,9 +4219,9 @@
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "el-tiburon",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/el-tiburon.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9140633776",
@@ -4243,9 +4243,9 @@
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "la-bodeguita-de-serafin",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-bodeguita-de-serafin.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9140633793",
@@ -4267,9 +4267,9 @@
   "neighbourhood": "Urbanització Els Arenals del Sol",
   "slug": "resto-bar-akacia",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/resto-bar-akacia.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/9142402465",
@@ -4339,9 +4339,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "restaurante-infernum",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/restaurante-infernum.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/10045989633",
@@ -4387,9 +4387,9 @@
   "neighbourhood": null,
   "slug": "malamadre-experience",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/malamadre-experience.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/10779549021",
@@ -4435,9 +4435,9 @@
   "neighbourhood": "Novamar",
   "slug": "pizza-kebab-express",
   "type": "comida-rapida",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/pizza-kebab-express.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/10790865966",
@@ -4459,9 +4459,9 @@
   "neighbourhood": "Novamar",
   "slug": "gourmet",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/gourmet.jpg",
+  "photo_credit": "© hakanilerum · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/11065098276",
@@ -4483,9 +4483,9 @@
   "neighbourhood": null,
   "slug": "lizarran-2",
   "type": "comida-rapida",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/lizarran-2.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/11159783453",
@@ -4531,9 +4531,9 @@
   "neighbourhood": "els Ciprerets",
   "slug": "bar-skatebar-santa-pola",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/bar-skatebar-santa-pola.jpg",
+  "photo_credit": "© tobidi · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/11513858823",
@@ -4627,9 +4627,9 @@
   "neighbourhood": "Edificio Gran Playa",
   "slug": "fausti-burger",
   "type": "comida-rapida",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/fausti-burger.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/13638353485",
@@ -4651,9 +4651,9 @@
   "neighbourhood": "Altomar II",
   "slug": "tuttis-restaurante",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/tuttis-restaurante.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/13638353490",
@@ -4675,9 +4675,9 @@
   "neighbourhood": "Altomar II",
   "slug": "la-piedra-bar-grill",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/la-piedra-bar-grill.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "node/13659859724",
@@ -4867,9 +4867,9 @@
   "neighbourhood": null,
   "slug": "varadero",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/varadero.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "way/288773415",
@@ -4915,9 +4915,9 @@
   "neighbourhood": null,
   "slug": "mcdonald-s",
   "type": "comida-rapida",
-  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/New-McDonald-HU-lg%20%2843261171540%29.jpg?width=800",
-  "photo_credit": "Wikimedia Commons",
-  "photo_fit": "contain"
+  "photo": "/fotos-mapillary/mcdonald-s.jpg",
+  "photo_credit": "© egofer · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "way/298154742",
@@ -5011,9 +5011,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "foster-s-hollywood",
   "type": "restaurante",
-  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Foster%27s%20Hollywood%2C%20Pozuelo%20de%20Alarc%C3%B3n%2C%20Madrid%2C%20Spain.jpg?width=800",
-  "photo_credit": "Wikimedia Commons",
-  "photo_fit": "contain"
+  "photo": "/fotos-mapillary/foster-s-hollywood.jpg",
+  "photo_credit": "© miguel_andrade · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "way/625839012",
@@ -5035,9 +5035,9 @@
   "neighbourhood": "Gran Alacant",
   "slug": "burger-king-2",
   "type": "comida-rapida",
-  "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Burgerkingheadquarters.jpg?width=800",
-  "photo_credit": "Wikimedia Commons",
-  "photo_fit": "contain"
+  "photo": "/fotos-mapillary/burger-king-2.jpg",
+  "photo_credit": "© miguel_andrade · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "way/683082473",
@@ -5059,9 +5059,9 @@
   "neighbourhood": "Urbanització El Poble Llevantí",
   "slug": "venta-vista-alegre",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/venta-vista-alegre.jpg",
+  "photo_credit": "© miguel_andrade · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "way/713143712",
@@ -5155,9 +5155,9 @@
   "neighbourhood": null,
   "slug": "nomo-varadero-arroceria",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/nomo-varadero-arroceria.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "way/1097319091",
@@ -5179,9 +5179,9 @@
   "neighbourhood": null,
   "slug": "marina",
   "type": "bar",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/marina.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  },
  {
   "osm_id": "way/1097334336",
@@ -5203,8 +5203,8 @@
   "neighbourhood": null,
   "slug": "ca-pacorro",
   "type": "restaurante",
-  "photo": null,
-  "photo_credit": null,
-  "photo_fit": null
+  "photo": "/fotos-mapillary/ca-pacorro.jpg",
+  "photo_credit": "© Lutecien · Mapillary (CC BY-SA)",
+  "photo_fit": "cover"
  }
 ]
