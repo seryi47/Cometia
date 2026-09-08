@@ -1,5 +1,6 @@
 ---
-import { LUGARES, CATEGORIAS, TYPE_ORDER, descripcion, tipoLabel, esBritanico, type Lang } from '../data/guia/lugares';
+import { LUGARES, CATEGORIAS, TYPE_ORDER, type Lang } from '../data/guia/lugares';
+import LugarCard from './LugarCard.astro';
 export interface Props { zona: string; lang: Lang; }
 const { zona, lang } = Astro.props;
 const places = LUGARES.filter((l) => l.zone === zona).sort((a, b) => a.name.localeCompare(b.name));
@@ -32,22 +33,7 @@ const L = lang === 'en'
       <div class="section" style="padding-top:8px">
         <h2>{CATEGORIAS[t].icon} {lang === 'en' ? CATEGORIAS[t].plural_en : CATEGORIAS[t].plural_es} <span style="color:var(--ink-2);font-weight:400;font-size:1rem">({items.length})</span></h2>
         <div class="grid">
-          {items.map((l) => {
-            const brit = esBritanico(l);
-            return (
-              <a class="card" href={`${fichaBase}${l.slug}`}>
-                <div class="card__top">
-                  <span class="card__ico">{CATEGORIAS[l.type].icon}</span>
-                  <span class="card__tag">{tipoLabel(l, lang)}</span>
-                  {brit && <span class="card__tag card__tag--brit">{L.brit}</span>}
-                </div>
-                <h3>{l.name}</h3>
-                <p class="card__zone">📍 {l.zone}</p>
-                <p class="card__desc">{descripcion(l, lang) || ''}</p>
-                <span class="card__more">{L.view}</span>
-              </a>
-            );
-          })}
+          {items.map((l) => <LugarCard l={l} lang={lang} />)}
         </div>
       </div>
     );

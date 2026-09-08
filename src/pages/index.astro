@@ -1,6 +1,7 @@
 ---
 import GuiaLayout from '../layouts/GuiaLayout.astro';
-import { LUGARES, CATEGORIAS, TYPE_ORDER, ZONAS, descripcion, tipoLabel, esBritanico, TOTAL } from '../data/guia/lugares';
+import { LUGARES, CATEGORIAS, TYPE_ORDER, ZONAS, TOTAL } from '../data/guia/lugares';
+import LugarCard from '../components/LugarCard.astro';
 
 const lugares = [...LUGARES].sort((a, b) => a.name.localeCompare(b.name));
 const porZona = (z: string) => LUGARES.filter((l) => l.zone === z).length;
@@ -43,25 +44,7 @@ const jsonLd = {
   <section class="wrap" id="lista">
     <p class="count"><span id="count">{lugares.length}</span> sitios</p>
     <div class="grid" id="grid">
-      {lugares.map((l) => {
-        const desc = descripcion(l, 'es') || '';
-        const brit = esBritanico(l);
-        return (
-          <a class="card lugar" href={`/sitio/${l.slug}`}
-             data-name={`${l.name} ${l.type} ${l.zone} ${l.cuisine || ''}`.toLowerCase()}
-             data-tipo={l.type} data-zona={l.zone} data-brit={brit ? '1' : '0'}>
-            <div class="card__top">
-              <span class="card__ico">{CATEGORIAS[l.type].icon}</span>
-              <span class="card__tag">{tipoLabel(l, 'es')}</span>
-              {brit && <span class="card__tag card__tag--brit">🇬🇧 British-friendly</span>}
-            </div>
-            <h3>{l.name}</h3>
-            <p class="card__zone">📍 {l.zone}</p>
-            <p class="card__desc">{desc}</p>
-            <span class="card__more">Ver ficha →</span>
-          </a>
-        );
-      })}
+      {lugares.map((l) => <LugarCard l={l} lang="es" />)}
     </div>
     <p class="noresults" id="noresults">No encontramos sitios con ese filtro. Prueba con otra palabra.</p>
   </section>
