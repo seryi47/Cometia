@@ -1,14 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cometia">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cometia — guía de bares y restaurantes">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#5b5bf6"/>
-      <stop offset="1" stop-color="#8b5cf6"/>
+      <stop offset="0" stop-color="#e8a82c"/>
+      <stop offset="1" stop-color="#c81f33"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="16" fill="url(#g)"/>
-  <rect x="15" y="12" width="34" height="12" rx="3" fill="#ffffff" opacity="0.95"/>
-  <g fill="#ffffff">
-    <circle cx="22" cy="35" r="3.4"/><circle cx="32" cy="35" r="3.4"/><circle cx="42" cy="35" r="3.4"/>
-    <circle cx="22" cy="46" r="3.4"/><circle cx="32" cy="46" r="3.4"/><circle cx="42" cy="46" r="3.4"/>
+  <rect width="64" height="64" rx="15" fill="url(#g)"/>
+  <!-- plato -->
+  <circle cx="32" cy="32" r="13" fill="none" stroke="#fffdf8" stroke-width="3"/>
+  <circle cx="32" cy="32" r="5" fill="#fffdf8"/>
+  <!-- tenedor (izq) -->
+  <g fill="#fffdf8">
+    <rect x="12.5" y="12" width="2" height="8" rx="1"/>
+    <rect x="15.5" y="12" width="2" height="8" rx="1"/>
+    <rect x="18.5" y="12" width="2" height="8" rx="1"/>
+    <rect x="12.5" y="19" width="8" height="2.4" rx="1.2"/>
+    <rect x="15.3" y="21" width="2.4" height="31" rx="1.2"/>
+    <!-- cuchillo (der) -->
+    <path d="M49 12c-2.6 0-4.2 3.4-4.2 8 0 3.2 1.6 4.9 3 5.4V52a1.2 1.2 0 0 0 2.4 0V12z"/>
   </g>
 </svg>
