@@ -1,0 +1,15 @@
+---
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import ZonaGuia from '../components/ZonaGuia.astro';
+import { porZona } from '../data/guia/lugares';
+const n = porZona('Alicante').length;
+---
+<GuiaLayout
+  title="Bares y restaurantes en Alicante — Guía Cometia"
+  description={`Guía de ${n} bares, restaurantes, pubs y cafeterías de Alicante capital. Con mapa y descripciones. Español e inglés.`}
+  lang="es"
+  canonical="/alicante"
+  altUrl="/en/alicante"
+>
+  <ZonaGuia zona="Alicante" lang="es" />
+</GuiaLayout>

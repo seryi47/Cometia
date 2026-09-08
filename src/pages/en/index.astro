@@ -3,21 +3,28 @@ import GuiaLayout from '../../layouts/GuiaLayout.astro';
 import { LUGARES, CATEGORIAS, TYPE_ORDER, ZONAS, TOTAL } from '../../data/guia/lugares';
 import LugarCard from '../../components/LugarCard.astro';
 
-const lugares = [...LUGARES].sort((a, b) => a.name.localeCompare(b.name));
 const porZona = (z: string) => LUGARES.filter((l) => l.zone === z).length;
+
+// Featured selection: photos first, balanced by area (up to 18 per area).
+const destacados = ZONAS.flatMap((z) => {
+  const inZone = LUGARES.filter((l) => l.zone === z);
+  const withP = inZone.filter((l) => l.photo).sort((a, b) => a.name.localeCompare(b.name));
+  const rest = inZone.filter((l) => !l.photo).sort((a, b) => a.name.localeCompare(b.name));
+  return [...withP, ...rest].slice(0, 18);
+}).sort((a, b) => a.name.localeCompare(b.name));
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'Bars & restaurants guide for Gran Alacant and Santa Pola',
+  name: 'Bars & restaurants guide for the Costa Blanca',
   url: 'https://cometia.es/en/',
   inLanguage: 'en',
-  about: 'Bars, restaurants, pubs and cafés in Gran Alacant, Santa Pola and around (Costa Blanca).',
+  about: 'Bars, restaurants, pubs and cafés in Gran Alacant, Santa Pola, Alicante and Elche (Costa Blanca).',
 };
 ---
 <GuiaLayout
-  title="Bars & restaurants in Gran Alacant and Santa Pola — Cometia Guide"
-  description="The local guide to the best bars, restaurants, pubs and cafés in Gran Alacant, Santa Pola and around (Costa Blanca). With map, opening hours and honest descriptions. English & Spanish."
+  title="Bars & restaurants on the Costa Blanca — Cometia Guide"
+  description="The local guide to bars, restaurants, pubs and cafés in Gran Alacant, Santa Pola, Alicante and Elche. With map, opening hours and honest descriptions. English & Spanish."
   lang="en"
   canonical="/en/"
   altUrl="/"
@@ -26,9 +33,9 @@ const jsonLd = {
   <section class="hero">
     <div class="wrap">
       <p class="hero__eyebrow">Your Costa Blanca guide</p>
-      <h1>Where to eat & drink in <span class="grad">Gran Alacant & Santa Pola</span></h1>
-      <p>The local guide to bars, restaurants, pubs and cafés in the area. {TOTAL} places with map, hours and details.</p>
-      <div class="search"><input id="q" type="search" placeholder="Search by name, type or area…" autocomplete="off" aria-label="Search" /><span class="loc">📍 Costa Blanca</span></div>
+      <h1>Where to eat & drink on <span class="grad">the Costa Blanca</span></h1>
+      <p>The local guide to bars, restaurants, pubs and cafés in Gran Alacant, Santa Pola, Alicante and Elche. {TOTAL} places with map, hours and details.</p>
+      <div class="search"><input id="q" type="search" placeholder="Search the featured places by name or type…" autocomplete="off" aria-label="Search" /><span class="loc">📍 Costa Blanca</span></div>
       <div class="chips" id="chips">
         <button class="chip is-active" data-f="tipo" data-v="">All</button>
         {TYPE_ORDER.filter((t) => LUGARES.some((l) => l.type === t)).map((t) => (
@@ -36,26 +43,28 @@ const jsonLd = {
         ))}
       </div>
       <div class="chips">
-        <button class="chip zona is-active" data-f="zona" data-v="">All areas</button>
-        {ZONAS.map((z) => (<button class="chip zona" data-f="zona" data-v={z}>📍 {z} ({porZona(z)})</button>))}
+        {ZONAS.map((z) => (<a class="chip zona" href={`/en/${z === 'Gran Alacant' ? 'gran-alacant' : z === 'Santa Pola' ? 'santa-pola' : z === 'Alicante' ? 'alicante' : 'elche'}`}>📍 {z} ({porZona(z)})</a>))}
       </div>
     </div>
   </section>
 
   <section class="wrap" id="lista">
-    <p class="count"><span id="count">{lugares.length}</span> places</p>
+    <h2 class="section__h">Featured places</h2>
+    <p class="count"><span id="count">{destacados.length}</span> featured places · open each area to see them all</p>
     <div class="grid" id="grid">
-      {lugares.map((l) => <LugarCard l={l} lang="en" />)}
+      {destacados.map((l) => <LugarCard l={l} lang="en" />)}
     </div>
     <p class="noresults" id="noresults">No places match that filter. Try another word.</p>
   </section>
 
   <section class="section wrap">
     <h2>Browse by area</h2>
-    <p class="lead">Pick your area and find where to eat, tapas or grab a drink.</p>
+    <p class="lead">Pick your area and find every place to eat, have tapas or grab a drink.</p>
     <div class="zonecards">
       <a class="zonecard" href="/en/gran-alacant"><h3>Gran Alacant</h3><span>{porZona('Gran Alacant')} bars & restaurants</span></a>
       <a class="zonecard" href="/en/santa-pola"><h3>Santa Pola</h3><span>{porZona('Santa Pola')} bars & restaurants</span></a>
+      <a class="zonecard" href="/en/alicante"><h3>Alicante</h3><span>{porZona('Alicante')} bars & restaurants</span></a>
+      <a class="zonecard" href="/en/elche"><h3>Elche</h3><span>{porZona('Elche')} bars & restaurants</span></a>
     </div>
   </section>
 
@@ -64,28 +73,27 @@ const jsonLd = {
     const q = document.getElementById('q') as HTMLInputElement;
     const countEl = document.getElementById('count')!;
     const noRes = document.getElementById('noresults')!;
-    let fTipo = '', fZona = '', fText = '';
+    let fTipo = '', fText = '';
     function apply() {
       let n = 0;
       cards.forEach((c) => {
-        const ok = (!fTipo || c.dataset.tipo === fTipo) && (!fZona || c.dataset.zona === fZona)
+        const ok = (!fTipo || c.dataset.tipo === fTipo)
           && (!fText || (c.dataset.name || '').includes(fText));
         c.style.display = ok ? '' : 'none'; if (ok) n++;
       });
       countEl.textContent = String(n); noRes.style.display = n ? 'none' : 'block';
     }
-    document.querySelectorAll('.chip').forEach((ch) => {
+    document.querySelectorAll('.chip[data-f]').forEach((ch) => {
       ch.addEventListener('click', () => {
         const f = (ch as HTMLElement).dataset.f, v = (ch as HTMLElement).dataset.v || '';
-        if (f === 'tipo') fTipo = v; else fZona = v;
+        if (f === 'tipo') fTipo = v;
         document.querySelectorAll(`.chip[data-f="${f}"]`).forEach((x) => x.classList.remove('is-active'));
         ch.classList.add('is-active'); apply();
       });
     });
     q.addEventListener('input', () => { fText = q.value.trim().toLowerCase(); apply(); });
     const params = new URLSearchParams(location.search);
-    const pz = params.get('zona'), pt = params.get('tipo');
-    if (pz) { const b = document.querySelector(`.chip[data-f="zona"][data-v="${CSS.escape(pz)}"]`) as HTMLElement; if (b) b.click(); }
+    const pt = params.get('tipo');
     if (pt) { const b = document.querySelector(`.chip[data-f="tipo"][data-v="${CSS.escape(pt)}"]`) as HTMLElement; if (b) b.click(); }
   </script>
 </GuiaLayout>

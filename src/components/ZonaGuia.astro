@@ -15,6 +15,14 @@ const INTRO: Record<string, Record<Lang, string>> = {
     es: 'Santa Pola, con uno de los mayores puertos pesqueros del Mediterráneo, es un sitio estupendo para pescado y marisco, además de bares de tapas y cafeterías por todo el pueblo y la costa. Aquí tienes todos los locales de Santa Pola, por tipo.',
     en: 'Santa Pola, home to one of the largest fishing ports in the Mediterranean, is a great spot for fish and seafood, plus tapas bars and cafés all over the town and seafront. Here are all the venues in Santa Pola, by type.',
   },
+  'Alicante': {
+    es: 'Alicante reúne una enorme oferta gastronómica: desde los arroces y el marisco del Mediterráneo hasta las tabernas del casco antiguo, las terrazas de la Explanada y el Puerto, y cocina de medio mundo. Aquí tienes todos los bares, restaurantes, pubs y cafeterías de la ciudad, ordenados por tipo.',
+    en: 'Alicante offers a huge range of places to eat and drink: from Mediterranean rice dishes and seafood to the taverns of the old town, the terraces along the Explanada and the harbour, and cuisine from all over the world. Here are all the bars, restaurants, pubs and cafés in the city, sorted by type.',
+  },
+  'Elche': {
+    es: 'Elche, ciudad del palmeral Patrimonio de la Humanidad, tiene una escena gastronómica muy viva: arroces y cocina alicantina tradicional, tapas por el centro y bares y cafeterías repartidos por todos sus barrios. Aquí tienes todos los locales de Elche, por tipo.',
+    en: 'Elche, the city of the UNESCO World Heritage palm grove, has a lively food scene: rice dishes and traditional Alicante cooking, tapas around the centre and bars and cafés spread across every neighbourhood. Here are all the venues in Elche, by type.',
+  },
 };
 const intro = INTRO[zona]?.[lang] ?? '';
 const L = lang === 'en'

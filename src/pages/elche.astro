@@ -1,0 +1,15 @@
+---
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import ZonaGuia from '../components/ZonaGuia.astro';
+import { porZona } from '../data/guia/lugares';
+const n = porZona('Elche').length;
+---
+<GuiaLayout
+  title="Bares y restaurantes en Elche — Guía Cometia"
+  description={`Guía de ${n} bares, restaurantes, pubs y cafeterías de Elche (Elx). Con mapa y descripciones. Español e inglés.`}
+  lang="es"
+  canonical="/elche"
+  altUrl="/en/elche"
+>
+  <ZonaGuia zona="Elche" lang="es" />
+</GuiaLayout>

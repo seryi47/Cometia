@@ -50,7 +50,7 @@ export const CATEGORIAS: Record<TypeKey, { es: string; en: string; plural_es: st
 
 export const TYPE_ORDER: TypeKey[] = ['restaurante', 'bar', 'pub', 'cafeteria', 'comida-rapida', 'cerveceria'];
 
-export const ZONAS = ['Gran Alacant', 'Santa Pola'] as const;
+export const ZONAS = ['Gran Alacant', 'Santa Pola', 'Alicante', 'Elche'] as const;
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 export function getLugar(slug: string): Lugar | undefined {

@@ -5,7 +5,7 @@ export const GET: APIRoute = () => {
   const lines: string[] = [];
   lines.push('# Cometia — Guía de bares y restaurantes de la Costa Blanca');
   lines.push('');
-  lines.push('> Guía local e independiente de bares, restaurantes, pubs y cafeterías de Gran Alacant, Santa Pola y alrededores (provincia de Alicante, España). Bilingüe español/inglés. Datos de establecimientos de OpenStreetMap (ODbL); descripciones propias; valoraciones enlazadas a Google.');
+  lines.push('> Guía local e independiente de bares, restaurantes, pubs y cafeterías de Gran Alacant, Santa Pola, Alicante y Elche (provincia de Alicante, Costa Blanca, España). Bilingüe español/inglés. Datos de establecimientos de OpenStreetMap (ODbL); descripciones propias; valoraciones enlazadas a Google.');
   lines.push('');
   lines.push('- Web (ES): https://cometia.es/');
   lines.push('- Web (EN): https://cometia.es/en/');

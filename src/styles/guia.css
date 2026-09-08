@@ -53,6 +53,7 @@ img { max-width:100%; display:block; }
   padding:7px 14px; font-weight:700; font-size:.88rem; color:var(--saffron-700); background:var(--cream-100); }
 .lang:hover { background:var(--saffron-400); color:var(--noche-900); text-decoration:none; }
 .lang .flag { font-size:1.05rem; line-height:1; }
+@media (max-width:980px){ .nav .hide-md{ display:none; } }
 @media (max-width:720px){ .nav .hide-sm{ display:none; } }
 
 /* Hero */
@@ -121,6 +122,8 @@ img { max-width:100%; display:block; }
   background:linear-gradient(135deg, var(--jamon-600), var(--saffron-500)); transition:transform .25s; }
 .zonecard::before { content:""; position:absolute; inset:0; background-image:var(--texture); background-size:var(--texture-size); }
 .zonecard:nth-child(2){ background:linear-gradient(135deg, var(--oliva-600), var(--saffron-600)); }
+.zonecard:nth-child(3){ background:linear-gradient(135deg, var(--noche-900), var(--jamon-600)); }
+.zonecard:nth-child(4){ background:linear-gradient(135deg, var(--saffron-600), var(--oliva-600)); }
 .zonecard:hover { text-decoration:none; transform:translateY(-4px); }
 .zonecard h3 { position:relative; font-family:var(--display); font-weight:700; margin:0 0 4px; font-size:2rem; }
 .zonecard span { position:relative; opacity:.95; font-size:.95rem; }

@@ -13,10 +13,10 @@ const SITE = 'https://cometia.es';
 const abs = (p: string) => SITE + p;
 const t = lang === 'en'
   ? { home: '/en/', tagline: 'Costa Blanca food & drink guide', slogan: 'EAT & DRINK · COSTA BLANCA',
-      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/en/about', aboutLabel: 'About', contact: '/en/contact', contactLabel: 'Contact' }
+      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', nav_al: 'Alicante', nav_el: 'Elche', about: '/en/about', aboutLabel: 'About', contact: '/en/contact', contactLabel: 'Contact' }
   : { home: '/', tagline: 'Guía de bares y restaurantes de la Costa Blanca', slogan: 'COMER Y TAPEAR · COSTA BLANCA',
-      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', about: '/sobre', aboutLabel: 'Sobre', contact: '/contacto', contactLabel: 'Contacto' };
-const ZSLUG: Record<string, string> = { 'Gran Alacant': 'gran-alacant', 'Santa Pola': 'santa-pola' };
+      nav_ga: 'Gran Alacant', nav_sp: 'Santa Pola', nav_al: 'Alicante', nav_el: 'Elche', about: '/sobre', aboutLabel: 'Sobre', contact: '/contacto', contactLabel: 'Contacto' };
+const ZSLUG: Record<string, string> = { 'Gran Alacant': 'gran-alacant', 'Santa Pola': 'santa-pola', 'Alicante': 'alicante', 'Elche': 'elche' };
 const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''}`;
 ---
 <!doctype html>
@@ -58,9 +58,11 @@ const zonaLink = (z: string) => `${lang === 'en' ? '/en/' : '/'}${ZSLUG[z] || ''
         </span>
       </a>
       <nav class="nav">
-        <a class="hide-sm" href={zonaLink('Gran Alacant')}>{t.nav_ga}</a>
-        <a class="hide-sm" href={zonaLink('Santa Pola')}>{t.nav_sp}</a>
-        <a class="hide-sm" href={t.about}>{t.aboutLabel}</a>
+        <a class="hide-md" href={zonaLink('Gran Alacant')}>{t.nav_ga}</a>
+        <a class="hide-md" href={zonaLink('Santa Pola')}>{t.nav_sp}</a>
+        <a class="hide-sm" href={zonaLink('Alicante')}>{t.nav_al}</a>
+        <a class="hide-sm" href={zonaLink('Elche')}>{t.nav_el}</a>
+        <a class="hide-md" href={t.about}>{t.aboutLabel}</a>
         <a class="lang" href={altUrl || (lang === 'en' ? '/' : '/en/')} title={lang === 'en' ? 'Ver en español' : 'View in English'} aria-label={lang === 'en' ? 'Cambiar a español' : 'Switch to English'}>
           <span class="flag">{lang === 'en' ? '🇪🇸' : '🇬🇧'}</span> {lang === 'en' ? 'Español' : 'English'}
         </a>
