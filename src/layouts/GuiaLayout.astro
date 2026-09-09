@@ -1,6 +1,6 @@
 ---
 import '../styles/guia.css';
-import { LANGS, LANG_META, t, type Lang } from '../i18n';
+import { LANGS, LANG_META, t, homeUrl, type Lang } from '../i18n';
 export interface Props {
   title: string;
   description: string;
@@ -84,7 +84,7 @@ const xDefault = alternates['es'] || canonical;
 <body>
   <header class="hdr">
     <div class="wrap hdr__in">
-      <a class="brand" href={LANG_META[lang].prefix + '/'} aria-label="Cometia">
+      <a class="brand" href={homeUrl(lang)} aria-label="Cometia">
         <span class="brand__mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fffdf8" stroke-width="1.8" stroke-linecap="round">
             <circle cx="12" cy="12" r="7"/>
@@ -103,7 +103,7 @@ const xDefault = alternates['es'] || canonical;
           <summary aria-label={t(lang, 'langAria')}><span class="flag">{meta.flag}</span> <span class="hide-sm">{meta.label}</span> <span class="caret">▾</span></summary>
           <div class="langmenu__list">
             {LANGS.map((l) => (
-              <a href={alternates[l] || (LANG_META[l].prefix + '/')} data-setlang={l} class={l === lang ? 'is-cur' : ''} hreflang={LANG_META[l].htmlLang}>
+              <a href={alternates[l] || homeUrl(l)} data-setlang={l} class={l === lang ? 'is-cur' : ''} hreflang={LANG_META[l].htmlLang}>
                 <span class="flag">{LANG_META[l].flag}</span> {LANG_META[l].label}
               </a>
             ))}
@@ -121,7 +121,7 @@ const xDefault = alternates['es'] || canonical;
   <footer class="ftr">
     <div class="wrap">
       <div class="ftr__row">
-        <a href={LANG_META[lang].prefix + '/'}>{t(lang, 'nav_home')}</a>
+        <a href={homeUrl(lang)}>{t(lang, 'nav_home')}</a>
         <a href={lang === 'es' ? '/sobre' : LANG_META[lang].prefix + '/about'}>{t(lang, 'nav_about')}</a>
         <a href={lang === 'es' ? '/contacto' : LANG_META[lang].prefix + '/contact'}>{t(lang, 'nav_contact')}</a>
         <a href={lang === 'es' ? '/privacidad' : LANG_META[lang].prefix + '/privacy'}>{t(lang, 'nav_privacy')}</a>

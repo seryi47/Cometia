@@ -27,7 +27,7 @@ export const PAGE_SLUG: Record<'map' | 'about' | 'contact' | 'privacy', { es: st
   contact: { es: 'contacto', other: 'contact' },
   privacy: { es: 'privacidad', other: 'privacy' },
 };
-export function homeUrl(lang: Lang): string { return `${LANG_META[lang].prefix}/`; }
+export function homeUrl(lang: Lang): string { return LANG_META[lang].prefix || '/'; }
 export function pageUrl(page: 'map' | 'about' | 'contact' | 'privacy', lang: Lang): string {
   const s = lang === 'es' ? PAGE_SLUG[page].es : PAGE_SLUG[page].other;
   return `${LANG_META[lang].prefix}/${s}`;
