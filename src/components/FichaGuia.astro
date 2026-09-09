@@ -52,7 +52,7 @@ const description = desc || `${l.name}, ${tl} · ${l.zone} (Costa Blanca).`;
 
     {l.photo && (
       <figure class="ficha__photo">
-        <img src={l.photo} alt={`${l.name} — ${tl}, ${l.zone}`} class={l.photo_fit === 'contain' ? 'is-contain' : ''} loading="lazy" />
+        <img src={l.photo} alt={`${l.name} — ${tl}, ${l.zone}`} class={l.photo_fit === 'contain' ? 'is-contain' : ''} loading="eager" fetchpriority="high" decoding="async" />
         {l.photo_credit && <figcaption>{l.photo_credit}</figcaption>}
       </figure>
     )}
