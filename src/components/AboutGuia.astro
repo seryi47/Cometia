@@ -1,0 +1,58 @@
+---
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import { TOTAL, altPage } from '../data/guia/lugares';
+import { pageUrl, fmt, type Lang } from '../i18n';
+export interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const C: Record<Lang, { title: string; h1: string; p1: string; h2a: string; p2: string; h2b: string; p3: string; p4: string }> = {
+  es: { title: 'Sobre la guía — Cometia', h1: 'Sobre la guía',
+    p1: '<strong>Cometia</strong> es una guía local e independiente de los bares, restaurantes, pubs y cafeterías de <strong>Gran Alacant, Santa Pola, Alicante y Elche</strong> (Costa Blanca). Reunimos {n} sitios en un solo lugar, con mapa, contacto y una descripción clara de cada uno.',
+    h2a: 'En tu idioma, por y para la zona', p2: 'La guía está en <strong>7 idiomas</strong> (español, inglés, alemán, francés, neerlandés, noruego y sueco) porque aquí conviven vecinos españoles y una gran comunidad internacional. La web detecta tu idioma automáticamente.',
+    h2b: 'Cómo trabajamos', p3: 'Los datos de los locales proceden de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> y de fuentes públicas. Las <strong>descripciones son propias</strong>. Cuando mostramos una valoración, enlazamos a Google: no copiamos reseñas de nadie.',
+    p4: '¿Falta tu bar, hay un dato mal o quieres que destaquemos tu local? Escríbenos desde <a href="/contacto">contacto</a>.' },
+  en: { title: 'About — Cometia', h1: 'About the guide',
+    p1: '<strong>Cometia</strong> is an independent local guide to the bars, restaurants, pubs and cafés of <strong>Gran Alacant, Santa Pola, Alicante and Elche</strong> (Costa Blanca). We bring together {n} places in one spot, with a map, contact details and a clear description of each.',
+    h2a: 'In your language, by and for the area', p2: 'The guide is in <strong>7 languages</strong> (Spanish, English, German, French, Dutch, Norwegian and Swedish) because Spanish locals and a large international community live side by side here. The site detects your language automatically.',
+    h2b: 'How we work', p3: 'Business data comes from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> and public sources. The <strong>descriptions are our own</strong>. When we show a rating, we link out to Google: we never copy anyone’s reviews.',
+    p4: 'Missing a bar, spotted a wrong detail or want your venue featured? Write to us via <a href="/en/contact">contact</a>.' },
+  de: { title: 'Über uns — Cometia', h1: 'Über den Führer',
+    p1: '<strong>Cometia</strong> ist ein unabhängiger lokaler Führer für die Bars, Restaurants, Pubs und Cafés von <strong>Gran Alacant, Santa Pola, Alicante und Elche</strong> (Costa Blanca). Wir vereinen {n} Orte an einem Ort, mit Karte, Kontakt und einer klaren Beschreibung.',
+    h2a: 'In deiner Sprache, für die Region', p2: 'Der Führer ist in <strong>7 Sprachen</strong> (Spanisch, Englisch, Deutsch, Französisch, Niederländisch, Norwegisch und Schwedisch), denn hier leben Einheimische und eine große internationale Gemeinschaft zusammen. Die Seite erkennt deine Sprache automatisch.',
+    h2b: 'Wie wir arbeiten', p3: 'Die Betriebsdaten stammen von <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> und öffentlichen Quellen. Die <strong>Beschreibungen sind eigene</strong>. Bewertungen verlinken zu Google: Wir kopieren keine Rezensionen.',
+    p4: 'Fehlt eine Bar, stimmt etwas nicht oder möchtest du dein Lokal hervorheben? Schreib uns über <a href="/de/contact">Kontakt</a>.' },
+  fr: { title: 'À propos — Cometia', h1: 'À propos du guide',
+    p1: '<strong>Cometia</strong> est un guide local indépendant des bars, restaurants, pubs et cafés de <strong>Gran Alacant, Santa Pola, Alicante et Elche</strong> (Costa Blanca). Nous réunissons {n} lieux au même endroit, avec carte, contact et une description claire.',
+    h2a: 'Dans votre langue, pour la région', p2: 'Le guide est en <strong>7 langues</strong> (espagnol, anglais, allemand, français, néerlandais, norvégien et suédois) car ici cohabitent les habitants espagnols et une grande communauté internationale. Le site détecte votre langue automatiquement.',
+    h2b: 'Comment nous travaillons', p3: 'Les données proviennent d’<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> et de sources publiques. Les <strong>descriptions sont les nôtres</strong>. Les avis renvoient à Google : nous ne copions les avis de personne.',
+    p4: 'Un bar manque, une erreur, ou vous voulez mettre votre établissement en avant ? Écrivez-nous via <a href="/fr/contact">contact</a>.' },
+  nl: { title: 'Over ons — Cometia', h1: 'Over de gids',
+    p1: '<strong>Cometia</strong> is een onafhankelijke lokale gids voor de bars, restaurants, pubs en cafés van <strong>Gran Alacant, Santa Pola, Alicante en Elche</strong> (Costa Blanca). We brengen {n} plekken samen op één plek, met kaart, contact en een duidelijke beschrijving.',
+    h2a: 'In jouw taal, voor de regio', p2: 'De gids is in <strong>7 talen</strong> (Spaans, Engels, Duits, Frans, Nederlands, Noors en Zweeds) omdat hier Spaanse bewoners en een grote internationale gemeenschap samenleven. De site herkent je taal automatisch.',
+    h2b: 'Hoe we werken', p3: 'De gegevens komen van <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> en publieke bronnen. De <strong>beschrijvingen zijn van onszelf</strong>. Beoordelingen verwijzen naar Google: we kopiëren niemands reviews.',
+    p4: 'Mist er een bar, klopt iets niet of wil je jouw zaak uitgelicht zien? Schrijf ons via <a href="/nl/contact">contact</a>.' },
+  no: { title: 'Om oss — Cometia', h1: 'Om guiden',
+    p1: '<strong>Cometia</strong> er en uavhengig lokal guide til barene, restaurantene, pubene og kafeene i <strong>Gran Alacant, Santa Pola, Alicante og Elche</strong> (Costa Blanca). Vi samler {n} steder på ett sted, med kart, kontakt og en tydelig beskrivelse.',
+    h2a: 'På ditt språk, for regionen', p2: 'Guiden finnes på <strong>7 språk</strong> (spansk, engelsk, tysk, fransk, nederlandsk, norsk og svensk), for her bor spanske innbyggere og et stort internasjonalt miljø side om side. Nettstedet oppdager språket ditt automatisk.',
+    h2b: 'Slik jobber vi', p3: 'Dataene kommer fra <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> og offentlige kilder. <strong>Beskrivelsene er våre egne</strong>. Vurderinger lenker til Google: vi kopierer ingens anmeldelser.',
+    p4: 'Mangler en bar, er noe feil, eller vil du fremheve stedet ditt? Skriv til oss via <a href="/no/contact">kontakt</a>.' },
+  sv: { title: 'Om oss — Cometia', h1: 'Om guiden',
+    p1: '<strong>Cometia</strong> är en oberoende lokal guide till barerna, restaurangerna, pubarna och kaféerna i <strong>Gran Alacant, Santa Pola, Alicante och Elche</strong> (Costa Blanca). Vi samlar {n} ställen på ett ställe, med karta, kontakt och en tydlig beskrivning.',
+    h2a: 'På ditt språk, för regionen', p2: 'Guiden finns på <strong>7 språk</strong> (spanska, engelska, tyska, franska, nederländska, norska och svenska), eftersom spanska invånare och en stor internationell gemenskap lever sida vid sida här. Webbplatsen känner av ditt språk automatiskt.',
+    h2b: 'Så arbetar vi', p3: 'Uppgifterna kommer från <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> och offentliga källor. <strong>Beskrivningarna är våra egna</strong>. Betyg länkar till Google: vi kopierar ingens recensioner.',
+    p4: 'Saknas en bar, är något fel eller vill du lyfta fram ditt ställe? Skriv till oss via <a href="/sv/contact">kontakt</a>.' },
+};
+const c = C[lang];
+---
+<GuiaLayout title={c.title} description={c.p1.replace(/<[^>]+>/g, '').slice(0, 200)} lang={lang} canonical={pageUrl('about', lang)} alternates={altPage('about')}>
+  <section class="ficha wrap">
+    <h1>{c.h1}</h1>
+    <div class="prose" style="max-width:720px">
+      <p set:html={fmt(c.p1, { n: TOTAL })}></p>
+      <h2>{c.h2a}</h2>
+      <p set:html={c.p2}></p>
+      <h2>{c.h2b}</h2>
+      <p set:html={c.p3}></p>
+      <p set:html={c.p4}></p>
+    </div>
+  </section>
+</GuiaLayout>

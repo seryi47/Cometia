@@ -1,5 +1,7 @@
 ---
-import { LUGARES, ZONAS, CATEGORIAS, TYPE_ORDER, type Lang } from '../data/guia/lugares';
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import { LUGARES, ZONAS, CATEGORIAS, TYPE_ORDER, tipoPlural, altMap, fichaUrl, type TypeKey } from '../data/guia/lugares';
+import { t, homeUrl, pageUrl, type Lang } from '../i18n';
 export interface Props { lang: Lang; }
 const { lang } = Astro.props;
 
@@ -7,120 +9,88 @@ const COL: Record<string, string> = {
   'restaurante': '#c81f33', 'bar': '#efb02c', 'pub': '#9b1b30',
   'cafeteria': '#a8763f', 'comida-rapida': '#df3d47', 'cerveceria': '#556d36',
 };
-const DATA = LUGARES.map((l) => ({
-  n: l.name, s: l.slug, t: l.type, z: l.zone,
-  la: l.lat, lo: l.lng, p: l.photo || 0,
+const DATA = LUGARES.map((l) => ({ n: l.name, u: fichaUrl(l.slug, lang), t: l.type, z: l.zone, la: l.lat, lo: l.lng, p: l.photo || 0 }));
+const TYPES = TYPE_ORDER.filter((ty) => LUGARES.some((l) => l.type === ty)).map((ty) => ({
+  key: ty, label: tipoPlural(ty, lang), icon: CATEGORIAS[ty].icon, color: COL[ty],
 }));
-const TYPES = TYPE_ORDER.filter((t) => LUGARES.some((l) => l.type === t)).map((t) => ({
-  key: t, label: lang === 'en' ? CATEGORIAS[t].plural_en : CATEGORIAS[t].plural_es,
-  icon: CATEGORIAS[t].icon, color: COL[t],
-}));
-const stats = {
-  total: LUGARES.length,
-  zonas: ZONAS.length,
-  fotos: LUGARES.filter((l) => l.photo).length,
-  terrazas: LUGARES.filter((l) => l.outdoor === 'yes').length,
-};
-const fichaBase = lang === 'en' ? '/en/place/' : '/sitio/';
-const T = lang === 'en'
-  ? { home: '/en/', homeL: 'Home', crumb: 'Map', h1a: 'The map of the', h1b: 'Costa Blanca',
-      sub: 'Every bar, restaurant, pub and café in one map. Click a pin for photos and the full listing.',
-      all: 'All', allZ: 'All areas', ver: 'View listing', note: 'Map tiles © OpenStreetMap contributors · free & open · no tracking',
-      sTotal: 'places', sZonas: 'areas', sFotos: 'with photo', sTerr: 'terraces' }
-  : { home: '/', homeL: 'Inicio', crumb: 'Mapa', h1a: 'El mapa de la', h1b: 'Costa Blanca',
-      sub: 'Todos los bares, restaurantes, pubs y cafeterías en un solo mapa. Pulsa un pin para ver fotos y la ficha completa.',
-      all: 'Todos', allZ: 'Todas las zonas', ver: 'Ver ficha', note: 'Cartografía © colaboradores de OpenStreetMap · libre y gratuita · sin tracking',
-      sTotal: 'sitios', sZonas: 'zonas', sFotos: 'con foto', sTerr: 'terrazas' };
+const stats = { total: LUGARES.length, zonas: ZONAS.length, fotos: LUGARES.filter((l) => l.photo).length, terrazas: LUGARES.filter((l) => l.outdoor === 'yes').length };
+const canonical = pageUrl('map', lang);
+const alternates = altMap();
+const title = `${t(lang, 'm_h1a')} Costa Blanca — Cometia`;
 ---
-<section class="ficha wrap">
-  <div class="crumbs"><a href={T.home}>{T.homeL}</a> › {T.crumb}</div>
-  <h1>{T.h1a} <span class="grad">{T.h1b}</span></h1>
-  <p class="ficha__sub" style="max-width:720px">{T.sub}</p>
+<GuiaLayout title={title} description={t(lang, 'm_sub')} lang={lang} canonical={canonical} alternates={alternates}>
+  <section class="ficha wrap">
+    <div class="crumbs"><a href={homeUrl(lang)}>{t(lang, 'nav_home')}</a> › {t(lang, 'm_crumb')}</div>
+    <h1>{t(lang, 'm_h1a')} <span class="grad">Costa Blanca</span></h1>
+    <p class="ficha__sub" style="max-width:720px">{t(lang, 'm_sub')}</p>
 
-  <div class="mapstats">
-    <div class="stat"><b>{stats.total}</b><span>{T.sTotal}</span></div>
-    <div class="stat"><b>{stats.zonas}</b><span>{T.sZonas}</span></div>
-    <div class="stat"><b>{stats.fotos}</b><span>{T.sFotos}</span></div>
-    <div class="stat"><b>{stats.terrazas}</b><span>{T.sTerr}</span></div>
-  </div>
+    <div class="mapstats">
+      <div class="stat"><b>{stats.total}</b><span>{t(lang, 'st_places')}</span></div>
+      <div class="stat"><b>{stats.zonas}</b><span>{t(lang, 'st_areas')}</span></div>
+      <div class="stat"><b>{stats.fotos}</b><span>{t(lang, 'st_photos')}</span></div>
+      <div class="stat"><b>{stats.terrazas}</b><span>{t(lang, 'm_terr')}</span></div>
+    </div>
 
-  <div class="chips" style="justify-content:flex-start">
-    <button class="chip is-active" data-f="tipo" data-v="">{T.all}</button>
-    {TYPES.map((t) => (
-      <button class="chip" data-f="tipo" data-v={t.key}>
-        <span style={`display:inline-block;width:9px;height:9px;border-radius:50%;background:${t.color};margin-right:6px;vertical-align:middle`}></span>{t.icon} {t.label}
-      </button>
-    ))}
-  </div>
-  <div class="chips" style="justify-content:flex-start;margin-top:2px">
-    <button class="chip zona is-active" data-f="zona" data-v="">{T.allZ}</button>
-    {ZONAS.map((z) => (<button class="chip zona" data-f="zona" data-v={z}>📍 {z}</button>))}
-  </div>
+    <div class="chips" style="justify-content:flex-start">
+      <button class="chip is-active" data-f="tipo" data-v="">{t(lang, 'm_all')}</button>
+      {TYPES.map((ty) => (
+        <button class="chip" data-f="tipo" data-v={ty.key}>
+          <span style={`display:inline-block;width:9px;height:9px;border-radius:50%;background:${ty.color};margin-right:6px;vertical-align:middle`}></span>{ty.icon} {ty.label}
+        </button>
+      ))}
+    </div>
+    <div class="chips" style="justify-content:flex-start;margin-top:2px">
+      <button class="chip zona is-active" data-f="zona" data-v="">{t(lang, 'm_allz')}</button>
+      {ZONAS.map((z) => (<button class="chip zona" data-f="zona" data-v={z}>📍 {z}</button>))}
+    </div>
 
-  <div class="mapwrap" style="margin-top:16px"><div id="map"></div></div>
-  <p class="mapnote">{T.note}</p>
-</section>
+    <div class="mapwrap" style="margin-top:16px"><div id="map"></div></div>
+    <p class="mapnote">{t(lang, 'm_note')}</p>
+  </section>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="" />
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="" />
-<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script is:inline src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
-<script is:inline define:vars={{ DATA, COL, fichaBase, ver: T.ver }}>
-  const map = L.map('map', { scrollWheelZoom: true }).setView([38.35, -0.5], 10);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  }).addTo(map);
-
-  const iconCache = {};
-  function icon(type) {
-    if (iconCache[type]) return iconCache[type];
-    const c = COL[type] || '#9b1b30';
-    const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40">'
-      + '<path d="M15 0C6.7 0 0 6.6 0 14.8 0 26 15 40 15 40s15-14 15-25.2C30 6.6 23.3 0 15 0z" fill="' + c + '"/>'
-      + '<circle cx="15" cy="15" r="6" fill="#fffdf8"/></svg>';
-    return (iconCache[type] = L.divIcon({
-      html: svg, className: 'pin', iconSize: [30, 40], iconAnchor: [15, 40], popupAnchor: [0, -34],
-    }));
-  }
-  function esc(s) { return String(s).replace(/[&<>"]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m])); }
-
-  const cluster = L.markerClusterGroup({ maxClusterRadius: 55, chunkedLoading: true });
-  const all = DATA.map((d) => {
-    const m = L.marker([d.la, d.lo], { icon: icon(d.t) });
-    m._d = d;
-    const img = d.p ? '<img class="pop__img" src="' + d.p + '" alt="' + esc(d.n) + '" loading="lazy">' : '';
-    m.bindPopup(img + '<div class="pop__b"><h3 class="pop__t">' + esc(d.n) + '</h3>'
-      + '<p class="pop__s">📍 ' + esc(d.z) + '</p>'
-      + '<a class="pop__btn" href="' + fichaBase + d.s + '">' + ver + ' →</a></div>');
-    return m;
-  });
-
-  let fTipo = '', fZona = '';
-  function render() {
-    cluster.clearLayers();
-    const vis = all.filter((m) => (!fTipo || m._d.t === fTipo) && (!fZona || m._d.z === fZona));
-    cluster.addLayers(vis);
-    if (vis.length) {
-      const b = L.latLngBounds(vis.map((m) => m.getLatLng()));
-      map.fitBounds(b, { padding: [40, 40], maxZoom: 16 });
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="" />
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script is:inline src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
+  <script is:inline define:vars={{ DATA, COL, ver: t(lang, 'm_ver') }}>
+    const map = L.map('map', { scrollWheelZoom: true }).setView([38.35, -0.5], 10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+    const iconCache = {};
+    function icon(type) {
+      if (iconCache[type]) return iconCache[type];
+      const c = COL[type] || '#9b1b30';
+      const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40">'
+        + '<path d="M15 0C6.7 0 0 6.6 0 14.8 0 26 15 40 15 40s15-14 15-25.2C30 6.6 23.3 0 15 0z" fill="' + c + '"/>'
+        + '<circle cx="15" cy="15" r="6" fill="#fffdf8"/></svg>';
+      return (iconCache[type] = L.divIcon({ html: svg, className: 'pin', iconSize: [30, 40], iconAnchor: [15, 40], popupAnchor: [0, -34] }));
     }
-  }
-  map.addLayer(cluster);
-  render();
-
-  document.querySelectorAll('.chip[data-f]').forEach((ch) => {
-    ch.addEventListener('click', () => {
-      const f = ch.dataset.f, v = ch.dataset.v || '';
-      if (f === 'tipo') fTipo = v; else fZona = v;
-      document.querySelectorAll('.chip[data-f="' + f + '"]').forEach((x) => x.classList.remove('is-active'));
-      ch.classList.add('is-active');
-      render();
+    function esc(s) { return String(s).replace(/[&<>"]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m])); }
+    const cluster = L.markerClusterGroup({ maxClusterRadius: 55, chunkedLoading: true });
+    const all = DATA.map((d) => {
+      const m = L.marker([d.la, d.lo], { icon: icon(d.t) });
+      m._d = d;
+      const img = d.p ? '<img class="pop__img" src="' + d.p + '" alt="' + esc(d.n) + '" loading="lazy">' : '';
+      m.bindPopup(img + '<div class="pop__b"><h3 class="pop__t">' + esc(d.n) + '</h3><p class="pop__s">📍 ' + esc(d.z) + '</p><a class="pop__btn" href="' + d.u + '">' + ver + ' →</a></div>');
+      return m;
     });
-  });
-
-  const params = new URLSearchParams(location.search);
-  const pz = params.get('zona');
-  if (pz) { const b = document.querySelector('.chip[data-f="zona"][data-v="' + (window.CSS ? CSS.escape(pz) : pz) + '"]'); if (b) b.click(); }
-</script>
+    let fTipo = '', fZona = '';
+    function render() {
+      cluster.clearLayers();
+      const vis = all.filter((m) => (!fTipo || m._d.t === fTipo) && (!fZona || m._d.z === fZona));
+      cluster.addLayers(vis);
+      if (vis.length) { map.fitBounds(L.latLngBounds(vis.map((m) => m.getLatLng())), { padding: [40, 40], maxZoom: 16 }); }
+    }
+    map.addLayer(cluster); render();
+    document.querySelectorAll('.chip[data-f]').forEach((ch) => {
+      ch.addEventListener('click', () => {
+        const f = ch.dataset.f, v = ch.dataset.v || '';
+        if (f === 'tipo') fTipo = v; else fZona = v;
+        document.querySelectorAll('.chip[data-f="' + f + '"]').forEach((x) => x.classList.remove('is-active'));
+        ch.classList.add('is-active'); render();
+      });
+    });
+    const pz = new URLSearchParams(location.search).get('zona');
+    if (pz) { const b = document.querySelector('.chip[data-f="zona"][data-v="' + (window.CSS ? CSS.escape(pz) : pz) + '"]'); if (b) b.click(); }
+  </script>
+</GuiaLayout>

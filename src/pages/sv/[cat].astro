@@ -1,0 +1,13 @@
+---
+import ZonaGuia from '../../components/ZonaGuia.astro';
+import TipoGuia from '../../components/TipoGuia.astro';
+import { ZONAS, TYPE_ORDER, ZONA_SLUG, TIPO_SLUG, type TypeKey } from '../../data/guia/lugares';
+export function getStaticPaths() {
+  const paths: any[] = [];
+  for (const z of ZONAS) paths.push({ params: { cat: ZONA_SLUG[z] }, props: { kind: 'zona', zona: z, tipo: null } });
+  for (const ty of TYPE_ORDER) paths.push({ params: { cat: TIPO_SLUG['sv'][ty] }, props: { kind: 'tipo', zona: null, tipo: ty } });
+  return paths;
+}
+const { kind, zona, tipo } = Astro.props as { kind: string; zona: string | null; tipo: TypeKey | null };
+---
+{kind === 'zona' ? <ZonaGuia zona={zona} lang="sv" /> : <TipoGuia tipo={tipo} lang="sv" />}

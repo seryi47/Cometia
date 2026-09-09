@@ -1,14 +1,4 @@
 ---
-import GuiaLayout from '../../layouts/GuiaLayout.astro';
 import MapaGuia from '../../components/MapaGuia.astro';
-import { TOTAL } from '../../data/guia/lugares';
 ---
-<GuiaLayout
-  title="Map of Costa Blanca bars & restaurants — Cometia"
-  description={`Interactive map with the ${TOTAL} bars, restaurants, pubs and cafés in Gran Alacant, Santa Pola, Alicante and Elche. Filter by type and area and click a pin for the full listing.`}
-  lang="en"
-  canonical="/en/map"
-  altUrl="/mapa"
->
-  <MapaGuia lang="en" />
-</GuiaLayout>
+<MapaGuia lang="en" />

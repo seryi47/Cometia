@@ -1,0 +1,9 @@
+---
+import FichaGuia from '../../../components/FichaGuia.astro';
+import { LUGARES, type Lugar } from '../../../data/guia/lugares';
+export function getStaticPaths() {
+  return LUGARES.map((l) => ({ params: { slug: l.slug }, props: { l } }));
+}
+const { l } = Astro.props as { l: Lugar };
+---
+<FichaGuia l={l} lang="nl" />

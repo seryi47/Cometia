@@ -1,23 +1,4 @@
 ---
-import GuiaLayout from '../layouts/GuiaLayout.astro';
-import { TOTAL } from '../data/guia/lugares';
+import AboutGuia from '../components/AboutGuia.astro';
 ---
-<GuiaLayout
-  title="Sobre la guía — Cometia"
-  description="Qué es Cometia: la guía local, independiente y bilingüe de bares y restaurantes de Gran Alacant, Santa Pola, Alicante y Elche."
-  lang="es"
-  canonical="/sobre"
-  altUrl="/en/about"
->
-  <section class="ficha wrap">
-    <h1>Sobre la guía</h1>
-    <div class="prose" style="max-width:720px">
-      <p><strong>Cometia</strong> es una guía local e independiente de los bares, restaurantes, pubs y cafeterías de <strong>Gran Alacant, Santa Pola, Alicante y Elche</strong> (Costa Blanca). Reunimos {TOTAL} sitios de la zona en un solo lugar, con mapa, datos de contacto y una descripción clara de cada uno.</p>
-      <h2>Bilingüe, por y para la zona</h2>
-      <p>Toda la guía está en <strong>español e inglés</strong>, porque en esta zona conviven vecinos españoles y una gran comunidad internacional. Queremos que cualquiera —lleve aquí toda la vida o acabe de llegar— encuentre fácil dónde comer o tomar algo.</p>
-      <h2>Cómo trabajamos</h2>
-      <p>Los datos de los locales (nombre, dirección, tipo, ubicación) proceden de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> y de fuentes públicas. Las <strong>descripciones son propias</strong>, escritas para esta guía. Cuando mostramos una valoración, enlazamos a su ficha de Google: no copiamos reseñas de nadie.</p>
-      <p>¿Falta tu bar, hay un dato mal o quieres que destaquemos tu local? Escríbenos desde <a href="/contacto">contacto</a>.</p>
-    </div>
-  </section>
-</GuiaLayout>
+<AboutGuia lang="es" />

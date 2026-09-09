@@ -1,12 +1,11 @@
 ---
-import { CATEGORIAS, descripcion, tipoLabel, esBritanico, type Lugar, type Lang } from '../data/guia/lugares';
+import { CATEGORIAS, descripcion, tipoLabel, esBritanico, fichaUrl, type Lugar } from '../data/guia/lugares';
+import { t, type Lang } from '../i18n';
 export interface Props { l: Lugar; lang: Lang; }
 const { l, lang } = Astro.props;
 const brit = esBritanico(l);
-const href = (lang === 'en' ? '/en/place/' : '/sitio/') + l.slug;
+const href = fichaUrl(l.slug, lang);
 const cuisine = l.cuisine ? l.cuisine.split(';')[0].replace(/_/g, ' ') : null;
-const ver = lang === 'en' ? 'View details →' : 'Ver ficha →';
-const terrLabel = lang === 'en' ? 'Terrace' : 'Terraza';
 const accent = [tipoLabel(l, lang), cuisine].filter(Boolean).join(' · ');
 ---
 <a class="card lugar reveal" href={href}
@@ -17,8 +16,8 @@ const accent = [tipoLabel(l, lang), cuisine].filter(Boolean).join(' · ');
       ? <img class={`card__img${l.photo_fit === 'contain' ? ' is-contain' : ''}`} src={l.photo} alt={l.name} loading="lazy" />
       : <span class="card__ico" aria-hidden="true">{CATEGORIAS[l.type].icon}</span>}
     <div class="card__badges">
-      {brit && <span class="pill pill--brit">🇬🇧 British</span>}
-      {l.outdoor === 'yes' && <span class="pill pill--terr">🌤️ {terrLabel}</span>}
+      {brit && <span class="pill pill--brit">🇬🇧 {t(lang, 'card_british')}</span>}
+      {l.outdoor === 'yes' && <span class="pill pill--terr">🌤️ {t(lang, 'card_terrace')}</span>}
     </div>
     <span class="pill pill--type">{CATEGORIAS[l.type].icon} {tipoLabel(l, lang)}</span>
     <span class="card__zone">📍 {l.zone}</span>
@@ -29,7 +28,7 @@ const accent = [tipoLabel(l, lang), cuisine].filter(Boolean).join(' · ');
     <p class="card__desc">{descripcion(l, lang) || ''}</p>
     <div class="card__foot">
       {cuisine && <span class="tagc">{cuisine}</span>}
-      <span class="card__more">{ver}</span>
+      <span class="card__more">{t(lang, 'card_view')}</span>
     </div>
   </div>
 </a>

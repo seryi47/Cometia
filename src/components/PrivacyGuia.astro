@@ -1,0 +1,30 @@
+---
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import { altPage } from '../data/guia/lugares';
+import { pageUrl, type Lang } from '../i18n';
+export interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const EMAIL = 'cometia.es@gmail.com';
+const C: Record<Lang, { title: string; h1: string; p1: string; h2a: string; p2: string; h2b: string; p3: string; h2c: string; p4: string; upd: string }> = {
+  es: { title: 'Política de privacidad — Cometia', h1: 'Política de privacidad', p1: 'Cometia es una guía web informativa. No te pedimos registro ni recogemos datos personales para navegar. Solo tratamos datos si nos escribes voluntariamente por correo.', h2a: 'Datos de terceros', p2: 'Los datos de los locales proceden de OpenStreetMap (© colaboradores, licencia ODbL). Los mapas se muestran con OpenStreetMap y las valoraciones enlazan a Google Maps, cada uno con su política.', h2b: 'Analítica y cookies', p3: 'Podemos usar analítica agregada y anónima para mejorar la web. Si en el futuro incorporamos publicidad, lo reflejaremos aquí.', h2c: 'Contacto', p4: 'Para cualquier consulta sobre privacidad:', upd: 'Última actualización: 2026.' },
+  en: { title: 'Privacy policy — Cometia', h1: 'Privacy policy', p1: 'Cometia is an informational web guide. We don’t ask you to register and we don’t collect personal data for browsing. We only process data if you voluntarily email us.', h2a: 'Third-party data', p2: 'Business data comes from OpenStreetMap (© contributors, ODbL licence). Maps are shown via OpenStreetMap and ratings link to Google Maps, each with its own policy.', h2b: 'Analytics and cookies', p3: 'We may use aggregated, anonymous analytics to improve the site. If we add advertising in the future, we will reflect it here.', h2c: 'Contact', p4: 'For any privacy query:', upd: 'Last updated: 2026.' },
+  de: { title: 'Datenschutz — Cometia', h1: 'Datenschutzerklärung', p1: 'Cometia ist ein informativer Web-Führer. Wir verlangen keine Registrierung und erheben keine personenbezogenen Daten zum Surfen. Wir verarbeiten nur Daten, wenn du uns freiwillig per E-Mail schreibst.', h2a: 'Daten Dritter', p2: 'Die Betriebsdaten stammen von OpenStreetMap (© Mitwirkende, ODbL-Lizenz). Karten werden über OpenStreetMap angezeigt und Bewertungen verlinken zu Google Maps, jeweils mit eigener Richtlinie.', h2b: 'Analyse und Cookies', p3: 'Wir können aggregierte, anonyme Analysen zur Verbesserung der Seite verwenden. Falls wir künftig Werbung einbinden, wird dies hier vermerkt.', h2c: 'Kontakt', p4: 'Bei Fragen zum Datenschutz:', upd: 'Letzte Aktualisierung: 2026.' },
+  fr: { title: 'Confidentialité — Cometia', h1: 'Politique de confidentialité', p1: 'Cometia est un guide web informatif. Nous ne demandons pas d’inscription et ne collectons pas de données personnelles pour la navigation. Nous ne traitons des données que si vous nous écrivez volontairement.', h2a: 'Données de tiers', p2: 'Les données proviennent d’OpenStreetMap (© contributeurs, licence ODbL). Les cartes s’affichent via OpenStreetMap et les avis renvoient à Google Maps, chacun avec sa politique.', h2b: 'Analyse et cookies', p3: 'Nous pouvons utiliser des analyses agrégées et anonymes pour améliorer le site. Si nous ajoutons de la publicité à l’avenir, cela sera indiqué ici.', h2c: 'Contact', p4: 'Pour toute question sur la confidentialité :', upd: 'Dernière mise à jour : 2026.' },
+  nl: { title: 'Privacybeleid — Cometia', h1: 'Privacybeleid', p1: 'Cometia is een informatieve webgids. We vragen geen registratie en verzamelen geen persoonsgegevens om te bladeren. We verwerken alleen gegevens als je ons vrijwillig e-mailt.', h2a: 'Gegevens van derden', p2: 'De gegevens komen van OpenStreetMap (© bijdragers, ODbL-licentie). Kaarten worden getoond via OpenStreetMap en beoordelingen verwijzen naar Google Maps, elk met eigen beleid.', h2b: 'Analyse en cookies', p3: 'We kunnen geaggregeerde, anonieme analyses gebruiken om de site te verbeteren. Als we in de toekomst advertenties toevoegen, vermelden we dat hier.', h2c: 'Contact', p4: 'Voor vragen over privacy:', upd: 'Laatst bijgewerkt: 2026.' },
+  no: { title: 'Personvern — Cometia', h1: 'Personvernerklæring', p1: 'Cometia er en informativ nettguide. Vi ber ikke om registrering og samler ikke inn personopplysninger for å bla. Vi behandler kun data hvis du frivillig sender oss e-post.', h2a: 'Tredjepartsdata', p2: 'Dataene kommer fra OpenStreetMap (© bidragsytere, ODbL-lisens). Kart vises via OpenStreetMap og vurderinger lenker til Google Maps, hver med egen policy.', h2b: 'Analyse og informasjonskapsler', p3: 'Vi kan bruke aggregert, anonym analyse for å forbedre nettstedet. Hvis vi legger til annonsering i fremtiden, vil det stå her.', h2c: 'Kontakt', p4: 'For spørsmål om personvern:', upd: 'Sist oppdatert: 2026.' },
+  sv: { title: 'Integritetspolicy — Cometia', h1: 'Integritetspolicy', p1: 'Cometia är en informativ webbguide. Vi kräver ingen registrering och samlar inte in personuppgifter för att bläddra. Vi behandlar bara data om du frivilligt mejlar oss.', h2a: 'Tredjepartsdata', p2: 'Uppgifterna kommer från OpenStreetMap (© bidragsgivare, ODbL-licens). Kartor visas via OpenStreetMap och betyg länkar till Google Maps, var och en med egen policy.', h2b: 'Analys och cookies', p3: 'Vi kan använda aggregerad, anonym analys för att förbättra webbplatsen. Om vi lägger till annonsering i framtiden anges det här.', h2c: 'Kontakt', p4: 'För frågor om integritet:', upd: 'Senast uppdaterad: 2026.' },
+};
+const c = C[lang];
+---
+<GuiaLayout title={c.title} description={c.p1.slice(0, 200)} lang={lang} canonical={pageUrl('privacy', lang)} alternates={altPage('privacy')} noindex={true}>
+  <section class="ficha wrap">
+    <h1>{c.h1}</h1>
+    <div class="prose" style="max-width:720px">
+      <p>{c.p1}</p>
+      <h2>{c.h2a}</h2><p>{c.p2}</p>
+      <h2>{c.h2b}</h2><p>{c.p3}</p>
+      <h2>{c.h2c}</h2><p>{c.p4} <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+      <p class="ftr__attr">{c.upd}</p>
+    </div>
+  </section>
+</GuiaLayout>

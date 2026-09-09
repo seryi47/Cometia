@@ -1,0 +1,28 @@
+---
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import { altPage } from '../data/guia/lugares';
+import { pageUrl, type Lang } from '../i18n';
+export interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const EMAIL = 'cometia.es@gmail.com';
+const C: Record<Lang, { title: string; h1: string; p1: string; email: string; p2: string }> = {
+  es: { title: 'Contacto — Cometia', h1: 'Contacto', p1: '¿Echas en falta un bar o restaurante, has visto un dato incorrecto o tienes un local en la zona y quieres aparecer destacado? Nos encanta que nos escribas.', email: 'Email', p2: 'Respondemos lo antes posible. Gracias por ayudarnos a mejorar la guía.' },
+  en: { title: 'Contact — Cometia', h1: 'Contact', p1: 'Missing a bar or restaurant, spotted a wrong detail, or run a venue in the area and want to be featured? We’d love to hear from you.', email: 'Email', p2: 'We reply as soon as we can. Thanks for helping us improve the guide.' },
+  de: { title: 'Kontakt — Cometia', h1: 'Kontakt', p1: 'Fehlt eine Bar oder ein Restaurant, stimmt ein Detail nicht, oder führst du ein Lokal in der Gegend und möchtest hervorgehoben werden? Wir freuen uns über deine Nachricht.', email: 'E-Mail', p2: 'Wir antworten so schnell wie möglich. Danke, dass du hilfst, den Führer zu verbessern.' },
+  fr: { title: 'Contact — Cometia', h1: 'Contact', p1: 'Un bar ou un restaurant manque, une info est erronée, ou vous gérez un établissement dans la région et souhaitez être mis en avant ? Écrivez-nous avec plaisir.', email: 'E-mail', p2: 'Nous répondons dès que possible. Merci de nous aider à améliorer le guide.' },
+  nl: { title: 'Contact — Cometia', h1: 'Contact', p1: 'Mis je een bar of restaurant, klopt een detail niet, of heb je een zaak in de regio en wil je uitgelicht worden? We horen graag van je.', email: 'E-mail', p2: 'We reageren zo snel mogelijk. Bedankt dat je helpt de gids te verbeteren.' },
+  no: { title: 'Kontakt — Cometia', h1: 'Kontakt', p1: 'Mangler en bar eller restaurant, er en detalj feil, eller driver du et sted i området og vil bli fremhevet? Vi hører gjerne fra deg.', email: 'E-post', p2: 'Vi svarer så snart vi kan. Takk for at du hjelper oss å forbedre guiden.' },
+  sv: { title: 'Kontakt — Cometia', h1: 'Kontakt', p1: 'Saknas en bar eller restaurang, är en uppgift fel, eller driver du ett ställe i området och vill bli framlyft? Vi hör gärna från dig.', email: 'E-post', p2: 'Vi svarar så snart vi kan. Tack för att du hjälper oss att förbättra guiden.' },
+};
+const c = C[lang];
+---
+<GuiaLayout title={c.title} description={c.p1.slice(0, 200)} lang={lang} canonical={pageUrl('contact', lang)} alternates={altPage('contact')}>
+  <section class="ficha wrap">
+    <h1>{c.h1}</h1>
+    <div class="prose" style="max-width:720px">
+      <p>{c.p1}</p>
+      <p><strong>{c.email}:</strong> <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+      <p>{c.p2}</p>
+    </div>
+  </section>
+</GuiaLayout>

@@ -1,88 +1,53 @@
 ---
 import GuiaLayout from '../layouts/GuiaLayout.astro';
-import { LUGARES, CATEGORIAS, TYPE_ORDER, zonaUrl, zonaTipoUrl, type Lang } from '../data/guia/lugares';
 import LugarCard from './LugarCard.astro';
+import { LUGARES, CATEGORIAS, TYPE_ORDER, tipoPlural, zonaUrl, zonaTipoUrl, altZona, fichaUrl } from '../data/guia/lugares';
+import { t, zoneIntro, homeUrl, type Lang } from '../i18n';
 export interface Props { zona: string; lang: Lang; }
 const { zona, lang } = Astro.props;
 const SITE = 'https://cometia.es';
 const places = LUGARES.filter((l) => l.zone === zona).sort((a, b) => a.name.localeCompare(b.name));
-
-const INTRO: Record<string, Record<Lang, string>> = {
-  'Gran Alacant': {
-    es: 'Gran Alacant concentra una gran variedad de bares y restaurantes repartidos por sus urbanizaciones y el Centro Comercial: mucha oferta internacional y locales de ambiente británico junto a cocina española de siempre. Aquí tienes todos los sitios para comer y tomar algo en Gran Alacant, ordenados por tipo.',
-    en: 'Gran Alacant has a wide range of bars and restaurants spread across its urbanisations and the Centro Comercial: plenty of international options and British-style venues alongside traditional Spanish cooking. Here are all the places to eat and drink in Gran Alacant, sorted by type.',
-  },
-  'Santa Pola': {
-    es: 'Santa Pola, con uno de los mayores puertos pesqueros del Mediterráneo, es un sitio estupendo para pescado y marisco, además de bares de tapas y cafeterías por todo el pueblo y la costa. Aquí tienes todos los locales de Santa Pola, por tipo.',
-    en: 'Santa Pola, home to one of the largest fishing ports in the Mediterranean, is a great spot for fish and seafood, plus tapas bars and cafés all over the town and seafront. Here are all the venues in Santa Pola, by type.',
-  },
-  'Alicante': {
-    es: 'Alicante reúne una enorme oferta gastronómica: desde los arroces y el marisco del Mediterráneo hasta las tabernas del casco antiguo, las terrazas de la Explanada y el Puerto, y cocina de medio mundo. Aquí tienes todos los bares, restaurantes, pubs y cafeterías de la ciudad, ordenados por tipo.',
-    en: 'Alicante offers a huge range of places to eat and drink: from Mediterranean rice dishes and seafood to the taverns of the old town, the terraces along the Explanada and the harbour, and cuisine from all over the world. Here are all the bars, restaurants, pubs and cafés in the city, sorted by type.',
-  },
-  'Elche': {
-    es: 'Elche, ciudad del palmeral Patrimonio de la Humanidad, tiene una escena gastronómica muy viva: arroces y cocina alicantina tradicional, tapas por el centro y bares y cafeterías repartidos por todos sus barrios. Aquí tienes todos los locales de Elche, por tipo.',
-    en: 'Elche, the city of the UNESCO World Heritage palm grove, has a lively food scene: rice dishes and traditional Alicante cooking, tapas around the centre and bars and cafés spread across every neighbourhood. Here are all the venues in Elche, by type.',
-  },
-};
-const intro = INTRO[zona]?.[lang] ?? '';
+const intro = zoneIntro(zona, lang);
 const canonical = zonaUrl(zona, lang);
-const altUrl = zonaUrl(zona, lang === 'en' ? 'es' : 'en');
-const title = lang === 'en'
-  ? `Bars & restaurants in ${zona} (${places.length}) — Cometia Guide`
-  : `Bares y restaurantes en ${zona} (${places.length}) — Guía Cometia`;
-const description = lang === 'en'
-  ? `A guide to the ${places.length} bars, restaurants, pubs and cafés in ${zona} (Costa Blanca). With map, opening hours and honest descriptions. English & Spanish.`
-  : `Guía de los ${places.length} bares, restaurantes, pubs y cafeterías de ${zona} (Costa Blanca). Con mapa, horarios y descripciones. Español e inglés.`;
+const alternates = altZona(zona);
+const title = `${t(lang, 'zona_h1', { z: zona })} (${places.length}) — Cometia`;
+const description = `${intro}`.slice(0, 300);
 
 const jsonLd = [
-  {
-    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: lang === 'en' ? 'Home' : 'Inicio', item: SITE + (lang === 'en' ? '/en/' : '/') },
-      { '@type': 'ListItem', position: 2, name: zona, item: SITE + canonical },
-    ],
-  },
-  {
-    '@context': 'https://schema.org', '@type': 'ItemList',
-    name: title, numberOfItems: places.length,
-    itemListElement: places.slice(0, 25).map((l, i) => ({
-      '@type': 'ListItem', position: i + 1, name: l.name,
-      url: SITE + (lang === 'en' ? '/en/place/' : '/sitio/') + l.slug,
-    })),
-  },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t(lang, 'nav_home'), item: SITE + homeUrl(lang) },
+    { '@type': 'ListItem', position: 2, name: zona, item: SITE + canonical },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: title, numberOfItems: places.length,
+    itemListElement: places.slice(0, 25).map((l, i) => ({ '@type': 'ListItem', position: i + 1, name: l.name, url: SITE + fichaUrl(l.slug, lang) })) },
 ];
-
-const L = lang === 'en'
-  ? { count: 'places', home: '/en/', back: '← Back to the guide', see: (n: number, p: string) => `See all ${n} ${p.toLowerCase()} →` }
-  : { count: 'sitios', home: '/', back: '← Volver a la guía', see: (n: number, p: string) => `Ver los ${n} ${p.toLowerCase()} →` };
 ---
-<GuiaLayout title={title} description={description} lang={lang} canonical={canonical} altUrl={altUrl} jsonLd={jsonLd}>
+<GuiaLayout title={title} description={description} lang={lang} canonical={canonical} alternates={alternates} jsonLd={jsonLd}>
   <section class="ficha wrap">
-    <div class="crumbs"><a href={L.home}>{lang === 'en' ? 'Home' : 'Inicio'}</a> › {zona}</div>
-    <h1>{lang === 'en' ? `Bars & restaurants in ${zona}` : `Bares y restaurantes en ${zona}`}</h1>
+    <div class="crumbs"><a href={homeUrl(lang)}>{t(lang, 'nav_home')}</a> › {zona}</div>
+    <h1>{t(lang, 'zona_h1', { z: zona })}</h1>
     <p class="ficha__sub" style="max-width:760px">{intro}</p>
-    <p class="count">{places.length} {L.count}</p>
+    <p class="count">{places.length} {t(lang, 'z_places')}</p>
 
-    {TYPE_ORDER.filter((t) => places.some((l) => l.type === t)).map((t) => {
-      const items = places.filter((l) => l.type === t);
-      const plural = lang === 'en' ? CATEGORIAS[t].plural_en : CATEGORIAS[t].plural_es;
+    {TYPE_ORDER.filter((ty) => places.some((l) => l.type === ty)).map((ty) => {
+      const items = places.filter((l) => l.type === ty);
+      const plural = tipoPlural(ty, lang);
       return (
         <div class="section" style="padding-top:8px">
           <div class="sec__head">
-            <h2>{CATEGORIAS[t].icon} {plural} <span style="color:var(--ink-2);font-weight:400;font-size:1rem">({items.length})</span></h2>
-            {items.length > 12 && <a class="sec__link" href={zonaTipoUrl(zona, t, lang)}>{L.see(items.length, plural)}</a>}
+            <h2>{CATEGORIAS[ty].icon} {plural} <span style="color:var(--ink-2);font-weight:400;font-size:1rem">({items.length})</span></h2>
+            {items.length > 12 && <a class="sec__link" href={zonaTipoUrl(zona, ty, lang)}>{t(lang, 'z_seeall', { n: items.length, p: plural.toLowerCase() })}</a>}
           </div>
           <div class="grid">
             {items.slice(0, 12).map((l) => <LugarCard l={l} lang={lang} />)}
           </div>
           {items.length > 12 && (
-            <p style="margin-top:14px"><a class="chip" href={zonaTipoUrl(zona, t, lang)}>{L.see(items.length, plural)}</a></p>
+            <p style="margin-top:14px"><a class="chip" href={zonaTipoUrl(zona, ty, lang)}>{t(lang, 'z_seeall', { n: items.length, p: plural.toLowerCase() })}</a></p>
           )}
         </div>
       );
     })}
 
-    <p style="margin-top:24px"><a class="chip" href={L.home}>{L.back}</a></p>
+    <p style="margin-top:24px"><a class="chip" href={homeUrl(lang)}>{t(lang, 'z_back')}</a></p>
   </section>
 </GuiaLayout>

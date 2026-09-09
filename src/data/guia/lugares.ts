@@ -3,8 +3,8 @@
 // enriquecidos con geocodificación inversa. Las descripciones son propias.
 import raw from './lugares.json';
 import descripcionesRaw from './descripciones.json';
-
-export type Lang = 'es' | 'en';
+import { LANG_META, LANGS, homeUrl, pageUrl, type Lang } from '../../i18n';
+export type { Lang };
 
 export interface Lugar {
   osm_id: string;
@@ -35,18 +35,30 @@ export type TypeKey = 'restaurante' | 'bar' | 'pub' | 'cafeteria' | 'comida-rapi
 
 export const LUGARES: Lugar[] = raw as Lugar[];
 
-export const DESCRIPCIONES: Record<string, { es?: string; en?: string }> =
-  descripcionesRaw as Record<string, { es?: string; en?: string }>;
+export const DESCRIPCIONES: Record<string, Partial<Record<Lang, string>>> =
+  descripcionesRaw as Record<string, Partial<Record<Lang, string>>>;
 
-// ── Metadatos de categorías (bilingüe) ─────────────────────────────────────
-export const CATEGORIAS: Record<TypeKey, { es: string; en: string; plural_es: string; plural_en: string; icon: string }> = {
-  'restaurante':   { es: 'Restaurante', en: 'Restaurant',  plural_es: 'Restaurantes', plural_en: 'Restaurants', icon: '🍽️' },
-  'bar':           { es: 'Bar',         en: 'Bar',          plural_es: 'Bares',        plural_en: 'Bars',        icon: '🍺' },
-  'pub':           { es: 'Pub',         en: 'Pub',          plural_es: 'Pubs',         plural_en: 'Pubs',        icon: '🍻' },
-  'cafeteria':     { es: 'Cafetería',   en: 'Café',         plural_es: 'Cafeterías',   plural_en: 'Cafés',       icon: '☕' },
-  'comida-rapida': { es: 'Comida rápida', en: 'Fast food',  plural_es: 'Comida rápida', plural_en: 'Fast food', icon: '🍔' },
-  'cerveceria':    { es: 'Cervecería',  en: 'Beer garden',  plural_es: 'Cervecerías',  plural_en: 'Beer gardens', icon: '🍺' },
+// ── Metadatos de categorías ────────────────────────────────────────────────
+export const CATEGORIAS: Record<TypeKey, { icon: string }> = {
+  'restaurante':   { icon: '🍽️' },
+  'bar':           { icon: '🍺' },
+  'pub':           { icon: '🍻' },
+  'cafeteria':     { icon: '☕' },
+  'comida-rapida': { icon: '🍔' },
+  'cerveceria':    { icon: '🍺' },
 };
+
+// Etiquetas [singular, plural] por tipo e idioma.
+export const CAT_LABEL: Record<TypeKey, Record<Lang, [string, string]>> = {
+  'restaurante':   { es: ['Restaurante', 'Restaurantes'], en: ['Restaurant', 'Restaurants'], de: ['Restaurant', 'Restaurants'], fr: ['Restaurant', 'Restaurants'], nl: ['Restaurant', 'Restaurants'], no: ['Restaurant', 'Restauranter'], sv: ['Restaurang', 'Restauranger'] },
+  'bar':           { es: ['Bar', 'Bares'], en: ['Bar', 'Bars'], de: ['Bar', 'Bars'], fr: ['Bar', 'Bars'], nl: ['Bar', 'Bars'], no: ['Bar', 'Barer'], sv: ['Bar', 'Barer'] },
+  'pub':           { es: ['Pub', 'Pubs'], en: ['Pub', 'Pubs'], de: ['Pub', 'Pubs'], fr: ['Pub', 'Pubs'], nl: ['Pub', 'Pubs'], no: ['Pub', 'Puber'], sv: ['Pub', 'Pubar'] },
+  'cafeteria':     { es: ['Cafetería', 'Cafeterías'], en: ['Café', 'Cafés'], de: ['Café', 'Cafés'], fr: ['Café', 'Cafés'], nl: ['Café', 'Cafés'], no: ['Kafé', 'Kafeer'], sv: ['Kafé', 'Kaféer'] },
+  'comida-rapida': { es: ['Comida rápida', 'Comida rápida'], en: ['Fast food', 'Fast food'], de: ['Fast Food', 'Fast Food'], fr: ['Fast-food', 'Fast-foods'], nl: ['Fastfood', 'Fastfood'], no: ['Hurtigmat', 'Hurtigmat'], sv: ['Snabbmat', 'Snabbmat'] },
+  'cerveceria':    { es: ['Cervecería', 'Cervecerías'], en: ['Beer garden', 'Beer gardens'], de: ['Bierlokal', 'Bierlokale'], fr: ['Brasserie', 'Brasseries'], nl: ['Bierlokaal', 'Bierlokalen'], no: ['Ølstue', 'Ølstuer'], sv: ['Ölhak', 'Ölhak'] },
+};
+export function tipoSingular(t: TypeKey, lang: Lang): string { return CAT_LABEL[t][lang][0]; }
+export function tipoPlural(t: TypeKey, lang: Lang): string { return CAT_LABEL[t][lang][1]; }
 
 export const TYPE_ORDER: TypeKey[] = ['restaurante', 'bar', 'pub', 'cafeteria', 'comida-rapida', 'cerveceria'];
 
@@ -59,6 +71,11 @@ export const ZONA_SLUG: Record<string, string> = {
 export const TIPO_SLUG: Record<Lang, Record<TypeKey, string>> = {
   es: { 'restaurante': 'restaurantes', 'bar': 'bares', 'pub': 'pubs', 'cafeteria': 'cafeterias', 'comida-rapida': 'comida-rapida', 'cerveceria': 'cervecerias' },
   en: { 'restaurante': 'restaurants', 'bar': 'bars', 'pub': 'pubs', 'cafeteria': 'cafes', 'comida-rapida': 'fast-food', 'cerveceria': 'beer-gardens' },
+  de: { 'restaurante': 'restaurants', 'bar': 'bars', 'pub': 'pubs', 'cafeteria': 'cafes', 'comida-rapida': 'fast-food', 'cerveceria': 'bierlokale' },
+  fr: { 'restaurante': 'restaurants', 'bar': 'bars', 'pub': 'pubs', 'cafeteria': 'cafes', 'comida-rapida': 'fast-food', 'cerveceria': 'brasseries' },
+  nl: { 'restaurante': 'restaurants', 'bar': 'bars', 'pub': 'pubs', 'cafeteria': 'cafes', 'comida-rapida': 'fastfood', 'cerveceria': 'bierlokalen' },
+  no: { 'restaurante': 'restauranter', 'bar': 'barer', 'pub': 'puber', 'cafeteria': 'kafeer', 'comida-rapida': 'hurtigmat', 'cerveceria': 'olstuer' },
+  sv: { 'restaurante': 'restauranger', 'bar': 'barer', 'pub': 'pubar', 'cafeteria': 'kafeer', 'comida-rapida': 'snabbmat', 'cerveceria': 'olhak' },
 };
 export function zonaSlug(z: string): string { return ZONA_SLUG[z] || ''; }
 export function zonaFromSlug(s: string): string | undefined {
@@ -69,15 +86,19 @@ export function tipoFromSlug(s: string, lang: Lang): TypeKey | undefined {
 }
 /** URL de una página de zona en el idioma dado. */
 export function zonaUrl(z: string, lang: Lang): string {
-  return `${lang === 'en' ? '/en/' : '/'}${zonaSlug(z)}`;
+  return `${LANG_META[lang].prefix}/${zonaSlug(z)}`;
 }
 /** URL de una página global de tipo. */
 export function tipoUrl(t: TypeKey, lang: Lang): string {
-  return `${lang === 'en' ? '/en/' : '/'}${TIPO_SLUG[lang][t]}`;
+  return `${LANG_META[lang].prefix}/${TIPO_SLUG[lang][t]}`;
 }
 /** URL de una página tipo+zona. */
 export function zonaTipoUrl(z: string, t: TypeKey, lang: Lang): string {
-  return `${lang === 'en' ? '/en/' : '/'}${zonaSlug(z)}/${TIPO_SLUG[lang][t]}`;
+  return `${LANG_META[lang].prefix}/${zonaSlug(z)}/${TIPO_SLUG[lang][t]}`;
+}
+/** URL de la ficha de un sitio en el idioma dado. */
+export function fichaUrl(slug: string, lang: Lang): string {
+  return lang === 'es' ? `/sitio/${slug}` : `${LANG_META[lang].prefix}/place/${slug}`;
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
@@ -94,7 +115,8 @@ export function porTipo(tipo: TypeKey): Lugar[] {
 }
 
 export function descripcion(l: Lugar, lang: Lang): string | undefined {
-  return DESCRIPCIONES[l.osm_id]?.[lang];
+  const d = DESCRIPCIONES[l.osm_id];
+  return d?.[lang] || d?.en || d?.es;
 }
 
 export function direccion(l: Lugar): string {
@@ -106,9 +128,9 @@ export function direccion(l: Lugar): string {
   return parts.join(' · ');
 }
 
-/** Título legible de tipo + cocina para subtítulos. */
+/** Título legible de tipo para subtítulos. */
 export function tipoLabel(l: Lugar, lang: Lang): string {
-  return CATEGORIAS[l.type]?.[lang] ?? l.type;
+  return CAT_LABEL[l.type] ? CAT_LABEL[l.type][lang][0] : l.type;
 }
 
 /** ¿Pinta de sitio británico/expat? (nombre en inglés o pub). Para el filtro "British-friendly". */
@@ -132,3 +154,18 @@ export function relacionados(l: Lugar, n = 6): Lugar[] {
 
 export const TOTAL = LUGARES.length;
 export const N_FOTOS = LUGARES.filter((l) => l.photo).length;
+
+// ── Mapas de alternativas por idioma (para hreflang y selector de idioma) ───
+type Alt = Partial<Record<Lang, string>>;
+function mapLangs(fn: (l: Lang) => string): Alt {
+  const o: Alt = {};
+  for (const l of LANGS) o[l] = fn(l);
+  return o;
+}
+export const altHome = (): Alt => mapLangs((l) => homeUrl(l));
+export const altZona = (z: string): Alt => mapLangs((l) => zonaUrl(z, l));
+export const altTipo = (t: TypeKey): Alt => mapLangs((l) => tipoUrl(t, l));
+export const altZonaTipo = (z: string, t: TypeKey): Alt => mapLangs((l) => zonaTipoUrl(z, t, l));
+export const altFicha = (slug: string): Alt => mapLangs((l) => fichaUrl(slug, l));
+export const altMap = (): Alt => mapLangs((l) => pageUrl('map', l));
+export const altPage = (p: 'about' | 'contact' | 'privacy'): Alt => mapLangs((l) => pageUrl(p, l));

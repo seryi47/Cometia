@@ -1,80 +1,48 @@
 ---
 import GuiaLayout from '../layouts/GuiaLayout.astro';
 import LugarCard from './LugarCard.astro';
-import {
-  LUGARES, ZONAS, CATEGORIAS, porTipo, porZonaTipo, tipoUrl, zonaTipoUrl,
-  type TypeKey, type Lang,
-} from '../data/guia/lugares';
+import { LUGARES, ZONAS, CATEGORIAS, porTipo, porZonaTipo, tipoUrl, tipoPlural, zonaTipoUrl, altTipo, fichaUrl, type TypeKey } from '../data/guia/lugares';
+import { t, homeUrl, type Lang } from '../i18n';
 
 export interface Props { tipo: TypeKey; lang: Lang; }
 const { tipo, lang } = Astro.props;
-
-const plural = lang === 'en' ? CATEGORIAS[tipo].plural_en : CATEGORIAS[tipo].plural_es;
+const SITE = 'https://cometia.es';
+const plural = tipoPlural(tipo, lang);
 const pluralLow = plural.toLowerCase();
 const places = porTipo(tipo);
 const zonasCon = ZONAS.filter((z) => porZonaTipo(z, tipo).length > 0);
 const canonical = tipoUrl(tipo, lang);
-const altUrl = tipoUrl(tipo, lang === 'en' ? 'es' : 'en');
-const SITE = 'https://cometia.es';
-
-const t = lang === 'en'
-  ? {
-      home: '/en/', homeL: 'Home',
-      h1: `The best ${pluralLow} on the Costa Blanca`,
-      intro: `A complete guide to ${pluralLow} in Gran Alacant, Santa Pola, Alicante and Elche. ${places.length} places with address, map, opening hours and an honest description — in English and Spanish.`,
-      count: `${places.length} ${pluralLow}`,
-      inArea: (z: string, n: number) => `${n} ${pluralLow} in ${z}`,
-      seeAll: (z: string, n: number) => `See all ${n} ${pluralLow} in ${z} →`,
-    }
-  : {
-      home: '/', homeL: 'Inicio',
-      h1: `Los mejores ${pluralLow} de la Costa Blanca`,
-      intro: `Guía completa de ${pluralLow} en Gran Alacant, Santa Pola, Alicante y Elche. ${places.length} sitios con dirección, mapa, horarios y una descripción honesta — en español e inglés.`,
-      count: `${places.length} ${pluralLow}`,
-      inArea: (z: string, n: number) => `${n} ${pluralLow} en ${z}`,
-      seeAll: (z: string, n: number) => `Ver los ${n} ${pluralLow} de ${z} →`,
-    };
-
-const title = lang === 'en'
-  ? `${plural} on the Costa Blanca (${places.length}) — Cometia Guide`
-  : `${plural} en la Costa Blanca (${places.length}) — Guía Cometia`;
+const alternates = altTipo(tipo);
+const h1 = t(lang, 't_best', { p: pluralLow });
+const intro = t(lang, 't_intro', { p: pluralLow, n: places.length });
+const title = `${plural} · Costa Blanca (${places.length}) — Cometia`;
 
 const jsonLd = [
-  {
-    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: t.homeL, item: SITE + t.home },
-      { '@type': 'ListItem', position: 2, name: plural, item: SITE + canonical },
-    ],
-  },
-  {
-    '@context': 'https://schema.org', '@type': 'ItemList',
-    name: t.h1, numberOfItems: places.length,
-    itemListElement: places.slice(0, 25).map((l, i) => ({
-      '@type': 'ListItem', position: i + 1, name: l.name,
-      url: SITE + (lang === 'en' ? '/en/place/' : '/sitio/') + l.slug,
-    })),
-  },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t(lang, 'nav_home'), item: SITE + homeUrl(lang) },
+    { '@type': 'ListItem', position: 2, name: plural, item: SITE + canonical },
+  ] },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: h1, numberOfItems: places.length,
+    itemListElement: places.slice(0, 25).map((l, i) => ({ '@type': 'ListItem', position: i + 1, name: l.name, url: SITE + fichaUrl(l.slug, lang) })) },
 ];
 ---
-<GuiaLayout title={title} description={t.intro} lang={lang} canonical={canonical} altUrl={altUrl} jsonLd={jsonLd}>
+<GuiaLayout title={title} description={intro} lang={lang} canonical={canonical} alternates={alternates} jsonLd={jsonLd}>
   <section class="ficha wrap">
-    <div class="crumbs"><a href={t.home}>{t.homeL}</a> › {plural}</div>
-    <h1>{CATEGORIAS[tipo].icon} {t.h1}</h1>
-    <p class="ficha__sub" style="max-width:760px">{t.intro}</p>
-    <p class="count">{t.count}</p>
+    <div class="crumbs"><a href={homeUrl(lang)}>{t(lang, 'nav_home')}</a> › {plural}</div>
+    <h1>{CATEGORIAS[tipo].icon} {h1}</h1>
+    <p class="ficha__sub" style="max-width:760px">{intro}</p>
+    <p class="count">{t(lang, 't_count', { n: places.length, p: pluralLow })}</p>
 
     {zonasCon.map((z) => {
       const items = porZonaTipo(z, tipo).sort((a, b) => (b.photo ? 1 : 0) - (a.photo ? 1 : 0) || a.name.localeCompare(b.name));
-      const shown = items.slice(0, 8);
       return (
         <div class="section" style="padding:14px 0">
           <div class="sec__head">
-            <h2>{t.inArea(z, items.length)}</h2>
-            <a class="sec__link" href={zonaTipoUrl(z, tipo, lang)}>{t.seeAll(z, items.length)}</a>
+            <h2>{t(lang, 't_inarea', { n: items.length, p: pluralLow, z })}</h2>
+            <a class="sec__link" href={zonaTipoUrl(z, tipo, lang)}>{t(lang, 't_seeall', { n: items.length, p: pluralLow, z })}</a>
           </div>
           <div class="grid">
-            {shown.map((l) => <LugarCard l={l} lang={lang} />)}
+            {items.slice(0, 8).map((l) => <LugarCard l={l} lang={lang} />)}
           </div>
         </div>
       );

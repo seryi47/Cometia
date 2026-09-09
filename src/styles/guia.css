@@ -48,6 +48,18 @@ img { max-width:100%; display:block; }
 .nav a:not(.btn-contact):not(.lang) { color:var(--ink-2); font-weight:600; font-size:.95rem; }
 .nav a:not(.btn-contact):not(.lang):hover { color:var(--jamon-700); text-decoration:none; }
 .nav__map { color:var(--jamon-700) !important; font-weight:700 !important; }
+/* Selector de idioma (desplegable) */
+.langmenu { position:relative; display:inline-block; }
+.langmenu > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; border:1.5px solid var(--saffron-400); border-radius:999px; padding:7px 13px; font-weight:700; font-size:.88rem; color:var(--saffron-700); background:var(--cream-100); }
+.langmenu > summary::-webkit-details-marker { display:none; }
+.langmenu > summary .flag { font-size:1.05rem; line-height:1; }
+.langmenu > summary .caret { font-size:.65rem; opacity:.8; }
+.langmenu[open] > summary { background:var(--saffron-400); color:var(--noche-900); }
+.langmenu__list { position:absolute; right:0; top:calc(100% + 6px); z-index:60; background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-lg); padding:6px; min-width:186px; display:flex; flex-direction:column; }
+.langmenu__list a { display:flex; align-items:center; gap:9px; padding:9px 12px; border-radius:9px; color:var(--ink) !important; font-weight:600 !important; font-size:.92rem; }
+.langmenu__list a:hover { background:var(--cream-100); text-decoration:none; }
+.langmenu__list a.is-cur { background:var(--saffron-400); color:var(--noche-900) !important; }
+.langmenu__list .flag { font-size:1.15rem; line-height:1; }
 .btn-contact { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg, var(--jamon-600), var(--jamon-700)); color:var(--cream-50); font-weight:700; font-size:.9rem; padding:9px 17px; border-radius:999px; box-shadow:0 8px 18px -9px rgba(155,27,48,.55); }
 .btn-contact:hover { filter:brightness(1.08); color:var(--cream-50); text-decoration:none; }
 @media (max-width:720px){ .btn-contact{ padding:8px 13px; } }

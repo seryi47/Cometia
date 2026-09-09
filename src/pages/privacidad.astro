@@ -1,25 +1,4 @@
 ---
-import GuiaLayout from '../layouts/GuiaLayout.astro';
+import PrivacyGuia from '../components/PrivacyGuia.astro';
 ---
-<GuiaLayout
-  title="Política de privacidad — Cometia"
-  description="Política de privacidad de la guía Cometia."
-  lang="es"
-  canonical="/privacidad"
-  noindex={true}
-  altUrl="/en/privacy"
->
-  <section class="ficha wrap">
-    <h1>Política de privacidad</h1>
-    <div class="prose" style="max-width:720px">
-      <p>Cometia es una guía web informativa. No te pedimos registro ni recogemos datos personales para navegar por la guía. Solo tratamos datos si nos escribes voluntariamente por correo.</p>
-      <h2>Datos de terceros</h2>
-      <p>Los datos de los locales proceden de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (© colaboradores de OpenStreetMap, licencia ODbL). Los mapas se muestran mediante OpenStreetMap y los enlaces de valoraciones llevan a Google Maps, cada uno con su propia política de privacidad.</p>
-      <h2>Analítica y cookies</h2>
-      <p>Podemos usar herramientas de analítica de forma agregada y anónima para entender cómo se usa la web y mejorarla. Si en el futuro incorporamos publicidad, lo reflejaremos aquí.</p>
-      <h2>Contacto</h2>
-      <p>Para cualquier consulta sobre privacidad: <a href="mailto:cometia.es@gmail.com">cometia.es@gmail.com</a>.</p>
-      <p class="ftr__attr">Última actualización: 2026.</p>
-    </div>
-  </section>
-</GuiaLayout>
+<PrivacyGuia lang="es" />

@@ -1,0 +1,143 @@
+---
+import GuiaLayout from '../layouts/GuiaLayout.astro';
+import LugarCard from './LugarCard.astro';
+import { LUGARES, ZONAS, CATEGORIAS, TYPE_ORDER, TOTAL, N_FOTOS, porTipo, zonaUrl, tipoUrl, tipoPlural, tipoSingular, altHome, fichaUrl } from '../data/guia/lugares';
+import { t, fmt, homeUrl, FAQS, FEATURES, LANG_META, type Lang } from '../i18n';
+export interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const SITE = 'https://cometia.es';
+const porZona = (z: string) => LUGARES.filter((l) => l.zone === z).length;
+const destacados = ZONAS.flatMap((z) => LUGARES.filter((l) => l.zone === z && l.photo).sort((a, b) => a.name.localeCompare(b.name)).slice(0, 6)).sort((a, b) => a.name.localeCompare(b.name));
+const tipos = TYPE_ORDER.filter((ty) => porTipo(ty).length > 0);
+const canonical = homeUrl(lang);
+const alternates = altHome();
+const faqs = FAQS[lang].map((f) => ({ q: f.q, a: fmt(f.a, { total: TOTAL }) }));
+const feats = FEATURES[lang].map((f) => ({ ...f, p: fmt(f.p, { total: TOTAL }) }));
+// datos para el buscador de cliente
+const base = lang === 'es' ? '/sitio/' : LANG_META[lang].prefix + '/place/';
+const TL: Record<string, [string, string]> = {};
+for (const ty of TYPE_ORDER) TL[ty] = [CATEGORIAS[ty].icon, tipoSingular(ty, lang)];
+
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Cometia', url: SITE + canonical, inLanguage: lang },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: 'Cometia', url: SITE + '/', logo: SITE + '/favicon.svg', description: t(lang, 'tagline') },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'CollectionPage', name: t(lang, 'tagline'), url: SITE + canonical, inLanguage: lang },
+];
+---
+<GuiaLayout title={`${t(lang, 'hero_h1a')} ${t(lang, 'hero_grad')} — Cometia`} description={t(lang, 'hero_sub')} lang={lang} canonical={canonical} alternates={alternates} jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero__eyebrow">{t(lang, 'hero_eyebrow')}</p>
+      <h1>{t(lang, 'hero_h1a')} <span class="grad">{t(lang, 'hero_grad')}</span></h1>
+      <p>{t(lang, 'hero_sub')}</p>
+
+      <div class="search-wrap">
+        <div class="search"><input id="q" type="search" placeholder={t(lang, 'hero_search')} autocomplete="off" aria-label={t(lang, 'hero_search')} role="combobox" aria-expanded="false" aria-controls="results" /><span class="loc">📍 Costa Blanca</span></div>
+        <div class="results" id="results" role="listbox"></div>
+      </div>
+
+      <div class="hero__cta">
+        <a class="btn-hero" href={lang === 'es' ? '/mapa' : LANG_META[lang].prefix + '/map'}>{t(lang, 'cta_map')}</a>
+        <a class="btn-hero btn-hero--ghost" href="#zonas">{t(lang, 'cta_zones')}</a>
+      </div>
+
+      <div class="stats">
+        <div><b>{TOTAL}</b><span>{t(lang, 'st_places')}</span></div>
+        <div><b>{ZONAS.length}</b><span>{t(lang, 'st_areas')}</span></div>
+        <div><b>{N_FOTOS}</b><span>{t(lang, 'st_photos')}</span></div>
+        <div><b>{t(lang, 'bilingual_val')}</b><span>{t(lang, 'st_bilingual')}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="zonas">
+    <h2>{t(lang, 'zones_h')}</h2>
+    <p class="lead">{t(lang, 'zones_lead')}</p>
+    <div class="zonecards">
+      {ZONAS.map((z) => (
+        <a class="zonecard reveal" href={zonaUrl(z, lang)}><h3>{z}</h3><span>{porZona(z)} {t(lang, 'z_places')}</span></a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>{t(lang, 'types_h')}</h2>
+    <p class="lead">{t(lang, 'types_lead')}</p>
+    <div class="typetiles">
+      {tipos.map((ty) => (
+        <a class="typetile reveal" href={tipoUrl(ty, lang)}>
+          <span class="ic">{CATEGORIAS[ty].icon}</span>
+          <span><b>{tipoPlural(ty, lang)}</b><span>{porTipo(ty).length} {t(lang, 'st_places')}</span></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap" id="destacados">
+    <div class="sec__head"><h2 style="font-family:var(--display);font-size:2.1rem;margin:0">{t(lang, 'featured_h')}</h2><a class="sec__link" href={lang === 'es' ? '/mapa' : LANG_META[lang].prefix + '/map'}>{t(lang, 'featured_link')}</a></div>
+    <div class="grid">
+      {destacados.map((l) => <LugarCard l={l} lang={lang} />)}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="mapband reveal">
+      <h2>{t(lang, 'mapband_h')}</h2>
+      <p>{t(lang, 'mapband_p', { n: TOTAL })}</p>
+      <a class="btn-hero" href={lang === 'es' ? '/mapa' : LANG_META[lang].prefix + '/map'}>{t(lang, 'mapband_cta')}</a>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>{t(lang, 'why_h')}</h2>
+    <div class="feats">
+      {feats.map((f) => (<div class="feat reveal"><div class="ic">{f.ic}</div><h3>{f.t}</h3><p>{f.p}</p></div>))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>{t(lang, 'faq_h')}</h2>
+    <div class="faq">
+      {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ base, TL }}>
+    (function () {
+      var q = document.getElementById('q'), box = document.getElementById('results');
+      if (!q || !box) return;
+      var idx = [], hi = -1, cur = [], loaded = false;
+      function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+      function load() { if (loaded) return; loaded = true; fetch('/search-index.json').then(function (r) { return r.json(); }).then(function (d) { idx = d; run(); }); }
+      function run() {
+        var v = q.value.trim().toLowerCase();
+        if (v.length < 2) { close(); return; }
+        var starts = [], has = [];
+        for (var i = 0; i < idx.length && has.length < 40; i++) {
+          var n = idx[i].n.toLowerCase();
+          if (n.indexOf(v) === 0) starts.push(idx[i]);
+          else if (n.indexOf(v) > -1 || idx[i].z.toLowerCase().indexOf(v) > -1) has.push(idx[i]);
+        }
+        cur = starts.concat(has).slice(0, 8); hi = -1;
+        if (!cur.length) { box.innerHTML = '<div class="empty">—</div>'; box.classList.add('is-open'); return; }
+        box.innerHTML = cur.map(function (r) {
+          var tl = TL[r.t] || ['📍', ''];
+          return '<a class="result" role="option" href="' + base + r.s + '"><span class="ic">' + tl[0] + '</span><span class="nm">' + esc(r.n) + '</span><span class="mt">' + tl[1] + ' · ' + esc(r.z) + '</span></a>';
+        }).join('');
+        box.classList.add('is-open'); q.setAttribute('aria-expanded', 'true');
+      }
+      function close() { box.classList.remove('is-open'); q.setAttribute('aria-expanded', 'false'); hi = -1; }
+      function move(d) { var els = box.querySelectorAll('.result'); if (!els.length) return; hi = (hi + d + els.length) % els.length; els.forEach(function (e, i) { e.classList.toggle('is-hi', i === hi); }); }
+      q.addEventListener('focus', load);
+      q.addEventListener('input', function () { if (loaded) run(); else load(); });
+      q.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+        else if (e.key === 'Enter') { var els = box.querySelectorAll('.result'); if (hi > -1 && els[hi]) location.href = els[hi].getAttribute('href'); }
+        else if (e.key === 'Escape') close();
+      });
+      document.addEventListener('click', function (e) { if (!box.contains(e.target) && e.target !== q) close(); });
+    })();
+  </script>
+</GuiaLayout>
