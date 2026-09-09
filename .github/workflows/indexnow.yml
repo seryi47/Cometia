@@ -1,0 +1,58 @@
+name: IndexNow (avisar a buscadores)
+
+# Se ejecuta solo en cada push a main (tras el auto-deploy de Vercel) y avisa
+# a los buscadores compatibles con IndexNow (Bing, Yandex, Seznam, Naver…) de
+# las páginas del sitio. No necesita secretos ni configuración manual.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Esperar a que el deploy esté disponible
+        run: sleep 90
+      - name: Enviar URLs a IndexNow
+        run: |
+          set -e
+          HOST="cometia.es"
+          KEY="b0efe62cb2f12e3ebdc344a1425551cc"
+          KEYLOC="https://cometia.es/${KEY}.txt"
+
+          # Extrae hasta 9500 URLs de los sitemaps (páginas + fichas).
+          curl -s "https://cometia.es/sitemap-static.xml" "https://cometia.es/sitemap-fichas.xml" \
+            | grep -oE '<loc>[^<]+</loc>' \
+            | sed -E 's#</?loc>##g' \
+            | sort -u | head -9500 > urls.txt
+          echo "URLs a enviar: $(wc -l < urls.txt)"
+
+          # Construye el cuerpo JSON {host,key,keyLocation,urlList:[...]}.
+          python3 - <<'PY'
+          import json
+          urls = [u.strip() for u in open('urls.txt') if u.strip()]
+          body = {
+            "host": "cometia.es",
+            "key": "b0efe62cb2f12e3ebdc344a1425551cc",
+            "keyLocation": "https://cometia.es/b0efe62cb2f12e3ebdc344a1425551cc.txt",
+            "urlList": urls,
+          }
+          open('body.json','w').write(json.dumps(body))
+          print("URLs en el cuerpo:", len(urls))
+          PY
+
+          for ep in "https://api.indexnow.org/indexnow" "https://www.bing.com/indexnow" "https://yandex.com/indexnow"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$ep" \
+              -H "Content-Type: application/json; charset=utf-8" \
+              --data @body.json || echo "ERR")
+            echo "$ep -> $code"
+          done
